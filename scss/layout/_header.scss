@@ -1,0 +1,212 @@
+@use "../abstracts/tokens" as *;
+@use "../abstracts/mixins" as *;
+
+// header styles (add as needed)
+
+.header{
+    position: fixed;
+    z-index: 8000;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 72px;
+    background-color: transparent;//背景透明にする
+    --header-pad: 48px;
+    @include mq(md){
+        height: auto;
+    }
+}
+.is-drawer-open .header{
+    pointer-events: none;
+}
+.header__inner{
+    display: flex;
+    align-items: center;
+    height: inherit;
+    padding: var(--header-pad);
+    @include mq(md){
+        --header-pad: 20px;
+        height: auto;
+}
+}
+.header__name{
+    margin-right: auto;//要素を横に広げるので重要！ 
+}
+.header__logo-link{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    position: relative;
+    z-index: 1000;
+}
+.header__name img{
+    width: 64px;
+    height: 64px;
+
+    @include mq(md){
+     width: 32px;
+     height: auto;
+}
+}
+.header__logo-text{
+    font-size: 28px;
+     font-family: var(--font-serif);
+    color:var(--color-accent-1);
+    line-height: 0.8;
+    letter-spacing: 5.6px;
+
+}
+.header__nav{
+    height: inherit;
+    font-size: 20px;
+    font-weight: 500;
+    color:var(--color-accent-1);
+    line-height: 0.8;
+    letter-spacing: 2px;
+    font-family: var(--font-serif);
+}
+
+.header__items{
+    display: flex;
+    align-items: center;
+    height: inherit;
+}
+.header__item:not(:first-child){
+    margin-left: 32px;
+}
+
+.hamburger{
+    display: none;
+    align-items: center;
+    gap: 10.5px;
+    padding: 6px 8.5px 6px 9px;
+    border: none;
+    border-radius: 999px;
+    background-color: var(--color-accent-2);
+    color: #fff;
+    font-family: var(--font-serif);
+    cursor: pointer;
+}
+.hamburger__text{
+    font-weight: 400;
+}
+@include mq(md){
+    .hamburger{
+        display: inline-flex;
+    }
+}
+.hamburger.is-active{
+    display: none;
+}
+.hamburger__lines{
+    display: inline-flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.hamburger__line{
+    width: 12px;
+    height: 1px;
+    background-color: #fff;
+    border-radius: 999px;
+    transition: transform 0.3s, opacity 0.3s;
+}
+.hamburger.is-active .hamburger__line:nth-child(1){
+    transform: translateY(8px) rotate(45deg);
+}
+.hamburger.is-active .hamburger__line:nth-child(2){
+    opacity: 0;
+}
+.hamburger.is-active .hamburger__line:nth-child(3){
+    transform: translateY(-8px) rotate(-45deg);
+}
+.hamburger.is-active .hamburger__lines{
+    display: none;
+}
+.hamburger.is-active .hamburger__text{
+    display: none;
+}
+
+//ドロワー
+.drawer{
+    position: fixed;
+    z-index: 7000;
+    inset: 0;
+    display: none;
+    width: 100%;
+    height: 100vh;
+    background-color: $color-bg-2;
+    --header-pad: 48px;
+}
+.drawer.is-active{
+    display: block;
+}
+.drawer__close{
+    position: fixed;
+    z-index: 9000;
+    top: 40px;
+    right: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 999px;
+    background-color: var(--color-accent-2);
+    cursor: pointer;
+}
+@include mq(md){
+    .drawer{
+        --header-pad: 20px;
+    }
+}
+.drawer__close:focus{
+    outline: none;
+}
+.drawer__close:focus-visible{
+    outline: none;
+}
+.drawer__close-line{
+    position: absolute;
+    width: 16px;
+    height: 2px;
+    background-color: #fff;
+    border-radius: 999px;
+}
+.drawer__close-line:nth-child(1){
+    transform: rotate(45deg);
+}
+.drawer__close-line:nth-child(2){
+    transform: rotate(-45deg);
+}
+.drawer-menu__inner{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    height: inherit;
+    padding-top: 172px;
+}
+.drawer-menu__items{
+    display: flex;
+    flex-direction: column;
+}
+.drawer-menu__item{
+    display: inline-block;
+}
+.drawer-menu__item:not(:first-child){
+    margin-top: 12px;
+}
+
+.drawer-menu__link{
+    font-size: 24px;
+    font-weight: $weight-medium;
+    display:inline-block;
+    line-height: 0.8;
+    letter-spacing: 2.4px;
+    color:var(--color-main);
+    transition: 0.3s color;
+    font-family: var(--font-serif);
+}
+

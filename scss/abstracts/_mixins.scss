@@ -1,0 +1,14 @@
+@use "tokens" as *;
+
+@mixin mq($size) {
+  $width: map-get($breakpoints, $size);
+
+  @if $width == null {
+    @error "Unknown breakpoint `#{$size}`. Use one of: #{map-keys($breakpoints)}.";
+  }
+
+  @media (max-width: $width) {
+    @content;
+  }
+}
+

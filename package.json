@@ -1,0 +1,13 @@
+{
+  "name": "valentine-rose",
+  "private": true,
+  "scripts": {
+    "build:css": "sass scss/style.scss css/style.css --no-source-map",
+    "watch:css": "sass scss/style.scss css/style.css --watch --no-source-map"
+  },
+  "devDependencies": {
+    "sass": "^1.70.0"
+  }
+}
+
+

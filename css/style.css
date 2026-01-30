@@ -1,0 +1,466 @@
+@charset "UTF-8";
+.md-show {
+  display: block;
+}
+@media (max-width: 768px) {
+  .md-show {
+    display: none;
+  }
+}
+
+.u-md-none {
+  display: none;
+}
+@media (max-width: 768px) {
+  .u-md-none {
+    display: block;
+  }
+}
+
+.u-sp-only {
+  display: none;
+}
+@media (max-width: 768px) {
+  .u-sp-only {
+    display: block;
+  }
+}
+
+:root {
+  /* Color set */
+  --color-main: #CA7F13;
+  --color-accent-1: #54372D;
+  --color-accent-2: #949E33;
+  --color-text: #333333;
+  --color-bg-1: #F9F8F6;
+  --color-bg-2: #D4CEBE;
+  /* Font set */
+  --font-base: system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans JP, Hiragino Kaku Gothic ProN, Hiragino Sans, Yu Gothic, Meiryo, sans-serif;
+  --font-serif: Marcellus, Yu Mincho, YuMincho, Noto Serif JP, Hiragino Mincho ProN, serif;
+  --font-en: Marcellus, Yu Mincho, YuMincho, Noto Serif JP, Hiragino Mincho ProN, serif;
+  --font-script: Parisienne, cursive;
+  /* Usage presets */
+  --font-heading: Marcellus, Yu Mincho, YuMincho, Noto Serif JP, Hiragino Mincho ProN, serif;
+  --font-brand: Parisienne, cursive;
+}
+
+html {
+  color: var(--color-text);
+  background: var(--color-bg-1);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-base);
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg-1);
+}
+
+/* リンクの装飾を削除 */
+a {
+  color: inherit; /* 親要素の文字色を引き継ぐ */
+  text-decoration: none; /* 下線を消す */
+}
+
+/* リストのマーカーを消す */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.inner {
+  width: 100%;
+  max-width: 1080px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 25px;
+  padding-left: 25px;
+}
+@media (max-width: 768px) {
+  .inner {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+}
+
+.section-title__en {
+  font-family: var(--font-en);
+  font-size: 84px;
+  font-weight: 400;
+  line-height: 1.26;
+  letter-spacing: 3.36px;
+  text-align: left;
+  color: var(--color-main);
+}
+@media (max-width: 768px) {
+  .section-title__en {
+    font-size: 48px;
+    letter-spacing: 1.92px;
+    line-height: 1.25;
+  }
+}
+
+.section-title__ja {
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: 14px;
+  letter-spacing: 0.56px;
+  line-height: 1;
+  color: var(--color-main);
+  font-weight: 400;
+  opacity: 1;
+}
+@media (max-width: 768px) {
+  .section-title__ja {
+    font-size: 12px;
+    letter-spacing: 0.48px;
+    line-height: 1.5;
+  }
+}
+
+.section-title__bg {
+  font-family: var(--font-script);
+  font-size: 120px;
+  font-weight: 400;
+  line-height: 0.71428571;
+  letter-spacing: 0;
+  text-align: left;
+  color: rgba(202, 127, 19, 0.0784313725);
+}
+
+.button {
+  font-size: 20px;
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  width: 200px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 12px 0;
+  text-align: center;
+  white-space: nowrap;
+  gap: 26px;
+  transition: 0.3s background-color, 0.3s opacity;
+  background-color: var(--color-accent-2);
+  color: #fff;
+  line-height: 0.625;
+  letter-spacing: 2px;
+  border-radius: 40px;
+}
+@media (max-width: 768px) {
+  .button {
+    width: 100px;
+    padding: 6px 8.5px 6px 9px;
+    font-size: 14px;
+    line-height: 0.63636364;
+    letter-spacing: 1.4px;
+  }
+}
+.button:hover {
+  opacity: 1;
+  background-color: rgba(148, 158, 51, 0.85);
+  color: #fff;
+}
+
+.button--secondary {
+  font-size: 16px;
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  width: 160px;
+  background-color: var(--color-bg-2);
+  color: #fff;
+  line-height: 0.61538462;
+  letter-spacing: 1.6px;
+  font-weight: 600;
+  padding: 10px 43px;
+  border-radius: 40px;
+}
+@media (max-width: 768px) {
+  .button--secondary {
+    width: 120px;
+    padding: 8px 32.52px 6px 33.48px;
+    font-size: 12px;
+    letter-spacing: 1.2px;
+    line-height: 0.6;
+  }
+}
+.button--secondary:hover {
+  opacity: 1;
+  background-color: rgba(148, 158, 51, 0.85);
+  color: #fff;
+}
+
+.header {
+  position: fixed;
+  z-index: 8000;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 72px;
+  background-color: transparent;
+  --header-pad: 48px;
+}
+@media (max-width: 768px) {
+  .header {
+    height: auto;
+  }
+}
+
+.is-drawer-open .header {
+  pointer-events: none;
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  height: inherit;
+  padding: var(--header-pad);
+}
+@media (max-width: 768px) {
+  .header__inner {
+    --header-pad: 20px;
+    height: auto;
+  }
+}
+
+.header__name {
+  margin-right: auto;
+}
+
+.header__logo-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  position: relative;
+  z-index: 1000;
+}
+
+.header__name img {
+  width: 64px;
+  height: 64px;
+}
+@media (max-width: 768px) {
+  .header__name img {
+    width: 32px;
+    height: auto;
+  }
+}
+
+.header__logo-text {
+  font-size: 28px;
+  font-family: var(--font-serif);
+  color: var(--color-accent-1);
+  line-height: 0.8;
+  letter-spacing: 5.6px;
+}
+
+.header__nav {
+  height: inherit;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--color-accent-1);
+  line-height: 0.8;
+  letter-spacing: 2px;
+  font-family: var(--font-serif);
+}
+
+.header__items {
+  display: flex;
+  align-items: center;
+  height: inherit;
+}
+
+.header__item:not(:first-child) {
+  margin-left: 32px;
+}
+
+.hamburger {
+  display: none;
+  align-items: center;
+  gap: 10.5px;
+  padding: 6px 8.5px 6px 9px;
+  border: none;
+  border-radius: 999px;
+  background-color: var(--color-accent-2);
+  color: #fff;
+  font-family: var(--font-serif);
+  cursor: pointer;
+}
+
+.hamburger__text {
+  font-weight: 400;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: inline-flex;
+  }
+}
+.hamburger.is-active {
+  display: none;
+}
+
+.hamburger__lines {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hamburger__line {
+  width: 12px;
+  height: 1px;
+  background-color: #fff;
+  border-radius: 999px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.hamburger.is-active .hamburger__line:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.is-active .hamburger__line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.is-active .hamburger__line:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.hamburger.is-active .hamburger__lines {
+  display: none;
+}
+
+.hamburger.is-active .hamburger__text {
+  display: none;
+}
+
+.drawer {
+  position: fixed;
+  z-index: 7000;
+  inset: 0;
+  display: none;
+  width: 100%;
+  height: 100vh;
+  background-color: #D4CEBE;
+  --header-pad: 48px;
+}
+
+.drawer.is-active {
+  display: block;
+}
+
+.drawer__close {
+  position: fixed;
+  z-index: 9000;
+  top: 40px;
+  right: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 999px;
+  background-color: var(--color-accent-2);
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .drawer {
+    --header-pad: 20px;
+  }
+}
+.drawer__close:focus {
+  outline: none;
+}
+
+.drawer__close:focus-visible {
+  outline: none;
+}
+
+.drawer__close-line {
+  position: absolute;
+  width: 16px;
+  height: 2px;
+  background-color: #fff;
+  border-radius: 999px;
+}
+
+.drawer__close-line:nth-child(1) {
+  transform: rotate(45deg);
+}
+
+.drawer__close-line:nth-child(2) {
+  transform: rotate(-45deg);
+}
+
+.drawer-menu__inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  height: inherit;
+  padding-top: 172px;
+}
+
+.drawer-menu__items {
+  display: flex;
+  flex-direction: column;
+}
+
+.drawer-menu__item {
+  display: inline-block;
+}
+
+.drawer-menu__item:not(:first-child) {
+  margin-top: 12px;
+}
+
+.drawer-menu__link {
+  font-size: 24px;
+  font-weight: 500;
+  display: inline-block;
+  line-height: 0.8;
+  letter-spacing: 2.4px;
+  color: var(--color-main);
+  transition: 0.3s color;
+  font-family: var(--font-serif);
+}
+
+.fv {
+  width: 100%;
+  height: 100vh;
+}
+
+.fv__inner {
+  position: relative;
+  width: 100%;
+  height: inherit;
+  overflow: hidden;
+}
+
+.fv picture,
+.fv img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.fv__title-wrap {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%, -50%);
+}
+
+.fv__title {
+  color: #fff;
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: 64px;
+  font-weight: var(--weight-regular);
+  letter-spacing: 6.4px;
+  padding-left: 36px;
+}

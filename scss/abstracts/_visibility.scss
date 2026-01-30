@@ -1,0 +1,21 @@
+@use "mixins" as *;
+
+// 表示切り替え（PC / SP）
+.md-show{
+    display: block;
+    @include mq("md"){
+        display: none;
+    }
+}
+.u-md-none{
+    display: none;
+    @include mq("md"){
+        display: block;
+    }
+}
+.u-sp-only{
+    display: none;
+    @include mq("md"){
+        display: block;
+    }
+}

@@ -1,0 +1,47 @@
+@use "../abstracts/tokens" as *;
+
+:root {
+  /* Color set */
+  --color-main: #{$color-main};
+  --color-accent-1: #{$color-accent-1};
+  --color-accent-2: #{$color-accent-2};
+  --color-text: #{$color-text};
+  --color-bg-1: #{$color-bg-1};
+  --color-bg-2: #{$color-bg-2};
+
+  /* Font set */
+  --font-base: #{$font-base};
+  --font-serif: #{$font-serif};
+  --font-en: #{$font-en};
+  --font-script: #{$font-script};
+
+  /* Usage presets */
+  --font-heading: #{$font-heading};
+  --font-brand: #{$font-brand};
+}
+
+html {
+  color: var(--color-text);
+  background: var(--color-bg-1);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-base);
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg-1);
+}
+
+/* リンクの装飾を削除 */
+a {
+    color: inherit;       /* 親要素の文字色を引き継ぐ */
+    text-decoration: none; /* 下線を消す */
+  }
+  
+  /* リストのマーカーを消す */
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
