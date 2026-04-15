@@ -1,3 +1,4 @@
+@use "../abstracts/tokens" as *;
 @use "../abstracts/mixins" as *;
 
 .fv {
@@ -23,16 +24,16 @@
     position: absolute;
     z-index: 10;
     top: 50%;
-    left: 50%;
+    left: 0;
     width: 100%;
-    transform: translate(-50%, -50%);
+    transform: translateY(-50%);
 }
 
 .fv__title{
     color: #fff;
     font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
-    font-size: 64px;
-    font-weight: var(--weight-regular);
-    letter-spacing: 6.4px;
-    padding-left: 36px;
+    font-size: px(64);
+    font-weight: $weight-regular;
+    letter-spacing: px(6.4);
+    padding-left: px(36);
 }

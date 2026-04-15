@@ -1,52 +1,50 @@
+@use "../abstracts/tokens" as *;
 @use "../abstracts/mixins" as *;
 
 // 共通パーツ
 .inner {
   width: 100%;
   max-width: 1080px;
-  margin-right: auto;
-  margin-left: auto;
-  padding-right: 25px;
-  padding-left: 25px;
+  margin-inline: auto;
+  padding-inline: px(25);
 
   @include mq(md) {
-    padding-right: 30px;
-    padding-left: 30px;
+    padding-inline: px(29.5);
   }
 }
 .section-title__en {
   font-family: var(--font-en);
-  font-size: 84px;
+  font-size: px(84);
   font-weight: 400;
   line-height: 1.26;
-  letter-spacing: 3.36px;
+  letter-spacing: px(3.36);
   text-align: left;
   color: var(--color-main);
   @include mq(md) {
-    font-size: 48px;
-    letter-spacing: 1.92px;
+    font-size: px(48);
+    letter-spacing: px(1.92);
     line-height: 1.25;
   }
 }
 
 .section-title__ja {
   font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
-  font-size: 14px;
-  letter-spacing: 0.56px;
+  font-size: px(14);
+  letter-spacing: px(0.56);
   line-height: 1;
   color: var(--color-main);
-  font-weight: 400; 
-  opacity: 1; 
+  font-weight: 400;
+  opacity: 1;
 
   @include mq(md) {
-    font-size: 12px;
-    letter-spacing: 0.48px;
+    font-size: px(12);
+    letter-spacing: px(0.48);
     line-height: 1.5;
   }
 }
 .section-title__bg{
   font-family: var(--font-script);
-  font-size: 120px;
+  font-size: px(120);
   font-weight: 400;
   line-height: 0.71428571;
   letter-spacing: 0;
@@ -55,32 +53,32 @@
 }
 
 .button {
-  font-size: 20px;
+  font-size: px(20);
   font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
-  width: 200px;
+  width: px(200);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  padding: 12px 0;
+  padding: px(12) 0;
   text-align: center;
   white-space: nowrap;
-  gap: 26px;
-  transition: 0.3s background-color, 0.3s opacity;
+  gap: px(26);
+  transition: background-color $transition-base, opacity $transition-base;
   background-color: var(--color-accent-2);
   color: #fff;
   line-height: 0.625;
-  letter-spacing: 2px;
-  border-radius: 40px;
+  letter-spacing: px(2);
+  border-radius: px(40);
   @include mq(md) {
-    width: 100px;
-    padding: 6px 8.5px 6px 9px;
-    font-size: 14px;
-    line-height:0.63636364;
-    letter-spacing: 1.4px;
+    width: px(100);
+    padding: px(6) px(8.5) px(6) px(9);
+    font-size: px(14);
+    line-height: 0.63636364;
+    letter-spacing: px(1.4);
   }
 
-  &:hover {
+  @include hover {
     opacity: 1;
     background-color: rgba(148, 158, 51, 0.85);
     color: #fff;
@@ -88,27 +86,26 @@
 }
 
 .button--secondary {
-  font-size: 16px;
+  font-size: px(16);
   font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
-  width: 160px;
+  width: px(160);
   background-color: var(--color-bg-2);
   color: #fff;
-  line-height:0.61538462;
-  letter-spacing: 1.6px;
+  line-height: 0.61538462;
+  letter-spacing: px(1.6);
   font-weight: 600;
-  padding: 10px 43px;
-  border-radius: 40px;
+  padding: px(10) px(43);
+  border-radius: px(40);
 
   @include mq(md) {
-    width: 120px;
-    padding: 8px 32.52px 6px 33.48px;
-    font-size: 12px;
-    letter-spacing: 1.2px;
+    width: px(120);
+    padding: px(8) px(32.52) px(6) px(33.48);
+    font-size: px(12);
+    letter-spacing: px(1.2);
     line-height: 0.6;
-    
   }
 
-  &:hover {
+  @include hover {
     opacity: 1;
     background-color: rgba(148, 158, 51, 0.85);
     color: #fff;

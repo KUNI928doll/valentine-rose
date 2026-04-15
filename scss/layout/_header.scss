@@ -5,7 +5,7 @@
 
 .header{
     position: fixed;
-    z-index: 8000;
+    z-index: $z-header;
     width: 100%;
     top: 0;
     left: 0;
@@ -50,7 +50,7 @@
 }
 }
 .header__logo-text{
-    font-size: 28px;
+    font-size: var(--font-size-2xl);
      font-family: var(--font-serif);
     color:var(--color-accent-1);
     line-height: 0.8;
@@ -59,7 +59,7 @@
 }
 .header__nav{
     height: inherit;
-    font-size: 20px;
+    font-size: var(--font-size-lg);
     font-weight: 500;
     color:var(--color-accent-1);
     line-height: 0.8;
@@ -87,14 +87,12 @@
     color: #fff;
     font-family: var(--font-serif);
     cursor: pointer;
+    @include mq(md){
+        display: inline-flex;
+    }
 }
 .hamburger__text{
     font-weight: 400;
-}
-@include mq(md){
-    .hamburger{
-        display: inline-flex;
-    }
 }
 .hamburger.is-active{
     display: none;
@@ -109,7 +107,7 @@
     height: 1px;
     background-color: #fff;
     border-radius: 999px;
-    transition: transform 0.3s, opacity 0.3s;
+    transition: transform $transition-base, opacity $transition-base;
 }
 .hamburger.is-active .hamburger__line:nth-child(1){
     transform: translateY(8px) rotate(45deg);
@@ -130,20 +128,26 @@
 //ドロワー
 .drawer{
     position: fixed;
-    z-index: 7000;
+    z-index: $z-drawer;
     inset: 0;
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity $transition-base, visibility $transition-base;
     width: 100%;
     height: 100vh;
     background-color: $color-bg-2;
     --header-pad: 48px;
+    @include mq(md){
+        --header-pad: 20px;
+    }
 }
 .drawer.is-active{
-    display: block;
+    visibility: visible;
+    opacity: 1;
 }
 .drawer__close{
     position: fixed;
-    z-index: 9000;
+    z-index: $z-drawer-close;
     top: 40px;
     right: 22px;
     display: inline-flex;
@@ -155,11 +159,6 @@
     border-radius: 999px;
     background-color: var(--color-accent-2);
     cursor: pointer;
-}
-@include mq(md){
-    .drawer{
-        --header-pad: 20px;
-    }
 }
 .drawer__close:focus{
     outline: none;
@@ -200,13 +199,13 @@
 }
 
 .drawer-menu__link{
-    font-size: 24px;
+    font-size: var(--font-size-xl);
     font-weight: $weight-medium;
     display:inline-block;
     line-height: 0.8;
     letter-spacing: 2.4px;
     color:var(--color-main);
-    transition: 0.3s color;
+    transition: color $transition-base;
     font-family: var(--font-serif);
 }
 

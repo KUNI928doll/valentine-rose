@@ -1,0 +1,139 @@
+@use "../abstracts/tokens" as *;
+@use "../abstracts/mixins" as *;
+
+// Footer
+.footer {
+  background-color: var(--color-bg-1);
+  border-top: 1px solid var(--color-main);
+  padding: px(60) 0 px(40);
+
+  @include mq(md) {
+    padding: px(40) 0 px(32);
+  }
+}
+
+.footer__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: px(32);
+
+  @include mq(md) {
+    gap: px(24);
+  }
+}
+
+// ロゴ
+.footer__logo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: px(12);
+  text-decoration: none;
+}
+
+.footer__logo-link img {
+  width: px(64);
+  height: auto;
+}
+
+.footer__logo-text {
+  font-family: var(--font-serif);
+  font-size: px(22);
+  font-weight: 400;
+  color: var(--color-accent-1);
+  line-height: 1.2;
+  letter-spacing: px(4);
+}
+
+// ナビゲーション
+.footer__nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: px(12);
+}
+
+.footer__nav-items {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0;
+}
+
+.footer__nav-item {
+  display: flex;
+  align-items: center;
+
+  // セパレーター（|）
+  &:not(:first-child)::before {
+    content: "|";
+    color: var(--color-accent-1);
+    padding: 0 px(16);
+    font-size: px(14);
+    opacity: 0.5;
+  }
+}
+
+.footer__nav-link {
+  font-family: var(--font-serif);
+  font-size: px(16);
+  color: var(--color-accent-1);
+  letter-spacing: px(1.6);
+  transition: color $transition-base;
+
+  @include hover {
+    color: var(--color-main);
+  }
+
+  @include mq(md) {
+    font-size: px(14);
+  }
+}
+
+// コピーライト
+.footer__copyright {
+  font-size: px(12);
+  color: var(--color-accent-1);
+  letter-spacing: px(0.5);
+  opacity: 0.7;
+}
+
+// ページトップボタン
+.pagetop {
+  position: fixed;
+  z-index: $z-header;
+  bottom: px(32);
+  right: px(32);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: px(48);
+  height: px(48);
+  border: none;
+  border-radius: 999px;
+  background-color: var(--color-accent-2);
+  color: #fff;
+  font-size: px(16);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity $transition-base, visibility $transition-base, background-color $transition-base;
+
+  &.is-visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  @include hover {
+    background-color: var(--color-main);
+  }
+
+  @include mq(md) {
+    bottom: px(24);
+    right: px(16);
+    width: px(40);
+    height: px(40);
+    font-size: px(14);
+  }
+}

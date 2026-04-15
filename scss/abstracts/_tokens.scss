@@ -27,3 +27,17 @@ $breakpoints: (
   xl: 1366px
 );
 
+// Smooth responsive
+$design-sp:     375;    // SPデザインカンプ基準幅
+$design-pc:    1440;    // PCデザインカンプ基準幅
+$bp-smooth-sp:  767px;  // 〜767px: SPスケール
+$bp-smooth-pc: 1440px;  // 1440px〜: PC固定
+
+// Transition
+$transition-base: 0.3s ease;
+
+// Z-index
+$z-header:  8000;
+$z-drawer:  7000;
+$z-drawer-close: 9000;
+

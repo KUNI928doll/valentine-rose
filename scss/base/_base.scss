@@ -1,4 +1,19 @@
 @use "../abstracts/tokens" as *;
+@use "../abstracts/mixins" as *;
+
+// スムーズレスポンシブ
+// SP（〜767px）: 375px基準でスケール
+@media (max-width: #{$bp-smooth-sp}) {
+  :root { --1px: calc(100vw / #{$design-sp}); }
+}
+// PC（768px〜1440px）: 1440px基準でスケール
+@media (min-width: calc(#{$bp-smooth-sp} + 1px)) {
+  :root { --1px: calc(100vw / #{$design-pc}); }
+}
+// PC固定（1440px〜）: 1pxに固定
+@media (min-width: #{$bp-smooth-pc}) {
+  :root { --1px: 1px; }
+}
 
 :root {
   /* Color set */
@@ -18,6 +33,13 @@
   /* Usage presets */
   --font-heading: #{$font-heading};
   --font-brand: #{$font-brand};
+
+  /* Font sizes */
+  --font-size-sm:   14px;
+  --font-size-base: 16px;
+  --font-size-lg:   20px;
+  --font-size-xl:   24px;
+  --font-size-2xl:  28px;
 }
 
 html {
@@ -31,6 +53,7 @@ body {
   line-height: 1.6;
   color: var(--color-text);
   background: var(--color-bg-1);
+  overflow-x: hidden;
 }
 
 /* リンクの装飾を削除 */
