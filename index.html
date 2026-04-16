@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>VALENTINE ROSE｜女性専用の全国チェーン脱毛サロン</title>
     <meta name="description" content="全国に店舗を構える女性向け脱毛サロンVALENTINE ROSEは、VIO、脚、腕、背中などの全身の脱毛に対応しています。痛みが少なく短期間で高い脱毛効果を得ることができる脱毛サービスをリーズナブルな価格で提供しています。">
 
@@ -48,16 +48,16 @@
               <span class="header__logo-text md-show">VALENTINE <br>ROSE</span>
             </a>
           </h1>
-          <nav class="header__nav md-show">
+          <nav class="header__nav md-show" aria-label="グローバルナビ">
             <ul class="header__items">
-              <li class="header__item"> 
+              <li class="header__item">
+                <a href="#news" class="header__link">News</a>
+              </li>
+              <li class="header__item">
                 <a href="#concept" class="header__link">Concept</a>
               </li>
               <li class="header__item">
                 <a href="#price" class="header__link">Price</a>
-              </li>
-              <li class="header__item">   
-                <a href="#news" class="header__link">News</a>
               </li>
               <li class="header__item">
                 <a href="#reserve" class="header__link button">
@@ -85,23 +85,29 @@
       <div class="drawer-menu__inner">
           <ul class="drawer-menu__items">
             <li class="drawer-menu__item">
-              <a href="index.html" class="drawer-menu__link">HOME</a>
+              <a href="./index.html" class="drawer-menu__link">HOME</a>
             </li>
             <li class="drawer-menu__item">
-              <a href="#salon-concept" class="drawer-menu__link">SALON CONCEPT</a>
+              <a href="#news" class="drawer-menu__link">NEWS</a>
             </li>
             <li class="drawer-menu__item">
-              <a href="price-menu" class="drawer-menu__link">PRICE MENU</a>
+              <a href="#concept" class="drawer-menu__link">CONCEPT</a>
+            </li>
+            <li class="drawer-menu__item">
+              <a href="#feature" class="drawer-menu__link">FEATURE</a>
+            </li>
+            <li class="drawer-menu__item">
+              <a href="#price" class="drawer-menu__link">PRICE MENU</a>
+            </li>
+            <li class="drawer-menu__item">
+              <a href="#faq" class="drawer-menu__link">FAQ</a>
             </li>
             <li class="drawer-menu__item">
               <a href="#salons" class="drawer-menu__link">SALONS</a>
             </li>
             <li class="drawer-menu__item">
-              <a href="#news" class="drawer-menu__link drawer-menu__link--contact">NEWS</a>
+              <a href="#reserve" class="drawer-menu__link drawer-menu__link--contact">RESERVE</a>
             </li>
-            <li class="drawer-menu__item">
-                <a href="#re" class="drawer-menu__link drawer-menu__link--contact">RESERVE</a>
-              </li>
           </ul>
       </div> 
     </div>
@@ -114,12 +120,11 @@
              </picture>
              <div class="fv__title-wrap">
                <p class="fv__title">
-                自分を知っている人は<br>美しい。
+                <span class="fv__title-line">自分を知っている人は</span><span class="fv__title-line">美しい。</span>
                </p>
              </div>
            </div>
          </div>
-       </main>
 
     <!-- News -->
     <section class="news" id="news">
@@ -139,29 +144,320 @@
             <a href="#" class="news__link">
               <time class="news__date" datetime="2024-02-14">2024.02.14</time>
               <p class="news__text">タイトルが入ります。タイトルが入ります。</p>
-              <span class="news__category">Category</span>
+              <span class="news__category">NEWS</span>
             </a>
           </li>
           <li class="news__item">
             <a href="#" class="news__link">
               <time class="news__date" datetime="2024-02-14">2024.02.14</time>
               <p class="news__text">タイトルが入ります。タイトルが入ります。</p>
-              <span class="news__category">Category</span>
+              <span class="news__category">NEWS</span>
             </a>
           </li>
           <li class="news__item">
             <a href="#" class="news__link">
               <time class="news__date" datetime="2024-02-14">2024.02.14</time>
               <p class="news__text">タイトルが入ります。タイトルが入ります。</p>
-              <span class="news__category">Category</span>
+              <span class="news__category">NEWS</span>
             </a>
           </li>
         </ul>
         <div class="news__btn-wrap u-sp-only">
-          <a href="#" class="button">View All</a>
+          <a href="#" class="button">MORE</a>
         </div>
       </div>
     </section>
+
+    <!-- Concept -->
+    <section class="concept" id="concept">
+      <div class="inner concept__inner">
+        <div class="concept__head-row">
+          <div class="concept__lead">
+            <h2 class="concept__title">
+              <span class="section-title__en">Concept</span>
+              <span class="section-title__bg" aria-hidden="true">Concept</span>
+            </h2>
+            <p class="section-title__ja">コンセプト</p>
+            <p class="concept__catch">
+              <span class="concept__catch-part">洗練された</span><span class="concept__catch-part">ワンランク上の</span><span class="concept__catch-part">女性を目指す</span>
+            </p>
+          </div>
+          <figure class="concept__side u-sp-only">
+            <img src="./images/page/top-concept_02-sp.jpg" width="108" height="245" alt="スタイリングイメージ" loading="lazy">
+          </figure>
+        </div>
+        <figure class="concept__hero">
+          <picture>
+            <source srcset="./images/page/top-concept_01-sp.jpg" media="(max-width: 768px)">
+            <img src="./images/page/top-concept_01-pc.jpg" width="865" height="680" alt="脱毛施術の様子" loading="lazy">
+          </picture>
+        </figure>
+        <figure class="concept__reception md-show">
+          <img src="./images/page/top-concept_02-pc.jpg" width="540" height="211" alt="店内・受付の様子" loading="lazy">
+        </figure>
+        <div class="concept__article">
+          <p class="concept__text">
+            バレンタインローズでは脱毛の完了はゴールではなく、あくまでもお客様がワンランク上の女性に近づくための第一歩と考えています。「洗練されたワンランク上の女性を目指す」というコンセプトのもと、スタッフが徹底したホスピタリティによりお客様をもてなし、脱毛を通してお客様が理想とする女性像に導きます。
+          </p>
+          <a href="#" class="concept__more">
+            View More
+            <i class="fa-solid fa-arrow-up-right concept__more-icon" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature（PC: 左ナビ / 中央画像+見出し重ね / 右テキスト・5秒自動フェード） -->
+    <section class="feature" id="feature">
+      <div class="inner">
+        <div class="feature__content js-feature-slider">
+          <ul class="feature__nav" role="tablist" aria-label="特徴の切り替え">
+            <li class="feature__nav-item">
+              <button type="button" class="feature__nav-btn is-active" id="feature-tab-0" role="tab" aria-selected="true" aria-controls="feature-panel-0">
+                <span class="feature__nav-num" aria-hidden="true">Ⅰ</span>
+                <span class="feature__nav-text">高性能の機械を導入</span>
+              </button>
+            </li>
+            <li class="feature__nav-item">
+              <button type="button" class="feature__nav-btn" id="feature-tab-1" role="tab" aria-selected="false" aria-controls="feature-panel-1">
+                <span class="feature__nav-num" aria-hidden="true">Ⅱ</span>
+                <span class="feature__nav-text">痛みを最小限まで抑えた施術</span>
+              </button>
+            </li>
+            <li class="feature__nav-item">
+              <button type="button" class="feature__nav-btn" id="feature-tab-2" role="tab" aria-selected="false" aria-controls="feature-panel-2">
+                <span class="feature__nav-num" aria-hidden="true">Ⅲ</span>
+                <span class="feature__nav-text">1回の施術は 入店〜退店まで約30分</span>
+              </button>
+            </li>
+          </ul>
+          <div class="feature__mid">
+            <div class="feature__head feature__head--overlap">
+              <h2 class="feature__title">
+                <span class="section-title__en">Feature</span>
+                <span class="section-title__bg" aria-hidden="true">Feature</span>
+              </h2>
+              <p class="section-title__ja">特徴</p>
+            </div>
+            <div class="feature__image-panels">
+              <figure class="feature__panel-img is-active">
+                <div class="feature__img-frame">
+                  <picture>
+                    <source srcset="./images/page/feature_02-sp.jpg" media="(max-width: 768px)">
+                    <img src="./images/page/feature_02-pc.jpg" width="450" height="630" alt="カウンターでお客様をお迎えする様子" loading="lazy" decoding="async">
+                  </picture>
+                </div>
+              </figure>
+              <figure class="feature__panel-img">
+                <div class="feature__img-frame">
+                  <picture>
+                    <source srcset="./images/page/feature_01-sp.jpg" media="(max-width: 768px)">
+                    <img src="./images/page/feature_01-pc.jpg" width="450" height="630" alt="脱毛器による施術の様子" loading="lazy" decoding="async">
+                  </picture>
+                </div>
+              </figure>
+              <figure class="feature__panel-img">
+                <div class="feature__img-frame">
+                  <picture>
+                    <source srcset="./images/page/feature_03-sp.jpg" media="(max-width: 768px)">
+                    <img src="./images/page/feature_03-pc.jpg" width="450" height="630" alt="サロンでの施術イメージ" loading="lazy" decoding="async">
+                  </picture>
+                </div>
+              </figure>
+            </div>
+          </div>
+          <div class="feature__text-panels">
+            <div id="feature-panel-0" class="feature__panel-text is-active" role="tabpanel" aria-labelledby="feature-tab-0" aria-hidden="false">
+              <p class="feature__label">FEATURE Ⅰ</p>
+              <span class="feature__rule" aria-hidden="true"></span>
+              <h3 class="feature__heading">高性能の機械を導入</h3>
+              <p class="feature__text">
+                美肌に特化したフィルターを使用し<br>
+                真皮層に働きかけることで<br>
+                コラーゲンの生成を促進させます。<br>
+                また、むくみの原因である溜まった<br>
+                リンパを流すことで顔のむくみを取り、<br>
+                若々しいお肌と小顔効果が期待できます。
+              </p>
+            </div>
+            <div id="feature-panel-1" class="feature__panel-text" role="tabpanel" aria-labelledby="feature-tab-1" aria-hidden="true">
+              <p class="feature__label">FEATURE Ⅱ</p>
+              <span class="feature__rule" aria-hidden="true"></span>
+              <h3 class="feature__heading">痛みを最小限まで抑えた施術</h3>
+              <p class="feature__text">
+                毛質・毛量や脱毛箇所などに合わせてオーダーメイドの脱毛プランを作成し、当サロンで採用している脱毛器を使用して施術します。
+              </p>
+            </div>
+            <div id="feature-panel-2" class="feature__panel-text" role="tabpanel" aria-labelledby="feature-tab-2" aria-hidden="true">
+              <p class="feature__label">FEATURE Ⅲ</p>
+              <span class="feature__rule" aria-hidden="true"></span>
+              <h3 class="feature__heading">1回の施術は 入店〜退店まで約30分</h3>
+              <p class="feature__text">
+                施術自体は15分程度。初回はカウンセリングもあるので多少お時間をいただきますが、2回目以降は薄化粧で来ていただくと、入店から退店まで30分弱で済みます。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Price Menu（PC: 左見出し＋右2列×3行・右下空セル / SP: 5行・カンプの並び） -->
+    <section class="price-menu" id="price">
+      <div class="inner price-menu__layout">
+        <div class="price-menu__head">
+          <h2 class="price-menu__title">
+            <span class="price-menu__title-en">PRICE MENU</span>
+            <span class="section-title__bg" aria-hidden="true">Price menu</span>
+          </h2>
+          <p class="price-menu__title-ja">メニュー料金</p>
+        </div>
+        <div class="price-menu__grid">
+          <a href="#" class="price-menu__link price-menu__link--body">
+            <span class="price-menu__label">
+              <span class="price-menu__name">Body</span>
+              <span class="price-menu__sub">体脱毛</span>
+            </span>
+            <span class="price-menu__chev" aria-hidden="true">&gt;</span>
+          </a>
+          <a href="#" class="price-menu__link price-menu__link--vline">
+            <span class="price-menu__label">
+              <span class="price-menu__name">V-line</span>
+              <span class="price-menu__sub">VIO脱毛</span>
+            </span>
+            <span class="price-menu__chev" aria-hidden="true">&gt;</span>
+          </a>
+          <a href="#" class="price-menu__link price-menu__link--custom">
+            <span class="price-menu__label">
+              <span class="price-menu__name">Custom</span>
+              <span class="price-menu__sub">オーダーメイド</span>
+            </span>
+            <span class="price-menu__chev" aria-hidden="true">&gt;</span>
+          </a>
+          <a href="#" class="price-menu__link price-menu__link--set">
+            <span class="price-menu__label">
+              <span class="price-menu__name">Set</span>
+              <span class="price-menu__sub">セット脱毛</span>
+            </span>
+            <span class="price-menu__chev" aria-hidden="true">&gt;</span>
+          </a>
+          <a href="#" class="price-menu__link price-menu__link--all">
+            <span class="price-menu__label">
+              <span class="price-menu__name">All</span>
+              <span class="price-menu__sub">全てのメニュー</span>
+            </span>
+            <span class="price-menu__chev" aria-hidden="true">&gt;</span>
+          </a>
+          <div class="price-menu__blank" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+      <div class="inner">
+        <div class="faq__head">
+          <h2 class="faq__title">
+            <span class="section-title__en">FAQ</span>
+            <span class="section-title__bg" aria-hidden="true">FAQ</span>
+          </h2>
+          <p class="section-title__ja">よくあるご質問</p>
+        </div>
+        <div class="faq__list">
+          <div class="faq__item js-faq-item">
+            <button type="button" class="faq__trigger js-faq-trigger" aria-expanded="false" aria-controls="faq-panel-1" id="faq-trigger-1">
+              <span class="faq__q-text">Q. どのくらいの頻度で通えばいいですか？</span>
+              <span class="faq__icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+            </button>
+            <div class="faq__panel" id="faq-panel-1" role="region" aria-labelledby="faq-trigger-1">
+              <div class="faq__panel-inner">
+                <p class="faq__answer">A. 毛の生え変わりの周期に合わせて、目安として4〜8週間に1回程度をおすすめしています。カウンセリング時に最適なスケジュールをご案内します。</p>
+              </div>
+            </div>
+          </div>
+          <div class="faq__item js-faq-item">
+            <button type="button" class="faq__trigger js-faq-trigger" aria-expanded="false" aria-controls="faq-panel-2" id="faq-trigger-2">
+              <span class="faq__q-text">Q. 初回はどのような流れになりますか？</span>
+              <span class="faq__icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+            </button>
+            <div class="faq__panel" id="faq-panel-2" role="region" aria-labelledby="faq-trigger-2">
+              <div class="faq__panel-inner">
+                <p class="faq__answer">A. ご予約後、受付・カウンセリングを経て施術となります。ご不明点はお気軽にスタッフへお尋ねください。</p>
+              </div>
+            </div>
+          </div>
+          <div class="faq__item js-faq-item">
+            <button type="button" class="faq__trigger js-faq-trigger" aria-expanded="false" aria-controls="faq-panel-3" id="faq-trigger-3">
+              <span class="faq__q-text">Q. 肌が弱いのですが施術は受けられますか？</span>
+              <span class="faq__icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+            </button>
+            <div class="faq__panel" id="faq-panel-3" role="region" aria-labelledby="faq-trigger-3">
+              <div class="faq__panel-inner">
+                <p class="faq__answer">A. 事前に肌状態をお伺いし、問題がないか確認のうえで施術いたします。気になることがあればご相談ください。</p>
+              </div>
+            </div>
+          </div>
+          <div class="faq__item js-faq-item">
+            <button type="button" class="faq__trigger js-faq-trigger" aria-expanded="false" aria-controls="faq-panel-4" id="faq-trigger-4">
+              <span class="faq__q-text">Q. 支払い方法は選べますか？</span>
+              <span class="faq__icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+            </button>
+            <div class="faq__panel" id="faq-panel-4" role="region" aria-labelledby="faq-trigger-4">
+              <div class="faq__panel-inner">
+                <p class="faq__answer">A. 各店舗でご利用いただけるお支払い方法が異なる場合があります。詳しくは店舗へお問い合わせください。</p>
+              </div>
+            </div>
+          </div>
+          <div class="faq__item js-faq-item">
+            <button type="button" class="faq__trigger js-faq-trigger" aria-expanded="false" aria-controls="faq-panel-5" id="faq-trigger-5">
+              <span class="faq__q-text">Q. 他店からの乗り換えは可能ですか？</span>
+              <span class="faq__icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+            </button>
+            <div class="faq__panel" id="faq-panel-5" role="region" aria-labelledby="faq-trigger-5">
+              <div class="faq__panel-inner">
+                <p class="faq__answer">A. 可能です。現在の施術状況をお伺いしたうえで、無理のないプランをご提案いたします。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reserve -->
+    <section class="reserve-cta" id="reserve">
+      <a href="#" class="reserve-cta__link">
+        <div class="reserve-cta__media">
+          <picture>
+            <source srcset="./images/page/reserve_top-sp.jpg" media="(max-width: 768px)">
+            <img src="./images/page/reserve_top-pc.jpg" width="1440" height="600" alt="" loading="lazy">
+          </picture>
+        </div>
+        <span class="reserve-cta__overlay" aria-hidden="true"></span>
+        <div class="reserve-cta__copy">
+          <p class="reserve-cta__title">RESERVE</p>
+          <p class="reserve-cta__lead">予約はこちらから</p>
+        </div>
+      </a>
+    </section>
+
+    <!-- Salons / SNS -->
+    <section class="salons-sns" id="salons" aria-labelledby="salons-sns-heading">
+      <h2 id="salons-sns-heading" class="salons-sns__heading visually-hidden">店舗・SNS</h2>
+      <div class="inner">
+        <div class="salons-sns__row">
+          <a href="#" class="salons-sns__col">
+            <span class="salons-sns__title" lang="en">SALONS</span>
+            <span class="salons-sns__sub">店舗一覧</span>
+          </a>
+          <span class="salons-sns__vline" aria-hidden="true"></span>
+          <a href="#" class="salons-sns__col">
+            <span class="salons-sns__title" lang="en">SNS</span>
+            <span class="salons-sns__sub">インスタグラム</span>
+          </a>
+        </div>
+        <div class="salons-sns__rule" aria-hidden="true"></div>
+      </div>
+    </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
@@ -174,10 +470,13 @@
         </div>
         <nav class="footer__nav" aria-label="フッターナビゲーション">
           <ul class="footer__nav-items">
-            <li class="footer__nav-item"><a href="#" class="footer__nav-link">TOP</a></li>
-            <li class="footer__nav-item"><a href="#concept" class="footer__nav-link">Concept</a></li>
-            <li class="footer__nav-item"><a href="#price" class="footer__nav-link">Price</a></li>
+            <li class="footer__nav-item"><a href="./index.html" class="footer__nav-link">TOP</a></li>
             <li class="footer__nav-item"><a href="#news" class="footer__nav-link">News</a></li>
+            <li class="footer__nav-item"><a href="#concept" class="footer__nav-link">Concept</a></li>
+            <li class="footer__nav-item"><a href="#feature" class="footer__nav-link">Feature</a></li>
+            <li class="footer__nav-item"><a href="#price" class="footer__nav-link">Price</a></li>
+            <li class="footer__nav-item"><a href="#faq" class="footer__nav-link">FAQ</a></li>
+            <li class="footer__nav-item"><a href="#salons" class="footer__nav-link">Salons</a></li>
             <li class="footer__nav-item"><a href="#reserve" class="footer__nav-link">Reserve</a></li>
           </ul>
           <ul class="footer__nav-items footer__nav-items--sub">
