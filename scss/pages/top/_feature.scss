@@ -1,0 +1,311 @@
+@use "../../abstracts/tokens" as *;
+@use "../../abstracts/mixins" as *;
+
+// Feature（背景・画像枠は維持／文字色は section-title と同じ --color-main）
+// PC: 左ナビ | 中央画像+見出し重ね | 右テキスト（中央揃え）
+
+.feature {
+  --feature-bg: #2b2b2b;
+  --feature-img-border: #add8e6;
+
+  padding: px(80) 0 px(100);
+  background-color: var(--feature-bg);
+  color: var(--color-main);
+
+  @include mq(md) {
+    padding: px(56) 0 px(64);
+  }
+}
+
+.feature__content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(px(240), px(360)) minmax(0, 1.15fr);
+  gap: px(28) px(40);
+  align-items: center;
+
+  @include mq(md) {
+    display: flex;
+    flex-direction: column;
+    gap: px(28);
+    align-items: stretch;
+  }
+}
+
+// 左ナビ
+.feature__nav {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: px(20);
+
+  @include mq(md) {
+    order: 3;
+    gap: px(14);
+  }
+}
+
+.feature__nav-item {
+  margin: 0;
+}
+
+.feature__nav-btn {
+  display: flex;
+  align-items: flex-start;
+  gap: px(10);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: none;
+  color: var(--color-main);
+  opacity: 0.45;
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: px(14);
+  line-height: 1.7;
+  letter-spacing: px(0.56);
+  text-align: left;
+  cursor: pointer;
+  transition: opacity $transition-base;
+
+  @include mq(md) {
+    font-size: px(13);
+  }
+
+  @include hover {
+    opacity: 1;
+  }
+
+  &.is-active {
+    opacity: 1;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-main);
+    outline-offset: px(3);
+  }
+}
+
+.feature__nav-num {
+  flex-shrink: 0;
+  font-family: var(--font-en);
+  font-size: px(15);
+  letter-spacing: px(0.3);
+  color: inherit;
+  line-height: 1.5;
+}
+
+.feature__nav-text {
+  flex: 1;
+  min-width: 0;
+  color: inherit;
+}
+
+// 中央：見出しが画像上に重なる
+.feature__mid {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+
+  @include mq(md) {
+    order: 1;
+    width: 100%;
+  }
+}
+
+.feature__head--overlap {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  text-align: center;
+  margin-bottom: px(-40);
+  pointer-events: none;
+
+  @include mq(md) {
+    margin-bottom: px(16);
+    position: static;
+    pointer-events: auto;
+  }
+}
+
+// 他セクションと同じ section-title 系（FAQ と同様に中央・重ね装飾）
+.feature__title {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: px(8);
+  margin: 0;
+  line-height: 1;
+
+  .section-title__en {
+    position: relative;
+    z-index: 1;
+    color: var(--color-main);
+    font-size: px(64);
+
+    @include mq(md) {
+      font-size: px(48);
+    }
+  }
+
+  .section-title__bg {
+    position: absolute;
+    left: 50%;
+    bottom: px(-8);
+    transform: translateX(-50%);
+    z-index: 0;
+    font-size: px(90);
+    color: rgba(202, 127, 19, 0.12);
+    pointer-events: none;
+    white-space: nowrap;
+
+    @include mq(md) {
+      font-size: px(64);
+    }
+  }
+}
+
+.feature__head--overlap .section-title__ja {
+  margin: px(12) 0 0;
+  color: var(--color-main);
+}
+
+// 中央画像（重ねフェード）
+.feature__image-panels {
+  position: relative;
+  width: 100%;
+  max-width: px(340);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  z-index: 1;
+
+  @include mq(md) {
+    max-width: none;
+  }
+}
+
+.feature__panel-img {
+  grid-area: 1 / 1 / 2 / 2;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.65s ease;
+  z-index: 0;
+
+  &.is-active {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feature__panel-img {
+    transition-duration: 0.01ms;
+  }
+}
+
+.feature__img-frame {
+  display: block;
+  border: 1px solid var(--feature-img-border);
+  line-height: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+
+  picture,
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+// 右テキスト（中央揃え・画像と同様にグリッド重ねでフェード）
+.feature__text-panels {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  margin: px(48) 0 0;
+  min-width: 0;
+
+  @include mq(md) {
+    margin-top: 0;
+    order: 2;
+  }
+}
+
+.feature__panel-text {
+  grid-area: 1 / 1 / 2 / 2;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.65s ease;
+  z-index: 0;
+
+  &.is-active {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feature__panel-text {
+    transition-duration: 0.01ms;
+  }
+}
+
+.feature__label {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: px(12);
+  font-weight: 600;
+  letter-spacing: px(3);
+  color: var(--color-main);
+  text-transform: uppercase;
+}
+
+.feature__rule {
+  display: block;
+  width: px(36);
+  height: 1px;
+  margin: px(12) auto px(16);
+  background-color: var(--color-main);
+  opacity: 0.9;
+}
+
+.feature__heading {
+  margin: 0 0 px(20);
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: px(18);
+  font-weight: 600;
+  letter-spacing: px(0.72);
+  line-height: 1.65;
+  color: var(--color-main);
+
+  @include mq(md) {
+    font-size: px(16);
+    margin-bottom: px(16);
+  }
+}
+
+.feature__text {
+  margin: 0;
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: px(14);
+  font-weight: 400;
+  line-height: 2;
+  letter-spacing: px(0.56);
+  color: var(--color-main);
+  text-align: center;
+
+  @include mq(md) {
+    font-size: px(13);
+    line-height: 1.95;
+  }
+}

@@ -1,5 +1,5 @@
-@use "../abstracts/tokens" as *;
-@use "../abstracts/mixins" as *;
+@use "../../abstracts/tokens" as *;
+@use "../../abstracts/mixins" as *;
 
 // News
 .news {
@@ -16,7 +16,9 @@
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
+  gap: px(24);
   margin-bottom: px(40);
+  overflow: visible;
 
   @include mq(md) {
     margin-bottom: px(24);
@@ -28,14 +30,19 @@
   display: flex;
   flex-direction: column;
   gap: px(8);
+  min-width: 0;
+  overflow: visible;
 }
 
 // タイトル（en + bg テキスト重ね）
+// 装飾 .section-title__bg は親より右にはみ出すため overflow で切らない
 .news__title {
   position: relative;
-  display: flex;
+  display: inline-flex;
   align-items: baseline;
   line-height: 1;
+  overflow: visible;
+  max-width: none;
 
   .section-title__en {
     position: relative;
@@ -116,8 +123,9 @@
 
 // タイトルテキスト
 .news__text {
+  font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
   font-size: px(15);
-  font-weight: 500;
+  font-weight: 700;
   line-height: 1.7;
   color: var(--color-accent-1);
 
@@ -126,9 +134,11 @@
   }
 }
 
-// カテゴリ
+// カテゴリ（Marcellus Regular）
 .news__category {
+  font-family: var(--font-en);
   font-size: px(13);
+  font-weight: 400;
   color: var(--color-accent-1);
   opacity: 0.6;
   letter-spacing: px(0.5);
@@ -139,9 +149,11 @@
   }
 }
 
-// SP用ボタンラップ
+// SP用ボタンラップ（.u-sp-only と競合しないよう SP のみで指定）
 .news__btn-wrap {
-  display: flex;
-  justify-content: center;
-  margin-top: px(32);
+  @include mq(md) {
+    display: flex;
+    justify-content: center;
+    margin-top: px(32);
+  }
 }

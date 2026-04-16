@@ -1,0 +1,86 @@
+@use "../../abstracts/tokens" as *;
+@use "../../abstracts/mixins" as *;
+
+.reserve-cta {
+  position: relative;
+}
+
+.reserve-cta__link {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+
+  @include hover {
+    .reserve-cta__overlay {
+      background: linear-gradient(
+        rgba(51, 51, 51, 0.35),
+        rgba(51, 51, 51, 0.5)
+      );
+    }
+  }
+}
+
+.reserve-cta__media {
+  picture,
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    vertical-align: bottom;
+  }
+}
+
+.reserve-cta__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(51, 51, 51, 0.45),
+    rgba(51, 51, 51, 0.55)
+  );
+  pointer-events: none;
+  transition: background $transition-base;
+}
+
+.reserve-cta__copy {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: px(16);
+  text-align: center;
+  pointer-events: none;
+}
+
+.reserve-cta__title {
+  margin: 0;
+  font-family: var(--font-en);
+  font-size: px(72);
+  font-weight: 400;
+  letter-spacing: px(8);
+  color: var(--color-main);
+  text-shadow: 0 px(2) px(24) rgba(0, 0, 0, 0.35);
+
+  @include mq(md) {
+    font-size: px(40);
+    letter-spacing: px(4);
+  }
+}
+
+.reserve-cta__lead {
+  margin: 0;
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: px(16);
+  font-weight: 400;
+  letter-spacing: px(0.64);
+  line-height: 1.5;
+  color: var(--color-main);
+
+  @include mq(md) {
+    font-size: px(14);
+    letter-spacing: px(0.56);
+  }
+}

@@ -3,7 +3,15 @@
 @use "abstracts/visibility";
 @use "base/base";
 @use "components/common";
+@use "components/character-styles";
 @use "layout/header";
 @use "layout/fv";
 @use "layout/footer";
-@use "pages/news";
+// TOP（index）セクション — 将来は pages/news/ など別ページ用を並列で追加
+@use "pages/top/concept";
+@use "pages/top/news";
+@use "pages/top/feature";
+@use "pages/top/price-menu";
+@use "pages/top/faq";
+@use "pages/top/reserve-cta";
+@use "pages/top/salons-sns";

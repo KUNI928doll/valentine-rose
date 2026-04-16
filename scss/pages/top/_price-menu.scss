@@ -1,0 +1,232 @@
+@use "../../abstracts/tokens" as *;
+@use "../../abstracts/mixins" as *;
+
+// Price Menu
+// PC: 左に見出し、右に 2 列×3 行グリッド（右下セルは空）
+// SP: 見出し下に 5 行（Body → V-line → Set → Custom → All）
+
+.price-menu {
+  padding: px(100) 0;
+  background-color: #f5f3ef;
+
+  @include mq(md) {
+    padding: px(64) 0;
+  }
+}
+
+.price-menu__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.25fr);
+  gap: px(40) px(48);
+  align-items: start;
+
+  @include mq(md) {
+    grid-template-columns: 1fr;
+    gap: px(32);
+  }
+}
+
+.price-menu__head {
+  margin: 0;
+  text-align: left;
+
+  @include mq(md) {
+    text-align: center;
+  }
+}
+
+.price-menu__title {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: px(8);
+  margin: 0;
+  line-height: 1;
+
+  @include mq(md) {
+    align-items: center;
+  }
+
+  .price-menu__title-en {
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-en);
+    color: var(--color-main);
+    font-size: px(48);
+    font-weight: 400;
+    letter-spacing: px(2.4);
+    line-height: 1.15;
+    text-transform: uppercase;
+
+    @include mq(md) {
+      font-size: px(36);
+      letter-spacing: px(1.8);
+    }
+  }
+
+  .section-title__bg {
+    position: absolute;
+    left: px(-8);
+    bottom: px(-20);
+    z-index: 0;
+    font-family: var(--font-script);
+    font-size: px(100);
+    font-weight: 400;
+    line-height: 0.85;
+    letter-spacing: 0;
+    color: rgba(202, 127, 19, 0.14);
+    pointer-events: none;
+    white-space: nowrap;
+
+    @include mq(md) {
+      left: 50%;
+      bottom: px(-16);
+      transform: translateX(-50%);
+      font-size: px(72);
+    }
+  }
+}
+
+.price-menu__title-ja {
+  margin: px(12) 0 0;
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: px(14);
+  font-weight: 400;
+  letter-spacing: px(0.56);
+  line-height: 1.5;
+  color: var(--color-main);
+}
+
+.price-menu__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-areas:
+    "body vline"
+    "custom set"
+    "all blank";
+  gap: 0;
+  width: 100%;
+  border: 1px solid rgba(202, 127, 19, 0.35);
+
+  @include mq(md) {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "body"
+      "vline"
+      "set"
+      "custom"
+      "all";
+  }
+}
+
+.price-menu__link--body {
+  grid-area: body;
+}
+
+.price-menu__link--vline {
+  grid-area: vline;
+}
+
+.price-menu__link--custom {
+  grid-area: custom;
+}
+
+.price-menu__link--set {
+  grid-area: set;
+}
+
+.price-menu__link--all {
+  grid-area: all;
+}
+
+.price-menu__blank {
+  grid-area: blank;
+  min-height: px(64);
+  background-color: transparent;
+  border-bottom: none;
+
+  @include mq(md) {
+    display: none;
+  }
+}
+
+// セル区切り線（PC: 2 列グリッド）
+.price-menu__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: px(12);
+  padding: px(28) px(24);
+  color: var(--color-main);
+  border-bottom: 1px solid rgba(202, 127, 19, 0.35);
+  transition: background-color $transition-base;
+
+  @include mq(md) {
+    padding: px(24) px(20);
+    border-right: none !important;
+  }
+
+  @include hover {
+    background-color: rgba(202, 127, 19, 0.05);
+  }
+}
+
+.price-menu__link--body,
+.price-menu__link--custom {
+  border-right: 1px solid rgba(202, 127, 19, 0.35);
+}
+
+.price-menu__link--all {
+  border-right: 1px solid rgba(202, 127, 19, 0.35);
+  border-bottom: none;
+}
+
+.price-menu__link--vline,
+.price-menu__link--set {
+  border-right: none;
+}
+
+.price-menu__label {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: px(10) px(12);
+  min-width: 0;
+}
+
+.price-menu__name {
+  font-family: var(--font-en);
+  font-size: px(22);
+  font-weight: 400;
+  letter-spacing: px(1.76);
+  color: var(--color-main);
+
+  @include mq(md) {
+    font-size: px(20);
+  }
+}
+
+.price-menu__sub {
+  margin: 0;
+  font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: px(13);
+  font-weight: 500;
+  letter-spacing: px(0.52);
+  color: var(--color-main);
+  opacity: 0.92;
+
+  @include mq(md) {
+    font-size: px(12);
+  }
+}
+
+.price-menu__chev {
+  flex-shrink: 0;
+  font-family: var(--font-en);
+  font-size: px(16);
+  font-weight: 300;
+  line-height: 1;
+  color: var(--color-main);
+  opacity: 0.65;
+}

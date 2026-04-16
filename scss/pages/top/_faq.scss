@@ -1,0 +1,159 @@
+@use "../../abstracts/tokens" as *;
+@use "../../abstracts/mixins" as *;
+
+.faq {
+  padding: px(100) 0;
+  background-color: #fff;
+
+  @include mq(md) {
+    padding: px(64) 0;
+  }
+}
+
+.faq__head {
+  margin-bottom: px(48);
+  text-align: left;
+
+  @include mq(md) {
+    margin-bottom: px(32);
+  }
+}
+
+.faq__title {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: px(8);
+  margin: 0;
+  line-height: 1;
+
+  .section-title__en {
+    position: relative;
+    z-index: 1;
+    color: var(--color-main);
+    font-size: px(64);
+
+    @include mq(md) {
+      font-size: px(48);
+    }
+  }
+
+  .section-title__bg {
+    position: absolute;
+    left: px(8);
+    bottom: px(-12);
+    z-index: 0;
+    font-size: px(90);
+    color: rgba(202, 127, 19, 0.12);
+    pointer-events: none;
+    white-space: nowrap;
+
+    @include mq(md) {
+      font-size: px(64);
+      left: px(4);
+      bottom: px(-8);
+    }
+  }
+}
+
+.faq__head .section-title__ja {
+  color: var(--color-main);
+  margin: px(12) 0 0;
+  text-align: left;
+}
+
+.faq__list {
+  max-width: px(800);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: px(12);
+}
+
+.faq__item {
+  border-radius: px(8);
+  overflow: hidden;
+  background-color: var(--color-bg-2);
+  border: 1px solid rgba(202, 127, 19, 0.2);
+}
+
+.faq__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: px(16);
+  width: 100%;
+  margin: 0;
+  padding: px(20) px(24);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: px(15);
+  line-height: 1.7;
+  color: var(--color-accent-1);
+  transition: background-color $transition-base;
+
+  @include mq(md) {
+    padding: px(16) px(18);
+    font-size: px(14);
+  }
+
+  @include hover {
+    background-color: rgba(255, 255, 255, 0.35);
+  }
+}
+
+.faq__q-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.faq__icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: px(28);
+  height: px(28);
+  border-radius: 50%;
+  background-color: rgba(202, 127, 19, 0.15);
+  color: var(--color-main);
+  font-size: px(12);
+  transition: transform $transition-base;
+}
+
+.faq__item.is-open .faq__icon {
+  transform: rotate(180deg);
+}
+
+.faq__panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+.faq__item.is-open .faq__panel {
+  max-height: px(400);
+}
+
+.faq__panel-inner {
+  overflow: hidden;
+}
+
+.faq__answer {
+  margin: 0;
+  padding: px(16) px(24) px(20);
+  font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: px(14);
+  line-height: 1.9;
+  color: var(--color-text);
+  border-top: 1px solid rgba(202, 127, 19, 0.15);
+
+  @include mq(md) {
+    padding: px(12) px(18) px(16);
+    font-size: px(13);
+  }
+}

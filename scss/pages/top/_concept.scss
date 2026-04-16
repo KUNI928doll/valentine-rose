@@ -1,0 +1,223 @@
+@use "../../abstracts/tokens" as *;
+@use "../../abstracts/mixins" as *;
+
+// Concept（PC: 2段グリッド / SP: 縦積み＋見出し横並び）
+.concept {
+  padding: px(80) 0;
+  background-color: var(--color-bg-1);
+
+  @include mq(md) {
+    padding: px(48) 0;
+  }
+}
+
+.concept__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  grid-template-rows: auto auto;
+  gap: px(48) px(40);
+  align-items: start;
+
+  @include mq(md) {
+    display: flex;
+    flex-direction: column;
+    gap: px(24);
+  }
+}
+
+// 見出し行（PC: 左上 / SP: ヒーロー下で縦画像と横並び）
+.concept__head-row {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: px(16);
+  min-width: 0;
+
+  @include mq(md) {
+    order: 2;
+    align-items: flex-start;
+  }
+}
+
+.concept__lead {
+  flex: 1;
+  min-width: 0;
+}
+
+.concept__title {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  line-height: 1;
+  margin: 0 0 px(8);
+
+  .section-title__en {
+    position: relative;
+    z-index: 1;
+    font-size: px(64);
+    text-transform: uppercase;
+
+    @include mq(md) {
+      font-size: px(48);
+    }
+  }
+
+  .section-title__bg {
+    position: absolute;
+    left: px(8);
+    bottom: px(-12);
+    z-index: 0;
+    font-size: px(120);
+    pointer-events: none;
+    white-space: nowrap;
+
+    @include mq(md) {
+      font-size: px(80);
+      left: px(4);
+      bottom: px(-8);
+    }
+  }
+}
+
+.concept__lead .section-title__ja {
+  margin: 0 0 px(24);
+
+  @include mq(md) {
+    margin-bottom: px(16);
+  }
+}
+
+// キャッチ（PC: 1行相当 / SP: 3行）
+.concept__catch {
+  margin: 0;
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: px(18);
+  font-weight: 600;
+  line-height: 1.8;
+  letter-spacing: px(1.8);
+  color: var(--color-main);
+
+  @include mq(md) {
+    font-size: px(15);
+    line-height: 2;
+    letter-spacing: px(1.2);
+  }
+}
+
+.concept__catch-part {
+  @include mq(md) {
+    display: block;
+  }
+}
+
+// SP のみ：見出し横の縦長画像
+.concept__side {
+  flex-shrink: 0;
+  margin: 0;
+  width: px(120);
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  @include mq(md) {
+    width: px(100);
+  }
+}
+
+// メイン画像（PC: 右上 / SP: 最上段）
+.concept__hero {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+  min-width: 0;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  @include mq(md) {
+    order: 1;
+    width: 100%;
+  }
+}
+
+// 受付・店内（PC: 左下のみ）
+.concept__reception {
+  grid-column: 1;
+  grid-row: 2;
+  margin: 0;
+  min-width: 0;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+// 本文 + View More
+.concept__article {
+  grid-column: 2;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+
+  @include mq(md) {
+    order: 3;
+    width: 100%;
+  }
+}
+
+.concept__text {
+  margin: 0;
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: px(15);
+  font-weight: 400;
+  line-height: 2;
+  letter-spacing: px(0.6);
+  color: var(--color-accent-1);
+
+  @include mq(md) {
+    font-size: px(14);
+    line-height: 2;
+    letter-spacing: px(0.56);
+  }
+}
+
+.concept__more {
+  align-self: flex-end;
+  display: inline-flex;
+  align-items: center;
+  gap: px(8);
+  margin-top: px(32);
+  font-family: var(--font-en);
+  font-size: px(18);
+  font-weight: 400;
+  letter-spacing: px(1.8);
+  color: var(--color-main);
+  text-decoration: underline;
+  text-underline-offset: px(4);
+  transition: opacity $transition-base;
+
+  @include hover {
+    opacity: 0.75;
+  }
+
+  @include mq(md) {
+    margin-top: px(24);
+    font-size: px(16);
+  }
+}
+
+.concept__more-icon {
+  font-size: 0.85em;
+}
