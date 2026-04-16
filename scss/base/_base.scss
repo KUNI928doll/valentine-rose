@@ -1,6 +1,13 @@
 @use "../abstracts/tokens" as *;
 @use "../abstracts/mixins" as *;
 
+// 横方向の意図しないはみ出しを抑える（100vw 由来のスクロール対策含む）
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 // スムーズレスポンシブ
 // SP（〜767px）: 375px基準でスケール
 @media (max-width: #{$bp-smooth-sp}) {
@@ -40,11 +47,39 @@
   --font-size-lg:   20px;
   --font-size-xl:   24px;
   --font-size-2xl:  28px;
+
+  /* Design export（XD 等のトークン。--color-main と #CA7F13 は同一） */
+  --unnamed-color-ca7f13: #CA7F13;
+  --unnamed-font-family-yu-gothic: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
+  --unnamed-font-family-marcellus: "Marcellus", serif;
+  --unnamed-font-family-yu-mincho: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  --unnamed-font-style-normal: normal;
+  --unnamed-font-weight-600: 600;
+  --unnamed-font-weight-normal: normal;
+  --unnamed-font-size-12: 12px;
+  --unnamed-font-size-14: 14px;
+  --unnamed-font-size-16: 16px;
+  --unnamed-font-size-18: 18px;
+  --unnamed-font-size-48: 48px;
+  --unnamed-font-size-84: 84px;
+  --unnamed-character-spacing-1-4: 1.4px;
+  --unnamed-character-spacing-1-8: 1.8px;
+  --unnamed-character-spacing-4-8: 4.8px;
+  --unnamed-character-spacing-3-36: 3.36px;
+  --unnamed-character-spacing-1-2: 1.2px;
+  --unnamed-character-spacing-1-6: 1.6px;
+  --unnamed-line-spacing-10: 10px;
+  --unnamed-line-spacing-14: 14px;
+  --unnamed-line-spacing-28: 28px;
+  --unnamed-line-spacing-36: 36px;
 }
 
 html {
   color: var(--color-text);
   background: var(--color-bg-1);
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
 }
 
 body {
@@ -54,6 +89,22 @@ body {
   color: var(--color-text);
   background: var(--color-bg-1);
   overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
+main {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+// 固定ヘッダー分のアンカー余白
+main section[id] {
+  scroll-margin-top: px(96);
+
+  @include mq(md) {
+    scroll-margin-top: px(72);
+  }
 }
 
 /* リンクの装飾を削除 */

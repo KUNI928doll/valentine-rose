@@ -36,4 +36,23 @@
     font-weight: $weight-regular;
     letter-spacing: px(6.4);
     padding-left: px(36);
+
+    @include mq(md) {
+      font-size: px(32);
+      font-weight: $weight-regular; // Yu Mincho Light
+      letter-spacing: px(3.2);
+      line-height: px(48);
+      text-align: left;
+      margin: 0;
+      padding-left: px(29.5);
+    }
+}
+
+// PC のみ改行（SP は 1 行に連結）
+.fv__title-line {
+  display: block;
+
+  @include mq(md) {
+    display: inline;
+  }
 }

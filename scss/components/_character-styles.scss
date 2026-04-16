@@ -1,0 +1,97 @@
+@use "../abstracts/mixins" as *;
+
+// Adobe XD 等からの Character Styles（:root の --unnamed-* と併用）
+// 英語見出しの line-height はツール出力が 10px となっており不適切なため 1.26 / 1.25 に補正
+
+.section-heading-en-pc {
+  font-family: var(--unnamed-font-family-marcellus);
+  font-style: var(--unnamed-font-style-normal);
+  font-weight: var(--unnamed-font-weight-normal);
+  font-size: var(--unnamed-font-size-84);
+  line-height: 1.26;
+  letter-spacing: var(--unnamed-character-spacing-3-36);
+  color: var(--unnamed-color-ca7f13);
+}
+
+.section-heading-en-sp {
+  font-family: var(--unnamed-font-family-marcellus);
+  font-style: var(--unnamed-font-style-normal);
+  font-weight: var(--unnamed-font-weight-normal);
+  font-size: var(--unnamed-font-size-48);
+  line-height: 1.25;
+  letter-spacing: var(--unnamed-character-spacing-4-8);
+  color: var(--unnamed-color-ca7f13);
+}
+
+.section-heading-decoration-ja-sp {
+  font-family: var(--unnamed-font-family-yu-mincho);
+  font-style: var(--unnamed-font-style-normal);
+  font-weight: var(--unnamed-font-weight-600);
+  font-size: var(--unnamed-font-size-12);
+  line-height: var(--unnamed-line-spacing-14);
+  letter-spacing: var(--unnamed-character-spacing-1-2);
+  color: var(--unnamed-color-ca7f13);
+}
+
+.section-heading-decoration-ja-pc {
+  font-family: var(--unnamed-font-family-yu-mincho);
+  font-style: var(--unnamed-font-style-normal);
+  font-weight: var(--unnamed-font-weight-600);
+  font-size: var(--unnamed-font-size-16);
+  line-height: var(--unnamed-line-spacing-14);
+  letter-spacing: var(--unnamed-character-spacing-1-6);
+  color: var(--unnamed-color-ca7f13);
+}
+
+.unnamed-character-style-1 {
+  font-family: var(--unnamed-font-family-yu-gothic);
+  font-style: var(--unnamed-font-style-normal);
+  font-weight: var(--unnamed-font-weight-normal);
+  font-size: var(--unnamed-font-size-18);
+  line-height: var(--unnamed-line-spacing-36);
+  letter-spacing: var(--unnamed-character-spacing-1-8);
+  color: var(--unnamed-color-ca7f13);
+}
+
+.unnamed-character-style-2 {
+  font-family: var(--unnamed-font-family-yu-gothic);
+  font-style: var(--unnamed-font-style-normal);
+  font-weight: var(--unnamed-font-weight-normal);
+  font-size: var(--unnamed-font-size-14);
+  line-height: var(--unnamed-line-spacing-28);
+  letter-spacing: var(--unnamed-character-spacing-1-4);
+  color: var(--unnamed-color-ca7f13);
+}
+
+// 1 要素で PC/SP 切替（768px 以下で SP）
+.section-heading-en {
+  font-family: var(--unnamed-font-family-marcellus);
+  font-style: var(--unnamed-font-style-normal);
+  font-weight: var(--unnamed-font-weight-normal);
+  font-size: var(--unnamed-font-size-84);
+  line-height: 1.26;
+  letter-spacing: var(--unnamed-character-spacing-3-36);
+  color: var(--unnamed-color-ca7f13);
+
+  @include mq(md) {
+    font-size: var(--unnamed-font-size-48);
+    line-height: 1.25;
+    letter-spacing: var(--unnamed-character-spacing-4-8);
+  }
+}
+
+.section-heading-decoration-ja {
+  font-family: var(--unnamed-font-family-yu-mincho);
+  font-style: var(--unnamed-font-style-normal);
+  font-weight: var(--unnamed-font-weight-600);
+  font-size: var(--unnamed-font-size-16);
+  line-height: var(--unnamed-line-spacing-14);
+  letter-spacing: var(--unnamed-character-spacing-1-6);
+  color: var(--unnamed-color-ca7f13);
+
+  @include mq(md) {
+    font-size: var(--unnamed-font-size-12);
+    line-height: var(--unnamed-line-spacing-14);
+    letter-spacing: var(--unnamed-character-spacing-1-2);
+  }
+}

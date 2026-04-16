@@ -6,9 +6,12 @@
 .header{
     position: fixed;
     z-index: $z-header;
-    width: 100%;
     top: 0;
     left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
     height: 72px;
     background-color: transparent;//背景透明にする
     --header-pad: 48px;
@@ -23,14 +26,23 @@
     display: flex;
     align-items: center;
     height: inherit;
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
     padding: var(--header-pad);
     @include mq(md){
         --header-pad: 20px;
         height: auto;
-}
+        padding: var(--header-pad);
+        padding-left: max(20px, env(safe-area-inset-left, 0px));
+        padding-right: max(20px, env(safe-area-inset-right, 0px));
+    }
 }
 .header__name{
-    margin-right: auto;//要素を横に広げるので重要！ 
+    margin-right: auto;//要素を横に広げるので重要！
+    min-width: 0;
+    flex-shrink: 0;
 }
 .header__logo-link{
     display: flex;
@@ -87,6 +99,8 @@
     color: #fff;
     font-family: var(--font-serif);
     cursor: pointer;
+    flex: 0 0 auto;
+    max-width: 100%;
     @include mq(md){
         display: inline-flex;
     }
