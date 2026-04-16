@@ -70,7 +70,100 @@ const initPagetop = () => {
   });
 };
 
+// ============================================
+// FAQ アコーディオン
+// ============================================
+const initFaq = () => {
+  const items = document.querySelectorAll(".js-faq-item");
+
+  items.forEach((item) => {
+    const trigger = item.querySelector(".js-faq-trigger");
+    if (!trigger) return;
+
+    trigger.addEventListener("click", () => {
+      const isOpen = item.classList.toggle("is-open");
+      trigger.setAttribute("aria-expanded", String(isOpen));
+    });
+  });
+};
+
+// ============================================
+// Feature スライダー（5秒自動・フェード・タブ連動）
+// ============================================
+const initFeatureSlider = () => {
+  const root = document.querySelector(".js-feature-slider");
+  if (!root) return;
+
+  const tabs = root.querySelectorAll(".feature__nav-btn");
+  const imagePanels = root.querySelectorAll(".feature__panel-img");
+  const textPanels = root.querySelectorAll(".feature__panel-text");
+  const total = textPanels.length;
+  if (total === 0) return;
+
+  const DURATION_MS = 5000;
+  let current = 0;
+  let timerId = null;
+
+  const goTo = (index) => {
+    current = ((index % total) + total) % total;
+
+    imagePanels.forEach((panel, i) => {
+      const on = i === current;
+      panel.classList.toggle("is-active", on);
+    });
+
+    textPanels.forEach((panel, i) => {
+      const on = i === current;
+      panel.classList.toggle("is-active", on);
+      panel.setAttribute("aria-hidden", on ? "false" : "true");
+    });
+
+    tabs.forEach((tab, i) => {
+      const on = i === current;
+      tab.classList.toggle("is-active", on);
+      tab.setAttribute("aria-selected", String(on));
+    });
+  };
+
+  const stopTimer = () => {
+    if (timerId !== null) {
+      window.clearInterval(timerId);
+      timerId = null;
+    }
+  };
+
+  const startTimer = () => {
+    stopTimer();
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+    timerId = window.setInterval(() => {
+      goTo(current + 1);
+    }, DURATION_MS);
+  };
+
+  tabs.forEach((tab, i) => {
+    tab.addEventListener("click", () => {
+      goTo(i);
+      startTimer();
+    });
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      stopTimer();
+    } else {
+      startTimer();
+    }
+  });
+
+  goTo(0);
+  startTimer();
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   initDrawer();
   initPagetop();
+  initFaq();
+  initFeatureSlider();
 });
