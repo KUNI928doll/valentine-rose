@@ -1,0 +1,27 @@
+@use "../abstracts/tokens" as *;
+@use "../abstracts/mixins" as *;
+
+// 下層ページ：KV 下の本文エリア
+.page-sub {
+  background-color: var(--color-bg-1);
+  padding: px(48) 0 px(80);
+
+  @include mq(md) {
+    padding: px(32) 0 px(56);
+  }
+}
+
+.page-sub__lead {
+  margin: 0;
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: px(15);
+  font-weight: 400;
+  line-height: 2;
+  letter-spacing: px(0.6);
+  color: var(--color-accent-1);
+
+  @include mq(md) {
+    font-size: px(14);
+    letter-spacing: px(0.56);
+  }
+}

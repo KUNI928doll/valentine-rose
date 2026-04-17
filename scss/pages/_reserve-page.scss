@@ -1,0 +1,856 @@
+@use "../abstracts/tokens" as *;
+@use "../abstracts/mixins" as *;
+
+// Reserve ページ（PC/SP カンプ）
+$reserve-beige: #eae7de;
+$reserve-beige-card: #e8e4dc;
+$reserve-label-bg: #4a3c31;
+$reserve-gold: #c19c5d;
+
+.page-reserve {
+  background-color: var(--color-bg-1);
+}
+
+.reserve-page__breadcrumb-bar {
+  background-color: var(--color-bg-1);
+  padding: px(18) 0 px(16);
+  border-bottom: 1px solid rgba(193, 156, 93, 0.55);
+
+  @include mq(md) {
+    padding: px(14) 0 px(12);
+  }
+}
+
+// ─── 未成年同意 ───
+.reserve-consent {
+  padding: px(56) 0 px(48);
+  background-color: #fff;
+
+  @include mq(md) {
+    padding: px(40) 0 px(36);
+  }
+}
+
+.reserve-consent__inner {
+  max-width: 1080px;
+}
+
+.reserve-consent__title {
+  margin: 0 0 px(28);
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: px(18);
+  font-weight: 400;
+  letter-spacing: px(0.72);
+  line-height: 1.6;
+  color: $reserve-gold;
+
+  @include mq(md) {
+    font-size: px(16);
+    margin-bottom: px(20);
+    text-align: center;
+  }
+}
+
+.reserve-consent__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, px(280));
+  gap: px(32) px(48);
+  align-items: start;
+
+  @include mq(md) {
+    grid-template-columns: 1fr;
+    gap: px(24);
+  }
+}
+
+.reserve-consent__text {
+  margin: 0;
+  font-family: var(--font-base);
+  font-size: px(14);
+  line-height: 2;
+  letter-spacing: px(0.56);
+  color: var(--color-accent-1);
+}
+
+.reserve-consent__download {
+  padding: px(24);
+  background-color: $reserve-beige-card;
+  border-radius: px(4);
+  text-align: center;
+  box-sizing: border-box;
+
+  @include mq(md) {
+    padding: px(20);
+  }
+}
+
+.reserve-consent__download-lead {
+  margin: 0 0 px(16);
+  font-family: var(--font-base);
+  font-size: px(13);
+  color: var(--color-accent-1);
+}
+
+.reserve-consent__download-btn {
+  width: 100%;
+  max-width: px(200);
+  margin-inline: auto;
+}
+
+// ─── ネット予約 ───
+.reserve-online {
+  padding: px(40) 0 px(48);
+  background-color: var(--color-bg-1);
+
+  @include mq(md) {
+    padding: px(32) 0 px(40);
+  }
+}
+
+.reserve-online__box {
+  max-width: px(640);
+  margin-inline: auto;
+  padding: px(32) px(40);
+  background-color: $reserve-beige-card;
+  border-radius: px(8);
+  text-align: center;
+  box-sizing: border-box;
+
+  @include mq(md) {
+    padding: px(28) px(20);
+  }
+}
+
+.reserve-online__catch {
+  margin: 0 0 px(20);
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: px(16);
+  letter-spacing: px(0.64);
+  color: var(--color-accent-1);
+}
+
+.reserve-online__catch-sub {
+  font-size: px(14);
+  margin-left: px(4);
+}
+
+.reserve-online__hpb {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: px(280);
+  padding: px(14) px(32);
+  font-family: var(--font-base);
+  font-size: px(16);
+  font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+  background-color: var(--color-accent-2);
+  border-radius: 999px;
+  transition: opacity $transition-base;
+
+  @include hover {
+    opacity: 0.9;
+  }
+
+  @include mq(md) {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+}
+
+// ─── TEL ───
+.reserve-tel {
+  padding: px(48) 0 px(56);
+  background-color: #fff;
+  border-top: 1px solid rgba(193, 156, 93, 0.35);
+
+  @include mq(md) {
+    padding: px(40) 0 px(48);
+  }
+}
+
+.reserve-tel__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+  gap: 0 px(40);
+  align-items: center;
+  max-width: 1080px;
+
+  @include mq(md) {
+    grid-template-columns: 1fr;
+    gap: px(28);
+  }
+}
+
+.reserve-tel__vline {
+  align-self: stretch;
+  min-height: px(120);
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(84, 55, 45, 0.35) 12%,
+    rgba(84, 55, 45, 0.35) 88%,
+    transparent 100%
+  );
+
+  @include mq(md) {
+    display: none;
+  }
+}
+
+.reserve-tel__lead-title {
+  margin: 0 0 px(16);
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: px(18);
+  font-weight: 400;
+  letter-spacing: px(0.72);
+  line-height: 1.6;
+  color: $reserve-gold;
+
+  @include mq(md) {
+    font-size: px(16);
+    text-align: center;
+  }
+}
+
+.reserve-tel__text {
+  margin: 0 0 px(12);
+  font-family: var(--font-base);
+  font-size: px(14);
+  line-height: 2;
+  letter-spacing: px(0.56);
+  color: var(--color-accent-1);
+}
+
+.reserve-tel__note {
+  margin: 0;
+  font-size: px(12);
+  color: var(--color-text);
+  opacity: 0.85;
+}
+
+.reserve-tel__col--num {
+  text-align: center;
+
+  @include mq(md) {
+    padding-top: px(8);
+    border-top: 1px solid rgba(193, 156, 93, 0.35);
+  }
+}
+
+.reserve-tel__label {
+  margin: 0 0 px(4);
+  font-family: var(--font-en);
+  font-size: px(14);
+  letter-spacing: px(2);
+  color: var(--color-accent-1);
+}
+
+.reserve-tel__number {
+  margin: 0 0 px(8);
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: px(36);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: px(1);
+
+  @include mq(md) {
+    font-size: px(28);
+  }
+
+  a {
+    color: $reserve-gold;
+    text-decoration: none;
+    transition: opacity $transition-base;
+
+    @include hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.reserve-tel__hours {
+  margin: 0 0 px(20);
+  font-family: var(--font-base);
+  font-size: px(13);
+  color: var(--color-accent-1);
+}
+
+.reserve-tel__sub-link {
+  display: inline-block;
+  padding: px(10) px(24);
+  font-family: var(--font-base);
+  font-size: px(13);
+  color: var(--color-accent-2);
+  text-decoration: none;
+  border: 1px solid var(--color-accent-2);
+  border-radius: 999px;
+  transition: background-color $transition-base, color $transition-base;
+
+  @include hover {
+    background-color: var(--color-accent-2);
+    color: #fff;
+  }
+}
+
+// ─── メールフォーム ───
+.reserve-mail {
+  padding: px(64) 0 px(80);
+  background-color: $reserve-beige;
+
+  @include mq(md) {
+    padding: px(48) 0 px(56);
+  }
+}
+
+.reserve-mail__inner {
+  max-width: 1080px;
+}
+
+.reserve-mail__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, px(420));
+  align-items: start;
+  gap: px(32) px(48);
+  margin-bottom: px(40);
+
+  @include mq(md) {
+    grid-template-columns: 1fr;
+    gap: px(28);
+    margin-bottom: px(32);
+  }
+}
+
+.reserve-mail__intro {
+  min-width: 0;
+}
+
+.reserve-mail__title {
+  margin: 0 0 px(16);
+  font-family: var(--font-en);
+  font-size: px(40);
+  font-weight: 400;
+  letter-spacing: px(2);
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: $reserve-gold;
+
+  @include mq(md) {
+    font-size: px(28);
+    text-align: center;
+    margin-bottom: px(12);
+  }
+}
+
+.reserve-mail__lead {
+  margin: 0;
+}
+
+.reserve-mail__lead-line {
+  margin: 0;
+  font-family: var(--font-base);
+  font-size: px(13);
+  font-weight: 400;
+  line-height: 1.85;
+  letter-spacing: px(0.52);
+  color: var(--color-text);
+
+  &:not(:last-child) {
+    margin-bottom: px(2);
+  }
+
+  @include mq(md) {
+    font-size: px(12);
+    letter-spacing: px(0.48);
+    text-align: left;
+  }
+}
+
+$reserve-step-muted: #c4bfb6;
+
+.reserve-steps {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: px(12) px(20);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include mq(md) {
+    justify-content: center;
+    gap: px(8) px(12);
+  }
+}
+
+.reserve-steps__item {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: px(6);
+  min-width: 0;
+  max-width: px(140);
+  margin-inline: auto;
+  padding: 0 0 px(10);
+  border-bottom: 2px solid $reserve-step-muted;
+  color: $reserve-step-muted;
+  text-align: center;
+
+  @include mq(md) {
+    flex: 1 1 0;
+    max-width: none;
+    min-width: 0;
+    padding-bottom: px(8);
+  }
+
+  &--current {
+    color: $reserve-gold;
+    border-bottom-color: $reserve-gold;
+
+    .reserve-steps__en,
+    .reserve-steps__ja {
+      color: $reserve-gold;
+    }
+  }
+}
+
+.reserve-steps__en {
+  font-family: var(--font-en);
+  font-size: px(15);
+  font-weight: 400;
+  letter-spacing: px(0.6);
+  line-height: 1.2;
+  color: inherit;
+}
+
+.reserve-steps__ja {
+  font-family: var(--font-base);
+  font-size: px(12);
+  font-weight: 400;
+  letter-spacing: px(0.48);
+  line-height: 1.4;
+  color: inherit;
+}
+
+.reserve-form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: px(24);
+
+  @include mq(md) {
+    gap: px(20);
+  }
+}
+
+// 1行フィールド
+.reserve-field {
+  display: grid;
+  grid-template-columns: minmax(px(220), px(260)) minmax(0, 1fr);
+  gap: px(16) px(32);
+  align-items: start;
+
+  @include mq(md) {
+    grid-template-columns: 1fr;
+    gap: px(10);
+  }
+}
+
+.reserve-field--textarea {
+  align-items: start;
+}
+
+.reserve-field--fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  gap: px(16) px(32);
+
+  @include mq(md) {
+    flex-direction: column;
+    gap: px(10);
+  }
+
+  .reserve-field__control {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}
+
+.reserve-field__legend {
+  margin: 0;
+  flex: 0 0 minmax(px(220), px(260));
+  padding: px(10) px(14);
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: px(8);
+  background-color: $reserve-label-bg;
+  border-radius: px(4);
+  font-size: px(14);
+  line-height: 1.4;
+  color: #fff;
+  box-sizing: border-box;
+
+  @include mq(md) {
+    flex: none;
+    width: 100%;
+  }
+}
+
+.reserve-field__label {
+  margin: 0;
+  padding: px(10) px(14);
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: px(8);
+  background-color: $reserve-label-bg;
+  border-radius: px(4);
+  box-sizing: border-box;
+
+  @include mq(md) {
+    width: 100%;
+  }
+
+  &--top {
+    align-self: start;
+  }
+}
+
+.reserve-field__name {
+  font-family: var(--font-base);
+  font-size: px(14);
+  font-weight: 500;
+  color: #fff;
+}
+
+.reserve-badge {
+  display: inline-block;
+  padding: px(2) px(8);
+  font-size: px(11);
+  font-weight: 500;
+  line-height: 1.4;
+  border-radius: px(2);
+  flex-shrink: 0;
+
+  &--req {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.25);
+  }
+
+  &--opt {
+    color: var(--color-accent-1);
+    background-color: #d4d0c8;
+  }
+}
+
+.reserve-field__control {
+  min-width: 0;
+
+  &--checks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: px(16) px(28);
+    padding-top: px(4);
+  }
+
+  &--grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: px(12) px(20);
+    padding-top: px(4);
+
+    @include mq(md) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &--grid-sm {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    @include mq(md) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &--dates {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: px(20);
+
+    @include mq(md) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.reserve-input,
+.reserve-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: px(12) px(14);
+  font-family: var(--font-base);
+  font-size: px(14);
+  line-height: 1.5;
+  color: var(--color-text);
+  background-color: #fff;
+  border: 1px solid rgba(84, 55, 45, 0.35);
+  border-radius: px(2);
+  transition: border-color $transition-base, box-shadow $transition-base;
+
+  &::placeholder {
+    color: rgba(51, 51, 51, 0.4);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-main);
+    box-shadow: 0 0 0 2px rgba(202, 127, 19, 0.2);
+  }
+}
+
+.reserve-textarea {
+  resize: vertical;
+  min-height: px(180);
+}
+
+.reserve-check {
+  display: flex;
+  align-items: center;
+  gap: px(8);
+  font-family: var(--font-base);
+  font-size: px(14);
+  line-height: 1.5;
+  color: var(--color-accent-1);
+  cursor: pointer;
+
+  input {
+    width: px(18);
+    height: px(18);
+    accent-color: var(--color-accent-2);
+    cursor: pointer;
+  }
+}
+
+.reserve-date__caption {
+  display: block;
+  margin-bottom: px(6);
+  font-size: px(12);
+  color: var(--color-accent-1);
+}
+
+.reserve-date__row {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+
+.reserve-input--date {
+  flex: 1;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: none;
+}
+
+.reserve-date__cal {
+  flex: 0 0 px(44);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: #fff;
+  background-color: var(--color-main);
+  border: 1px solid var(--color-main);
+  border-radius: 0 px(2) px(2) 0;
+  cursor: pointer;
+  transition: opacity $transition-base;
+
+  @include hover {
+    opacity: 0.9;
+  }
+}
+
+.reserve-form__submit {
+  margin-top: px(40);
+  text-align: center;
+
+  @include mq(md) {
+    margin-top: px(32);
+  }
+}
+
+.reserve-submit {
+  min-width: px(280);
+  padding: px(16) px(48);
+  font-size: px(18);
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+
+  @include mq(md) {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+// ステップ間の区切り（カンプ）
+.reserve-steps__item:not(:first-child) {
+  border-left: 1px solid rgba(193, 156, 93, 0.4);
+  padding-left: px(16);
+  margin-left: px(8);
+
+  @include mq(md) {
+    border-left: none;
+    padding-left: 0;
+    margin-left: 0;
+  }
+}
+
+// ─── 確認画面（内容確認） ───
+.reserve-confirm-list {
+  margin: 0;
+  padding: 0;
+}
+
+.reserve-confirm-list__row {
+  display: grid;
+  grid-template-columns: minmax(px(200), px(280)) minmax(0, 1fr);
+  gap: px(12) px(28);
+  align-items: start;
+  padding: px(20) 0;
+  border-bottom: 1px solid rgba(84, 55, 45, 0.12);
+
+  @include mq(md) {
+    grid-template-columns: 1fr;
+    gap: px(10);
+    padding: px(16) 0;
+  }
+
+  &:first-child {
+    border-top: 1px solid rgba(84, 55, 45, 0.12);
+  }
+}
+
+.reserve-confirm-list__dt {
+  margin: 0;
+}
+
+.reserve-confirm-list__dd {
+  margin: 0;
+  font-family: var(--font-base);
+  font-size: px(14);
+  line-height: 1.75;
+  letter-spacing: px(0.56);
+  color: var(--color-text);
+  word-break: break-word;
+}
+
+.reserve-form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: px(16) px(32);
+  margin-top: px(40);
+
+  @include mq(md) {
+    flex-direction: column;
+    margin-top: px(32);
+    gap: px(12);
+  }
+}
+
+.reserve-form__back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: px(200);
+  padding: px(14) px(28);
+  font-family: var(--font-base);
+  font-size: px(15);
+  color: var(--color-accent-1);
+  text-decoration: none;
+  border: 1px solid var(--color-accent-1);
+  border-radius: 999px;
+  background-color: #fff;
+  transition: opacity $transition-base, background-color $transition-base, color $transition-base;
+
+  @include hover {
+    opacity: 0.85;
+    background-color: rgba(84, 55, 45, 0.04);
+  }
+
+  @include mq(md) {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+}
+
+.reserve-form--confirm .reserve-submit {
+  @include mq(md) {
+    width: 100%;
+  }
+}
+
+// ─── 完了画面 ───
+.reserve-thanks {
+  padding: px(48) px(24) px(56);
+  text-align: center;
+  box-sizing: border-box;
+
+  @include mq(md) {
+    padding: px(40) 0 px(48);
+  }
+}
+
+.reserve-thanks__title {
+  margin: 0 0 px(20);
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: px(22);
+  font-weight: 400;
+  letter-spacing: px(0.88);
+  line-height: 1.6;
+  color: $reserve-gold;
+
+  @include mq(md) {
+    font-size: px(18);
+  }
+}
+
+.reserve-thanks__text {
+  margin: 0 0 px(28);
+  font-family: var(--font-base);
+  font-size: px(14);
+  line-height: 2;
+  letter-spacing: px(0.56);
+  color: var(--color-text);
+
+  @include mq(md) {
+    font-size: px(13);
+    margin-bottom: px(24);
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.reserve-thanks__link {
+  font-family: var(--font-base);
+  font-size: px(14);
+  color: var(--color-main);
+  text-decoration: underline;
+  text-underline-offset: px(4);
+  transition: opacity $transition-base;
+
+  @include hover {
+    opacity: 0.75;
+  }
+}

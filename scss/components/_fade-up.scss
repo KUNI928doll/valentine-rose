@@ -1,0 +1,21 @@
+// スクロール連動：下からふわっと表示（参考: ugokuweb / coco-factory — 時間は 1s）
+.js-fadeup {
+  opacity: 0;
+  transform: translate3d(0, 40px, 0);
+  transition:
+    opacity 1s ease,
+    transform 1s ease;
+}
+
+.js-fadeup.is-fadeup-inview {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js-fadeup {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

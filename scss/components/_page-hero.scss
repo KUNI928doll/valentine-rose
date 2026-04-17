@@ -1,0 +1,112 @@
+@use "../abstracts/tokens" as *;
+@use "../abstracts/mixins" as *;
+
+// サイトヘッダー（fixed）と KV を重ねない — 下層ページは body に page-* クラス
+body[class*="page-"] > main#main {
+  padding-top: var(--header-offset);
+}
+
+// 下層ページ共通：タイトル帯 + KV（スクロール連動パララックスは main.js）
+.page-hero {
+  --page-hero-title-bg: #d9d4c5;
+  --page-hero-title-color: #c19c5d;
+  margin: 0;
+  padding: 0;
+  // タイトル帯と KV の継ぎ目で body 背景が1px 見えるのを抑える
+  overflow: hidden;
+}
+
+// カンプ：タイトル帯の高さ 360px（1440 レイアウト）
+.page-hero__title-strip {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  box-sizing: border-box;
+  margin: 0;
+  background-color: var(--page-hero-title-bg);
+  height: px(360);
+
+  @include mq(md) {
+    height: auto;
+    min-height: px(140);
+    padding: px(24) 0;
+  }
+}
+
+// `.inner` を帯の高さ（360）いっぱいにし、見出しだけ縦中央
+.page-hero__title-strip > .inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.page-hero__title {
+  margin: 0;
+  font-family: var(--font-en);
+  font-size: px(48);
+  font-weight: 400;
+  letter-spacing: px(4);
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--page-hero-title-color);
+
+  @include mq(md) {
+    font-size: px(26);
+    letter-spacing: px(2);
+  }
+}
+
+// クリップ領域（高さ固定）＋ 背景レイヤーは縦に余裕を持たせて移動時に切れないようにする
+.page-hero__parallax {
+  position: relative;
+  // タイトル帯と 1px 重ねて継ぎ目のすき間を埋める（負 margin ではなく相対位置で重ねる）
+  top: -1px;
+  z-index: 0;
+  overflow: hidden;
+  margin: 0;
+  // transform で背景が下にずれたとき、透けて body 色が見えないよう下地を敷く
+  background-color: var(--color-bg-2);
+  height: px(520);
+
+  @include mq(md) {
+    height: px(260);
+  }
+}
+
+.page-hero__bg {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  // main.js の translateY(rect.top * 0.35) 分も含め、上方向にはみ出しを大きく取る
+  top: -45%;
+  height: 195%;
+  background-color: var(--color-bg-2);
+  overflow: hidden;
+  will-change: transform;
+  backface-visibility: hidden;
+
+  picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .page-hero__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  @include mq(md) {
+    // SP は KV 高さが低いので、同じ translate でも上方向の余裕を多めに取る
+    top: -55%;
+    height: 220%;
+  }
+}

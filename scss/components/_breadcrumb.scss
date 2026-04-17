@@ -1,0 +1,61 @@
+@use "../abstracts/tokens" as *;
+@use "../abstracts/mixins" as *;
+
+// パンくず（下層ページ共通）
+.breadcrumb {
+  margin: 0;
+}
+
+.breadcrumb__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-base);
+  font-size: px(12);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: px(0.48);
+  color: var(--color-main);
+
+  @include mq(md) {
+    font-size: px(11);
+    letter-spacing: px(0.44);
+  }
+}
+
+.breadcrumb__item {
+  display: inline-flex;
+  align-items: center;
+}
+
+.breadcrumb__item:not(:first-child)::before {
+  content: "｜";
+  margin-inline: px(10);
+  color: var(--color-main);
+  opacity: 0.85;
+  font-weight: 400;
+
+  @include mq(md) {
+    margin-inline: px(8);
+  }
+}
+
+.breadcrumb a {
+  color: var(--color-main);
+  text-decoration: underline;
+  text-underline-offset: px(3);
+  transition: opacity $transition-base;
+
+  @include hover {
+    opacity: 0.75;
+  }
+}
+
+.breadcrumb [aria-current="page"] {
+  color: var(--color-accent-1);
+  text-decoration: none;
+  font-weight: 500;
+}

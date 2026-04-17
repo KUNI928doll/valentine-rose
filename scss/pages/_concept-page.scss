@@ -1,0 +1,388 @@
+@use "../abstracts/tokens" as *;
+@use "../abstracts/mixins" as *;
+
+// Concept ページ（SALON CONCEPT / Instagram / Company Profile）
+.page-concept {
+  background-color: var(--color-bg-1);
+}
+
+// ─── SALON CONCEPT（見出し・KV は components/_page-hero） ───
+.salon-concept {
+  margin: 0;
+  padding: 0 0 px(64);
+
+  @include mq(md) {
+    padding: 0 0 px(48);
+  }
+}
+
+// KV 直下の「余白の帯」にならないよう上パディングなし（詰めは intro 側で調整）
+.salon-concept__content {
+  padding-top: 0;
+}
+
+.salon-concept__intro-row {
+  display: grid;
+  grid-template-columns: 1fr minmax(px(200), px(320));
+  gap: px(40) px(32);
+  align-items: start;
+  margin: 0 0 px(32);
+  padding-top: px(40);
+
+  @include mq(md) {
+    grid-template-columns: 1fr;
+    gap: px(24);
+    margin-bottom: px(24);
+    padding-top: px(28);
+  }
+}
+
+.salon-concept__headline {
+  margin: 0;
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: px(22);
+  font-weight: 600;
+  line-height: 1.8;
+  letter-spacing: px(0.88);
+  color: var(--color-main);
+
+  @include mq(md) {
+    font-size: px(18);
+    line-height: 1.85;
+    text-align: center;
+  }
+}
+
+.salon-concept__portrait {
+  margin: 0;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  @include mq(md) {
+    max-width: px(240);
+    margin-inline: auto;
+  }
+}
+
+.salon-concept__text {
+  margin: 0;
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: px(15);
+  font-weight: 400;
+  line-height: 2;
+  letter-spacing: px(0.6);
+  color: var(--color-accent-1);
+
+  @include mq(md) {
+    font-size: px(14);
+    letter-spacing: px(0.56);
+  }
+}
+
+// ─── INSTAGRAM ───
+.concept-instagram {
+  padding: px(64) 0 px(80);
+  background-color: var(--color-bg-1);
+
+  @include mq(md) {
+    padding: px(48) 0 px(56);
+  }
+}
+
+.concept-instagram__head {
+  position: relative;
+  text-align: left;
+  margin-bottom: px(40);
+
+  @include mq(md) {
+    margin-bottom: px(28);
+  }
+}
+
+.concept-instagram__title {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-family: var(--font-en);
+  font-size: px(56);
+  font-weight: 400;
+  letter-spacing: px(4);
+  line-height: 1.2;
+  color: var(--color-main);
+  text-transform: uppercase;
+
+  @include mq(md) {
+    font-size: px(36);
+    letter-spacing: px(2);
+  }
+}
+
+.concept-instagram__title-bg {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-58%);
+  z-index: 0;
+  text-transform: capitalize;
+  margin: 0;
+  font-family: var(--font-script);
+  font-size: px(72);
+  font-weight: 400;
+  color: #ca7f131a;
+  white-space: nowrap;
+  pointer-events: none;
+
+  @include mq(md) {
+    font-size: px(48);
+  }
+}
+
+.concept-instagram__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: px(16);
+  margin: 0 0 px(40);
+  padding: 0;
+  list-style: none;
+
+  @include mq(md) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: px(12);
+    margin-bottom: px(28);
+  }
+}
+
+.concept-instagram__cell {
+  aspect-ratio: 1 / 1;
+  margin: 0;
+  background-color: var(--color-bg-2);
+  border-radius: px(4);
+  overflow: hidden;
+
+  // プレースホルダー（実装時は <a><img></a> に差し替え）
+  &--placeholder {
+    background: linear-gradient(145deg, #d8d4cc 0%, #c9c3b8 100%);
+  }
+}
+
+.concept-instagram__btn-wrap {
+  text-align: center;
+}
+
+.concept-instagram__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: px(8);
+  min-width: px(240);
+  padding: px(14) px(32);
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: px(16);
+  font-weight: 400;
+  letter-spacing: px(1.6);
+  color: #fff;
+  text-decoration: none;
+  background-color: var(--color-accent-2);
+  border-radius: px(40);
+  transition: opacity $transition-base, background-color $transition-base;
+
+  @include hover {
+    opacity: 0.92;
+    background-color: rgba(148, 158, 51, 0.92);
+  }
+
+  @include mq(md) {
+    min-width: px(200);
+    padding: px(12) px(24);
+    font-size: px(14);
+  }
+}
+
+// ─── COMPANY PROFILE ───
+.concept-profile {
+  padding: px(64) 0 px(80);
+
+  @include mq(md) {
+    padding: px(48) 0 px(56);
+  }
+}
+
+.concept-profile__head {
+  position: relative;
+  text-align: left;
+  margin-bottom: px(40);
+
+  @include mq(md) {
+    margin-bottom: px(28);
+  }
+}
+
+.concept-profile__title {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-family: var(--font-en);
+  font-size: px(48);
+  font-weight: 400;
+  letter-spacing: px(3);
+  line-height: 1.2;
+  color: var(--color-main);
+  text-transform: uppercase;
+
+  @include mq(md) {
+    font-size: px(28);
+    letter-spacing: px(1.5);
+  }
+}
+
+.concept-profile__title-bg {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-55%);
+  z-index: 0;
+  margin: 0;
+  font-family: var(--font-script);
+  font-size: px(100);
+  font-weight: 400;
+  color: #ca7f1314;
+  white-space: nowrap;
+  pointer-events: none;
+
+  @include mq(md) {
+    font-size: px(64);
+  }
+}
+
+.concept-profile__figure {
+  margin: 0 0 px(40);
+
+  picture {
+    display: block;
+    width: 100%;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  @include mq(md) {
+    margin-bottom: px(28);
+  }
+}
+
+// PC: 1行あたり「ラベル＋値」の組を左右2列（計4カラム）
+.concept-profile__table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: px(14);
+  line-height: 1.7;
+  letter-spacing: px(0.56);
+  color: var(--color-accent-1);
+
+  tr {
+    border-bottom: 1px solid rgba(202, 127, 19, 0.25);
+  }
+
+  th {
+    width: 12%;
+    padding: px(20) px(8) px(20) 0;
+    font-weight: 600;
+    text-align: left;
+    vertical-align: top;
+    color: var(--color-main);
+  }
+
+  td {
+    width: 38%;
+    padding: px(20) px(16) px(20) 0;
+    vertical-align: top;
+
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+
+  .concept-profile__cell--blank {
+    border: none;
+    padding: 0;
+    width: 12%;
+
+    & + .concept-profile__cell--blank {
+      width: 38%;
+    }
+  }
+
+  .concept-profile__row--full {
+    th {
+      width: 12%;
+      vertical-align: top;
+    }
+
+    td {
+      width: auto;
+    }
+  }
+
+  @include mq(md) {
+    display: block;
+    font-size: px(13);
+    letter-spacing: px(0.52);
+
+    tbody {
+      display: block;
+    }
+
+    tr {
+      display: block;
+      padding: px(16) 0;
+    }
+
+    th,
+    td {
+      display: block;
+      width: 100%;
+      padding: 0;
+    }
+
+    th {
+      margin-top: px(12);
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    // 2組目のラベル（3番目の th）に上マージン
+    tr:not(.concept-profile__row--full) th:nth-of-type(2) {
+      margin-top: px(20);
+    }
+
+    td {
+      margin-top: px(4);
+    }
+
+    .concept-profile__cell--blank {
+      display: none;
+    }
+
+    .concept-profile__row--full {
+      th {
+        margin-top: 0;
+      }
+
+      td[colspan] {
+        margin-top: px(4);
+      }
+    }
+  }
+}
