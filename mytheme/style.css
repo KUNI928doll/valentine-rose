@@ -1,0 +1,16 @@
+/*
+Theme Name: Valentine Rose
+Theme URI: https://example.com/
+Author: Your Name
+Author URI: https://example.com/
+Description: VALENTINE ROSE サイト用テーマ（静的 HTML からの移行用スケルトン）
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 6.7
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: valentine-rose
+*/
+
+/* メインのスタイルは assets/css/ を functions.php で読み込み */

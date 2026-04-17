@@ -1,0 +1,15 @@
+/**
+ * Valentine Rose — メインスタイル
+ * 静的サイトの css/style.css をここへコピーするか、ビルド出力を同期してください。
+ */
+
+body {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+}
+
+.site-main {
+    max-width: 1080px;
+    margin-inline: auto;
+    padding: 1.5rem;
+}
