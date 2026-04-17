@@ -12,12 +12,10 @@
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
-    height: 72px;
+    /* 高さは inner の padding + ロゴで決める（72px 固定は実寸と不一致になるため使わない） */
+    height: auto;
     background-color: transparent;//背景透明にする
     --header-pad: 48px;
-    @include mq(md){
-        height: auto;
-    }
 }
 .is-drawer-open .header{
     pointer-events: none;
@@ -199,7 +197,7 @@
     justify-content: center;
     width: 100%;
     height: inherit;
-    padding-top: 172px;
+    padding-top: var(--header-offset);
 }
 .drawer-menu__items{
     display: flex;

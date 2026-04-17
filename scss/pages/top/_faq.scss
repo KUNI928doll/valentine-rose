@@ -79,6 +79,8 @@
 }
 
 .faq__trigger {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -93,7 +95,7 @@
   font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
   font-size: px(15);
   line-height: 1.7;
-  color: var(--color-accent-1);
+  color: var(--color-main);
   transition: background-color $transition-base;
 
   @include mq(md) {
@@ -130,13 +132,15 @@
 }
 
 .faq__panel {
+  position: relative;
+  z-index: 0;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.35s ease;
 }
 
 .faq__item.is-open .faq__panel {
-  max-height: px(400);
+  max-height: px(1200);
 }
 
 .faq__panel-inner {
@@ -149,7 +153,7 @@
   font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
   font-size: px(14);
   line-height: 1.9;
-  color: var(--color-text);
+  color: var(--color-main);
   border-top: 1px solid rgba(202, 127, 19, 0.15);
 
   @include mq(md) {

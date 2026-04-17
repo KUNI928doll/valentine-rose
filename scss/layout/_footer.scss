@@ -4,7 +4,6 @@
 // Footer
 .footer {
   background-color: var(--color-bg-1);
-  border-top: 1px solid var(--color-main);
   padding: px(60) 0 px(40);
 
   @include mq(md) {

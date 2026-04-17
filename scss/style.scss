@@ -3,6 +3,10 @@
 @use "abstracts/visibility";
 @use "base/base";
 @use "components/common";
+@use "components/breadcrumb";
+@use "components/fade-up";
+@use "components/page-hero";
+@use "components/page-sub";
 @use "components/character-styles";
 @use "layout/header";
 @use "layout/fv";
@@ -15,3 +19,6 @@
 @use "pages/top/faq";
 @use "pages/top/reserve-cta";
 @use "pages/top/salons-sns";
+@use "pages/concept-page";
+@use "pages/price-page";
+@use "pages/reserve-page";

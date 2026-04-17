@@ -97,6 +97,13 @@
   }
 }
 
+// .button の display が .md-show より後から当たり SP でも表示されてしまうため上書き
+@include mq(md) {
+  .button.md-show {
+    display: none !important;
+  }
+}
+
 .button--secondary {
   font-size: px(16);
   font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;

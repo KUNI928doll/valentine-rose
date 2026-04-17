@@ -56,3 +56,12 @@
     display: inline;
   }
 }
+
+// スクロール演出：行ごとに単体でふわっと（2行目はわずかに遅延）
+.fv__title-line.js-fadeup {
+  transition-delay: 0s;
+}
+
+.fv__title-line.js-fadeup:nth-child(2) {
+  transition-delay: 0.15s;
+}

@@ -72,6 +72,15 @@
   --unnamed-line-spacing-14: 14px;
   --unnamed-line-spacing-28: 28px;
   --unnamed-line-spacing-36: 36px;
+
+  /* 固定ヘッダー高さ分（padding-top / scroll-margin / ドロワーと同期） */
+  --header-offset: #{px($header-offset-pc)};
+}
+
+@include mq(md) {
+  :root {
+    --header-offset: #{px($header-offset-sp)};
+  }
 }
 
 html {
@@ -100,11 +109,7 @@ main {
 
 // 固定ヘッダー分のアンカー余白
 main section[id] {
-  scroll-margin-top: px(96);
-
-  @include mq(md) {
-    scroll-margin-top: px(72);
-  }
+  scroll-margin-top: var(--header-offset);
 }
 
 /* リンクの装飾を削除 */

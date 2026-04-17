@@ -1,10 +1,11 @@
 @use "../../abstracts/tokens" as *;
 @use "../../abstracts/mixins" as *;
 
-// Concept（PC: 2段グリッド / SP: 縦積み＋見出し横並び）
+// Concept（PC: 2段グリッド / 1行目は見出しが画像左端で重なる・縦中央揃え / SP: 縦積み）
 .concept {
   padding: px(80) 0;
   background-color: var(--color-bg-1);
+  overflow-x: clip;
 
   @include mq(md) {
     padding: px(48) 0;
@@ -13,9 +14,11 @@
 
 .concept__inner {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  // 第2列は auto にし、メイン画像をカンプ幅（865px）で表示（従来の 1.15fr だと列が狭く画像が小さく見える）
+  grid-template-columns: minmax(0, 1fr) auto;
   grid-template-rows: auto auto;
-  gap: px(48) px(40);
+  // PC: 列間ギャップなし＋負マージンで見出しが画像左へまたがる
+  gap: px(48) 0;
   align-items: start;
 
   @include mq(md) {
@@ -25,18 +28,25 @@
   }
 }
 
-// 見出し行（PC: 左上 / SP: ヒーロー下で縦画像と横並び）
+// 見出し行（PC: 左列・画像と縦中央揃え / 右にはみ出して画像と重なる）
 .concept__head-row {
   grid-column: 1;
   grid-row: 1;
+  align-self: center;
   display: flex;
   align-items: flex-start;
   gap: px(16);
   min-width: 0;
+  position: relative;
+  z-index: 2;
+  margin-right: px(-140);
 
   @include mq(md) {
     order: 2;
+    align-self: stretch;
     align-items: flex-start;
+    z-index: auto;
+    margin-right: 0;
   }
 }
 
@@ -129,12 +139,25 @@
   }
 }
 
-// メイン画像（PC: 右上 / SP: 最上段）
+// メイン画像（PC: 右上 / 左に引いて見出しと重なる・縦中央揃え / 幅865px相当）
 .concept__hero {
   grid-column: 2;
   grid-row: 1;
+  align-self: center;
+  justify-self: end;
+  box-sizing: border-box;
+  width: px(865);
+  max-width: 100%;
   margin: 0;
   min-width: 0;
+  position: relative;
+  z-index: 1;
+  margin-left: px(-72);
+
+  picture {
+    display: block;
+    width: 100%;
+  }
 
   img {
     display: block;
@@ -143,48 +166,77 @@
   }
 
   @include mq(md) {
-    order: 1;
+    align-self: stretch;
+    justify-self: stretch;
+    z-index: auto;
+    margin-left: 0;
     width: 100%;
+    max-width: none;
+    order: 1;
   }
 }
 
-// 受付・店内（PC: 左下のみ）
-.concept__reception {
-  grid-column: 1;
+// 2行目：受付画像（左）+ 本文（右）を常に横並び（狭い幅のみ縦積み）
+.concept__row-bottom {
+  grid-column: 1 / -1;
   grid-row: 2;
+  display: grid;
+  grid-template-columns: minmax(0, #{px(540)}) minmax(0, 1fr);
+  grid-template-rows: auto;
+  gap: px(20) px(40);
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+
+  // 768px 以下：画像非表示（md-show）に合わせ縦積み
+  @include mq(md) {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: px(24);
+    order: 3;
+  }
+}
+
+// 受付・店内（PC: 540px 列いっぱい＝カンプ通りの表示）
+.concept__reception {
   margin: 0;
   min-width: 0;
+  width: 100%;
+  max-width: px(540);
 
   img {
     display: block;
     width: 100%;
     height: auto;
   }
+
+  @include mq(md) {
+    max-width: none;
+  }
 }
 
-// 本文 + View More
+// 本文 + View More（横並び時は右カラム内で左揃え・View More のみ右下）
 .concept__article {
-  grid-column: 2;
-  grid-row: 2;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   min-width: 0;
-
-  @include mq(md) {
-    order: 3;
-    width: 100%;
-  }
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .concept__text {
   margin: 0;
+  width: 100%;
   font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
   font-size: px(15);
   font-weight: 400;
   line-height: 2;
   letter-spacing: px(0.6);
   color: var(--color-accent-1);
+  text-align: left;
 
   @include mq(md) {
     font-size: px(14);
