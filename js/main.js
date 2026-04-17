@@ -81,8 +81,23 @@ const initFaq = () => {
     if (!trigger) return;
 
     trigger.addEventListener("click", () => {
-      const isOpen = item.classList.toggle("is-open");
-      trigger.setAttribute("aria-expanded", String(isOpen));
+      const isCurrentlyOpen = item.classList.contains("is-open");
+
+      if (!isCurrentlyOpen) {
+        items.forEach((other) => {
+          const t = other.querySelector(".js-faq-trigger");
+          if (other === item) {
+            other.classList.add("is-open");
+            if (t) t.setAttribute("aria-expanded", "true");
+          } else {
+            other.classList.remove("is-open");
+            if (t) t.setAttribute("aria-expanded", "false");
+          }
+        });
+      } else {
+        item.classList.remove("is-open");
+        trigger.setAttribute("aria-expanded", "false");
+      }
     });
   });
 };
@@ -161,9 +176,154 @@ const initFeatureSlider = () => {
   startTimer();
 };
 
+// ============================================
+// 下層ページ KV：スクロール連動パララックス（transform）
+// ============================================
+const initPageHeroParallax = () => {
+  const wraps = document.querySelectorAll(".js-page-hero-parallax");
+  if (!wraps.length) return;
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return;
+  }
+
+  let ticking = false;
+
+  const update = () => {
+    wraps.forEach((wrap) => {
+      const bg = wrap.querySelector(".page-hero__bg");
+      if (!bg) return;
+      const rect = wrap.getBoundingClientRect();
+      // ビューポートに対する位置で背景を少し遅れて動かす（参考: fixed 背景系デモの代替）
+      const speed = 0.35;
+      const y = rect.top * speed;
+      bg.style.transform = `translate3d(0, ${y}px, 0)`;
+    });
+    ticking = false;
+  };
+
+  const onScrollOrResize = () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        update();
+      });
+      ticking = true;
+    }
+  };
+
+  window.addEventListener("scroll", onScrollOrResize, { passive: true });
+  window.addEventListener("resize", onScrollOrResize);
+  update();
+};
+
+// ============================================
+// スクロールで要素が下からふわっと表示（セクション単位ではなく子要素ごと / 1s）
+// お問い合わせ（page-reserve）のみ除外
+// ============================================
+const FADE_UP_SELECTORS = [
+  "main > .fv picture",
+  // FV キャッチは .fv__title-wrap 一括ではなく .fv__title-line ごとにふわっと表示
+  "main .fv__title-line",
+  "main :is(h1,h2,h3,h4,h5,h6):not(.visually-hidden)",
+  // .faq__answer はアニメでボタンより上に重なりクリック不能になるため除外
+  "main p:not(.visually-hidden):not(.faq__answer):not(.fv__title)",
+  "main figure",
+  "main table",
+  "main blockquote",
+  "main address",
+  "main dl",
+  "main nav.breadcrumb",
+  "main .button",
+  "main .news__link > *",
+  "main .price-menu__link",
+  "main .price-menu__blank",
+  "main .concept__more",
+  "main .reserve-cta__media",
+  "main .reserve-cta__copy",
+  "main .salons-sns__col",
+  "main .salons-sns__vline",
+  "main .salons-sns__rule",
+  "main .feature__nav-item",
+  "main .feature__head--overlap",
+  "main .feature__panel-img",
+  "main .feature__panel-text > *",
+  "main .page-hero__title-strip .inner",
+  "main .page-hero__parallax",
+  "main .price-page-intro__breadcrumb-bar .inner",
+  "main .price-page-intro__layout > *",
+  "main .concept-instagram__cell",
+  "main .concept-instagram__btn-wrap",
+  "main .concept-instagram__head",
+  "main .concept-profile__head",
+  "main .price-section__title",
+  "main .price-section__title-ja",
+  "main .price-section__category",
+  "main .price-table-wrap",
+  "main .price-page-intro__copy",
+  "main .salon-concept__intro-row > *",
+  "footer .footer__logo",
+  "footer .footer__nav",
+  "footer .footer__copyright",
+];
+
+const filterToInnermostTargets = (nodes) => {
+  const arr = [...nodes];
+  return arr.filter((el) => !arr.some((other) => other !== el && el.contains(other)));
+};
+
+const initFadeUpScroll = () => {
+  if (document.body.classList.contains("page-reserve")) {
+    return;
+  }
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return;
+  }
+
+  const seen = new Set();
+  FADE_UP_SELECTORS.forEach((sel) => {
+    document.querySelectorAll(sel).forEach((el) => {
+      if (el.closest("header")) {
+        return;
+      }
+      seen.add(el);
+    });
+  });
+
+  const targets = filterToInnermostTargets(seen);
+  if (targets.length === 0) {
+    return;
+  }
+
+  targets.forEach((el) => {
+    el.classList.add("js-fadeup");
+  });
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+        entry.target.classList.add("is-fadeup-inview");
+        io.unobserve(entry.target);
+      });
+    },
+    {
+      root: null,
+      rootMargin: "0px 0px -8% 0px",
+      threshold: 0,
+    },
+  );
+
+  targets.forEach((el) => io.observe(el));
+};
+
 document.addEventListener("DOMContentLoaded", () => {
+  initPageHeroParallax();
   initDrawer();
   initPagetop();
   initFaq();
   initFeatureSlider();
+  initFadeUpScroll();
 });
