@@ -52,12 +52,50 @@
   gap: px(12);
 }
 
+.footer__nav-main {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  max-width: 100%;
+
+  @include mq(md) {
+    flex-direction: column;
+    align-items: center;
+    gap: px(12);
+  }
+}
+
 .footer__nav-items {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   justify-content: center;
   gap: 0;
+
+  @include mq(md) {
+    flex-wrap: nowrap;
+    max-width: 100%;
+  }
+}
+
+// PC: 1行目ブロックと2行目ブロックのあいだに |（SPでは行が分かれるため非表示）
+.footer__nav-items--row1::after {
+  @media (min-width: 769px) {
+    content: "|";
+    color: var(--color-accent-1);
+    padding: 0 px(16);
+    font-size: px(14);
+    opacity: 0.5;
+    align-self: center;
+  }
+
+  @include mq(md) {
+    content: none;
+    display: none;
+  }
 }
 
 .footer__nav-item {
@@ -71,6 +109,10 @@
     padding: 0 px(16);
     font-size: px(14);
     opacity: 0.5;
+
+    @include mq(md) {
+      padding: 0 px(10);
+    }
   }
 }
 

@@ -1,13 +1,33 @@
+@use "sass:string";
 @use "../abstracts/tokens" as *;
 @use "../abstracts/mixins" as *;
 
 // Concept ページ（SALON CONCEPT / Instagram / Company Profile）
 .page-concept {
   background-color: var(--color-bg-1);
+
+  // カンプ：コンテンツ幅 1200px。SP（〜768px）は 30px、それ以上は 120px へ向けてなだらかに増加
+  .inner {
+    max-width: 1200px;
+    // SP（〜768px）= 30px、ワイドで最大 120px、その間は線形補間
+    padding-inline: string.unquote(
+      "clamp(30px, calc(30px + (100vw - 768px) * 0.2083333333), 120px)"
+    );
+  }
+}
+
+.concept-page__breadcrumb-bar {
+  background-color:#D4CEBE;
+  padding: px(24);
+
+  @include mq(md) {
+    padding: px(14) 0 px(12);
+  }
 }
 
 // ─── SALON CONCEPT（見出し・KV は components/_page-hero） ───
 .salon-concept {
+  background-color:#D4CEBE;
   margin: 0;
   padding: 0 0 px(64);
 
@@ -21,51 +41,104 @@
   padding-top: 0;
 }
 
+// カンプ：左＝2行見出し（ゴールド・左寄せ）、右＝画像。見出し末尾が画像上に重なる
 .salon-concept__intro-row {
-  display: grid;
-  grid-template-columns: 1fr minmax(px(200), px(320));
-  gap: px(40) px(32);
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: px(24);
   margin: 0 0 px(32);
-  padding-top: px(40);
+  padding: px(40) 0 px(48);
+
+  @media (min-width: 1025px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0;
+    padding: px(40) 0 px(56);
+  }
 
   @include mq(md) {
-    grid-template-columns: 1fr;
-    gap: px(24);
     margin-bottom: px(24);
-    padding-top: px(28);
+    padding: px(28) 0 px(32);
+    gap: px(20);
+  }
+}
+
+.salon-concept__intro-text {
+  position: relative;
+  z-index: 2;
+  flex: 1 1 auto;
+  min-width: 0;
+
+  @media (min-width: 1025px) {
+    margin-right: px(-100);
+    max-width: px(560);
+    align-self: center;
+  }
+
+  @media (max-width: 1024px) {
+    order: 2;
+    width: 100%;
   }
 }
 
 .salon-concept__headline {
   margin: 0;
   font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
-  font-size: px(22);
+  font-size: px(40);
   font-weight: 600;
-  line-height: 1.8;
+  line-height: 1.55;
   letter-spacing: px(0.88);
+  text-align: left;
   color: var(--color-main);
+
+  @media (max-width: 1024px) {
+    text-align: center;
+    font-size: px(22);
+    line-height: 1.75;
+  }
 
   @include mq(md) {
     font-size: px(18);
     line-height: 1.85;
-    text-align: center;
   }
 }
 
 .salon-concept__portrait {
+  position: relative;
+  z-index: 1;
   margin: 0;
+  width: 100%;
+  max-width: px(720);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  flex-shrink: 0;
+  align-self: flex-end;
+
+  @media (min-width: 1025px) {
+    flex: 0 0 #{px(720)};
+    width: #{px(720)};
+    max-width: #{px(720)};
+    align-self: center;
+    margin-left: auto;
+  }
+
+  @media (max-width: 1024px) {
+    order: 1;
+    align-self: center;
+  }
+
+  @include mq(md) {
+    max-width: px(280);
+  }
 
   img {
     display: block;
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
-  }
-
-  @include mq(md) {
-    max-width: px(240);
-    margin-inline: auto;
+    object-position: center;
   }
 }
 
@@ -76,7 +149,7 @@
   font-weight: 400;
   line-height: 2;
   letter-spacing: px(0.6);
-  color: var(--color-accent-1);
+  color: var(--color-main);
 
   @include mq(md) {
     font-size: px(14);
@@ -144,25 +217,35 @@
 
 .concept-instagram__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: px(16);
+  // カンプ：セル 240×240
+  grid-template-columns: repeat(3, #{px(240)});
+  justify-content: center;
+  gap: px(40);
   margin: 0 0 px(40);
   padding: 0;
   list-style: none;
 
   @include mq(md) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: px(12);
     margin-bottom: px(28);
+    max-width: px(520);
+    margin-inline: auto;
   }
 }
 
 .concept-instagram__cell {
+  width: #{px(240)};
+  max-width: 100%;
   aspect-ratio: 1 / 1;
   margin: 0;
   background-color: var(--color-bg-2);
   border-radius: px(4);
   overflow: hidden;
+
+  @include mq(md) {
+    width: 100%;
+  }
 
   // プレースホルダー（実装時は <a><img></a> に差し替え）
   &--placeholder {
@@ -174,32 +257,44 @@
   text-align: center;
 }
 
+// カンプ：ピル型・#969B4C・アイコン＋白文字「Instagram」
 .concept-instagram__btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: px(8);
+  gap: px(10);
   min-width: px(240);
-  padding: px(14) px(32);
+  padding: px(14) px(36);
   font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
   font-size: px(16);
   font-weight: 400;
   letter-spacing: px(1.6);
   color: #fff;
   text-decoration: none;
-  background-color: var(--color-accent-2);
-  border-radius: px(40);
+  background-color: #969b4c;
+  border-radius: 999px;
+  box-sizing: border-box;
   transition: opacity $transition-base, background-color $transition-base;
 
+  .fa-instagram {
+    font-size: px(20);
+    line-height: 1;
+    color: #fff;
+  }
+
   @include hover {
-    opacity: 0.92;
-    background-color: rgba(148, 158, 51, 0.92);
+    opacity: 0.94;
+    background-color: #878c45;
   }
 
   @include mq(md) {
     min-width: px(200);
-    padding: px(12) px(24);
+    padding: px(12) px(28);
     font-size: px(14);
+
+    .fa-instagram {
+      font-size: px(18);
+    }
   }
 }
 
@@ -356,6 +451,8 @@
 
     th {
       margin-top: px(12);
+      // 狭い幅で「業務内」「容」のように1文字だけ改行されないようラベルは1行に
+      white-space: nowrap;
 
       &:first-child {
         margin-top: 0;

@@ -37,8 +37,10 @@ $bp-smooth-pc: 1440px;  // 1440px〜: PC固定
 $transition-base: 0.3s ease;
 
 // 固定ヘッダー分（実測・カンプに合わせて main / アンカー / ドロワーで共通）
-$header-offset-pc: 173;
-$header-offset-sp: 64;
+// PC: padding 50+50 + ロゴ64 = 164
+$header-offset-pc: 164;
+// SP: padding 20+20 + ロゴ32 ≒ 72
+$header-offset-sp: 72;
 
 // Z-index
 $z-header:  8000;

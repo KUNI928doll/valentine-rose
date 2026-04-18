@@ -130,15 +130,27 @@
           </div>
         </div>
       </section>
+      <div class="concept-page__breadcrumb-bar">
+        <div class="inner">
+          <nav class="breadcrumb" aria-label="パンくず">
+            <ol class="breadcrumb__list">
+              <li class="breadcrumb__item"><a href="./index.html">ホーム</a></li>
+              <li class="breadcrumb__item"><span aria-current="page">サロンコンセプト</span></li>
+            </ol>
+          </nav>
+        </div>
+      </div>
       <div class="inner salon-concept__content">
         <div class="salon-concept__intro-row">
-          <h2 class="salon-concept__headline">美容とは内から溢れ出る美しさを追求すること</h2>
+          <div class="salon-concept__intro-text">
+            <h2 class="salon-concept__headline">洗練されたワンランク上の<br>女性を目指すために</h2>
+          </div>
           <figure class="salon-concept__portrait">
-            <img src="./images/page/page-concept_about.jpg" width="108" height="245" alt="スタイリングイメージ" loading="lazy">
+            <img src="./images/page/page-concept_about.jpg" width="720" height="405" alt="スタイリングイメージ" loading="lazy">
           </figure>
         </div>
         <p class="salon-concept__text">
-          洗練されたワンランク上の女性を目指すために、バレンタインローズでは脱毛の完了をゴールとは考えていません。お客様が内側から輝く美しさを手に入れる第一歩として、脱毛をご提供しています。スタッフのホスピタリティとともに、お客様一人ひとりに寄り添い、理想の女性像へと導きます。
+          バレンタインローズは、東京や大阪、名古屋などの都市部をはじめ日本全国に店舗を構える脱毛サロンで、「洗練されたワンランク上の女性を目指す」というコンセプトのもとオーダーメイドの脱毛サービスを提供しています。 毎年30,000人以上のお客様にバレンタインローズの脱毛サービスをご利用いただいており、これまで年齢を問わず様々な女性の脱毛をサポートさせていただきました。しかし、私たちは、脱毛はあくまでもお客様がワンランク上の女性に近づくための一歩であり、目指すべきゴールではないと考えています。 お客様と脱毛サロンという関係だけでなく、脱毛の卒業後もお客様の隣で女性磨きをサポートすることができる存在となり、そしてバレンタインローズに通っていることを誇りに思ってもらえる、そんな脱毛サロンを目指していきます。
         </p>
       </div>
     </section>
@@ -159,7 +171,10 @@
           <li class="concept-instagram__cell concept-instagram__cell--placeholder" aria-hidden="true"></li>
         </ul>
         <p class="concept-instagram__btn-wrap">
-          <a href="#" class="concept-instagram__btn" target="_blank" rel="noopener noreferrer">Follow us</a>
+          <a href="#" class="concept-instagram__btn" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-instagram" aria-hidden="true"></i>
+            <span>Instagram</span>
+          </a>
         </p>
       </div>
     </section>
@@ -258,16 +273,20 @@
         </a>
       </div>
       <nav class="footer__nav" aria-label="フッターナビゲーション">
-        <ul class="footer__nav-items">
-          <li class="footer__nav-item"><a href="./index.html" class="footer__nav-link">TOP</a></li>
-          <li class="footer__nav-item"><a href="./news.html" class="footer__nav-link">News</a></li>
-          <li class="footer__nav-item"><a href="./concept.html" class="footer__nav-link">Concept</a></li>
-          <li class="footer__nav-item"><a href="./index.html#feature" class="footer__nav-link">Feature</a></li>
-          <li class="footer__nav-item"><a href="./price.html" class="footer__nav-link">Price</a></li>
-          <li class="footer__nav-item"><a href="./index.html#faq" class="footer__nav-link">FAQ</a></li>
-          <li class="footer__nav-item"><a href="./salons.html" class="footer__nav-link">Salons</a></li>
-          <li class="footer__nav-item"><a href="./reserve.html" class="footer__nav-link">Reserve</a></li>
-        </ul>
+        <div class="footer__nav-main">
+          <ul class="footer__nav-items footer__nav-items--row1">
+            <li class="footer__nav-item"><a href="./index.html" class="footer__nav-link">TOP</a></li>
+            <li class="footer__nav-item"><a href="./concept.html" class="footer__nav-link">Concept</a></li>
+            <li class="footer__nav-item"><a href="./price.html" class="footer__nav-link">Price</a></li>
+          </ul>
+          <ul class="footer__nav-items footer__nav-items--row2">
+            <li class="footer__nav-item"><a href="./news.html" class="footer__nav-link">News</a></li>
+            <li class="footer__nav-item"><a href="./index.html#feature" class="footer__nav-link">Feature</a></li>
+            <li class="footer__nav-item"><a href="./index.html#faq" class="footer__nav-link">FAQ</a></li>
+            <li class="footer__nav-item"><a href="./salons.html" class="footer__nav-link">Salons</a></li>
+            <li class="footer__nav-item"><a href="./reserve.html" class="footer__nav-link">Reserve</a></li>
+          </ul>
+        </div>
         <ul class="footer__nav-items footer__nav-items--sub">
           <li class="footer__nav-item"><a href="#" class="footer__nav-link">Privacy Policy</a></li>
           <li class="footer__nav-item"><a href="#" class="footer__nav-link">Site Map</a></li>

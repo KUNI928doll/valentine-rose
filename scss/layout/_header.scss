@@ -15,7 +15,6 @@
     /* 高さは inner の padding + ロゴで決める（72px 固定は実寸と不一致になるため使わない） */
     height: auto;
     background-color: transparent;//背景透明にする
-    --header-pad: 48px;
 }
 .is-drawer-open .header{
     pointer-events: none;
@@ -28,13 +27,13 @@
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
-    padding: var(--header-pad);
+    /* PCカンプ: 上50 / 左右48 */
+    padding: #{px(50)} #{px(48)};
     @include mq(md){
-        --header-pad: 20px;
         height: auto;
-        padding: var(--header-pad);
-        padding-left: max(20px, env(safe-area-inset-left, 0px));
-        padding-right: max(20px, env(safe-area-inset-right, 0px));
+        padding: px(20);
+        padding-left: max(#{px(20)}, env(safe-area-inset-left, 0px));
+        padding-right: max(#{px(20)}, env(safe-area-inset-right, 0px));
     }
 }
 .header__name{
