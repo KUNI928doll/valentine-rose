@@ -1,0 +1,333 @@
+@use "../abstracts/tokens" as *;
+@use "../abstracts/mixins" as *;
+
+// 店舗一覧（Salons archive）PC/SP カンプ
+.page-salons {
+  background-color: var(--color-bg-1);
+}
+
+// ─── ヒーロー：タイトル帯 + 日本地図（KV） ───
+.page-hero--salons-archive {
+  .page-hero__parallax {
+    background-color: var(--color-bg-2);
+  }
+
+  .page-hero__bg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: px(24) px(16);
+
+    picture {
+      display: contents;
+    }
+  }
+
+  .salons-archive-hero__map-img {
+    display: block;
+    width: min(52vw, #{px(480)});
+    max-width: 100%;
+    height: auto;
+    color: var(--color-main);
+
+    @include mq(md) {
+      width: min(78vw, #{px(280)});
+    }
+  }
+}
+
+// ─── パンくず ───
+.salons-archive__breadcrumb-bar {
+  background-color: #fff;
+  padding: px(18) 0 px(16);
+  border-bottom: 1px solid rgba(193, 156, 93, 0.45);
+
+  @include mq(md) {
+    padding: px(14) 0 px(12);
+  }
+}
+
+// ─── PREFECTURES 見出し + エリアナビ ───
+.salons-archive-intro {
+  padding: px(56) 0 px(48);
+  background-color: var(--color-bg-1);
+
+  @include mq(md) {
+    padding: px(40) 0 px(36);
+  }
+}
+
+.salons-archive__head {
+  text-align: center;
+  margin-bottom: px(40);
+
+  @include mq(md) {
+    margin-bottom: px(28);
+  }
+}
+
+.salons-archive__en {
+  margin: 0;
+  font-family: var(--font-en);
+  font-size: px(48);
+  font-weight: 400;
+  letter-spacing: px(3);
+  line-height: 1.2;
+  text-transform: uppercase; // カンプ「PREFECTURES」
+  color: var(--color-main);
+
+  @include mq(md) {
+    font-size: px(32);
+    letter-spacing: px(2);
+  }
+}
+
+.salons-archive__ja {
+  margin: px(12) 0 0;
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: px(14);
+  font-weight: 400;
+  letter-spacing: px(0.56);
+  line-height: 1.5;
+  color: var(--color-text);
+  opacity: 0.85;
+
+  @include mq(md) {
+    font-size: px(12);
+  }
+}
+
+// PC：グリッドリンク（矢印 + 件数）
+.salons-archive-nav--pc {
+  width: 100%;
+}
+
+.salons-archive-nav__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: px(12) px(24);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @media (min-width: 900px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.salons-archive-nav__link {
+  display: inline-flex;
+  align-items: center;
+  gap: px(8);
+  font-family: var(--font-en);
+  font-size: px(16);
+  font-weight: 400;
+  letter-spacing: px(0.64);
+  line-height: 1.4;
+  color: var(--color-main);
+  text-decoration: none;
+  transition: opacity $transition-base;
+
+  @include hover {
+    opacity: 0.75;
+  }
+}
+
+.salons-archive-nav__ico {
+  flex-shrink: 0;
+  font-size: px(12);
+  opacity: 0.9;
+}
+
+.salons-archive-nav__count {
+  font-size: px(13);
+  font-family: var(--font-base);
+  letter-spacing: px(0.2);
+  opacity: 0.9;
+}
+
+// SP：箇条書き（・）
+.salons-archive-nav--sp {
+  width: 100%;
+  max-width: px(400);
+  margin-inline: auto;
+}
+
+.salons-archive-nav__list-sp {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.salons-archive-nav__item-sp {
+  position: relative;
+  padding-left: px(18);
+  margin-bottom: px(10);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &::before {
+    content: "・";
+    position: absolute;
+    left: 0;
+    color: var(--color-accent-1);
+  }
+}
+
+.salons-archive-nav__link-sp {
+  font-family: var(--font-serif);
+  font-size: px(15);
+  letter-spacing: px(0.6);
+  line-height: 1.5;
+  color: var(--color-accent-1);
+  text-decoration: underline;
+  text-underline-offset: px(3);
+  transition: opacity $transition-base;
+
+  @include hover {
+    opacity: 0.75;
+  }
+}
+
+// ─── 都道府県ブロック ───
+.salons-archive-region {
+  padding: px(48) 0 px(56);
+  background-color: var(--color-bg-1);
+
+  @include mq(md) {
+    padding: px(36) 0 px(44);
+  }
+}
+
+.salons-archive-region--alt {
+  background-color: #fff;
+}
+
+.salons-archive-region__banner {
+  margin: 0 calc(50% - 50vw) px(32);
+  width: 100vw;
+  max-width: none;
+  padding: px(14) px(16);
+  box-sizing: border-box;
+  background: linear-gradient(90deg, #b8892a 0%, #c9a04a 50%, #b8892a 100%);
+  text-align: center;
+  font-family: var(--font-en);
+  font-size: px(28);
+  font-weight: 400;
+  letter-spacing: px(2);
+  line-height: 1.2;
+  text-transform: capitalize;
+  color: #fff;
+
+  @include mq(md) {
+    margin-bottom: px(24);
+    padding: px(12) px(12);
+    font-size: px(22);
+    letter-spacing: px(1.5);
+  }
+}
+
+.salons-archive-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: px(28) px(24);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include mq(md) {
+    grid-template-columns: 1fr;
+    gap: px(24);
+  }
+}
+
+.salons-archive-card {
+  margin: 0;
+}
+
+.salons-archive-card__link {
+  display: block;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+  transition: opacity $transition-base;
+
+  @include hover {
+    opacity: 0.88;
+  }
+}
+
+.salons-archive-card__map {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: linear-gradient(145deg, #e8e4dc 0%, #d4cfc4 100%);
+  border: 1px solid rgba(193, 156, 93, 0.35);
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at 50% 45%,
+      rgba(202, 127, 19, 0.25) 0,
+      transparent 55%
+    );
+    pointer-events: none;
+  }
+}
+
+.salons-archive-card__pin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  font-size: px(36);
+  color: #c45c4a;
+  filter: drop-shadow(0 px(2) px(4) rgba(0, 0, 0, 0.2));
+  z-index: 1;
+
+  @include mq(md) {
+    font-size: px(30);
+  }
+}
+
+.salons-archive-card__body {
+  padding: px(16) 0 0;
+
+  @include mq(md) {
+    padding-top: px(12);
+  }
+}
+
+.salons-archive-card__name {
+  margin: 0 0 px(8);
+  font-family: var(--font-en);
+  font-size: px(22);
+  font-weight: 400;
+  letter-spacing: px(1.6);
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--color-main);
+
+  @include mq(md) {
+    font-size: px(18);
+    letter-spacing: px(1.2);
+  }
+}
+
+.salons-archive-card__meta {
+  margin: 0;
+  font-family: var(--font-base);
+  font-size: px(13);
+  line-height: 1.75;
+  letter-spacing: px(0.42);
+  color: var(--color-accent-1);
+
+  @include mq(md) {
+    font-size: px(12);
+    letter-spacing: px(0.36);
+  }
+}

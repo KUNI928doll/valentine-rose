@@ -79,9 +79,122 @@
         </div>
       </div>
     </section>
-    <section class="page-sub inner" aria-labelledby="news-sub-heading">
-      <h2 id="news-sub-heading" class="visually-hidden">お知らせ</h2>
-      <p class="page-sub__lead">お知らせ一覧のコンテンツは後から実装します。</p>
+
+    <div class="news-archive__breadcrumb-bar">
+      <div class="inner">
+        <nav class="breadcrumb" aria-label="パンくず">
+          <ol class="breadcrumb__list">
+            <li class="breadcrumb__item"><a href="./index.html">ホーム</a></li>
+            <li class="breadcrumb__item"><span aria-current="page">ニュース一覧</span></li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <section id="news-archive" class="news-archive js-news-archive" aria-labelledby="news-archive-heading">
+      <h2 id="news-archive-heading" class="visually-hidden">ニュース一覧</h2>
+      <div class="inner news-archive__inner">
+        <div class="news-archive__main">
+          <ul class="news-archive__list">
+            <li class="news-archive__item" data-news-category="all">
+              <article>
+                <a href="./news-single.html" class="news-archive__link">
+                  <time class="news-archive__date" datetime="2024-02-14">2024.02.14</time>
+                  <span class="news-archive__title">タイトルが入ります。タイトルが入ります。タイトルが入ります。</span>
+                  <span class="news-archive__label" lang="en">All</span>
+                </a>
+              </article>
+            </li>
+            <li class="news-archive__item" data-news-category="news">
+              <article>
+                <a href="#" class="news-archive__link">
+                  <time class="news-archive__date" datetime="2024-02-01">2024.02.01</time>
+                  <span class="news-archive__title">タイトルが入ります。タイトルが入ります。</span>
+                  <span class="news-archive__label" lang="en">News</span>
+                </a>
+              </article>
+            </li>
+            <li class="news-archive__item" data-news-category="column">
+              <article>
+                <a href="#" class="news-archive__link">
+                  <time class="news-archive__date" datetime="2024-01-20">2024.01.20</time>
+                  <span class="news-archive__title">タイトルが入ります。タイトルが入ります。タイトルが入ります。</span>
+                  <span class="news-archive__label" lang="en">Column</span>
+                </a>
+              </article>
+            </li>
+            <li class="news-archive__item" data-news-category="all">
+              <article>
+                <a href="#" class="news-archive__link">
+                  <time class="news-archive__date" datetime="2024-01-08">2024.01.08</time>
+                  <span class="news-archive__title">タイトルが入ります。タイトルが入ります。</span>
+                  <span class="news-archive__label" lang="en">All</span>
+                </a>
+              </article>
+            </li>
+            <li class="news-archive__item" data-news-category="news">
+              <article>
+                <a href="#" class="news-archive__link">
+                  <time class="news-archive__date" datetime="2023-12-25">2023.12.25</time>
+                  <span class="news-archive__title">タイトルが入ります。タイトルが入ります。タイトルが入ります。</span>
+                  <span class="news-archive__label" lang="en">News</span>
+                </a>
+              </article>
+            </li>
+            <li class="news-archive__item" data-news-category="column">
+              <article>
+                <a href="#" class="news-archive__link">
+                  <time class="news-archive__date" datetime="2023-12-10">2023.12.10</time>
+                  <span class="news-archive__title">タイトルが入ります。タイトルが入ります。</span>
+                  <span class="news-archive__label" lang="en">Column</span>
+                </a>
+              </article>
+            </li>
+            <li class="news-archive__item" data-news-category="all">
+              <article>
+                <a href="#" class="news-archive__link">
+                  <time class="news-archive__date" datetime="2023-11-30">2023.11.30</time>
+                  <span class="news-archive__title">タイトルが入ります。タイトルが入ります。タイトルが入ります。</span>
+                  <span class="news-archive__label" lang="en">All</span>
+                </a>
+              </article>
+            </li>
+            <li class="news-archive__item" data-news-category="news">
+              <article>
+                <a href="#" class="news-archive__link">
+                  <time class="news-archive__date" datetime="2023-11-15">2023.11.15</time>
+                  <span class="news-archive__title">タイトルが入ります。タイトルが入ります。</span>
+                  <span class="news-archive__label" lang="en">News</span>
+                </a>
+              </article>
+            </li>
+          </ul>
+
+          <p class="news-archive__empty" id="news-archive-empty" hidden>該当する記事はありません。</p>
+
+          <nav class="news-archive__pagination" aria-label="ページネーション">
+            <span class="news-archive__page-current" aria-current="page">1</span>
+            <a href="#" class="news-archive__page-link">2</a>
+            <a href="#" class="news-archive__page-link">3</a>
+            <a href="#" class="news-archive__page-next" aria-label="次のページへ"><span aria-hidden="true">&gt;</span></a>
+          </nav>
+        </div>
+
+        <aside class="news-archive__aside" aria-labelledby="news-archive-cat-heading" aria-label="カテゴリ">
+          <h3 id="news-archive-cat-heading" class="news-archive__cat-heading" lang="en">Category</h3>
+          <ul class="news-archive__cat-list">
+            <li class="news-archive__cat-item">
+              <a href="#news-archive" class="news-archive__cat-link js-news-archive-filter" data-news-filter="all" aria-current="true">すべて</a>
+            </li>
+            <li class="news-archive__cat-item">
+              <a href="#news-archive" class="news-archive__cat-link js-news-archive-filter" data-news-filter="news">お知らせ</a>
+            </li>
+            <li class="news-archive__cat-item">
+              <a href="#news-archive" class="news-archive__cat-link js-news-archive-filter" data-news-filter="column">コラム</a>
+            </li>
+          </ul>
+        </aside>
+      </div>
     </section>
     <section class="reserve-cta" id="reserve">
       <a href="./reserve.html" class="reserve-cta__link">
@@ -114,16 +227,20 @@
         <a href="./index.html" class="footer__logo-link"><img src="./images/common/logo.png" alt="VALENTINE ROSE" width="64" height="64" loading="lazy"><span class="footer__logo-text">VALENTINE <br>ROSE</span></a>
       </div>
       <nav class="footer__nav" aria-label="フッターナビゲーション">
-        <ul class="footer__nav-items">
-          <li class="footer__nav-item"><a href="./index.html" class="footer__nav-link">TOP</a></li>
-          <li class="footer__nav-item"><a href="./news.html" class="footer__nav-link">News</a></li>
-          <li class="footer__nav-item"><a href="./concept.html" class="footer__nav-link">Concept</a></li>
-          <li class="footer__nav-item"><a href="./index.html#feature" class="footer__nav-link">Feature</a></li>
-          <li class="footer__nav-item"><a href="./price.html" class="footer__nav-link">Price</a></li>
-          <li class="footer__nav-item"><a href="./index.html#faq" class="footer__nav-link">FAQ</a></li>
-          <li class="footer__nav-item"><a href="./salons.html" class="footer__nav-link">Salons</a></li>
-          <li class="footer__nav-item"><a href="./reserve.html" class="footer__nav-link">Reserve</a></li>
-        </ul>
+        <div class="footer__nav-main">
+          <ul class="footer__nav-items footer__nav-items--row1">
+            <li class="footer__nav-item"><a href="./index.html" class="footer__nav-link">TOP</a></li>
+            <li class="footer__nav-item"><a href="./concept.html" class="footer__nav-link">Concept</a></li>
+            <li class="footer__nav-item"><a href="./price.html" class="footer__nav-link">Price</a></li>
+          </ul>
+          <ul class="footer__nav-items footer__nav-items--row2">
+            <li class="footer__nav-item"><a href="./news.html" class="footer__nav-link" aria-current="page">News</a></li>
+            <li class="footer__nav-item"><a href="./index.html#feature" class="footer__nav-link">Feature</a></li>
+            <li class="footer__nav-item"><a href="./index.html#faq" class="footer__nav-link">FAQ</a></li>
+            <li class="footer__nav-item"><a href="./salons.html" class="footer__nav-link">Salons</a></li>
+            <li class="footer__nav-item"><a href="./reserve.html" class="footer__nav-link">Reserve</a></li>
+          </ul>
+        </div>
         <ul class="footer__nav-items footer__nav-items--sub">
           <li class="footer__nav-item"><a href="#" class="footer__nav-link">Privacy Policy</a></li>
           <li class="footer__nav-item"><a href="#" class="footer__nav-link">Site Map</a></li>

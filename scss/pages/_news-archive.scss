@@ -1,0 +1,333 @@
+@use "../abstracts/tokens" as *;
+@use "../abstracts/mixins" as *;
+
+// ニュース一覧（News archive）PC/SP カンプ
+.page-news {
+  background-color: var(--color-bg-1);
+}
+
+// パンくず（ヒーロー直下）
+.news-archive__breadcrumb-bar {
+  background-color: #fff;
+  padding: px(18) 0 px(16);
+  border-bottom: 1px solid rgba(193, 156, 93, 0.35);
+
+  @include mq(md) {
+    padding: px(14) 0 px(12);
+  }
+}
+
+.news-archive {
+  padding: px(56) 0 px(64);
+
+  @include mq(md) {
+    padding: px(36) 0 px(48);
+  }
+}
+
+.news-archive__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) px(260);
+  gap: px(48) px(40);
+  align-items: start;
+  box-sizing: border-box;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: px(40);
+  }
+}
+
+// ─── 記事リスト ───
+.news-archive__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.news-archive__empty {
+  margin: px(24) 0 0;
+  padding: px(20) px(16);
+  font-family: var(--font-base);
+  font-size: px(14);
+  line-height: 1.6;
+  letter-spacing: px(0.42);
+  text-align: center;
+  color: var(--color-accent-1);
+  opacity: 0.85;
+  border: 1px dashed rgba(193, 156, 93, 0.45);
+  border-radius: px(8);
+  background-color: rgba(255, 255, 255, 0.6);
+
+  @include mq(md) {
+    margin-top: px(16);
+    font-size: px(13);
+  }
+}
+
+.news-archive__item {
+  border-bottom: 1px solid rgba(193, 156, 93, 0.35);
+
+  &:first-child {
+    border-top: 1px solid rgba(193, 156, 93, 0.35);
+  }
+}
+
+.news-archive__link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: px(20) px(24);
+  padding: px(18) px(20);
+  box-sizing: border-box;
+  min-height: px(64);
+  text-decoration: none;
+  color: inherit;
+  background-color: rgba(249, 248, 246, 0.85);
+  transition: background-color $transition-base, opacity $transition-base;
+
+  @include hover {
+    background-color: rgba(244, 240, 232, 0.95);
+  }
+
+  @include mq(md) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: px(10) px(12);
+    padding: px(16) px(16) px(14);
+    min-height: 0;
+    border-radius: px(8);
+    border: 1px solid rgba(193, 156, 93, 0.25);
+  }
+}
+
+@include mq(md) {
+  .news-archive__list {
+    display: flex;
+    flex-direction: column;
+    gap: px(12);
+  }
+
+  .news-archive__item {
+    border: none;
+
+    &:first-child {
+      border-top: none;
+    }
+  }
+}
+
+.news-archive__date {
+  flex-shrink: 0;
+  font-family: var(--font-base);
+  font-size: px(13);
+  font-weight: 400;
+  letter-spacing: px(0.52);
+  line-height: 1.4;
+  color: var(--color-text);
+  opacity: 0.9;
+
+  @include mq(md) {
+    font-size: px(12);
+    letter-spacing: px(0.48);
+  }
+}
+
+.news-archive__title {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-serif);
+  font-size: px(15);
+  font-weight: 400;
+  letter-spacing: px(0.45);
+  line-height: 1.55;
+  color: var(--color-accent-1);
+
+  @include mq(md) {
+    font-size: px(14);
+    letter-spacing: px(0.42);
+    line-height: 1.65;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+
+  @media (min-width: 901px) {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.news-archive__label {
+  flex-shrink: 0;
+  margin-left: auto;
+  font-family: var(--font-serif);
+  font-size: px(14);
+  font-weight: 400;
+  letter-spacing: px(0.56);
+  line-height: 1.2;
+  color: var(--color-main);
+
+  @include mq(md) {
+    margin-left: 0;
+    align-self: flex-end;
+    font-size: px(12);
+    letter-spacing: px(0.48);
+    color: rgba(84, 55, 45, 0.55);
+  }
+}
+
+// ─── ページネーション ───
+.news-archive__pagination {
+  margin-top: px(40);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: px(8) px(16);
+
+  @include mq(md) {
+    margin-top: px(28);
+    gap: px(6) px(12);
+  }
+}
+
+.news-archive__page-link,
+.news-archive__page-current {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: px(36);
+  min-height: px(36);
+  font-family: var(--font-serif);
+  font-size: px(16);
+  font-weight: 400;
+  letter-spacing: px(0.64);
+  line-height: 1;
+  color: var(--color-main);
+  text-decoration: none;
+  transition: opacity $transition-base;
+
+  @include mq(md) {
+    font-size: px(15);
+    min-width: px(32);
+    min-height: px(32);
+  }
+}
+
+.news-archive__page-link {
+  @include hover {
+    opacity: 0.65;
+  }
+}
+
+.news-archive__page-current {
+  font-weight: 500;
+  color: var(--color-accent-1);
+  pointer-events: none;
+}
+
+.news-archive__page-next {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: px(36);
+  min-height: px(36);
+  font-family: var(--font-serif);
+  font-size: px(14);
+  color: var(--color-main);
+  text-decoration: none;
+  transition: opacity $transition-base;
+
+  @include hover {
+    opacity: 0.65;
+  }
+}
+
+// ─── サイドバー Category ───
+.news-archive__aside {
+  position: sticky;
+  top: calc(var(--header-offset) + #{px(16)});
+  padding: px(8) 0 px(16) px(20);
+  border-left: 3px solid rgba(202, 127, 19, 0.45);
+
+  @media (max-width: 900px) {
+    position: static;
+    padding: px(8) 0 0;
+    border-left: none;
+    border-top: 1px solid rgba(193, 156, 93, 0.35);
+  }
+}
+
+.news-archive__cat-heading {
+  margin: 0 0 px(20);
+  font-family: var(--font-serif);
+  font-size: px(22);
+  font-weight: 400;
+  letter-spacing: px(0.88);
+  line-height: 1.2;
+  color: var(--color-main);
+
+  @include mq(md) {
+    margin-bottom: px(16);
+    font-size: px(20);
+    text-align: center;
+  }
+}
+
+.news-archive__cat-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include mq(md) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: px(12) px(20);
+    max-width: px(400);
+    margin-inline: auto;
+  }
+}
+
+.news-archive__cat-item {
+  margin-bottom: px(12);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @include mq(md) {
+    margin-bottom: 0;
+    text-align: center;
+  }
+}
+
+.news-archive__cat-link {
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-size: px(15);
+  font-weight: 400;
+  letter-spacing: px(0.6);
+  line-height: 1.5;
+  color: var(--color-accent-1);
+  text-decoration: none;
+  transition: opacity $transition-base;
+
+  @include hover {
+    opacity: 0.7;
+  }
+
+  &[aria-current="true"] {
+    font-weight: 500;
+    color: var(--color-main);
+
+    &::before {
+      content: "－";
+      margin-right: px(2);
+      font-weight: 400;
+      opacity: 0.85;
+    }
+  }
+}

@@ -52,22 +52,248 @@
   </div>
 
   <main id="main">
-    <section class="page-hero" aria-labelledby="page-hero-heading">
+    <section class="page-hero page-hero--salons-archive" aria-labelledby="page-hero-heading">
       <div class="page-hero__title-strip">
-        <div class="inner"><h1 id="page-hero-heading" class="page-hero__title">Salons</h1></div>
+        <div class="inner">
+          <h1 id="page-hero-heading" class="page-hero__title">Salons</h1>
+        </div>
       </div>
       <div class="page-hero__parallax js-page-hero-parallax">
-        <div class="page-hero__bg">
-          <picture>
-            <source media="(max-width: 768px)" srcset="./images/page/archive-salons_top-sp.jpg">
-            <img class="page-hero__img" src="./images/page/archive-salons_top-pc.jpg" width="1440" height="900" alt="" loading="eager" decoding="async">
-          </picture>
+        <div class="page-hero__bg" role="presentation">
+          <img class="salons-archive-hero__map-img" src="./images/page/japan-map.svg" width="400" height="420" alt="" loading="eager" decoding="async">
         </div>
       </div>
     </section>
-    <section class="page-sub inner" aria-labelledby="salons-sub-heading">
-      <h2 id="salons-sub-heading" class="visually-hidden">店舗一覧</h2>
-      <p class="page-sub__lead">店舗一覧のコンテンツは後から実装します。</p>
+
+    <div class="salons-archive__breadcrumb-bar">
+      <div class="inner">
+        <nav class="breadcrumb" aria-label="パンくず">
+          <ol class="breadcrumb__list">
+            <li class="breadcrumb__item"><a href="./index.html">ホーム</a></li>
+            <li class="breadcrumb__item"><span aria-current="page">店舗一覧</span></li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <section class="salons-archive-intro" aria-labelledby="salons-archive-heading">
+      <div class="inner">
+        <header class="salons-archive__head">
+          <h2 id="salons-archive-heading" class="salons-archive__en">Prefectures</h2>
+          <p class="salons-archive__ja md-show">店舗一覧</p>
+          <p class="salons-archive__ja u-md-none">エリア</p>
+        </header>
+
+        <nav class="salons-archive-nav salons-archive-nav--pc md-show" aria-label="都道府県（PC）">
+          <ul class="salons-archive-nav__grid">
+            <li><a href="#pref-tokyo" class="salons-archive-nav__link"><i class="fas fa-angle-right salons-archive-nav__ico" aria-hidden="true"></i>Tokyo <span class="salons-archive-nav__count">(8)</span></a></li>
+            <li><a href="#pref-kanagawa" class="salons-archive-nav__link"><i class="fas fa-angle-right salons-archive-nav__ico" aria-hidden="true"></i>Kanagawa <span class="salons-archive-nav__count">(3)</span></a></li>
+            <li><a href="#pref-saitama" class="salons-archive-nav__link"><i class="fas fa-angle-right salons-archive-nav__ico" aria-hidden="true"></i>Saitama <span class="salons-archive-nav__count">(2)</span></a></li>
+            <li><a href="#pref-ishikawa" class="salons-archive-nav__link"><i class="fas fa-angle-right salons-archive-nav__ico" aria-hidden="true"></i>Ishikawa <span class="salons-archive-nav__count">(1)</span></a></li>
+            <li><a href="#pref-aichi" class="salons-archive-nav__link"><i class="fas fa-angle-right salons-archive-nav__ico" aria-hidden="true"></i>Aichi <span class="salons-archive-nav__count">(4)</span></a></li>
+            <li><a href="#pref-kyoto" class="salons-archive-nav__link"><i class="fas fa-angle-right salons-archive-nav__ico" aria-hidden="true"></i>Kyoto <span class="salons-archive-nav__count">(2)</span></a></li>
+            <li><a href="#pref-osaka" class="salons-archive-nav__link"><i class="fas fa-angle-right salons-archive-nav__ico" aria-hidden="true"></i>Osaka <span class="salons-archive-nav__count">(6)</span></a></li>
+            <li><a href="#pref-fukuoka" class="salons-archive-nav__link"><i class="fas fa-angle-right salons-archive-nav__ico" aria-hidden="true"></i>Fukuoka <span class="salons-archive-nav__count">(3)</span></a></li>
+            <li><a href="#pref-okinawa" class="salons-archive-nav__link"><i class="fas fa-angle-right salons-archive-nav__ico" aria-hidden="true"></i>Okinawa <span class="salons-archive-nav__count">(1)</span></a></li>
+          </ul>
+        </nav>
+
+        <nav class="salons-archive-nav salons-archive-nav--sp u-md-none" aria-label="都道府県（スマートフォン）">
+          <ul class="salons-archive-nav__list-sp">
+            <li class="salons-archive-nav__item-sp"><a href="#pref-tokyo" class="salons-archive-nav__link-sp">Tokyo</a></li>
+            <li class="salons-archive-nav__item-sp"><a href="#pref-kanagawa" class="salons-archive-nav__link-sp">Kanagawa</a></li>
+            <li class="salons-archive-nav__item-sp"><a href="#pref-saitama" class="salons-archive-nav__link-sp">Saitama</a></li>
+            <li class="salons-archive-nav__item-sp"><a href="#pref-ishikawa" class="salons-archive-nav__link-sp">Ishikawa</a></li>
+            <li class="salons-archive-nav__item-sp"><a href="#pref-aichi" class="salons-archive-nav__link-sp">Aichi</a></li>
+            <li class="salons-archive-nav__item-sp"><a href="#pref-kyoto" class="salons-archive-nav__link-sp">Kyoto</a></li>
+            <li class="salons-archive-nav__item-sp"><a href="#pref-osaka" class="salons-archive-nav__link-sp">Osaka</a></li>
+            <li class="salons-archive-nav__item-sp"><a href="#pref-fukuoka" class="salons-archive-nav__link-sp">Fukuoka</a></li>
+            <li class="salons-archive-nav__item-sp"><a href="#pref-okinawa" class="salons-archive-nav__link-sp">Okinawa</a></li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+
+    <section class="salons-archive-region" id="pref-tokyo" aria-labelledby="pref-tokyo-heading">
+      <h2 id="pref-tokyo-heading" class="salons-archive-region__banner"><span class="visually-hidden">東京都</span><span aria-hidden="true">Tokyo</span></h2>
+      <div class="inner">
+        <ul class="salons-archive-grid">
+          <li class="salons-archive-card">
+            <article>
+              <a href="./salon-single.html" class="salons-archive-card__link">
+                <div class="salons-archive-card__map"><span class="salons-archive-card__pin" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span></div>
+                <div class="salons-archive-card__body">
+                  <h3 class="salons-archive-card__name">Aoyama</h3>
+                  <p class="salons-archive-card__meta">〒107-0062 東京都港区南青山○丁目○−○○<br>03-0000-0000／11:00〜20:00（定休日：不定休）</p>
+                </div>
+              </a>
+            </article>
+          </li>
+          <li class="salons-archive-card">
+            <article>
+              <a href="./salon-single.html" class="salons-archive-card__link">
+                <div class="salons-archive-card__map"><span class="salons-archive-card__pin" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span></div>
+                <div class="salons-archive-card__body">
+                  <h3 class="salons-archive-card__name">Ginza</h3>
+                  <p class="salons-archive-card__meta">〒104-0061 東京都中央区銀座○丁目○−○○<br>03-0000-0001／11:00〜20:00（定休日：不定休）</p>
+                </div>
+              </a>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="salons-archive-region salons-archive-region--alt" id="pref-kanagawa" aria-labelledby="pref-kanagawa-heading">
+      <h2 id="pref-kanagawa-heading" class="salons-archive-region__banner"><span class="visually-hidden">神奈川県</span><span aria-hidden="true">Kanagawa</span></h2>
+      <div class="inner">
+        <ul class="salons-archive-grid">
+          <li class="salons-archive-card">
+            <article>
+              <a href="./salon-single.html" class="salons-archive-card__link">
+                <div class="salons-archive-card__map"><span class="salons-archive-card__pin" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span></div>
+                <div class="salons-archive-card__body">
+                  <h3 class="salons-archive-card__name">Yokohama</h3>
+                  <p class="salons-archive-card__meta">〒220-0004 神奈川県横浜市西区北幸○丁目○−○○<br>045-000-0000／10:00〜19:00（定休日：火曜）</p>
+                </div>
+              </a>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="salons-archive-region" id="pref-saitama" aria-labelledby="pref-saitama-heading">
+      <h2 id="pref-saitama-heading" class="salons-archive-region__banner"><span class="visually-hidden">埼玉県</span><span aria-hidden="true">Saitama</span></h2>
+      <div class="inner">
+        <ul class="salons-archive-grid">
+          <li class="salons-archive-card">
+            <article>
+              <a href="./salon-single.html" class="salons-archive-card__link">
+                <div class="salons-archive-card__map"><span class="salons-archive-card__pin" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span></div>
+                <div class="salons-archive-card__body">
+                  <h3 class="salons-archive-card__name">Omiya</h3>
+                  <p class="salons-archive-card__meta">〒330-0854 埼玉県さいたま市大宮区桜木町○丁目○−○○<br>048-000-0000／10:00〜19:00</p>
+                </div>
+              </a>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="salons-archive-region salons-archive-region--alt" id="pref-ishikawa" aria-labelledby="pref-ishikawa-heading">
+      <h2 id="pref-ishikawa-heading" class="salons-archive-region__banner"><span class="visually-hidden">石川県</span><span aria-hidden="true">Ishikawa</span></h2>
+      <div class="inner">
+        <ul class="salons-archive-grid">
+          <li class="salons-archive-card">
+            <article>
+              <a href="./salon-single.html" class="salons-archive-card__link">
+                <div class="salons-archive-card__map"><span class="salons-archive-card__pin" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span></div>
+                <div class="salons-archive-card__body">
+                  <h3 class="salons-archive-card__name">Kanazawa</h3>
+                  <p class="salons-archive-card__meta">〒920-0853 石川県金沢市片町○丁目○−○○<br>076-000-0000／10:00〜19:00</p>
+                </div>
+              </a>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="salons-archive-region" id="pref-aichi" aria-labelledby="pref-aichi-heading">
+      <h2 id="pref-aichi-heading" class="salons-archive-region__banner"><span class="visually-hidden">愛知県</span><span aria-hidden="true">Aichi</span></h2>
+      <div class="inner">
+        <ul class="salons-archive-grid">
+          <li class="salons-archive-card">
+            <article>
+              <a href="./salon-single.html" class="salons-archive-card__link">
+                <div class="salons-archive-card__map"><span class="salons-archive-card__pin" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span></div>
+                <div class="salons-archive-card__body">
+                  <h3 class="salons-archive-card__name">Nagoya</h3>
+                  <p class="salons-archive-card__meta">〒460-0008 愛知県名古屋市中区栄○丁目○−○○<br>052-000-0000／10:00〜20:00</p>
+                </div>
+              </a>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="salons-archive-region salons-archive-region--alt" id="pref-kyoto" aria-labelledby="pref-kyoto-heading">
+      <h2 id="pref-kyoto-heading" class="salons-archive-region__banner"><span class="visually-hidden">京都府</span><span aria-hidden="true">Kyoto</span></h2>
+      <div class="inner">
+        <ul class="salons-archive-grid">
+          <li class="salons-archive-card">
+            <article>
+              <a href="./salon-single.html" class="salons-archive-card__link">
+                <div class="salons-archive-card__map"><span class="salons-archive-card__pin" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span></div>
+                <div class="salons-archive-card__body">
+                  <h3 class="salons-archive-card__name">Kawaramachi</h3>
+                  <p class="salons-archive-card__meta">〒600-8000 京都府京都市下京区四条通河原町○<br>075-000-0000／10:00〜19:00</p>
+                </div>
+              </a>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="salons-archive-region" id="pref-osaka" aria-labelledby="pref-osaka-heading">
+      <h2 id="pref-osaka-heading" class="salons-archive-region__banner"><span class="visually-hidden">大阪府</span><span aria-hidden="true">Osaka</span></h2>
+      <div class="inner">
+        <ul class="salons-archive-grid">
+          <li class="salons-archive-card">
+            <article>
+              <a href="./salon-single.html" class="salons-archive-card__link">
+                <div class="salons-archive-card__map"><span class="salons-archive-card__pin" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span></div>
+                <div class="salons-archive-card__body">
+                  <h3 class="salons-archive-card__name">Namba</h3>
+                  <p class="salons-archive-card__meta">〒556-0011 大阪府大阪市浪速区難波中○丁目○−○○<br>06-0000-0000／11:00〜20:00</p>
+                </div>
+              </a>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="salons-archive-region salons-archive-region--alt" id="pref-fukuoka" aria-labelledby="pref-fukuoka-heading">
+      <h2 id="pref-fukuoka-heading" class="salons-archive-region__banner"><span class="visually-hidden">福岡県</span><span aria-hidden="true">Fukuoka</span></h2>
+      <div class="inner">
+        <ul class="salons-archive-grid">
+          <li class="salons-archive-card">
+            <article>
+              <a href="./salon-single.html" class="salons-archive-card__link">
+                <div class="salons-archive-card__map"><span class="salons-archive-card__pin" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span></div>
+                <div class="salons-archive-card__body">
+                  <h3 class="salons-archive-card__name">Tenjin</h3>
+                  <p class="salons-archive-card__meta">〒810-0001 福岡県福岡市中央区天神○丁目○−○○<br>092-000-0000／10:00〜19:00</p>
+                </div>
+              </a>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="salons-archive-region" id="pref-okinawa" aria-labelledby="pref-okinawa-heading">
+      <h2 id="pref-okinawa-heading" class="salons-archive-region__banner"><span class="visually-hidden">沖縄県</span><span aria-hidden="true">Okinawa</span></h2>
+      <div class="inner">
+        <ul class="salons-archive-grid">
+          <li class="salons-archive-card">
+            <article>
+              <a href="./salon-single.html" class="salons-archive-card__link">
+                <div class="salons-archive-card__map"><span class="salons-archive-card__pin" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span></div>
+                <div class="salons-archive-card__body">
+                  <h3 class="salons-archive-card__name">Naha</h3>
+                  <p class="salons-archive-card__meta">〒900-0015 沖縄県那覇市久茂地○丁目○−○○<br>098-000-0000／10:00〜19:00</p>
+                </div>
+              </a>
+            </article>
+          </li>
+        </ul>
+      </div>
     </section>
     <section class="reserve-cta" id="reserve">
       <a href="./reserve.html" class="reserve-cta__link">
@@ -100,16 +326,20 @@
         <a href="./index.html" class="footer__logo-link"><img src="./images/common/logo.png" alt="VALENTINE ROSE" width="64" height="64" loading="lazy"><span class="footer__logo-text">VALENTINE <br>ROSE</span></a>
       </div>
       <nav class="footer__nav" aria-label="フッターナビゲーション">
-        <ul class="footer__nav-items">
-          <li class="footer__nav-item"><a href="./index.html" class="footer__nav-link">TOP</a></li>
-          <li class="footer__nav-item"><a href="./news.html" class="footer__nav-link">News</a></li>
-          <li class="footer__nav-item"><a href="./concept.html" class="footer__nav-link">Concept</a></li>
-          <li class="footer__nav-item"><a href="./index.html#feature" class="footer__nav-link">Feature</a></li>
-          <li class="footer__nav-item"><a href="./price.html" class="footer__nav-link">Price</a></li>
-          <li class="footer__nav-item"><a href="./index.html#faq" class="footer__nav-link">FAQ</a></li>
-          <li class="footer__nav-item"><a href="./salons.html" class="footer__nav-link">Salons</a></li>
-          <li class="footer__nav-item"><a href="./reserve.html" class="footer__nav-link">Reserve</a></li>
-        </ul>
+        <div class="footer__nav-main">
+          <ul class="footer__nav-items footer__nav-items--row1">
+            <li class="footer__nav-item"><a href="./index.html" class="footer__nav-link">TOP</a></li>
+            <li class="footer__nav-item"><a href="./concept.html" class="footer__nav-link">Concept</a></li>
+            <li class="footer__nav-item"><a href="./price.html" class="footer__nav-link">Price</a></li>
+          </ul>
+          <ul class="footer__nav-items footer__nav-items--row2">
+            <li class="footer__nav-item"><a href="./news.html" class="footer__nav-link">News</a></li>
+            <li class="footer__nav-item"><a href="./index.html#feature" class="footer__nav-link">Feature</a></li>
+            <li class="footer__nav-item"><a href="./index.html#faq" class="footer__nav-link">FAQ</a></li>
+            <li class="footer__nav-item"><a href="./salons.html" class="footer__nav-link">Salons</a></li>
+            <li class="footer__nav-item"><a href="./reserve.html" class="footer__nav-link">Reserve</a></li>
+          </ul>
+        </div>
         <ul class="footer__nav-items footer__nav-items--sub">
           <li class="footer__nav-item"><a href="#" class="footer__nav-link">Privacy Policy</a></li>
           <li class="footer__nav-item"><a href="#" class="footer__nav-link">Site Map</a></li>
