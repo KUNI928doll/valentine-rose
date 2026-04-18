@@ -261,6 +261,16 @@ const FADE_UP_SELECTORS = [
   "main .price-table-wrap",
   "main .price-page-intro__copy",
   "main .salon-concept__intro-row > *",
+  "main .salon-single__breadcrumb-bar .inner",
+  "main .salon-single-flow__item",
+  "main .salon-single-access__grid",
+  "main .salons-archive-intro .inner",
+  "main .salons-archive-region",
+  "main .salons-archive-card",
+  "main .news-archive__inner",
+  "main .news-archive__item",
+  "main .news-single__inner",
+  "main .news-single__article",
   "footer .footer__logo",
   "footer .footer__nav",
   "footer .footer__copyright",
@@ -319,11 +329,74 @@ const initFadeUpScroll = () => {
   targets.forEach((el) => io.observe(el));
 };
 
+// ============================================
+// ニュース一覧：カテゴリーフィルター（サイドバー）
+// ============================================
+const initNewsArchiveFilter = () => {
+  const list = document.querySelector(".news-archive__list");
+  if (!list) return;
+
+  const items = list.querySelectorAll(".news-archive__item[data-news-category]");
+  const filterLinks = document.querySelectorAll(".js-news-archive-filter[data-news-filter]");
+  const emptyEl = document.getElementById("news-archive-empty");
+  const pagination = document.querySelector(".news-archive__pagination");
+
+  if (!items.length || !filterLinks.length) return;
+
+  const applyFilter = (filter) => {
+    let visibleCount = 0;
+
+    items.forEach((li) => {
+      const cat = li.getAttribute("data-news-category");
+      const show = filter === "all" || cat === filter;
+      li.hidden = !show;
+      if (show) visibleCount += 1;
+    });
+
+    filterLinks.forEach((link) => {
+      const key = link.getAttribute("data-news-filter");
+      if (key === filter) {
+        link.setAttribute("aria-current", "true");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+
+    if (emptyEl) {
+      emptyEl.hidden = visibleCount > 0;
+    }
+
+    if (pagination) {
+      pagination.hidden = filter !== "all";
+    }
+  };
+
+  filterLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      const filter = link.getAttribute("data-news-filter");
+      if (!filter) return;
+      applyFilter(filter);
+      try {
+        history.replaceState(null, "", `#${filter === "all" ? "news-archive" : filter}`);
+      } catch {
+        /* noop */
+      }
+    });
+  });
+
+  const hash = window.location.hash.slice(1);
+  const hashMap = { news: "news", column: "column", all: "all", "news-archive": "all" };
+  const initial = hashMap[hash] ?? "all";
+  applyFilter(initial);
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   initPageHeroParallax();
   initDrawer();
   initPagetop();
   initFaq();
   initFeatureSlider();
+  initNewsArchiveFilter();
   initFadeUpScroll();
 });
