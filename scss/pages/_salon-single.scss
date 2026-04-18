@@ -1,0 +1,465 @@
+@use "../abstracts/tokens" as *;
+@use "../abstracts/mixins" as *;
+
+// 店舗詳細（Salon single）PC/SP カンプ
+.page-salon-single {
+  background-color: var(--color-bg-1);
+
+  .inner {
+    max-width: 1200px;
+  }
+}
+
+.salon-single__breadcrumb-bar {
+  background-color: #fff;
+  padding: px(18) 0 px(16);
+  border-bottom: 1px solid rgba(193, 156, 93, 0.45);
+
+  @include mq(md) {
+    padding: px(14) 0 px(12);
+  }
+}
+
+// ─── KV：ブランド名 + 店舗名（2行） ───
+.salon-single-hero__title-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+}
+
+.salon-single-hero__heading {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: px(8);
+}
+
+.salon-single-hero__brand {
+  margin: 0;
+  font-family: var(--font-en);
+  font-size: px(40);
+  font-weight: 400;
+  letter-spacing: px(3);
+  line-height: 1.15;
+  text-transform: uppercase;
+  color: var(--page-hero-title-color, #c19c5d);
+
+  @include mq(md) {
+    font-size: px(26);
+    letter-spacing: px(2);
+  }
+}
+
+.salon-single-hero__shop-name {
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: px(28);
+  font-weight: 500;
+  letter-spacing: px(1.12);
+  line-height: 1.3;
+  color: var(--page-hero-title-color, #c19c5d);
+
+  @include mq(md) {
+    font-size: px(20);
+  }
+}
+
+// ─── リード文 ───
+.salon-single-intro {
+  padding: px(56) 0 px(64);
+  background-color: #fff;
+
+  @include mq(md) {
+    padding: px(40) 0 px(48);
+  }
+}
+
+.salon-single-intro__text {
+  margin: 0 auto;
+  max-width: px(920);
+  font-family: var(--font-base);
+  font-size: px(14);
+  line-height: 2.1;
+  letter-spacing: px(0.56);
+  text-align: center;
+  color: var(--color-text);
+
+  & + & {
+    margin-top: px(20);
+  }
+
+  @include mq(md) {
+    font-size: px(13);
+    letter-spacing: px(0.52);
+    text-align: left;
+  }
+}
+
+// ─── FLOW ───
+.salon-single-flow {
+  padding: px(72) 0 px(80);
+  background-color: #f0ede6;
+
+  @include mq(md) {
+    padding: px(48) 0 px(56);
+  }
+}
+
+.salon-single-flow__head {
+  text-align: center;
+  margin-bottom: px(48);
+
+  @include mq(md) {
+    margin-bottom: px(36);
+  }
+}
+
+.salon-single-flow__en {
+  margin: 0 0 px(4);
+  font-family: var(--font-en);
+  font-size: px(56);
+  font-weight: 400;
+  letter-spacing: px(4);
+  line-height: 1;
+  color: var(--color-main);
+  opacity: 0.85;
+
+  @include mq(md) {
+    font-size: px(40);
+    letter-spacing: px(2);
+  }
+}
+
+.salon-single-flow__title {
+  margin: 0;
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: px(16);
+  font-weight: 500;
+  letter-spacing: px(0.64);
+  color: var(--color-main);
+
+  @include mq(md) {
+    font-size: px(14);
+  }
+}
+
+.salon-single-flow__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-width: px(880);
+  margin-inline: auto;
+}
+
+.salon-single-flow__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: px(56) minmax(0, 1fr);
+  gap: px(20) px(24);
+  padding-bottom: px(32);
+
+  @include mq(md) {
+    grid-template-columns: px(48) minmax(0, 1fr);
+    gap: px(16) px(16);
+    padding-bottom: px(28);
+  }
+
+  &:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    left: px(27);
+    top: px(52);
+    bottom: 0;
+    width: 1px;
+    background: rgba(148, 158, 51, 0.45);
+
+    @include mq(md) {
+      left: px(23);
+      top: px(48);
+    }
+  }
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
+
+.salon-single-flow__num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: px(56);
+  height: px(56);
+  border-radius: 50%;
+  font-family: var(--font-en);
+  font-size: px(22);
+  font-weight: 400;
+  color: #fff;
+  background-color: var(--color-accent-2);
+  flex-shrink: 0;
+  z-index: 1;
+
+  @include mq(md) {
+    width: px(48);
+    height: px(48);
+    font-size: px(18);
+  }
+}
+
+.salon-single-flow__body {
+  min-width: 0;
+  padding-top: px(4);
+}
+
+.salon-single-flow__step-title {
+  margin: 0 0 px(8);
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: px(18);
+  font-weight: 600;
+  letter-spacing: px(0.72);
+  color: var(--color-main);
+
+  @include mq(md) {
+    font-size: px(16);
+  }
+}
+
+.salon-single-flow__desc {
+  margin: 0;
+  font-family: var(--font-base);
+  font-size: px(14);
+  line-height: 1.85;
+  letter-spacing: px(0.56);
+  color: var(--color-text);
+
+  @include mq(md) {
+    font-size: px(13);
+  }
+}
+
+.salon-single-flow__deco {
+  margin: px(12) 0 0;
+  width: px(100);
+  height: px(100);
+  border-radius: 50%;
+  overflow: hidden;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @include mq(md) {
+    width: px(88);
+    height: px(88);
+  }
+}
+
+// ─── STAFF ───
+.salon-single-staff {
+  padding: px(64) 0 px(72);
+  background-color: #3d3d3d;
+
+  @include mq(md) {
+    padding: px(48) 0 px(56);
+  }
+}
+
+.salon-single-staff__inner {
+  display: grid;
+  grid-template-columns: minmax(0, px(400)) minmax(0, 1fr);
+  gap: px(40) px(48);
+  align-items: center;
+
+  @include mq(md) {
+    grid-template-columns: 1fr;
+    gap: px(28);
+  }
+}
+
+.salon-single-staff__photo {
+  margin: 0;
+
+  img {
+    display: block;
+    width: 100%;
+    max-width: px(400);
+    height: auto;
+    object-fit: cover;
+
+    @include mq(md) {
+      max-width: px(280);
+      margin-inline: auto;
+    }
+  }
+}
+
+.salon-single-staff__en {
+  margin: 0 0 px(8);
+  font-family: var(--font-en);
+  font-size: px(40);
+  font-weight: 400;
+  letter-spacing: px(2);
+  color: #d4b87a;
+
+  @include mq(md) {
+    font-size: px(32);
+    text-align: center;
+  }
+}
+
+.salon-single-staff__sub {
+  margin: 0 0 px(20);
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: px(14);
+  font-weight: 400;
+  letter-spacing: px(0.56);
+  color: rgba(255, 255, 255, 0.85);
+
+  @include mq(md) {
+    text-align: center;
+  }
+}
+
+.salon-single-staff__bio {
+  margin: 0 0 px(16);
+  font-family: var(--font-base);
+  font-size: px(14);
+  line-height: 2;
+  letter-spacing: px(0.56);
+  color: rgba(255, 255, 255, 0.92);
+
+  @include mq(md) {
+    font-size: px(13);
+  }
+}
+
+.salon-single-staff__name {
+  margin: 0 0 px(20);
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: px(18);
+  font-weight: 500;
+  letter-spacing: px(0.72);
+  color: #d4b87a;
+
+  @include mq(md) {
+    text-align: center;
+    font-size: px(16);
+  }
+}
+
+.salon-single-staff__more {
+  display: inline-flex;
+  align-items: center;
+  gap: px(8);
+  font-family: var(--font-base);
+  font-size: px(13);
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: underline;
+  text-underline-offset: px(4);
+  transition: opacity $transition-base;
+
+  @include hover {
+    opacity: 0.8;
+  }
+
+  @include mq(md) {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+// ─── アクセス・地図 ───
+.salon-single-access {
+  padding: px(64) 0 px(72);
+  background-color: #e8e4dc;
+
+  @include mq(md) {
+    padding: px(48) 0 px(56);
+  }
+}
+
+.salon-single-access__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: px(32) px(40);
+  align-items: start;
+
+  @include mq(md) {
+    grid-template-columns: 1fr;
+    gap: px(28);
+  }
+}
+
+.salon-single-access__dl {
+  margin: 0;
+}
+
+.salon-single-access__row {
+  padding: px(16) 0;
+  border-bottom: 1px solid rgba(84, 55, 45, 0.2);
+
+  &:first-child {
+    padding-top: 0;
+  }
+}
+
+.salon-single-access__dt {
+  margin: 0 0 px(6);
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: px(13);
+  font-weight: 600;
+  letter-spacing: px(0.52);
+  color: var(--color-accent-1);
+}
+
+.salon-single-access__dd {
+  margin: 0;
+  font-family: var(--font-base);
+  font-size: px(14);
+  line-height: 1.75;
+  letter-spacing: px(0.56);
+  color: var(--color-text);
+
+  a {
+    color: var(--color-main);
+    text-decoration: underline;
+    text-underline-offset: px(3);
+  }
+}
+
+.salon-single-access__map {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.06);
+  border-radius: px(2);
+}
+
+.salon-single-access__map-iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.salon-single-access__cta {
+  margin-top: px(40);
+  text-align: center;
+
+  @include mq(md) {
+    margin-top: px(32);
+  }
+
+  .button {
+    min-width: px(240);
+  }
+}
