@@ -109,6 +109,16 @@ ul {
   list-style: none;
 }
 
+/* 見出しのデフォルト上下余白を除去 */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+/* 段落のデフォルト上下余白を除去 */
+p {
+  margin: 0;
+}
+
 .visually-hidden {
   clip: rect(0, 0, 0, 0);
   position: absolute;
@@ -123,7 +133,6 @@ ul {
 
 .inner {
   margin-inline: auto;
-  padding-inline: calc(25 * var(--1px));
   width: 100%;
   max-width: 1080px;
 }
@@ -153,7 +162,7 @@ ul {
   font-family: var(--font-script);
   font-size: calc(120 * var(--1px));
   font-weight: 400;
-  letter-spacing: 0;
+  letter-spacing: calc(6 * var(--1px));
   line-height: 0.71428571;
   text-align: left;
 }
@@ -1252,7 +1261,7 @@ body[class*=page-] > main#main {
 
 .news {
   background-color: var(--color-bg-1);
-  padding: calc(80 * var(--1px)) 0;
+  padding: calc(179 * var(--1px)) 0;
 }
 
 .news__head {
@@ -1272,9 +1281,17 @@ body[class*=page-] > main#main {
   margin-bottom: calc(40 * var(--1px));
   overflow: visible;
 }
+.news__head .button {
+  padding-block: 0;
+  width: calc(160 * var(--1px));
+  min-height: calc(40 * var(--1px));
+  font-size: calc(16 * var(--1px));
+  font-weight: 600;
+  letter-spacing: calc(1.6 * var(--1px));
+  line-height: calc(26 * var(--1px));
+}
 
 .news__title-group {
-  gap: calc(8 * var(--1px));
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1309,10 +1326,10 @@ body[class*=page-] > main#main {
 .news__title .section-title__bg {
   position: absolute;
   bottom: calc(-8 * var(--1px));
-  left: calc(50 * var(--1px));
+  left: calc(90 * var(--1px));
   z-index: 0;
   pointer-events: none;
-  font-size: calc(90 * var(--1px));
+  line-height: calc(168 * var(--1px));
   white-space: nowrap;
 }
 
@@ -1326,7 +1343,6 @@ body[class*=page-] > main#main {
 }
 
 .news__link {
-  gap: calc(12 * var(--1px));
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1338,7 +1354,7 @@ body[class*=page-] > main#main {
           flex-direction: column;
   -webkit-transition: opacity 0.3s ease;
   transition: opacity 0.3s ease;
-  padding: calc(20 * var(--1px)) calc(24 * var(--1px));
+  padding: calc(16.5 * var(--1px)) calc(19.5 * var(--1px));
   color: inherit;
 }
 
@@ -1365,14 +1381,14 @@ body[class*=page-] > main#main {
 .news__date {
   display: block;
   color: var(--color-main);
-  font-size: calc(13 * var(--1px));
+  font-size: calc(14 * var(--1px));
   letter-spacing: calc(0.5 * var(--1px));
 }
 
 .news__text {
   color: var(--color-accent-1);
   font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
-  font-size: calc(15 * var(--1px));
+  font-size: calc(18 * var(--1px));
   font-weight: 700;
   line-height: 1.7;
 }
@@ -1381,9 +1397,12 @@ body[class*=page-] > main#main {
   opacity: 0.6;
   color: var(--color-accent-1);
   font-family: var(--font-en);
-  font-size: calc(13 * var(--1px));
+  font-size: calc(14 * var(--1px));
   font-weight: 400;
   letter-spacing: calc(0.5 * var(--1px));
+}
+.news__btn-wrap .button {
+  font-weight: 600;
 }
 
 .feature {
@@ -4891,14 +4910,14 @@ body[class*=page-] > main#main {
     font-size: calc(16 * var(--1px));
   }
   .news {
-    padding: calc(48 * var(--1px)) 0;
+    padding: calc(56 * var(--1px)) 0;
   }
   .news__head {
     margin-bottom: calc(24 * var(--1px));
   }
   .news__title .section-title__bg {
     left: calc(38 * var(--1px));
-    font-size: calc(64 * var(--1px));
+    font-size: calc(72 * var(--1px));
   }
   .news__list {
     grid-template-columns: 1fr;
@@ -4937,6 +4956,11 @@ body[class*=page-] > main#main {
         -ms-flex-pack: center;
             justify-content: center;
     margin-top: calc(32 * var(--1px));
+  }
+  .news__btn-wrap .button {
+    font-size: calc(12 * var(--1px));
+    letter-spacing: calc(1.2 * var(--1px));
+    line-height: calc(20 * var(--1px));
   }
   .feature {
     padding: calc(56 * var(--1px)) 0 calc(64 * var(--1px));
