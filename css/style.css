@@ -502,8 +502,8 @@ body[class*=page-] > main#main {
           align-items: center;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  /* PCカンプ: 上50 / 左右48 */
-  padding: calc(50 * var(--1px)) calc(48 * var(--1px));
+  /* PCカンプ: 上48 / 左右48 */
+  padding: calc(48 * var(--1px));
   width: 100%;
   min-width: 0;
   max-width: 100%;
@@ -514,6 +514,7 @@ body[class*=page-] > main#main {
   -webkit-flex-shrink: 0;
       -ms-flex-negative: 0;
           flex-shrink: 0;
+  margin: 0;
   margin-right: auto;
   min-width: 0;
 }
@@ -542,8 +543,10 @@ body[class*=page-] > main#main {
   color: var(--color-accent-1);
   font-family: var(--font-serif);
   font-size: var(--font-size-2xl);
+  font-weight: 400;
   letter-spacing: 5.6px;
-  line-height: 0.8;
+  line-height: 1.25;
+  text-align: left;
 }
 
 .header__nav {
@@ -570,6 +573,34 @@ body[class*=page-] > main#main {
 
 .header__item:not(:first-child) {
   margin-left: 32px;
+}
+
+.header__link.button {
+  gap: 0;
+  position: relative;
+  padding: calc(12 * var(--1px)) calc(68 * var(--1px));
+  width: auto;
+  min-height: calc(50 * var(--1px));
+}
+
+.header__link.button > i {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: calc(68 * var(--1px));
 }
 
 .hamburger {
@@ -768,14 +799,14 @@ body[class*=page-] > main#main {
 }
 
 .fv {
+  aspect-ratio: 1440/900;
   width: 100%;
-  height: 100vh;
 }
 
 .fv__inner {
   position: relative;
   width: 100%;
-  height: inherit;
+  height: 100%;
   overflow: hidden;
 }
 
@@ -1274,7 +1305,6 @@ body[class*=page-] > main#main {
 .news__title .section-title__en {
   position: relative;
   z-index: 1;
-  font-size: calc(64 * var(--1px));
 }
 .news__title .section-title__bg {
   position: absolute;
@@ -4706,6 +4736,9 @@ body[class*=page-] > main#main {
   .drawer {
     --header-pad: 20px;
   }
+  .fv {
+    aspect-ratio: 375/809;
+  }
   .fv__title {
     margin: 0;
     padding-left: calc(29.5 * var(--1px));
@@ -4862,9 +4895,6 @@ body[class*=page-] > main#main {
   }
   .news__head {
     margin-bottom: calc(24 * var(--1px));
-  }
-  .news__title .section-title__en {
-    font-size: calc(48 * var(--1px));
   }
   .news__title .section-title__bg {
     left: calc(38 * var(--1px));
