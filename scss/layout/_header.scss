@@ -27,8 +27,8 @@
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
-    /* PCカンプ: 上50 / 左右48 */
-    padding: #{px(50)} #{px(48)};
+    /* PCカンプ: 上48 / 左右48 */
+    padding: #{px(48)};
     @include mq(md){
         height: auto;
         padding: px(20);
@@ -37,6 +37,7 @@
     }
 }
 .header__name{
+    margin: 0;// p タグのデフォルトマージンでロゴが下がるのを防ぐ
     margin-right: auto;//要素を横に広げるので重要！
     min-width: 0;
     flex-shrink: 0;
@@ -61,9 +62,11 @@
 .header__logo-text{
     font-size: var(--font-size-2xl);
      font-family: var(--font-serif);
+    font-weight: 400; // Marcellus Regular（h1 由来の bold 継承を打ち消す）
     color:var(--color-accent-1);
-    line-height: 0.8;
+    line-height: calc(35 / 28); // カンプ: 28px / 行間35px
     letter-spacing: 5.6px;
+    text-align: left;
 
 }
 .header__nav{
@@ -83,6 +86,25 @@
 }
 .header__item:not(:first-child){
     margin-left: 32px;
+}
+
+// ご予約ボタン（カンプ: 上下12 / 左右68・テキスト中央・アイコンは左パディング内）
+.header__link.button{
+    position: relative;
+    width: auto;
+    min-height: px(50); // カンプの高さ（50px）に合わせる
+    padding: #{px(12)} #{px(68)};
+    gap: 0;
+}
+.header__link.button > i{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: px(68);
 }
 
 .hamburger{
