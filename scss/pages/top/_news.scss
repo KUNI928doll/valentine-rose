@@ -3,11 +3,11 @@
 
 // News
 .news {
-  padding: px(80) 0;
+  padding: px(179) 0;
   background-color: var(--color-bg-1);
 
   @include mq(md) {
-    padding: px(48) 0;
+    padding: px(56) 0;
   }
 }
 
@@ -23,13 +23,23 @@
   @include mq(md) {
     margin-bottom: px(24);
   }
+
+  // View All はカンプで 160×40（共通 .button の 200幅と異なるため個別指定）
+  .button {
+    width: px(160);
+    min-height: px(40);
+    padding-block: 0; // 上下paddingを消し、min-height + 中央寄せで高さ40pxに収める
+    font-size: px(16);
+    font-weight: 600; // カンプ: Yu Mincho Demibold
+    letter-spacing: px(1.6);
+    line-height: px(26);
+  }
 }
 
 // タイトルグループ
 .news__title-group {
   display: flex;
   flex-direction: column;
-  gap: px(8);
   min-width: 0;
   overflow: visible;
 }
@@ -51,15 +61,15 @@
 
   .section-title__bg {
     position: absolute;
-    left: px(50);
+    left: px(90);
     bottom: px(-8);
     z-index: 0;
-    font-size: px(90);
+    line-height: px(168);
     pointer-events: none;
     white-space: nowrap;
 
     @include mq(md) {
-      font-size: px(64);
+      font-size: px(72);
       left: px(38);
     }
   }
@@ -93,8 +103,9 @@
 .news__link {
   display: flex;
   flex-direction: column;
-  gap: px(12);
-  padding: px(20) px(24);
+
+  
+  padding: px(16.5) px(19.5);
   color: inherit;
   transition: opacity $transition-base;
 
@@ -141,7 +152,7 @@
 // 日付
 .news__date {
   display: block;
-  font-size: px(13);
+  font-size: px(14);
   color: var(--color-main);
   letter-spacing: px(0.5);
 }
@@ -149,7 +160,7 @@
 // タイトルテキスト
 .news__text {
   font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
-  font-size: px(15);
+  font-size: px(18);
   font-weight: 700;
   line-height: 1.7;
   color: var(--color-accent-1);
@@ -162,7 +173,7 @@
 // カテゴリ（Marcellus Regular）
 .news__category {
   font-family: var(--font-en);
-  font-size: px(13);
+  font-size: px(14);
   font-weight: 400;
   color: var(--color-accent-1);
   opacity: 0.6;
@@ -179,5 +190,16 @@
     display: flex;
     justify-content: center;
     margin-top: px(32);
+  }
+
+  // SP用 View All（カンプ: Yu Mincho Demibold / 12px / 字間1.2 / 行間20）
+  .button {
+    font-weight: 600;
+
+    @include mq(md) {
+      font-size: px(12);
+      letter-spacing: px(1.2);
+      line-height: px(20);
+    }
   }
 }
