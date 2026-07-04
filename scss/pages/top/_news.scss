@@ -47,11 +47,6 @@
   .section-title__en {
     position: relative;
     z-index: 1;
-    font-size: px(64);
-
-    @include mq(md) {
-      font-size: px(48);
-    }
   }
 
   .section-title__bg {
