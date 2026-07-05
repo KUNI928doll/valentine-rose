@@ -16,7 +16,7 @@
 
 .inner {
   width: 100%;
-  max-width: 1080px;
+  max-width: 1200px; // サイト標準のコンテンツ幅（左右120px余白 @1440）。News のみ 1080 に個別指定
   margin-inline: auto;
 
   @include mq(md) {

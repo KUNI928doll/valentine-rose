@@ -3,7 +3,7 @@
 
 // Concept（PC: 2段グリッド / 1行目は見出しが画像左端で重なる・縦中央揃え / SP: 縦積み）
 .concept {
-  padding: px(80) 0;
+  padding: px(28) 0px px(202);
   background-color: var(--color-bg-1);
   overflow-x: clip;
 
@@ -18,7 +18,7 @@
   grid-template-columns: minmax(0, 1fr) auto;
   grid-template-rows: auto auto;
   // PC: 列間ギャップなし＋負マージンで見出しが画像左へまたがる
-  gap: px(48) 0;
+  gap: px(80) 0;
   align-items: start;
 
   @include mq(md) {
@@ -60,17 +60,11 @@
   display: flex;
   align-items: baseline;
   line-height: 1;
-  margin: 0 0 px(8);
 
   .section-title__en {
     position: relative;
     z-index: 1;
-    font-size: px(64);
     text-transform: uppercase;
-
-    @include mq(md) {
-      font-size: px(48);
-    }
   }
 
   .section-title__bg {
@@ -91,7 +85,7 @@
 }
 
 .concept__lead .section-title__ja {
-  margin: 0 0 px(24);
+
 
   @include mq(md) {
     margin-bottom: px(16);
@@ -101,8 +95,10 @@
 // キャッチ（PC: 1行相当 / SP: 3行）
 .concept__catch {
   margin: 0;
+  // 1行目の line-height 余白(half-leading = (1.8-1)*28/2 = 11.2px)を transform で相殺（負マージン不使用・全ブラウザ対応）
+  transform: translateY(px(-11.2));
   font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
-  font-size: px(18);
+  font-size: px(28);
   font-weight: 600;
   line-height: 1.8;
   letter-spacing: px(1.8);
@@ -112,6 +108,7 @@
     font-size: px(15);
     line-height: 2;
     letter-spacing: px(1.2);
+    transform: translateY(px(-7.5)); // SP: (2-1)*15/2 = 7.5px
   }
 }
 
@@ -147,7 +144,11 @@
   justify-self: end;
   box-sizing: border-box;
   width: px(865);
-  max-width: 100%;
+  max-width: none;
+  // 高さは元比率(865:680)で固定し、画像は絶対配置＋object-fitで右だけ画面端まで裁ち落とす
+  // （箱サイズは変えないのでグリッド・見出し位置に影響なし）
+  aspect-ratio: 865 / 680;
+  overflow: visible;
   margin: 0;
   min-width: 0;
   position: relative;
@@ -155,14 +156,19 @@
   margin-left: px(-72);
 
   picture {
+    position: absolute;
+    inset: 0;
     display: block;
-    width: 100%;
+    // 右方向だけ .inner(1080) の外側余白ぶん延長（画面端まで）。1080px以下では 0
+    width: calc(100% + max(0px, (100vw - 1200px) / 2));
+    height: 100%;
+    max-width: none;
   }
 
   img {
     display: block;
-    width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
   }
 
   @include mq(md) {
@@ -172,7 +178,19 @@
     margin-left: 0;
     width: 100%;
     max-width: none;
+    aspect-ratio: auto;
     order: 1;
+
+    picture {
+      position: static;
+      width: 100%;
+      height: auto;
+    }
+
+    img {
+      height: auto;
+      object-fit: fill;
+    }
   }
 }
 
@@ -183,8 +201,8 @@
   display: grid;
   grid-template-columns: minmax(0, #{px(540)}) minmax(0, 1fr);
   grid-template-rows: auto;
-  gap: px(20) px(40);
-  align-items: center;
+  gap: px(20) px(60);
+  align-items: start;
   width: 100%;
   min-width: 0;
   box-sizing: border-box;
@@ -225,23 +243,27 @@
   min-width: 0;
   width: 100%;
   box-sizing: border-box;
+  gap: px(20);
 }
 
 .concept__text {
   margin: 0;
+  // 1行目の line-height 余白(half-leading = (1.9-1)*18/2 = 8.1px)を transform で相殺（負マージン不使用・全ブラウザ対応）
+  transform: translateY(px(-8.1));
   width: 100%;
   font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
-  font-size: px(15);
+  font-size: px(18);
   font-weight: 400;
-  line-height: 2;
-  letter-spacing: px(0.6);
+  line-height: 1.9;
+  letter-spacing: px(1.8);
   color: var(--color-accent-1);
   text-align: left;
 
   @include mq(md) {
-    font-size: px(14);
+    font-size: px(16);
     line-height: 2;
     letter-spacing: px(0.56);
+    transform: translateY(px(-8)); // SP: (2-1)*16/2 = 8px
   }
 }
 
@@ -250,7 +272,6 @@
   display: inline-flex;
   align-items: center;
   gap: px(8);
-  margin-top: px(32);
   font-family: var(--font-en);
   font-size: px(18);
   font-weight: 400;

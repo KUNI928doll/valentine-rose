@@ -9,6 +9,11 @@
   @include mq(md) {
     padding: px(56) 0;
   }
+
+  // News は従来どおり 1080px（左右180px余白）を維持。基底 .inner の 1200px を上書き
+  .inner {
+    max-width: 1080px;
+  }
 }
 
 // ヘッダー行（タイトル + View All ボタン）
@@ -62,7 +67,7 @@
   .section-title__bg {
     position: absolute;
     left: px(90);
-    bottom: px(-8);
+    bottom: px(-30);
     z-index: 0;
     line-height: px(168);
     pointer-events: none;
@@ -103,8 +108,6 @@
 .news__link {
   display: flex;
   flex-direction: column;
-
-  
   padding: px(16.5) px(19.5);
   color: inherit;
   transition: opacity $transition-base;
@@ -115,7 +118,6 @@
 
   @include mq(md) {
     padding: px(20) 0;
-    gap: px(8);
   }
 }
 
@@ -152,21 +154,31 @@
 // 日付
 .news__date {
   display: block;
+  // 日付 ↔ タイトル：見た目12px。line-height の半leading(日付下4.2 + タイトル上6.3)を相殺
+  margin-block-end: px(1.5); // 12 - 4.2 - 6.3
   font-size: px(14);
   color: var(--color-main);
-  letter-spacing: px(0.5);
+  letter-spacing: px(1.4);
+
+  @include mq(md) {
+    margin-block-end: px(2.55); // 12 - 4.2 - 5.25(SPタイトル上)
+  }
 }
 
 // タイトルテキスト
 .news__text {
+  // タイトル ↔ カテゴリー：見た目16px。半leading(タイトル下6.3 + カテゴリー上4.2)を相殺
+  margin-block-end: px(5.5); // 16 - 6.3 - 4.2
   font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
   font-size: px(18);
   font-weight: 700;
   line-height: 1.7;
+  letter-spacing: px(1.8);
   color: var(--color-accent-1);
 
   @include mq(md) {
     font-size: px(15);
+    margin-block-end: px(6.55); // 16 - 5.25(SPタイトル下) - 4.2
   }
 }
 

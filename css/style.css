@@ -134,7 +134,7 @@ p {
 .inner {
   margin-inline: auto;
   width: 100%;
-  max-width: 1080px;
+  max-width: 1200px;
 }
 
 .section-title__en {
@@ -1028,8 +1028,8 @@ body[class*=page-] > main#main {
   border: none;
   border-radius: 999px;
   background-color: var(--color-accent-2);
-  width: calc(48 * var(--1px));
-  height: calc(48 * var(--1px));
+  width: calc(82 * var(--1px));
+  height: calc(82 * var(--1px));
   color: #fff;
   font-size: calc(16 * var(--1px));
 }
@@ -1040,12 +1040,12 @@ body[class*=page-] > main#main {
 
 .concept {
   background-color: var(--color-bg-1);
-  padding: calc(80 * var(--1px)) 0;
+  padding: calc(28 * var(--1px)) 0px calc(202 * var(--1px));
   overflow-x: clip;
 }
 
 .concept__inner {
-  gap: calc(48 * var(--1px)) 0;
+  gap: calc(80 * var(--1px)) 0;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   grid-template-rows: auto auto;
@@ -1094,13 +1094,11 @@ body[class*=page-] > main#main {
   -webkit-align-items: baseline;
       -ms-flex-align: baseline;
           align-items: baseline;
-  margin: 0 0 calc(8 * var(--1px));
   line-height: 1;
 }
 .concept__title .section-title__en {
   position: relative;
   z-index: 1;
-  font-size: calc(64 * var(--1px));
   text-transform: uppercase;
 }
 .concept__title .section-title__bg {
@@ -1113,15 +1111,13 @@ body[class*=page-] > main#main {
   white-space: nowrap;
 }
 
-.concept__lead .section-title__ja {
-  margin: 0 0 calc(24 * var(--1px));
-}
-
 .concept__catch {
+  -webkit-transform: translateY(calc(-11.2 * var(--1px)));
+          transform: translateY(calc(-11.2 * var(--1px)));
   margin: 0;
   color: var(--color-main);
   font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
-  font-size: calc(18 * var(--1px));
+  font-size: calc(28 * var(--1px));
   font-weight: 600;
   letter-spacing: calc(1.8 * var(--1px));
   line-height: 1.8;
@@ -1143,6 +1139,7 @@ body[class*=page-] > main#main {
 }
 
 .concept__hero {
+  aspect-ratio: 865/680;
   position: relative;
   grid-column: 2;
   grid-row: 1;
@@ -1157,29 +1154,35 @@ body[class*=page-] > main#main {
   margin-left: calc(-72 * var(--1px));
   width: calc(865 * var(--1px));
   min-width: 0;
-  max-width: 100%;
+  max-width: none;
+  overflow: visible;
 }
 .concept__hero picture {
+  inset: 0;
   display: block;
-  width: 100%;
+  position: absolute;
+  width: calc(100% + max(0px, (100vw - 1200px) / 2));
+  max-width: none;
+  height: 100%;
 }
 .concept__hero img {
   display: block;
-  width: 100%;
-  height: auto;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .concept__row-bottom {
-  gap: calc(20 * var(--1px)) calc(40 * var(--1px));
+  gap: calc(20 * var(--1px)) calc(60 * var(--1px));
   display: grid;
   grid-column: 1/-1;
   grid-row: 2;
   grid-template-columns: minmax(0, calc(540 * var(--1px))) minmax(0, 1fr);
   grid-template-rows: auto;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: start;
+  -webkit-align-items: start;
+      -ms-flex-align: start;
+          align-items: start;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   width: 100%;
@@ -1199,6 +1202,7 @@ body[class*=page-] > main#main {
 }
 
 .concept__article {
+  gap: calc(20 * var(--1px));
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1219,14 +1223,16 @@ body[class*=page-] > main#main {
 }
 
 .concept__text {
+  -webkit-transform: translateY(calc(-8.1 * var(--1px)));
+          transform: translateY(calc(-8.1 * var(--1px)));
   margin: 0;
   width: 100%;
   color: var(--color-accent-1);
   font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
-  font-size: calc(15 * var(--1px));
+  font-size: calc(18 * var(--1px));
   font-weight: 400;
-  letter-spacing: calc(0.6 * var(--1px));
-  line-height: 2;
+  letter-spacing: calc(1.8 * var(--1px));
+  line-height: 1.9;
   text-align: left;
 }
 
@@ -1246,7 +1252,6 @@ body[class*=page-] > main#main {
           align-self: flex-end;
   -webkit-transition: opacity 0.3s ease;
   transition: opacity 0.3s ease;
-  margin-top: calc(32 * var(--1px));
   color: var(--color-main);
   font-family: var(--font-en);
   font-size: calc(18 * var(--1px));
@@ -1262,6 +1267,9 @@ body[class*=page-] > main#main {
 .news {
   background-color: var(--color-bg-1);
   padding: calc(179 * var(--1px)) 0;
+}
+.news .inner {
+  max-width: 1080px;
 }
 
 .news__head {
@@ -1325,7 +1333,7 @@ body[class*=page-] > main#main {
 }
 .news__title .section-title__bg {
   position: absolute;
-  bottom: calc(-8 * var(--1px));
+  bottom: calc(-30 * var(--1px));
   left: calc(90 * var(--1px));
   z-index: 0;
   pointer-events: none;
@@ -1380,16 +1388,21 @@ body[class*=page-] > main#main {
 
 .news__date {
   display: block;
+  -webkit-margin-after: calc(1.5 * var(--1px));
+          margin-block-end: calc(1.5 * var(--1px));
   color: var(--color-main);
   font-size: calc(14 * var(--1px));
-  letter-spacing: calc(0.5 * var(--1px));
+  letter-spacing: calc(1.4 * var(--1px));
 }
 
 .news__text {
+  -webkit-margin-after: calc(5.5 * var(--1px));
+          margin-block-end: calc(5.5 * var(--1px));
   color: var(--color-accent-1);
   font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
   font-size: calc(18 * var(--1px));
   font-weight: 700;
+  letter-spacing: calc(1.8 * var(--1px));
   line-height: 1.7;
 }
 
@@ -1548,7 +1561,6 @@ body[class*=page-] > main#main {
   position: relative;
   z-index: 1;
   color: var(--color-main);
-  font-size: calc(64 * var(--1px));
 }
 .feature__title .section-title__bg {
   position: absolute;
@@ -1893,7 +1905,6 @@ body[class*=page-] > main#main {
   position: relative;
   z-index: 1;
   color: var(--color-main);
-  font-size: calc(64 * var(--1px));
 }
 .faq__title .section-title__bg {
   position: absolute;
@@ -4841,9 +4852,6 @@ body[class*=page-] > main#main {
     z-index: auto;
     margin-right: 0;
   }
-  .concept__title .section-title__en {
-    font-size: calc(48 * var(--1px));
-  }
   .concept__title .section-title__bg {
     bottom: calc(-8 * var(--1px));
     left: calc(4 * var(--1px));
@@ -4853,6 +4861,8 @@ body[class*=page-] > main#main {
     margin-bottom: calc(16 * var(--1px));
   }
   .concept__catch {
+    -webkit-transform: translateY(calc(-7.5 * var(--1px)));
+            transform: translateY(calc(-7.5 * var(--1px)));
     font-size: calc(15 * var(--1px));
     letter-spacing: calc(1.2 * var(--1px));
     line-height: 2;
@@ -4864,6 +4874,7 @@ body[class*=page-] > main#main {
     width: calc(100 * var(--1px));
   }
   .concept__hero {
+    aspect-ratio: auto;
     -webkit-align-self: stretch;
         -ms-flex-item-align: stretch;
             align-self: stretch;
@@ -4876,6 +4887,16 @@ body[class*=page-] > main#main {
     margin-left: 0;
     width: 100%;
     max-width: none;
+  }
+  .concept__hero picture {
+    position: static;
+    width: 100%;
+    height: auto;
+  }
+  .concept__hero img {
+    height: auto;
+    -o-object-fit: fill;
+       object-fit: fill;
   }
   .concept__row-bottom {
     gap: calc(24 * var(--1px));
@@ -4901,7 +4922,9 @@ body[class*=page-] > main#main {
     max-width: none;
   }
   .concept__text {
-    font-size: calc(14 * var(--1px));
+    -webkit-transform: translateY(calc(-8 * var(--1px)));
+            transform: translateY(calc(-8 * var(--1px)));
+    font-size: calc(16 * var(--1px));
     letter-spacing: calc(0.56 * var(--1px));
     line-height: 2;
   }
@@ -4930,7 +4953,6 @@ body[class*=page-] > main#main {
     border-top: 1px solid rgba(202, 127, 19, 0.3);
   }
   .news__link {
-    gap: calc(8 * var(--1px));
     padding: calc(20 * var(--1px)) 0;
   }
   .news__thumb {
@@ -4940,7 +4962,13 @@ body[class*=page-] > main#main {
   .site-main--single .entry-thumbnail.news__thumb {
     margin-bottom: calc(24 * var(--1px));
   }
+  .news__date {
+    -webkit-margin-after: calc(2.55 * var(--1px));
+            margin-block-end: calc(2.55 * var(--1px));
+  }
   .news__text {
+    -webkit-margin-after: calc(6.55 * var(--1px));
+            margin-block-end: calc(6.55 * var(--1px));
     font-size: calc(15 * var(--1px));
   }
   .news__category {
@@ -5002,9 +5030,6 @@ body[class*=page-] > main#main {
     position: static;
     margin-bottom: calc(16 * var(--1px));
     pointer-events: auto;
-  }
-  .feature__title .section-title__en {
-    font-size: calc(48 * var(--1px));
   }
   .feature__title .section-title__bg {
     font-size: calc(64 * var(--1px));
@@ -5076,9 +5101,6 @@ body[class*=page-] > main#main {
   }
   .faq__head {
     margin-bottom: calc(32 * var(--1px));
-  }
-  .faq__title .section-title__en {
-    font-size: calc(48 * var(--1px));
   }
   .faq__title .section-title__bg {
     bottom: calc(-8 * var(--1px));
