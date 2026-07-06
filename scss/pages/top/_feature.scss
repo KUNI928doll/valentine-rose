@@ -8,26 +8,39 @@
   --feature-bg: #2b2b2b;
   --feature-img-border: #add8e6;
 
-  padding: px(80) 0 px(100);
+  padding: px(59) 0 px(100);
   background-color: var(--feature-bg);
   color: var(--color-main);
 
+  // Feature は 3列(456+450+456=1362 / 画像は自然サイズ 450 のまま) + 左余白 88px = 1450 をカンプ準拠で使うため、.inner の max-width を上書き
+  .inner {
+    max-width: px(1450);
+  }
+
   @include mq(md) {
     padding: px(56) 0 px(64);
+
+    .inner {
+      max-width: none;
+    }
   }
 }
 
 .feature__content {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(px(240), px(360)) minmax(0, 1.15fr);
-  gap: px(28) px(40);
+  // カンプ準拠：左ナビ 456 / 中央画像 450(自然サイズ) / 右テキスト 456 = 合計 1362
+  grid-template-columns: minmax(0, px(456)) minmax(0, px(450)) minmax(0, px(456));
+  gap: px(28) 0;
   align-items: center;
+  // カンプ準拠：コンテンツ左端に 88px の余白
+  padding-left: px(88);
 
   @include mq(md) {
     display: flex;
     flex-direction: column;
     gap: px(28);
     align-items: stretch;
+    padding-left: 0;
   }
 }
 
@@ -38,22 +51,47 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: px(20);
+  // カンプ準拠：ナビの幅は 299px（グリッド列の 456 内で左寄せ）
+  max-width: px(299);
+  // 項目間の間隔は .feature__nav-item の margin-bottom で個別指定するため、gap は使わない
+  font-size: px(18);
+  // nav 全体の縦位置微調整（正で下、負で上）。margin-top を避け transform で見た目のみ移動
+  transform: translateY(px(64));
 
   @include mq(md) {
     order: 3;
     gap: px(14);
+    max-width: none;
+    transform: none;
   }
 }
 
 .feature__nav-item {
   margin: 0;
+
+  // 項目間の余白を個別指定（PC のみ）
+  // button の line-height 1.7 の半leading(6.3×2=12.6)を差し引いて指定
+  // 見た目 60px → 47.4 指定 / 見た目 55px → 42.4 指定
+  &:nth-child(1) {
+    margin-bottom: px(47.4); // I ↔ II：見た目 60px
+  }
+  &:nth-child(2) {
+    margin-bottom: px(42.4); // II ↔ III：見た目 55px
+  }
+  // 最終要素は下余白なし
+
+  @include mq(md) {
+    &:nth-child(1),
+    &:nth-child(2) {
+      margin-bottom: 0;
+    }
+  }
 }
 
 .feature__nav-btn {
   display: flex;
   align-items: flex-start;
-  gap: px(10);
+  gap: px(24);
   width: 100%;
   margin: 0;
   padding: 0;
@@ -63,7 +101,8 @@
   color: var(--color-main);
   opacity: 0.45;
   font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
-  font-size: px(14);
+  // .feature__nav 側で font-size を管理するため inherit
+  font-size: inherit;
   line-height: 1.7;
   letter-spacing: px(0.56);
   text-align: left;
@@ -91,7 +130,7 @@
 .feature__nav-num {
   flex-shrink: 0;
   font-family: var(--font-en);
-  font-size: px(15);
+  font-size: px(24);
   letter-spacing: px(0.3);
   color: inherit;
   line-height: 1.5;
@@ -101,6 +140,7 @@
   flex: 1;
   min-width: 0;
   color: inherit;
+  font-size: px(18);
 }
 
 // 中央：見出しが画像上に重なる
@@ -124,11 +164,14 @@
   text-align: center;
   margin-bottom: px(-40);
   pointer-events: none;
+  // カンプ準拠：見出し(FEATURE + 特徴)のみ左・下方向に移動（margin を避け transform で見た目のみ）
+  transform: translate(px(-42), px(30));
 
   @include mq(md) {
     margin-bottom: px(16);
     position: static;
     pointer-events: auto;
+    transform: none;
   }
 }
 
@@ -149,12 +192,12 @@
   }
 
   .section-title__bg {
+    // font-size は共通の 120px（カンプ準拠）を使用
     position: absolute;
     left: 50%;
-    bottom: px(-8);
+    bottom: px(40);
     transform: translateX(-50%);
     z-index: 0;
-    font-size: px(90);
     color: rgba(202, 127, 19, 0.12);
     pointer-events: none;
     white-space: nowrap;
@@ -174,7 +217,9 @@
 .feature__image-panels {
   position: relative;
   width: 100%;
-  max-width: px(340);
+  max-width: px(450); // 画像の自然サイズ。これ未満だと縮小される
+  // 画像位置をカンプに合わせて上・左方向に調整。margin を避け transform で見た目のみ移動
+  transform: translate(px(-50), px(38));
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
@@ -182,6 +227,7 @@
 
   @include mq(md) {
     max-width: none;
+    transform: none;
   }
 }
 
@@ -215,7 +261,7 @@
   picture,
   img {
     display: block;
-    width: 100%;
+    max-width: 100%; // 親が自然サイズ以上なら natural を保つ(縮小防止)
     height: auto;
   }
 }
@@ -225,12 +271,15 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
-  margin: px(48) 0 0;
+  margin: px(130) 0 0;
   min-width: 0;
+  // カンプ準拠：右テキストブロックを左方向に移動（margin を避け transform で見た目のみ）
+  transform: translateX(px(-46));
 
   @include mq(md) {
     margin-top: 0;
     order: 2;
+    transform: none;
   }
 }
 
@@ -258,7 +307,7 @@
 .feature__label {
   margin: 0;
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-  font-size: px(12);
+  font-size: px(18);
   font-weight: 600;
   letter-spacing: px(3);
   color: var(--color-main);
@@ -267,17 +316,18 @@
 
 .feature__rule {
   display: block;
-  width: px(36);
+  // カンプ準拠：長さ 24px の細い横線
+  width: px(24);
   height: 1px;
-  margin: px(12) auto px(16);
+  margin: px(18) auto px(16);
   background-color: var(--color-main);
   opacity: 0.9;
 }
 
 .feature__heading {
-  margin: 0 0 px(20);
+  margin: 0 0 px(53);
   font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
-  font-size: px(18);
+  font-size: px(24);
   font-weight: 600;
   letter-spacing: px(0.72);
   line-height: 1.65;
@@ -291,11 +341,12 @@
 
 .feature__text {
   margin: 0;
-  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
-  font-size: px(14);
+  // カンプ準拠：Yu Gothic Regular / 18px / 字間 1.8 / 行間 36 (line-height 2)
+  font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: px(18);
   font-weight: 400;
   line-height: 2;
-  letter-spacing: px(0.56);
+  letter-spacing: px(1.8);
   color: var(--color-main);
   text-align: center;
 
