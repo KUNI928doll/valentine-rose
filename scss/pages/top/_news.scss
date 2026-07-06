@@ -66,7 +66,7 @@
 
   .section-title__bg {
     position: absolute;
-    left: px(90);
+    left: px(150);
     bottom: px(-30);
     z-index: 0;
     line-height: px(168);
@@ -94,8 +94,14 @@
 .news__item {
   border-left: 1px solid var(--color-main);
 
+  // PC: 3列目(最終列)のみ右にもボーダーを付けてリストの右端を閉じる
+  &:nth-child(3) {
+    border-right: 1px solid var(--color-main);
+  }
+
   @include mq(md) {
     border-left: none;
+    border-right: none;
     border-bottom: 1px solid rgba(202, 127, 19, 0.3);
 
     &:first-child {
