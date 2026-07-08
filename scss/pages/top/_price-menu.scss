@@ -6,7 +6,7 @@
 // SP: 見出し下に 5 行（Body → V-line → Set → Custom → All）
 
 .price-menu {
-  padding: px(100) 0;
+  padding: px(200) 0;
   background-color: #f5f3ef;
 
   @include mq(md) {
@@ -70,12 +70,6 @@
     left: px(-8);
     bottom: px(-20);
     z-index: 0;
-    font-family: var(--font-script);
-    font-size: px(100);
-    font-weight: 400;
-    line-height: 0.85;
-    letter-spacing: 0;
-    color: rgba(202, 127, 19, 0.14);
     pointer-events: none;
     white-space: nowrap;
 
