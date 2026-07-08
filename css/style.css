@@ -1690,7 +1690,7 @@ body[class*=page-] > main#main {
 }
 
 .feature__heading {
-  margin: 0 0 calc(53 * var(--1px));
+  margin: 0 0 calc(63 * var(--1px));
   color: var(--color-main);
   font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
   font-size: calc(24 * var(--1px));
@@ -1712,7 +1712,7 @@ body[class*=page-] > main#main {
 
 .price-menu {
   background-color: #f5f3ef;
-  padding: calc(100 * var(--1px)) 0;
+  padding: calc(200 * var(--1px)) 0;
 }
 
 .price-menu__layout {
@@ -1766,12 +1766,6 @@ body[class*=page-] > main#main {
   left: calc(-8 * var(--1px));
   z-index: 0;
   pointer-events: none;
-  color: rgba(202, 127, 19, 0.14);
-  font-family: var(--font-script);
-  font-size: calc(100 * var(--1px));
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: 0.85;
   white-space: nowrap;
 }
 
