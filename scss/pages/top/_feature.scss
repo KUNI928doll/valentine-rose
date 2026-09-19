@@ -12,15 +12,17 @@
   background-color: var(--feature-bg);
   color: var(--color-main);
 
-  // Feature は 3列(456+450+456=1362 / 画像は自然サイズ 450 のまま) + 左余白 88px = 1450 をカンプ準拠で使うため、.inner の max-width を上書き
+  // Feature は 3列(456+450+456=1362 / 画像は自然サイズ 450 のまま) + 左余白 88px = 1450 をカンプ準拠で使うため、.inner の幅を上書き（1440px時は viewport 幅いっぱいまで許容）
   .inner {
-    max-width: px(1450);
+    width: min(#{px(1450)}, 100%);
+    max-width: none;
   }
 
   @include mq(md) {
     padding: px(56) 0 px(64);
 
     .inner {
+      width: 100%;
       max-width: none;
     }
   }
@@ -165,7 +167,7 @@
   margin-bottom: px(-40);
   pointer-events: none;
   // カンプ準拠：見出し(FEATURE + 特徴)のみ左・下方向に移動（margin を避け transform で見た目のみ）
-  transform: translate(px(-42), px(30));
+  transform: translate(px(-42), px(38));
 
   @include mq(md) {
     margin-bottom: px(16);
@@ -271,10 +273,10 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
-  margin: px(130) 0 0;
+  margin: px(116) 0 0;
   min-width: 0;
   // カンプ準拠：右テキストブロックを左方向に移動（margin を避け transform で見た目のみ）
-  transform: translateX(px(-46));
+  transform: translateX(px(-41));
 
   @include mq(md) {
     margin-top: 0;
@@ -325,7 +327,7 @@
 }
 
 .feature__heading {
-  margin: 0 0 px(63);
+  margin: 0 0 px(33);
   font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
   font-size: px(24);
   font-weight: 600;

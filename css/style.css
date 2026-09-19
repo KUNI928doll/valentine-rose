@@ -133,8 +133,7 @@ p {
 
 .inner {
   margin-inline: auto;
-  width: 100%;
-  max-width: 1200px;
+  width: min(1200px, 100% - calc(240 * var(--1px)));
 }
 
 .section-title__en {
@@ -1167,7 +1166,7 @@ body[class*=page-] > main#main {
   inset: 0;
   display: block;
   position: absolute;
-  width: calc(100% + max(0px, (100vw - 1200px) / 2));
+  width: 100%;
   max-width: none;
   height: 100%;
 }
@@ -1438,7 +1437,8 @@ body[class*=page-] > main#main {
   color: var(--color-main);
 }
 .feature .inner {
-  max-width: calc(1450 * var(--1px));
+  width: min(calc(1450 * var(--1px)), 100%);
+  max-width: none;
 }
 
 .feature__content {
@@ -1557,8 +1557,8 @@ body[class*=page-] > main#main {
 
 .feature__head--overlap {
   position: relative;
-  -webkit-transform: translate(calc(-42 * var(--1px)), calc(30 * var(--1px)));
-          transform: translate(calc(-42 * var(--1px)), calc(30 * var(--1px)));
+  -webkit-transform: translate(calc(-42 * var(--1px)), calc(38 * var(--1px)));
+          transform: translate(calc(-42 * var(--1px)), calc(38 * var(--1px)));
   z-index: 3;
   margin-bottom: calc(-40 * var(--1px));
   width: 100%;
@@ -1650,9 +1650,9 @@ body[class*=page-] > main#main {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
-  -webkit-transform: translateX(calc(-46 * var(--1px)));
-          transform: translateX(calc(-46 * var(--1px)));
-  margin: calc(130 * var(--1px)) 0 0;
+  -webkit-transform: translateX(calc(-41 * var(--1px)));
+          transform: translateX(calc(-41 * var(--1px)));
+  margin: calc(116 * var(--1px)) 0 0;
   min-width: 0;
 }
 
@@ -1690,7 +1690,7 @@ body[class*=page-] > main#main {
 }
 
 .feature__heading {
-  margin: 0 0 calc(63 * var(--1px));
+  margin: 0 0 calc(33 * var(--1px));
   color: var(--color-main);
   font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
   font-size: calc(24 * var(--1px));
@@ -4704,6 +4704,7 @@ body[class*=page-] > main#main {
   }
   .inner {
     padding-inline: calc(29.5 * var(--1px));
+    width: 100%;
   }
   .section-title__en {
     font-size: calc(48 * var(--1px));
@@ -5022,6 +5023,7 @@ body[class*=page-] > main#main {
     padding: calc(56 * var(--1px)) 0 calc(64 * var(--1px));
   }
   .feature .inner {
+    width: 100%;
     max-width: none;
   }
   .feature__content {
