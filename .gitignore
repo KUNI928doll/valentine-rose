@@ -3,3 +3,7 @@ node_modules/
 css/style.css.map
 scss/style.css
 scss/style.css.map
+
+# ai-coding 作業ファイル
+.ai-coding/
+design/

@@ -72,6 +72,18 @@ const PATHS = {
     webpSrc: ["./images/**/!(_)*.{jpg,jpeg,png,gif,ico}"],
     dest: "./images/",
   },
+  document: {
+    src: "./documents/**/*",
+    dest: "./documents/",
+  },
+  // WordPress テーマへの同期先（静的側のビルド出力をテーマの assets に配る）
+  theme: {
+    dir: "./mytheme",
+    cssDest: "./mytheme/assets/css/",
+    jsDest: "./mytheme/assets/js/",
+    imageDest: "./mytheme/assets/images/",
+    documentDest: "./mytheme/assets/documents/",
+  },
 };
 /********************* 設定ここまで **********************/
 
@@ -157,6 +169,36 @@ const imageminFunc = () => {
     .pipe(dest(PATHS.image.dest));
 };
 
+// theme（WordPress テーマへ静的アセットを同期）=====
+const themeCss = () => {
+  return src(PATHS.styles.dest + "style.css")
+    .pipe(plumber({ errorHandler: errorHandler }))
+    .pipe(rename("theme.css"))
+    .pipe(dest(PATHS.theme.cssDest));
+};
+
+const themeJs = () => {
+  return src(PATHS.js.dest + "*.js")
+    .pipe(plumber({ errorHandler: errorHandler }))
+    .pipe(dest(PATHS.theme.jsDest));
+};
+
+const themeImages = () => {
+  return src(PATHS.image.dest + "**/*.{jpg,jpeg,png,gif,svg,ico,webp}")
+    .pipe(plumber({ errorHandler: errorHandler }))
+    .pipe(changed(PATHS.theme.imageDest))
+    .pipe(dest(PATHS.theme.imageDest));
+};
+
+const themeDocuments = () => {
+  return src(PATHS.document.src)
+    .pipe(plumber({ errorHandler: errorHandler }))
+    .pipe(changed(PATHS.theme.documentDest))
+    .pipe(dest(PATHS.theme.documentDest));
+};
+
+const themeSync = parallel(themeCss, themeJs, themeImages, themeDocuments);
+
 // server =========================================
 const browserSyncOption = {
   port: 3000,
@@ -177,8 +219,8 @@ const browserReload = (done) => {
 // watch =========================================
 const watchFiles = (done) => {
   watch(PATHS.html.watch, { ignored: /node_modules/ }, browserReload);
-  watch(PATHS.styles.src, sassFunc);
-  watch(PATHS.js.src, jsFunc);
+  watch(PATHS.styles.src, series(sassFunc, themeCss));
+  watch(PATHS.js.src, series(jsFunc, themeJs));
   watch(PATHS.image.src, series(imageminFunc, browserReload));
   done();
 };
@@ -192,3 +234,5 @@ exports.default = series(
 exports.sass = sassFunc;
 exports.js = jsFunc;
 exports.imagemin = imageminFunc;
+exports.theme = themeSync;
+exports.build = series(sassFunc, jsFunc, imageminFunc, themeSync);
