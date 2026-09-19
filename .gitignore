@@ -7,3 +7,7 @@ scss/style.css.map
 # ai-coding 作業ファイル
 .ai-coding/
 design/
+
+# WordPress テーマの assets は gulp の生成物（元ファイルは images/ documents/ css/ js/）
+# クローン後やデプロイ前に `npx gulp theme` で再生成すること
+mytheme/assets/
