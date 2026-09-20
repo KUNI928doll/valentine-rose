@@ -162,6 +162,10 @@
   display: block;
   // 日付 ↔ タイトル：見た目12px。line-height の半leading(日付下4.2 + タイトル上6.3)を相殺
   margin-block-end: px(1.5); // 12 - 4.2 - 6.3
+  // XD実測: Yu Gothic Bold 14px / 字間1.4 / 行送り22
+  font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
+  font-weight: 700;
+  line-height: px(22);
   font-size: px(14);
   color: var(--color-main);
   letter-spacing: px(1.4);
@@ -178,12 +182,12 @@
   font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
   font-size: px(18);
   font-weight: 700;
-  line-height: 1.7;
+  line-height: px(27); // XD実測: 行送り27
   letter-spacing: px(1.8);
   color: var(--color-accent-1);
 
   @include mq(md) {
-    font-size: px(15);
+    // XD実測(SP_TOP): SP も 18px。以前の px(15) はカンプと不一致だった
     margin-block-end: px(6.55); // 16 - 5.25(SPタイトル下) - 4.2
   }
 }
@@ -193,13 +197,12 @@
   font-family: var(--font-en);
   font-size: px(14);
   font-weight: 400;
+  // XD実測: 色は #54372D で不透明度100%（opacity 0.6 を外した）
   color: var(--color-accent-1);
-  opacity: 0.6;
-  letter-spacing: px(0.5);
-
-  @include mq(md) {
-    letter-spacing: px(1);
-  }
+  // XD実測: Marcellus Regular 14px / 字間1.4 / 行送り18
+  line-height: px(18);
+  letter-spacing: px(1.4);
+  // XD実測(SP_TOP): SP も 字間1.4 / 行送り18 のため SP 用の上書きは不要
 }
 
 // SP用ボタンラップ（.u-sp-only と競合しないよう SP のみで指定）

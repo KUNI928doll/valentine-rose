@@ -32,7 +32,7 @@ $vr_filter_keys = array('all', 'news', 'column');
             <div class="page-hero__bg">
                 <picture>
                     <source media="(max-width: 768px)" srcset="<?php echo esc_url($vr_img . '/page/news_top-sp.jpg'); ?>">
-                    <img class="page-hero__img" src="<?php echo esc_url($vr_img . '/page/news_top-pc.jpg'); ?>" width="1440" height="900" alt="" loading="eager" decoding="async">
+                    <img class="page-hero__img" src="<?php echo esc_url($vr_img . '/page/news_top-pc.jpg'); ?>" width="1440" height="600" alt="" loading="eager" decoding="async">
                 </picture>
             </div>
         </div>

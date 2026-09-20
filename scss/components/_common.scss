@@ -62,7 +62,8 @@
   font-size: px(120);
   font-weight: 400;
   line-height: 0.71428571;
-  letter-spacing: px(6);
+  // XD実測(TOP_PC / News 装飾英字): 字間 0
+  letter-spacing: 0;
   text-align: left;
   color: #CA7F1314;
 }

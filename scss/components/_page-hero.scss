@@ -71,10 +71,12 @@ body[class*="page-"] > main#main {
   margin: 0;
   // transform で背景が下にずれたとき、透けて body 色が見えないよう下地を敷く
   background-color: var(--color-bg-2);
-  height: px(520);
+  // XD 実測（SALONS-archive_PC / Rectangle 47）: W1440 H600 X0 Y533
+  // FV 画像はすべて 1440x600（SP 375x300）なので、枠も実寸に合わせる。
+  height: px(600);
 
   @include mq(md) {
-    height: px(260);
+    height: px(300);
   }
 }
 

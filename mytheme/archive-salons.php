@@ -139,7 +139,10 @@ get_header();
       </div>
       <div class="page-hero__parallax js-page-hero-parallax">
         <div class="page-hero__bg" role="presentation">
-          <img class="salons-archive-hero__map-img" src="<?php echo esc_url($vr_img . '/page/japan-map.svg'); ?>" width="400" height="420" alt="" loading="eager" decoding="async">
+          <picture>
+            <source media="(max-width: 768px)" srcset="<?php echo esc_url($vr_img . '/page/archive-salons_top-sp.jpg'); ?>">
+            <img class="page-hero__img" src="<?php echo esc_url($vr_img . '/page/archive-salons_top-pc.jpg'); ?>" width="1440" height="600" alt="" loading="eager" decoding="async">
+          </picture>
         </div>
       </div>
     </section>
@@ -210,10 +213,27 @@ foreach ($vr_groups as $vr_group) :
         ?>
           <li class="salons-archive-card">
             <article>
+              <?php
+              // 指示書:「地図、英語表記、店名、住所もすべて店舗詳細ページが追加されたら
+              //         自動的に一覧ページにも追加されるようにする」
+              // → すべて店舗詳細（CPT salons）の値をそのまま流用する。
+              $vr_card_title = get_the_title();
+              $vr_card_en    = function_exists('get_field') ? trim((string) get_field('salon_name_en')) : '';
+              $vr_card_map   = function_exists('get_field') ? trim((string) get_field('salon_map')) : '';
+              ?>
               <a href="<?php the_permalink(); ?>" class="salons-archive-card__link">
-                <div class="salons-archive-card__map"><span class="salons-archive-card__pin" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span></div>
+                <div class="salons-archive-card__map">
+                  <?php if ($vr_card_map !== '') : ?>
+                    <?php echo vr_salon_map_embed($vr_card_map, $vr_card_title); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+                  <?php else : ?>
+                    <span class="salons-archive-card__pin" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span>
+                  <?php endif; ?>
+                </div>
                 <div class="salons-archive-card__body">
-                  <h3 class="salons-archive-card__name"><?php the_title(); ?></h3>
+                  <h3 class="salons-archive-card__name"><?php echo esc_html($vr_card_en !== '' ? $vr_card_en : $vr_card_title); ?></h3>
+<?php if ($vr_card_en !== '') : ?>
+                  <p class="salons-archive-card__name-ja"><?php echo esc_html($vr_card_title); ?></p>
+<?php endif; ?>
 <?php if (! empty($vr_meta_lines)) : ?>
                   <p class="salons-archive-card__meta"><?php echo implode('<br>', array_map('esc_html', $vr_meta_lines)); ?></p>
 <?php endif; ?>

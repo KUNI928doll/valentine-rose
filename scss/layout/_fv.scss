@@ -6,7 +6,7 @@
   aspect-ratio: 1440 / 900;
 
   @include mq(md) {
-    aspect-ratio: 375 / 809;
+    aspect-ratio: 375 / 812; // XD実測: SP ビューポート 375x812
   }
 }
 
@@ -31,6 +31,12 @@
     left: 0;
     width: 100%;
     transform: translateY(-50%);
+
+    @include mq(md) {
+      // XD実測(SP_TOP): キャッチ Y395 / 行送り48 のため行ボックス上端は 395 - (48-32)/2 = 387
+      top: px(387);
+      transform: none;
+    }
 }
 
 .fv__title{
@@ -39,6 +45,8 @@
     font-size: px(64);
     font-weight: $weight-regular;
     letter-spacing: px(6.4);
+    // XD 実測: 行送り 96（= 64 * 1.5）。未指定だと body の 1.6 を継承して 102.4px になる
+    line-height: px(96);
     padding-left: px(36);
 
     @include mq(md) {
@@ -48,7 +56,10 @@
       line-height: px(48);
       text-align: left;
       margin: 0;
-      padding-left: px(29.5);
+      // XD実測(SP_TOP): X14
+      padding-left: px(14);
+      // XD実測(SP_TOP): ドロップシャドウ X4 / Y4 / ぼかし10（PC には指定なし）
+      text-shadow: #{px(4)} #{px(4)} #{px(10)} #00000029;
     }
 }
 
@@ -68,4 +79,13 @@
 
 .fv__title-line.js-fadeup:nth-child(2) {
   transition-delay: 0.15s;
+}
+
+// SP のみ「自分を」の後で改行（カンプ: PC 2行 / SP 3行）
+.fv__title-br {
+  display: none;
+
+  @include mq(md) {
+    display: inline;
+  }
 }

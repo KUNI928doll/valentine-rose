@@ -17,6 +17,7 @@ define('VR_THEME_URI', get_template_directory_uri());
  * 分割ファイルの読み込み
  */
 require_once VR_THEME_DIR . '/inc/acf-fields.php';
+require_once VR_THEME_DIR . '/inc/salon-flow-metabox.php';
 
 /**
  * テーマのセットアップ
@@ -282,4 +283,54 @@ function vr_aria_current(string $key): string
     }
 
     return $is_current ? ' aria-current="page"' : '';
+}
+
+/**
+ * 店舗の地図埋め込みコードを安全に出力する
+ *
+ * 管理者が Google マップから貼った iframe をそのまま出すため、
+ * esc_html では地図が出ない。iframe に必要な属性だけ許可して通す。
+ * 店舗一覧カードと店舗詳細の両方から使う。
+ *
+ * @param string $html  管理画面に貼られた埋め込みコード
+ * @param string $name  店舗名（title 属性の補完に使う）
+ * @return string 出力可能な HTML（呼び出し側でのエスケープ不要）
+ */
+function vr_salon_map_embed(string $html, string $name = ''): string
+{
+    $allowed = array(
+        'iframe' => array(
+            'src'             => true,
+            'width'           => true,
+            'height'          => true,
+            'style'           => true,
+            'title'           => true,
+            'loading'         => true,
+            'allowfullscreen' => true,
+            'referrerpolicy'  => true,
+            'aria-hidden'     => true,
+            'class'           => true,
+        ),
+    );
+
+    $safe = wp_kses($html, $allowed);
+    if (trim($safe) === '') {
+        return '';
+    }
+
+    // title が無いと読み上げ時に何の地図か分からないので補う
+    if (stripos($safe, ' title=') === false && $name !== '') {
+        $safe = preg_replace(
+            '/<iframe\b/i',
+            '<iframe title="' . esc_attr($name . 'の地図') . '"',
+            $safe,
+            1
+        );
+    }
+    // 一覧に複数並ぶため遅延読み込みを強制する
+    if (stripos($safe, ' loading=') === false) {
+        $safe = preg_replace('/<iframe\b/i', '<iframe loading="lazy"', $safe, 1);
+    }
+
+    return (string) $safe;
 }

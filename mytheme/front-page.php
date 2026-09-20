@@ -25,7 +25,7 @@ get_header();
              </picture>
              <div class="fv__title-wrap">
                <p class="fv__title">
-                <span class="fv__title-line">自分を知っている人は</span><span class="fv__title-line">美しい。</span>
+                <span class="fv__title-line">自分を<br class="fv__title-br">知っている人は</span><span class="fv__title-line">美しい。</span>
                </p>
              </div>
            </div>

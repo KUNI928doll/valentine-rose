@@ -38,7 +38,7 @@ $vr_img = VR_THEME_URI . '/assets/images';
                 <div class="page-hero__bg">
                     <picture>
                         <source media="(max-width: 768px)" srcset="<?php echo esc_url($vr_img . '/page/news_top-sp.jpg'); ?>">
-                        <img class="page-hero__img" src="<?php echo esc_url($vr_img . '/page/news_top-pc.jpg'); ?>" width="1440" height="900" alt="" loading="eager" decoding="async">
+                        <img class="page-hero__img" src="<?php echo esc_url($vr_img . '/page/news_top-pc.jpg'); ?>" width="1440" height="600" alt="" loading="eager" decoding="async">
                     </picture>
                 </div>
             </div>
@@ -73,52 +73,9 @@ $vr_img = VR_THEME_URI . '/assets/images';
 
                     <div class="news-single__body">
                         <?php
-                        if (function_exists('have_rows') && have_rows('news_body')) :
-                            while (have_rows('news_body')) :
-                                the_row();
-                                $vr_layout = get_row_layout();
-
-                                if ($vr_layout === 'paragraph') :
-                                    $vr_text = (string) get_sub_field('text');
-                                    if (trim($vr_text) !== '') :
-                                        ?>
-                                        <p><?php echo nl2br(esc_html($vr_text)); ?></p>
-                                        <?php
-                                    endif;
-
-                                elseif ($vr_layout === 'heading') :
-                                    $vr_text = (string) get_sub_field('text');
-                                    if (trim($vr_text) !== '') :
-                                        ?>
-                                        <h3><?php echo esc_html($vr_text); ?></h3>
-                                        <?php
-                                    endif;
-
-                                elseif ($vr_layout === 'list') :
-                                    if (have_rows('items')) :
-                                        ?>
-                                        <ul>
-                                            <?php
-                                            while (have_rows('items')) :
-                                                the_row();
-                                                $vr_item = (string) get_sub_field('text');
-                                                if (trim($vr_item) === '') {
-                                                    continue;
-                                                }
-                                                ?>
-                                                <li><?php echo esc_html($vr_item); ?></li>
-                                                <?php
-                                            endwhile;
-                                            ?>
-                                        </ul>
-                                        <?php
-                                    endif;
-                                endif;
-                            endwhile;
-                        else :
-                            // ACF 未入力・ACF 無効時は本文エディタの内容を出す（保険）
-                            the_content();
-                        endif;
+                        // 本文はブロックエディタ。段落・小見出し・箇条書きを任意の数・順番で
+                        // 追加でき、出力は素の p / h3 / ul となる（SCSS が直接その要素を見ている）。
+                        the_content();
                         ?>
                     </div>
 

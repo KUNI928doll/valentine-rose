@@ -77,7 +77,10 @@
   }
 }
 
-.salon-single-intro__text {
+// ブロックエディタ（the_content）が出す素の <p> にも同じ体裁を当てる。
+// 静的HTML由来の .salon-single-intro__text も引き続き有効。
+.salon-single-intro__text,
+.salon-single-intro__body > p {
   margin: 0 auto;
   max-width: px(920);
   font-family: var(--font-base);
@@ -147,11 +150,12 @@
 }
 
 .salon-single-flow__list {
-  margin: 0;
+  // margin と margin-inline を分けて書くと、ビルド時の宣言ソート（css-declaration-sorter /
+  // concentric-css）で margin が後ろに回り、中央寄せが打ち消される。ショートハンド1本で書く。
+  margin: 0 auto;
   padding: 0;
   list-style: none;
   max-width: px(880);
-  margin-inline: auto;
 }
 
 .salon-single-flow__item {
@@ -240,10 +244,35 @@
   }
 }
 
+// 施術の流れ 装飾画像
+// デザインではステップ一覧（880px）の外側へ左右にはみ出して配置される。
+// 縦位置は「3番目・5番目」と固定せず、画像を設定したステップに追従させる
+// （店舗ごとにステップ数が変わるため、順番で固定すると破綻する）。
+// 左右は PHP 側で画像の通し番号から --left / --right を付与（1枚目=左 / 2枚目=右 / 3枚目=左）。
+//
+// 施術の流れ 装飾画像のサイズ・位置
+//
+// XD 実測値（SALONS-single_PC）:
+//   sample01（左）: W150 H150 X87
+//   sample02（右）: X1203 → 右端 1353、アートボード 1440 から右余白 87 で左右対称
+//
+// ただしデザインどおりだと .inner（1200px）から左右 33px ずつはみ出すため、
+// 「.inner 内に収める」という依頼により、張り出しは .inner の端までに留めている。
+// → 1440px 時の円の左端は 87px ではなく 120px（.inner の左端）になる。意図的な差分。
+//
+// 固定値にすると .inner が可変幅（min(1200px, 100% - 240px)）のため中間幅で再びはみ出す。
+// .inner と同じ式から差分を計算し、どの幅でも端が揃うようにしている。
+// 100% = li の幅 = 一覧の幅。(100% - inner) / 2 は負値になり外側へ寄る。
+// 左右対称が実測で確認できているため、--left / --right とも同じ式でよい。
+$flow-deco-size: 150;
+$flow-deco-inset: calc((100% - min(1200px, 100vw - #{px(240)})) / 2);
+
 .salon-single-flow__deco {
-  margin: px(12) 0 0;
-  width: px(100);
-  height: px(100);
+  position: absolute;
+  top: 0;
+  margin: 0;
+  width: px($flow-deco-size);
+  height: px($flow-deco-size);
   border-radius: 50%;
   overflow: hidden;
 
@@ -254,10 +283,19 @@
     object-fit: cover;
   }
 
+  // SP は横幅が足りずはみ出せないため、従来どおり本文の下にインラインで置く
   @include mq(md) {
+    position: static;
+    margin: px(12) 0 0;
     width: px(88);
     height: px(88);
   }
+}
+.salon-single-flow__deco--left {
+  left: $flow-deco-inset;
+}
+.salon-single-flow__deco--right {
+  right: $flow-deco-inset;
 }
 
 // ─── STAFF ───

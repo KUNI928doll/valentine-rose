@@ -33,7 +33,7 @@ get_header();
                 class="page-hero__img"
                 src="<?php echo esc_url($vr_img . '/page/page-concept_top-pc.jpg'); ?>"
                 width="1440"
-                height="900"
+                height="600"
                 alt="施術の様子"
                 loading="eager"
                 decoding="async"

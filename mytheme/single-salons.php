@@ -107,6 +107,18 @@ $vr_img = VR_THEME_URI . '/assets/images';
         $vr_tel_href = preg_replace('/[^0-9+]/', '', $vr_tel_href);
         $vr_tel_href = is_string($vr_tel_href) ? $vr_tel_href : '';
 
+        // 画像フィールドは通常 ACF が配列を返すが、CLI や移行で入れたデータだと
+        // 参照キー（_salon_staff_photo）が無く添付IDのまま返ることがある。両方を受ける。
+        if (! is_array($vr_staff_photo) && $vr_staff_photo) {
+            $vr_staff_photo_id = absint($vr_staff_photo);
+            $vr_staff_meta     = $vr_staff_photo_id ? wp_get_attachment_metadata($vr_staff_photo_id) : array();
+            $vr_staff_photo    = array(
+                'url'    => (string) wp_get_attachment_image_url($vr_staff_photo_id, 'large'),
+                'width'  => isset($vr_staff_meta['width']) ? $vr_staff_meta['width'] : '',
+                'height' => isset($vr_staff_meta['height']) ? $vr_staff_meta['height'] : '',
+                'alt'    => (string) get_post_meta($vr_staff_photo_id, '_wp_attachment_image_alt', true),
+            );
+        }
         $vr_staff_photo_url = (is_array($vr_staff_photo) && ! empty($vr_staff_photo['url'])) ? (string) $vr_staff_photo['url'] : '';
         $vr_has_staff       = $vr_staff_photo_url !== '' || trim($vr_staff_bio) !== '' || trim($vr_staff_name) !== '';
         $vr_has_info        = trim($vr_address) !== '' || trim($vr_access) !== '' || trim($vr_tel) !== '' || trim($vr_hours) !== '';
@@ -124,8 +136,24 @@ $vr_img = VR_THEME_URI . '/assets/images';
             </div>
             <div class="page-hero__parallax js-page-hero-parallax">
                 <div class="page-hero__bg">
+                    <?php
+                    // FV は 1440px 幅で出すため、既定の large(1024px) ではなく原寸を使う。
+                    // SP 用画像が設定されていれば静的版と同じく <source> で切り替える。
+                    $vr_hero_pc    = vr_get_thumbnail_url_or_placeholder(null, 'full');
+                    $vr_hero_sp_fld = function_exists('get_field') ? get_field('salon_hero_sp') : null;
+                    $vr_hero_sp    = '';
+                    if (is_array($vr_hero_sp_fld) && ! empty($vr_hero_sp_fld['url'])) {
+                        $vr_hero_sp = (string) $vr_hero_sp_fld['url'];
+                    } elseif ($vr_hero_sp_fld) {
+                        // CLI や移行で添付IDのまま入っている場合
+                        $vr_hero_sp = (string) wp_get_attachment_image_url(absint($vr_hero_sp_fld), 'full');
+                    }
+                    ?>
                     <picture>
-                        <img class="page-hero__img" src="<?php echo esc_url(vr_get_thumbnail_url_or_placeholder()); ?>" width="1440" height="900" alt="" loading="eager" decoding="async">
+                        <?php if ($vr_hero_sp !== '') : ?>
+                            <source media="(max-width: 768px)" srcset="<?php echo esc_url($vr_hero_sp); ?>">
+                        <?php endif; ?>
+                        <img class="page-hero__img" src="<?php echo esc_url($vr_hero_pc); ?>" width="1440" height="600" alt="" loading="eager" decoding="async">
                     </picture>
                 </div>
             </div>
@@ -143,29 +171,27 @@ $vr_img = VR_THEME_URI . '/assets/images';
             </div>
         </div>
 
-        <?php if (function_exists('have_rows') && have_rows('salon_intro')) : ?>
+        <?php
+        // 紹介文は本文欄（ブロックエディタ）。段落を任意の数だけ追加できる。
+        if (trim(get_the_content()) !== '') :
+            ?>
             <section class="salon-single-intro" aria-labelledby="salon-single-intro-heading">
                 <div class="inner">
                     <h2 id="salon-single-intro-heading" class="visually-hidden"><?php echo esc_html($vr_salon_name . 'について'); ?></h2>
-                    <?php
-                    while (have_rows('salon_intro')) :
-                        the_row();
-                        $vr_intro_text = (string) get_sub_field('text');
-                        if (trim($vr_intro_text) === '') {
-                            continue;
-                        }
-                        ?>
-                        <p class="salon-single-intro__text">
-                            <?php echo nl2br(esc_html($vr_intro_text)); ?>
-                        </p>
-                        <?php
-                    endwhile;
-                    ?>
+                    <div class="salon-single-intro__body">
+                        <?php the_content(); ?>
+                    </div>
                 </div>
             </section>
         <?php endif; ?>
 
-        <?php if (function_exists('have_rows') && have_rows('salon_flow')) : ?>
+        <?php
+        // 施術の流れ: 専用メタボックス（inc/salon-flow-metabox.php）から取得。
+        // 店舗ごとにステップ数が異なるため件数は固定しない。番号は並び順から自動採番。
+        $vr_flow_rows = vr_get_salon_flow();
+        $vr_deco_index = 0; // 装飾画像の通し番号（左右の振り分けに使う）
+        if ($vr_flow_rows) :
+            ?>
             <section class="salon-single-flow" id="flow" aria-labelledby="salon-single-flow-heading">
                 <div class="inner">
                     <header class="salon-single-flow__head">
@@ -173,41 +199,32 @@ $vr_img = VR_THEME_URI . '/assets/images';
                         <h2 id="salon-single-flow-heading" class="salon-single-flow__title">施術の流れ</h2>
                     </header>
                     <ol class="salon-single-flow__list">
-                        <?php
-                        // 番号はステップ数に依存しないよう、ループのインデックスから自動採番する
-                        $vr_flow_num = 0;
-                        while (have_rows('salon_flow')) :
-                            the_row();
-                            $vr_flow_title = (string) get_sub_field('title');
-                            $vr_flow_desc  = (string) get_sub_field('desc');
-                            if (trim($vr_flow_title) === '' && trim($vr_flow_desc) === '') {
-                                continue;
-                            }
-                            $vr_flow_num++;
-                            ?>
+                        <?php foreach ($vr_flow_rows as $vr_flow_index => $vr_flow_row) : ?>
                             <li class="salon-single-flow__item">
-                                <span class="salon-single-flow__num"><?php echo esc_html((string) $vr_flow_num); ?></span>
+                                <span class="salon-single-flow__num"><?php echo esc_html((string) ($vr_flow_index + 1)); ?></span>
                                 <div class="salon-single-flow__body">
-                                    <?php if (trim($vr_flow_title) !== '') : ?>
-                                        <h3 class="salon-single-flow__step-title"><?php echo esc_html($vr_flow_title); ?></h3>
+                                    <?php if (trim($vr_flow_row['title']) !== '') : ?>
+                                        <h3 class="salon-single-flow__step-title"><?php echo esc_html($vr_flow_row['title']); ?></h3>
                                     <?php endif; ?>
-                                    <?php if (trim($vr_flow_desc) !== '') : ?>
-                                        <p class="salon-single-flow__desc"><?php echo nl2br(esc_html($vr_flow_desc)); ?></p>
+                                    <?php if (trim($vr_flow_row['desc']) !== '') : ?>
+                                        <p class="salon-single-flow__desc"><?php echo nl2br(esc_html($vr_flow_row['desc'])); ?></p>
                                     <?php endif; ?>
                                     <?php
-                                    // 装飾画像（任意。デザイン上は一部ステップのみに入る）
-                                    $vr_flow_image = function_exists('get_sub_field') ? get_sub_field('image') : null;
-                                    if (is_array($vr_flow_image) && ! empty($vr_flow_image['url'])) :
+                                    // 装飾画像（任意。設定されたステップにのみ入る）
+                                    $vr_flow_img = $vr_flow_row['image'] ? wp_get_attachment_image_url($vr_flow_row['image'], 'medium') : '';
+                                    if ($vr_flow_img) :
+                                        // 左右交互に振る（1枚目=左 / 2枚目=右 / 3枚目=左）。
+                                        // 指示書「3枚目の画像の位置はテキストに被らないよう、よしなに設定する」への対応。
+                                        $vr_deco_index++;
+                                        $vr_deco_side = ($vr_deco_index % 2 === 1) ? 'left' : 'right';
                                         ?>
-                                        <figure class="salon-single-flow__deco">
-                                            <img src="<?php echo esc_url($vr_flow_image['url']); ?>" width="200" height="200" alt="" loading="lazy">
+                                        <figure class="salon-single-flow__deco salon-single-flow__deco--<?php echo esc_attr($vr_deco_side); ?>">
+                                            <img src="<?php echo esc_url($vr_flow_img); ?>" width="200" height="200" alt="" loading="lazy">
                                         </figure>
                                     <?php endif; ?>
                                 </div>
                             </li>
-                            <?php
-                        endwhile;
-                        ?>
+                        <?php endforeach; ?>
                     </ol>
                 </div>
             </section>
