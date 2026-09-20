@@ -91,14 +91,14 @@ body[class*="page-"] > main#main {
   }
 }
 
+// 既定（JS 無効 / prefers-reduced-motion）はカンプどおり枠いっぱいの静止画像。
+// パララックスが有効なときだけ .is-parallax が付き、下のブロックで画面高に広がる。
 .page-hero__bg {
   position: absolute;
   left: 0;
+  top: 0;
   width: 100%;
-  // カンプの KV は 1440x600 の等倍。パララックスの移動分だけ上下にはみ出させる
-  // （はみ出しを大きく取ると object-fit: cover で画像が拡大されカンプと変わってしまう）
-  top: -10%;
-  height: 120%;
+  height: 100%;
   background-color: var(--color-bg-2);
   overflow: hidden;
   will-change: transform;
@@ -118,8 +118,24 @@ body[class*="page-"] > main#main {
     object-position: center;
   }
 
+}
+
+// 指示書「各下層ページのトップ画像はすべてパララックスに」
+// （参考サイトと同じ「背景固定」の見え方）。
+// 背景レイヤーを画面高いっぱいに広げ、main.js が translate で画面に固定する。
+// 枠側の overflow: hidden が窓の役割になり、スクロールすると窓が画像の上を移動する。
+.page-hero__parallax.is-parallax .page-hero__bg {
+  // PC: 画面高いっぱい。main.js が画面に固定するので object-fit: cover の
+  // 拡大率は 画面高 / 600 ≒ 1.5 倍に収まる。
+  height: 100vh;
+  will-change: transform;
+  backface-visibility: hidden;
+
+  // SP: 画面高（812 等）に合わせると 375x300 の KV が 2.7 倍に拡大され、
+  // カンプの見え方から大きく外れる。枠 300 の 1.3 倍までに抑え、
+  // はみ出し分（上下 45）を移動量として main.js 側で滑らかに動かす。
   @include mq(md) {
-    top: -10%;
-    height: 120%;
+    height: px(390);
+    top: px(-45);
   }
 }

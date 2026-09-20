@@ -23,9 +23,14 @@
   }
 
   .page-hero__bg {
-    top: 0;
-    height: 100%;
     background-color: var(--salons-hero-bg);
+
+    // 地図は横を切ると沖縄・北海道が欠けるので contain で原寸比のまま中央に置く。
+    // 背景固定パララックスで窓の外に出た部分には画像の下地と同じ #E1E1E1 が
+    // 出るため継ぎ目が見えない。
+    .page-hero__img {
+      object-fit: contain;
+    }
   }
 }
 

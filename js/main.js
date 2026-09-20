@@ -145,31 +145,35 @@ const initPageHeroParallax = () => {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     return;
   }
-  let ticking = false;
+  wraps.forEach(wrap => {
+    if (wrap.querySelector(".page-hero__bg")) wrap.classList.add("is-parallax");
+  });
   const update = () => {
+    const vh = window.innerHeight;
     wraps.forEach(wrap => {
       const bg = wrap.querySelector(".page-hero__bg");
       if (!bg) return;
-      const rect = wrap.getBoundingClientRect();
-      const speed = .35;
-      const limit = Math.max(0, (bg.offsetHeight - wrap.offsetHeight) / 2);
-      const y = Math.min(limit, Math.max(-limit, rect.top * speed));
+      const wrapH = wrap.offsetHeight;
+      const bgH = bg.offsetHeight;
+      const top = wrap.getBoundingClientRect().top;
+      let y;
+      if (bgH >= vh) {
+        y = -top;
+      } else {
+        const over = (bgH - wrapH) / 2;
+        const mid = (vh - wrapH) / 2;
+        const k = over / ((vh + wrapH) / 2);
+        y = Math.min(over, Math.max(-over, -(top - mid) * k));
+      }
       bg.style.transform = `translate3d(0, ${y}px, 0)`;
     });
-    ticking = false;
   };
-  const onScrollOrResize = () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        update();
-      });
-      ticking = true;
-    }
-  };
-  window.addEventListener("scroll", onScrollOrResize, {
+  window.addEventListener("scroll", update, {
     passive: true
   });
-  window.addEventListener("resize", onScrollOrResize);
+  window.addEventListener("resize", update);
+  window.addEventListener("load", update);
+  document.addEventListener("visibilitychange", update);
   update();
 };
 
