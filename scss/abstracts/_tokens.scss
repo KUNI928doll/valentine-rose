@@ -30,7 +30,7 @@ $breakpoints: (
 // Smooth responsive
 $design-sp:     375;    // SPデザインカンプ基準幅
 $design-pc:    1440;    // PCデザインカンプ基準幅
-$bp-smooth-sp:  767px;  // 〜767px: SPスケール
+$bp-smooth-sp:  768px;  // 〜768px: SPスケール（レイアウトの md ブレークポイントと揃える）
 $bp-smooth-pc: 1440px;  // 1440px〜: PC固定
 
 // Transition

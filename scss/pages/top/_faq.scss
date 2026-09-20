@@ -2,11 +2,11 @@
 @use "../../abstracts/mixins" as *;
 
 .faq {
-  padding: px(100) 0;
-  background-color: #fff;
+  padding: px(100) 0 px(120); // 最終項目 → Reserve 上端 120px
+  background-color: var(--color-bg-1); // カンプ: セクション固有の背景色なし
 
   @include mq(md) {
-    padding: px(64) 0;
+    padding: px(87) 0 px(120); // カンプ(SP): PRICE MENU → FAQ見出し / 最終項目 → Reserve 上端 120px
   }
 }
 
@@ -36,18 +36,21 @@
 
   .section-title__bg {
     position: absolute;
-    left: px(8);
-    bottom: px(-12);
+    // カンプ: 見出し左端 +90px / ベースラインは見出しより 9px 上
+    left: px(90);
+    bottom: px(18.1);
     z-index: 0;
-    font-size: px(90);
-    color: rgba(202, 127, 19, 0.12);
+    // カンプ: 他セクションと同じ 120px（SP 72px）／不透明度8%
+    font-size: px(120);
+    color: rgba(202, 127, 19, 0.08);
     pointer-events: none;
     white-space: nowrap;
 
     @include mq(md) {
-      font-size: px(64);
-      left: px(4);
-      bottom: px(-8);
+      // カンプ(SP): 見出し左端 +55px / ベースラインは見出しより 5px 上
+      font-size: px(72);
+      left: px(55);
+      bottom: px(9.6);
     }
   }
 }
@@ -56,21 +59,32 @@
   color: var(--color-main);
   margin: px(12) 0 0;
   text-align: left;
+
+  // カンプ(SP): FAQ ベースライン → よくある質問 ベースライン 25px
+  @include mq(md) {
+    margin-top: px(-2);
+  }
 }
 
 .faq__list {
-  max-width: px(800);
+  // カンプ: PC は 1080px（x180〜1260）
+  max-width: px(1080);
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: px(12);
+  // カンプ: PC は項目間 20px（SP は 0）
+  gap: px(20);
+
+  // SP も項目間は 20px（PC と同じ）/ 見出しから 43px
+  @include mq(md) {
+    margin-top: px(6.5);
+  }
 }
 
 .faq__item {
-  border-radius: px(8);
+  // カンプ: 角丸・枠線なしのベタ帯（#D4CEBE）
   overflow: hidden;
-  background-color: var(--color-bg-2);
-  border: 1px solid rgba(202, 127, 19, 0.2);
+  background-color: var(--color-bg-2); // #D4CEBE
 }
 
 .faq__trigger {
@@ -79,28 +93,32 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: px(16);
+  gap: 0;
   width: 100%;
   margin: 0;
-  padding: px(20) px(24);
+  // カンプ: 閉じた項目の高さ 100px（上34.9 + 質問の行ボックス30.6 + 下34.5）/ 左20・右32
+  padding: px(34.9) px(32) px(34.5) px(20);
   border: none;
   background: transparent;
   cursor: pointer;
   text-align: left;
-  font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
-  font-size: px(15);
+  // カンプ: Yu Mincho Regular / PC 18px・字間0.72 / SP 14px・字間0.56・行送り21
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: px(18);
+  letter-spacing: px(0.72);
   line-height: 1.7;
   color: var(--color-main);
-  transition: background-color $transition-base;
+  // 開閉でパディングが変わるため、パネルと同じ時間で補間してガタつきを防ぐ
+  transition: padding-bottom 0.35s ease;
 
   @include mq(md) {
-    padding: px(16) px(18);
+    // カンプ(SP): 1項目 93px（質問2行 42px + 上下パディング）/ Q は左16・質問は左43・三角は右12
+    padding: px(18) px(12) px(33) px(16);
     font-size: px(14);
+    letter-spacing: px(0.56);
+    line-height: px(21);
   }
 
-  @include hover {
-    background-color: rgba(255, 255, 255, 0.35);
-  }
 }
 
 .faq__q-text {
@@ -108,51 +126,88 @@
   min-width: 0;
 }
 
+// カンプ: 12×12 の三角（閉 ▼ / 開 ▲）#54372D
 .faq__icon {
   flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: px(28);
-  height: px(28);
-  border-radius: 50%;
-  background-color: rgba(202, 127, 19, 0.15);
-  color: var(--color-main);
-  font-size: px(12);
+  width: 0;
+  height: 0;
+  border-left: px(6) solid transparent;
+  border-right: px(6) solid transparent;
+  border-top: px(12) solid var(--color-accent-1);
   transition: transform $transition-base;
+
+  // カンプ(SP): 質問テキストの右端から 12px あけて三角を置く
+  @include mq(md) {
+    margin-left: px(12);
+  }
 }
 
 .faq__item.is-open .faq__icon {
   transform: rotate(180deg);
 }
 
+// カンプ: 開いた項目は質問の下余白が詰まり、回答が 51px 下のベースラインに来る
+.faq__item.is-open .faq__trigger {
+  padding-bottom: px(18.5);
+
+  @include mq(md) {
+    padding-bottom: px(16);
+  }
+}
+
 .faq__panel {
   position: relative;
   z-index: 0;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.35s ease;
+  // 中身の高さぶんだけ滑らかに開閉する（max-height の固定値だと
+  // 閉じる際に「一度下がってから閉じる」ような詰まり方になるため grid で補間する）
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease;
 }
 
 .faq__item.is-open .faq__panel {
-  max-height: px(1200);
+  grid-template-rows: 1fr;
 }
 
 .faq__panel-inner {
+  min-height: 0;
   overflow: hidden;
 }
 
 .faq__answer {
   margin: 0;
-  padding: px(16) px(24) px(20);
-  font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
-  font-size: px(14);
+  // カンプ: 質問ベースライン → 回答ベースライン 51px / 下 33.5px
+  padding: 0 px(32) px(31.8) px(20);
+  // カンプ: Yu Mincho Regular / PC 18px・字間0.72 / SP 14px・字間0.56・行送り21
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: px(18);
+  letter-spacing: px(0.72);
   line-height: 1.9;
   color: var(--color-main);
-  border-top: 1px solid rgba(202, 127, 19, 0.15);
+
 
   @include mq(md) {
-    padding: px(12) px(18) px(16);
-    font-size: px(13);
+    padding: 0 px(24) px(33) px(16);
+    font-size: px(14);
+    letter-spacing: px(0.56);
+    line-height: px(21);
+  }
+}
+
+// Q / A の記号（カンプ: Yu Mincho 24px。質問・回答テキストは左 60px から始まる）
+.faq__mark {
+  flex-shrink: 0;
+  display: inline-block;
+  width: px(40);
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: px(24);
+  // 質問の行ボックス(30.6px)に合わせる。カンプの Q は質問より 2px 下
+  line-height: px(30.6);
+  color: var(--color-main);
+
+  @include mq(md) {
+    width: px(27);
+    font-size: px(18);
+    line-height: px(21);
   }
 }

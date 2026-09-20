@@ -8,7 +8,8 @@
   overflow-x: clip;
 
   @include mq(md) {
-    padding: px(48) 0;
+    // カンプ: News下端 → メイン画像上端 57.4px / View More 下線 → Feature上端 120.5px
+    padding: px(57.4) 0 px(120.5);
   }
 }
 
@@ -58,6 +59,14 @@
 .concept__lead {
   flex: 1;
   min-width: 0;
+
+  // カンプ: 横の縦長画像の上端より 29.5px 下から見出しが始まる（画像下端→CONCEPTベースライン117px）
+  @include mq(md) {
+    padding-top: px(29.5);
+    // カンプ: CONCEPT の右端が縦長画像に少し重なる。文字が画像の下に隠れないよう前面に出す
+    position: relative;
+    z-index: 1;
+  }
 }
 
 .concept__title {
@@ -74,17 +83,18 @@
 
   .section-title__bg {
     position: absolute;
-    left: px(100);
-    bottom: px(30);
+    // カンプ: 見出し左端 +90px（SP は +47px）/ ベースラインは見出しより 9px 上
+    left: px(90);
+    bottom: px(18.1);
     z-index: 0;
     font-size: px(120);
     pointer-events: none;
     white-space: nowrap;
 
     @include mq(md) {
-      font-size: px(80);
-      left: px(4);
-      bottom: px(-8);
+      font-size: px(72); // カンプ: SP 72px
+      left: px(55);
+      bottom: px(9.6);
     }
   }
 }
@@ -95,29 +105,35 @@
   margin-bottom: px(25.25);
 
   @include mq(md) {
-    margin-bottom: px(16);
+    // カンプ: CONCEPT → コンセプト のベースライン間 25px / コンセプト → キャッチ 67px
+    margin-top: px(-2);
+    margin-bottom: px(10.6);
   }
 }
 
 // キャッチ（PC: 1行相当 / SP: 3行）
 .concept__catch {
   margin: 0;
-  // 1行目の line-height 余白(half-leading = (1.3-1)*28/2 = 4.2px)を transform で相殺（負マージン不使用・全ブラウザ対応）
-  transform: translateY(px(-4.2));
+  // 1行目の line-height 余白(half-leading = (36-28)/2 = 4px)を相殺
+  // ※ transform はスクロール演出(.js-fadeup.is-fadeup-inview)に上書きされるため負マージンで行う
+  margin-top: px(-4);
   font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
   font-size: px(28);
   font-weight: 600;
-  line-height: 1.3;
+  line-height: px(36); // カンプ: 行送り36
   letter-spacing: px(2.8);
   color: var(--color-main);
   // PC: 1行で表示（折り返し禁止）
   white-space: nowrap;
 
   @include mq(md) {
-    font-size: px(15);
-    line-height: 2;
-    letter-spacing: px(1.2);
-    transform: translateY(px(-7.5)); // SP: (2-1)*15/2 = 7.5px
+    // カンプ: 本文より 10px 右にインデント（x40 / 本文 x30）
+    margin-left: px(10);
+    // カンプ: Yu Mincho 18px / 字間1.8 / 行送り36
+    font-size: px(18);
+    line-height: px(36);
+    letter-spacing: px(1.8);
+    margin-top: px(-9); // SP: (36-18)/2 = 9px
     // SP: .concept__catch-part { display: block } で改行制御するため nowrap 解除
     white-space: normal;
   }
@@ -143,7 +159,7 @@
   }
 
   @include mq(md) {
-    width: px(100);
+    width: px(108);
   }
 }
 
@@ -178,6 +194,8 @@
 
   img {
     display: block;
+    // width 属性(865)が残ると 768〜1439px で図版枠より広く描画され左側だけ表示されるため 100% を明示
+    width: 100%;
     height: 100%;
     object-fit: cover;
   }
@@ -192,6 +210,9 @@
     aspect-ratio: auto;
     order: 1;
 
+    // カンプ: メイン画像下端 → 横画像・見出しブロック上端 41px（.concept__inner の gap 24 + 17）
+    margin-bottom: px(17);
+
     picture {
       position: static;
       width: 100%;
@@ -199,6 +220,8 @@
     }
 
     img {
+      // SP: width 属性(865)がそのまま効いてカラム幅を大きくはみ出すため 100% を明示
+      width: 100%;
       height: auto;
       object-fit: fill;
     }
@@ -225,6 +248,8 @@
     align-items: stretch;
     gap: px(24);
     order: 3;
+    // カンプ: 横画像下端 → 本文枠上端 45px（.concept__inner の gap 24 + 29 - 本文の負マージン8）
+    margin-top: px(29);
   }
 }
 
@@ -254,27 +279,39 @@
   min-width: 0;
   width: 100%;
   box-sizing: border-box;
-  gap: px(20);
+  // カンプ: 本文下端 → View More ベースライン 29px（= 本文下端から 8px 下が View More の行ボックス上端）
+  gap: px(8);
 }
 
 .concept__text {
   margin: 0;
-  // 1行目の line-height 余白(half-leading = (1.9-1)*18/2 = 8.1px)を transform で相殺（負マージン不使用・全ブラウザ対応）
-  transform: translateY(px(-8.1));
+  // 1行目の line-height 余白(half-leading = (36-18)/2 = 9px)を相殺
+  // ※ transform はスクロール演出(.js-fadeup.is-fadeup-inview)に上書きされるため負マージンで行う
+  margin-top: px(-9);
   width: 100%;
-  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  // カンプ: Yu Gothic Regular（見出し・キャッチの明朝とは別系統）
+  font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
   font-size: px(18);
   font-weight: 400;
-  line-height: 1.9;
+  line-height: px(36); // カンプ: 行送り36
   letter-spacing: px(1.8);
   color: var(--color-accent-1);
   text-align: left;
 
   @include mq(md) {
+    // カンプ: 16px / 字間1.6 / 行送り32（1行17文字）
     font-size: px(16);
-    line-height: 2;
-    letter-spacing: px(0.56);
-    transform: translateY(px(-8)); // SP: (2-1)*16/2 = 8px
+    line-height: px(32);
+    letter-spacing: px(1.6);
+    margin-top: px(-8); // SP: (32-16)/2 = 8px
+
+    // カンプ(SP)の改行は「〜ための」「〜います。」「〜のもと、」の3か所のみ。
+    // PC 用の 1・4・6 番目の改行は SP では解除する
+    br:nth-of-type(1),
+    br:nth-of-type(4),
+    br:nth-of-type(6) {
+      display: none;
+    }
   }
 }
 
@@ -284,11 +321,12 @@
   display: inline-block;
   padding-right: px(14); // 矢印 barb 用のスペース
   padding-bottom: px(-5); // 下線と文字のオフセット(旧 text-underline-offset 相当)
-  font-family: var(--font-en);
+  // カンプ: Yu Mincho / #54372D（Marcellus・オレンジではない）
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
   font-size: px(18);
   font-weight: 400;
   letter-spacing: px(1.8);
-  color: var(--color-main);
+  color: var(--color-accent-1);
   // text-decoration の代わりに border-bottom を使い、下線を padding-right 分だけ伸ばして矢印の軸にする
   border-bottom: 1px solid currentColor;
   transition: opacity $transition-base;
@@ -312,7 +350,6 @@
   }
 
   @include mq(md) {
-    margin-top: px(24);
-    font-size: px(16);
+    font-size: px(18); // カンプ: SP も 18px
   }
 }

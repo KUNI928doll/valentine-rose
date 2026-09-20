@@ -8,6 +8,9 @@ scss/style.css.map
 .ai-coding/
 design/
 
+# 作業用プレビュー（カンプ突合の実測用）
+_*.html
+
 # WordPress テーマの assets は gulp の生成物（元ファイルは images/ documents/ css/ js/）
 # クローン後やデプロイ前に `npx gulp theme` で再生成すること
 mytheme/assets/

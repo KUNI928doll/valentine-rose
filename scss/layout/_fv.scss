@@ -63,12 +63,15 @@
     }
 }
 
-// PC のみ改行（SP は 1 行に連結）
+// 行単位で改行（PC: 2行 / SP: 3行）
 .fv__title-line {
   display: block;
+}
 
+// SP のみ 1 行目を「自分を」「知っている人は」に分けてカンプ通り 3 行にする
+.fv__title-part {
   @include mq(md) {
-    display: inline;
+    display: block;
   }
 }
 
@@ -79,13 +82,4 @@
 
 .fv__title-line.js-fadeup:nth-child(2) {
   transition-delay: 0.15s;
-}
-
-// SP のみ「自分を」の後で改行（カンプ: PC 2行 / SP 3行）
-.fv__title-br {
-  display: none;
-
-  @include mq(md) {
-    display: inline;
-  }
 }

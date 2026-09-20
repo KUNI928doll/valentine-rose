@@ -6,23 +6,22 @@
 // SP: 見出し下に 5 行（Body → V-line → Set → Custom → All）
 
 .price-menu {
-  padding: px(200) 0;
-  background-color: #f5f3ef;
+  // カンプ: セクション上端 → PRICE MENU ベースライン 329px
+  padding: px(245.3) 0 px(58.5); // カンプ: メニュー下端 → FAQ見出し 238.5px
+  background-color: var(--color-bg-1); // カンプ: セクション固有の背景色なし
 
   @include mq(md) {
-    padding: px(64) 0;
+    // カンプ(SP): セクション上端 → PRICE MENU ベースライン 198px
+    padding: px(151.5) 0 px(77.5);
   }
 }
 
 .price-menu__layout {
-  display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.25fr);
-  gap: px(40) px(48);
-  align-items: start;
+  // カンプ: 見出しは左上（x120）、メニューグリッドはその下に右寄せ（x520〜1320 の 800px）
+  display: block;
 
   @include mq(md) {
-    grid-template-columns: 1fr;
-    gap: px(32);
+    display: block;
   }
 }
 
@@ -31,7 +30,8 @@
   text-align: left;
 
   @include mq(md) {
-    text-align: center;
+    // カンプ(SP): 見出しは左寄せ（x30）
+    text-align: left;
   }
 }
 
@@ -45,7 +45,7 @@
   line-height: 1;
 
   @include mq(md) {
-    align-items: center;
+    align-items: flex-start;
   }
 
   .price-menu__title-en {
@@ -53,37 +53,48 @@
     z-index: 1;
     font-family: var(--font-en);
     color: var(--color-main);
-    font-size: px(48);
+    // カンプ: PC 84px / 字間3.36 / 行送り106、SP 48px / 字間1.92 / 行送り60
+    // カンプはPC・SPとも1行。折り返させない（SPは375pxで297px＝余裕が少ないため）
+    white-space: nowrap;
+    font-size: px(84);
     font-weight: 400;
-    letter-spacing: px(2.4);
-    line-height: 1.15;
+    letter-spacing: px(3.36);
+    line-height: px(106);
     text-transform: uppercase;
 
     @include mq(md) {
-      font-size: px(36);
-      letter-spacing: px(1.8);
+      font-size: px(48);
+      letter-spacing: px(1.92);
+      line-height: px(60);
     }
   }
 
   .section-title__bg {
     position: absolute;
-    left: px(-8);
-    bottom: px(-20);
+    // カンプ: 見出し左端 +90px / ベースラインは見出しより 9px 上
+    left: px(90);
+    bottom: px(18.3);
     z-index: 0;
     pointer-events: none;
     white-space: nowrap;
 
     @include mq(md) {
-      left: 50%;
-      bottom: px(-16);
-      transform: translateX(-50%);
+      // カンプ(SP): 見出し左端 +55px / ベースラインは見出しより 5px 上
+      left: px(55);
+      bottom: px(9.6);
+      transform: none;
       font-size: px(72);
     }
   }
 }
 
 .price-menu__title-ja {
-  margin: px(12) 0 0;
+  // カンプ: PRICE MENU → メニュー料金 のベースライン間 PC34px / SP25px
+  margin: px(-6) 0 0;
+
+  @include mq(md) {
+    margin-top: px(-4.5);
+  }
   font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
   font-size: px(14);
   font-weight: 400;
@@ -100,10 +111,34 @@
     "custom set"
     "all blank";
   gap: 0;
-  width: 100%;
-  border: 1px solid rgba(202, 127, 19, 0.35);
+  // カンプ: 外枠は無い。区切りは 1・2 行目の下線と、列間の縦線のみ
+  position: relative;
+
+  // カンプ(PC): x520〜1320（800px）・見出しブロックの下
+  width: px(800);
+  margin-left: auto;
+  margin-top: px(48.5);
+
+  // 列間の縦線（カンプ: 1px / 高さ232 / グリッド上端から 12px 下）
+  &::after {
+    content: "";
+    position: absolute;
+    top: px(12);
+    left: 50%;
+    width: 1px;
+    height: px(232);
+    background-color: rgba(202, 127, 19, 0.35);
+    pointer-events: none;
+
+    @include mq(md) {
+      display: none;
+    }
+  }
 
   @include mq(md) {
+    // カンプ(SP): 1列・1行目のメニュー名ベースラインは 3681（見出しから 108px）
+    width: 100%;
+    margin-top: px(18);
     grid-template-columns: 1fr;
     grid-template-areas:
       "body"
@@ -151,14 +186,17 @@
   align-items: center;
   justify-content: space-between;
   gap: px(12);
-  padding: px(28) px(24);
+  // カンプ: 1行 85px（メニュー名の行ボックス48 + 上下18 + 区切り線1）/ 左12.5・右25.3
+  padding: px(18) px(25.3) px(18) px(12.5);
   color: var(--color-main);
-  border-bottom: 1px solid rgba(202, 127, 19, 0.35);
   transition: background-color $transition-base;
 
   @include mq(md) {
-    padding: px(24) px(20);
+    // カンプ(SP): 1行 80px（区切り線1px込み / メニュー名の行ボックス32px）。縦積みなので各行に下線
+    // 矢印はカンプで右端から約28px内側
+    padding: px(22.3) px(28) px(22.3) px(20);
     border-right: none !important;
+    border-bottom: 1px solid rgba(202, 127, 19, 0.35);
   }
 
   @include hover {
@@ -166,61 +204,60 @@
   }
 }
 
+// カンプ: 横線は 1・2 行目の下だけ（3行目「All」の下には無い）
 .price-menu__link--body,
-.price-menu__link--custom {
-  border-right: 1px solid rgba(202, 127, 19, 0.35);
-}
-
-.price-menu__link--all {
-  border-right: 1px solid rgba(202, 127, 19, 0.35);
-  border-bottom: none;
-}
-
 .price-menu__link--vline,
+.price-menu__link--custom,
 .price-menu__link--set {
-  border-right: none;
+  border-bottom: 1px solid rgba(202, 127, 19, 0.35);
 }
 
 .price-menu__label {
   display: inline-flex;
-  flex-wrap: wrap;
   align-items: baseline;
-  gap: px(10) px(12);
+  // カンプ: メニュー名 → サブ 13px。カンプは1行なので折り返さない
+  gap: px(13);
   min-width: 0;
 }
 
 .price-menu__name {
   font-family: var(--font-en);
-  font-size: px(22);
+  // カンプ: PC 48px / 字間1.92、SP 36px / 字間1.44
+  font-size: px(48);
   font-weight: 400;
-  letter-spacing: px(1.76);
+  line-height: px(48);
+  letter-spacing: px(1.92);
   color: var(--color-main);
 
   @include mq(md) {
-    font-size: px(20);
+    font-size: px(36);
+    letter-spacing: px(1.44);
+    line-height: px(32);
   }
 }
 
 .price-menu__sub {
   margin: 0;
-  font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
-  font-size: px(13);
-  font-weight: 500;
-  letter-spacing: px(0.52);
+  // カンプ: Yu Mincho Regular 14px / 字間0.56（PC・SP共通）
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: px(14);
+  font-weight: 400;
+  letter-spacing: px(0.56);
   color: var(--color-main);
-  opacity: 0.92;
 
   @include mq(md) {
-    font-size: px(12);
+    font-size: px(14);
   }
 }
 
 .price-menu__chev {
   flex-shrink: 0;
-  font-family: var(--font-en);
-  font-size: px(16);
-  font-weight: 300;
+  // カンプ: FontAwesome chevron-right を 12.3×21.3px（= font-size 24.3px）で配置
+  font-size: px(24.3);
   line-height: 1;
   color: var(--color-main);
-  opacity: 0.65;
+
+  @include mq(md) {
+    font-size: px(18);
+  }
 }
