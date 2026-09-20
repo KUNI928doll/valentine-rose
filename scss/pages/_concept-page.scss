@@ -169,19 +169,21 @@
 
   .section-title__bg {
     position: absolute;
-    // XD 実測: 見出し左端 +90 / 装飾のベースラインは見出しより 9px 上
+    // XD 実測: 見出し左端 +90 / 装飾の1行目ベースラインは見出しより 9px 上
+    // （EN が SP で2行になっても位置が動かないよう top 基準で置く）
     left: px(90);
-    bottom: px(-23.2);
+    top: px(-39);
     z-index: 0;
     line-height: px(168);
     pointer-events: none;
     white-space: nowrap;
 
     @include mq(md) {
-      // XD 実測(SP): 左端 +55 / ベースラインは 5px 上
+      // XD 実測(SP): 72px / 行送り101 / 左端 +55 / 1行目ベースラインは 5px 上
       font-size: px(72);
+      line-height: px(101);
       left: px(55);
-      bottom: px(-48.5);
+      top: px(-26);
     }
   }
 }
@@ -318,6 +320,15 @@
 
 .concept-profile__title {
   @include concept-section-title;
+}
+
+// XD 実測(SP): 装飾スクリプトは「Company / Profile」の2行（72px / 行送り101）
+.concept-profile__title-br {
+  display: none;
+
+  @include mq(md) {
+    display: inline;
+  }
 }
 
 // XD 実測: PC 1080x540（コンテンツ内で中央）/ SP 343x200（左右16）

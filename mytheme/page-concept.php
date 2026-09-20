@@ -100,7 +100,7 @@ get_header();
         <header class="concept-profile__head">
           <h2 id="concept-profile-heading" class="concept-profile__title">
             <span class="section-title__en">Company Profile</span>
-            <span class="section-title__bg" aria-hidden="true">Company Profile</span>
+            <span class="section-title__bg" aria-hidden="true">Company <br class="concept-profile__title-br">Profile</span>
           </h2>
           <p class="section-title__ja">会社概要</p>
         </header>

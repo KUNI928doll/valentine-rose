@@ -363,14 +363,14 @@ body[class*=page-] > main#main {
 
 .page-hero__bg {
   position: absolute;
-  top: -10%;
+  top: 0;
   left: 0;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
   will-change: transform;
   background-color: var(--color-bg-2);
   width: 100%;
-  height: 120%;
+  height: 100%;
   overflow: hidden;
 }
 .page-hero__bg picture {
@@ -386,6 +386,13 @@ body[class*=page-] > main#main {
      object-fit: cover;
   -o-object-position: center;
      object-position: center;
+}
+
+.page-hero__parallax.is-parallax .page-hero__bg {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  will-change: transform;
+  height: 100vh;
 }
 
 .page-sub {
@@ -727,7 +734,7 @@ body[class*=page-] > main#main {
   display: -ms-inline-flexbox;
   display: inline-flex;
   position: fixed;
-  top: calc(40 * var(--1px));
+  top: calc(20 * var(--1px));
   right: calc(22 * var(--1px));
   -webkit-box-align: center;
   -webkit-align-items: center;
@@ -742,8 +749,8 @@ body[class*=page-] > main#main {
   border: none;
   border-radius: 999px;
   background-color: var(--color-accent-2);
-  width: calc(32 * var(--1px));
-  height: calc(32 * var(--1px));
+  width: calc(30 * var(--1px));
+  height: calc(30 * var(--1px));
 }
 
 .drawer__close:focus {
@@ -758,8 +765,8 @@ body[class*=page-] > main#main {
   position: absolute;
   border-radius: 999px;
   background-color: #fff;
-  width: calc(16 * var(--1px));
-  height: calc(2 * var(--1px));
+  width: calc(12 * var(--1px));
+  height: 1px;
 }
 
 .drawer__close-line:nth-child(1) {
@@ -781,11 +788,12 @@ body[class*=page-] > main#main {
   -webkit-align-items: flex-start;
       -ms-flex-align: start;
           align-items: flex-start;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  padding-top: var(--header-offset);
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  padding-top: calc(143.5 * var(--1px));
+  padding-left: calc(60 * var(--1px));
   width: 100%;
   height: inherit;
 }
@@ -811,15 +819,15 @@ body[class*=page-] > main#main {
 }
 
 .drawer-menu__link {
-  display: inline-block;
+  display: block;
   -webkit-transition: color 0.3s ease;
   transition: color 0.3s ease;
   color: var(--color-main);
   font-family: var(--font-serif);
   font-size: calc(24 * var(--1px));
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: calc(2.4 * var(--1px));
-  line-height: 0.8;
+  line-height: calc(30 * var(--1px));
 }
 
 .fv {
@@ -2398,7 +2406,7 @@ body[class*=page-] > main#main {
 }
 .concept-instagram__title .section-title__bg {
   position: absolute;
-  bottom: calc(-23.2 * var(--1px));
+  top: calc(-39 * var(--1px));
   left: calc(90 * var(--1px));
   z-index: 0;
   pointer-events: none;
@@ -2526,12 +2534,16 @@ body[class*=page-] > main#main {
 }
 .concept-profile__title .section-title__bg {
   position: absolute;
-  bottom: calc(-23.2 * var(--1px));
+  top: calc(-39 * var(--1px));
   left: calc(90 * var(--1px));
   z-index: 0;
   pointer-events: none;
   line-height: calc(168 * var(--1px));
   white-space: nowrap;
+}
+
+.concept-profile__title-br {
+  display: none;
 }
 
 .concept-profile__figure {
@@ -3976,9 +3988,11 @@ body[class*=page-] > main#main {
   background-color: var(--salons-hero-bg);
 }
 .page-hero--salons-archive .page-hero__bg {
-  top: 0;
   background-color: var(--salons-hero-bg);
-  height: 100%;
+}
+.page-hero--salons-archive .page-hero__bg .page-hero__img {
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .salons-archive__breadcrumb-bar {
@@ -4758,9 +4772,9 @@ body[class*=page-] > main#main {
   .page-hero__parallax {
     height: calc(300 * var(--1px));
   }
-  .page-hero__bg {
-    top: -10%;
-    height: 120%;
+  .page-hero__parallax.is-parallax .page-hero__bg {
+    top: calc(-45 * var(--1px));
+    height: calc(390 * var(--1px));
   }
   .page-sub {
     padding: calc(32 * var(--1px)) 0 calc(56 * var(--1px));
@@ -5371,9 +5385,10 @@ body[class*=page-] > main#main {
     margin-bottom: calc(59.8 * var(--1px));
   }
   .concept-instagram__title .section-title__bg {
-    bottom: calc(-48.5 * var(--1px));
+    top: calc(-26 * var(--1px));
     left: calc(55 * var(--1px));
     font-size: calc(72 * var(--1px));
+    line-height: calc(101 * var(--1px));
   }
   .concept-instagram__grid {
     gap: calc(19 * var(--1px));
@@ -5395,9 +5410,13 @@ body[class*=page-] > main#main {
     margin-bottom: calc(63.8 * var(--1px));
   }
   .concept-profile__title .section-title__bg {
-    bottom: calc(-48.5 * var(--1px));
+    top: calc(-26 * var(--1px));
     left: calc(55 * var(--1px));
     font-size: calc(72 * var(--1px));
+    line-height: calc(101 * var(--1px));
+  }
+  .concept-profile__title-br {
+    display: inline;
   }
   .concept-profile__figure {
     margin-inline: calc(-14 * var(--1px));
