@@ -122,32 +122,40 @@
 }
 
 .hamburger{
+    // XD実測(SP): ピル X255 Y20 / W100 H30 / 角丸40 / 塗り #949E33
+    // 左右の内側余白はカンプの実測差分（文字左 264 / 線右 346.5）から 9・8.5
     display: none;
     align-items: center;
-    gap: px(10.5);
-    padding: px(6) 8.5px 6px 9px;
+    justify-content: space-between;
+    width: px(100);
+    height: px(30);
+    padding: 0 px(8.5) 0 px(9);
     border: none;
     border-radius: 999px;
     background-color: var(--color-accent-2);
     color: #fff;
-    font-family: var(--font-serif);
+    font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
     cursor: pointer;
     flex: 0 0 auto;
-    max-width: 100%;
     @include mq(md){
         display: inline-flex;
     }
 }
 .hamburger__text{
-    font-weight: 400;
+    // XD実測: メニュー 14px / Yu Mincho Demibold / 字間1.4 / 行送り22
+    font-size: px(14);
+    font-weight: 600;
+    line-height: px(22);
+    letter-spacing: px(1.4);
 }
 .hamburger.is-active{
     display: none;
 }
 .hamburger__lines{
+    // XD実測: 3本の線が Y31 / 35 / 39（1px 線 + 間隔3px）
     display: inline-flex;
     flex-direction: column;
-    gap: px(4);
+    gap: px(3);
 }
 .hamburger__line{
     width: px(12);

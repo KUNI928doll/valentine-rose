@@ -612,7 +612,6 @@ body[class*=page-] > main#main {
 }
 
 .hamburger {
-  gap: calc(10.5 * var(--1px));
   display: none;
   -webkit-box-flex: 0;
   -webkit-flex: 0 0 auto;
@@ -622,18 +621,26 @@ body[class*=page-] > main#main {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   cursor: pointer;
   border: none;
   border-radius: 999px;
   background-color: var(--color-accent-2);
-  padding: calc(6 * var(--1px)) 8.5px 6px 9px;
-  max-width: 100%;
+  padding: 0 calc(8.5 * var(--1px)) 0 calc(9 * var(--1px));
+  width: calc(100 * var(--1px));
+  height: calc(30 * var(--1px));
   color: #fff;
-  font-family: var(--font-serif);
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
 }
 
 .hamburger__text {
-  font-weight: 400;
+  font-size: calc(14 * var(--1px));
+  font-weight: 600;
+  letter-spacing: calc(1.4 * var(--1px));
+  line-height: calc(22 * var(--1px));
 }
 
 .hamburger.is-active {
@@ -641,7 +648,7 @@ body[class*=page-] > main#main {
 }
 
 .hamburger__lines {
-  gap: calc(4 * var(--1px));
+  gap: calc(3 * var(--1px));
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
