@@ -62,7 +62,7 @@ get_header();
           </figure>
         </div>
         <p class="salon-concept__text">
-          バレンタインローズは、東京や大阪、名古屋などの都市部をはじめ日本全国に店舗を構える脱毛サロンで、「洗練されたワンランク上の女性を目指す」というコンセプトのもとオーダーメイドの脱毛サービスを提供しています。 毎年30,000人以上のお客様にバレンタインローズの脱毛サービスをご利用いただいており、これまで年齢を問わず様々な女性の脱毛をサポートさせていただきました。しかし、私たちは、脱毛はあくまでもお客様がワンランク上の女性に近づくための一歩であり、目指すべきゴールではないと考えています。 お客様と脱毛サロンという関係だけでなく、脱毛の卒業後もお客様の隣で女性磨きをサポートすることができる存在となり、そしてバレンタインローズに通っていることを誇りに思ってもらえる、そんな脱毛サロンを目指していきます。
+          バレンタインローズは、東京や大阪、名古屋などの都市部をはじめ日本全国に店舗を構える脱毛サロンで、「洗練されたワンランク上の女性を目指す」というコンセプトのもとオーダーメイドの脱毛サービスを提供しています。<br>毎年30,000人以上のお客様にバレンタインローズの脱毛サービスをご利用いただいており、これまで年齢を問わず様々な女性の脱毛をサポートさせていただきました。しかし、私たちは、脱毛はあくまでもお客様がワンランク上の女性に近づくための一歩であり、目指すべきゴールではないと考えています。<br>お客様と脱毛サロンという関係だけでなく、脱毛の卒業後もお客様の隣で女性磨きをサポートすることができる存在となり、そしてバレンタインローズに通っていることを誇りに思ってもらえる、そんな脱毛サロンを目指していきます。
         </p>
       </div>
     </section>
@@ -71,16 +71,19 @@ get_header();
     <section class="concept-instagram" aria-labelledby="concept-instagram-heading">
       <div class="inner">
         <header class="concept-instagram__head">
-          <p class="concept-instagram__title-bg" aria-hidden="true">Instagram</p>
-          <h2 id="concept-instagram-heading" class="concept-instagram__title">Instagram</h2>
+          <h2 id="concept-instagram-heading" class="concept-instagram__title">
+            <span class="section-title__en">Instagram</span>
+            <span class="section-title__bg" aria-hidden="true">Instagram</span>
+          </h2>
+          <p class="section-title__ja">公式インスタグラム</p>
         </header>
         <ul class="concept-instagram__grid">
-          <li class="concept-instagram__cell concept-instagram__cell--placeholder" aria-hidden="true"></li>
-          <li class="concept-instagram__cell concept-instagram__cell--placeholder" aria-hidden="true"></li>
-          <li class="concept-instagram__cell concept-instagram__cell--placeholder" aria-hidden="true"></li>
-          <li class="concept-instagram__cell concept-instagram__cell--placeholder" aria-hidden="true"></li>
-          <li class="concept-instagram__cell concept-instagram__cell--placeholder" aria-hidden="true"></li>
-          <li class="concept-instagram__cell concept-instagram__cell--placeholder" aria-hidden="true"></li>
+          <li class="concept-instagram__cell concept-instagram__cell--placeholder"><span class="concept-instagram__cell-text">投稿画像が<br>入ります</span></li>
+          <li class="concept-instagram__cell concept-instagram__cell--placeholder"><span class="concept-instagram__cell-text">投稿画像が<br>入ります</span></li>
+          <li class="concept-instagram__cell concept-instagram__cell--placeholder"><span class="concept-instagram__cell-text">投稿画像が<br>入ります</span></li>
+          <li class="concept-instagram__cell concept-instagram__cell--placeholder"><span class="concept-instagram__cell-text">投稿画像が<br>入ります</span></li>
+          <li class="concept-instagram__cell concept-instagram__cell--placeholder"><span class="concept-instagram__cell-text">投稿画像が<br>入ります</span></li>
+          <li class="concept-instagram__cell concept-instagram__cell--placeholder"><span class="concept-instagram__cell-text">投稿画像が<br>入ります</span></li>
         </ul>
         <p class="concept-instagram__btn-wrap">
           <a href="#" class="concept-instagram__btn" target="_blank" rel="noopener noreferrer">
@@ -95,13 +98,16 @@ get_header();
     <section class="concept-profile" aria-labelledby="concept-profile-heading">
       <div class="inner">
         <header class="concept-profile__head">
-          <p class="concept-profile__title-bg" aria-hidden="true">Profile</p>
-          <h2 id="concept-profile-heading" class="concept-profile__title">Company Profile</h2>
+          <h2 id="concept-profile-heading" class="concept-profile__title">
+            <span class="section-title__en">Company Profile</span>
+            <span class="section-title__bg" aria-hidden="true">Company Profile</span>
+          </h2>
+          <p class="section-title__ja">会社概要</p>
         </header>
         <figure class="concept-profile__figure">
           <picture>
-            <source media="(max-width: 768px)" srcset="<?php echo esc_url($vr_img . '/page/page-concept_profile-sp.jpg'); ?>">
-            <img src="<?php echo esc_url($vr_img . '/page/page-concept_profile-pc.jpg'); ?>" width="540" height="211" alt="店内・施術スペースの様子" loading="lazy" decoding="async">
+            <source media="(max-width: 768px)" srcset="<?php echo esc_url($vr_img . '/page/page-concept_profile-sp.jpg'); ?>" width="343" height="200">
+            <img src="<?php echo esc_url($vr_img . '/page/page-concept_profile-pc.jpg'); ?>" width="1080" height="540" alt="店内・施術スペースの様子" loading="lazy" decoding="async">
           </picture>
         </figure>
         <table class="concept-profile__table">
@@ -116,7 +122,7 @@ get_header();
               <th scope="row">代表者</th>
               <td>山田 花子</td>
               <th scope="row">所在地</th>
-              <td>〒000-0000 東京都港区青山0-00-00</td>
+              <td>〒000-0000　東京都港区青山0-00-00</td>
             </tr>
             <tr>
               <th scope="row">電話番号</th>

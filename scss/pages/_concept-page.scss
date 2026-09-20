@@ -1,136 +1,117 @@
-@use "sass:string";
 @use "../abstracts/tokens" as *;
 @use "../abstracts/mixins" as *;
 
 // Concept ページ（SALON CONCEPT / Instagram / Company Profile）
+// 実測値はすべて XD カンプ（CONCEPT_PC 1440x5571 / CONCEPT_SP 375x4632）より。
+// 主要アンカー（PC）: 帯173 / KV533 / about背景1133–2047 / パンくず1175 /
+//   画像1263 / 見出し1449 / 本文1728 / INSTAGRAM 2296 / グリッド2395・2675 /
+//   ボタン2975 / COMPANY PROFILE 3274 / 画像3363 / 表罫線3963.5〜
 .page-concept {
   background-color: var(--color-bg-1);
-
-  // カンプ：コンテンツ幅 1200px。SP（〜768px）は 30px、それ以上は 120px へ向けてなだらかに増加
-  .inner {
-    max-width: 1200px;
-    // SP（〜768px）= 30px、ワイドで最大 120px、その間は線形補間
-    padding-inline: string.unquote(
-      "clamp(30px, calc(30px + (100vw - 768px) * 0.2083333333), 120px)"
-    );
-  }
 }
 
+// ─── パンくず（KV 直下・about と同じ #D4CEBE の上に乗る） ───
 .concept-page__breadcrumb-bar {
-  background-color:#D4CEBE;
-  padding: px(24);
+  background-color: $color-bg-2;
+  padding: px(17) 0 0;
 
   @include mq(md) {
-    padding: px(14) 0 px(12);
+    padding: px(3) 0 0;
+  }
+
+  // XD 実測: パンくずだけコンテンツ幅より内側 PC 36.5 / SP 16
+  > .inner {
+    width: 100%;
+    max-width: none;
+    padding-inline: px(36.5);
+
+    @include mq(md) {
+      padding-inline: px(16);
+    }
   }
 }
 
 // ─── SALON CONCEPT（見出し・KV は components/_page-hero） ───
 .salon-concept {
-  background-color:#D4CEBE;
+  background-color: $color-bg-2;
   margin: 0;
-  padding: 0 0 px(64);
+  padding: 0 0 px(67);
 
   @include mq(md) {
-    padding: 0 0 px(48);
+    padding: 0 0 px(50);
   }
 }
 
-// KV 直下の「余白の帯」にならないよう上パディングなし（詰めは intro 側で調整）
 .salon-concept__content {
   padding-top: 0;
 }
 
-// カンプ：左＝2行見出し（ゴールド・左寄せ）、右＝画像。見出し末尾が画像上に重なる
+// カンプ: 左＝2行見出し（ゴールド）、右＝720x405 の画像。見出し末尾が画像に重なる
 .salon-concept__intro-row {
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: px(24);
-  margin: 0 0 px(32);
-  padding: px(40) 0 px(48);
-
-  @media (min-width: 1025px) {
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 0;
-    padding: px(40) 0 px(56);
-  }
+  align-items: center;
+  margin: 0 0 px(60);
+  padding: px(77) 0 0;
 
   @include mq(md) {
-    margin-bottom: px(24);
-    padding: px(28) 0 px(32);
-    gap: px(20);
+    // SP はカンプ順（画像 → 見出し → 本文）。KV下 619 → 画像上端 670
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: 0;
+    padding-top: px(51);
   }
 }
 
 .salon-concept__intro-text {
   position: relative;
   z-index: 2;
-  flex: 1 1 auto;
+  flex: 0 0 px(600);
+  width: px(600);
   min-width: 0;
 
-  @media (min-width: 1025px) {
-    margin-right: px(-100);
-    max-width: px(560);
-    align-self: center;
-  }
-
-  @media (max-width: 1024px) {
-    order: 2;
+  @include mq(md) {
     width: 100%;
+    flex: none;
   }
 }
 
 .salon-concept__headline {
   margin: 0;
   font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  // XD 実測: 40px Yu Mincho Demibold / 字間4 / 行送り60
   font-size: px(40);
   font-weight: 600;
-  line-height: 1.55;
-  letter-spacing: px(0.88);
+  line-height: px(60);
+  letter-spacing: px(4);
   text-align: left;
+  white-space: nowrap;
   color: var(--color-main);
 
-  @media (max-width: 1024px) {
-    text-align: center;
-    font-size: px(22);
-    line-height: 1.75;
-  }
-
   @include mq(md) {
+    // XD 実測(SP): 18px / 字間1.8 / 行送り36
     font-size: px(18);
-    line-height: 1.85;
+    line-height: px(36);
+    letter-spacing: px(1.8);
+    white-space: normal;
   }
 }
 
+// XD 実測: PC 720x405（右端はコンテンツ右端 1320）/ SP 315x177.2
 .salon-concept__portrait {
   position: relative;
   z-index: 1;
-  margin: 0;
-  width: 100%;
-  max-width: px(720);
-  aspect-ratio: 16 / 9;
+  margin: 0 0 0 px(-120);
+  flex: 0 0 px(720);
+  width: px(720);
+  aspect-ratio: 720 / 405;
   overflow: hidden;
-  flex-shrink: 0;
-  align-self: flex-end;
-
-  @media (min-width: 1025px) {
-    flex: 0 0 #{px(720)};
-    width: #{px(720)};
-    max-width: #{px(720)};
-    align-self: center;
-    margin-left: auto;
-  }
-
-  @media (max-width: 1024px) {
-    order: 1;
-    align-self: center;
-  }
 
   @include mq(md) {
-    max-width: px(280);
+    order: -1;
+    margin: 0 0 px(17.2);
+    width: px(315);
+    flex: none;
+    aspect-ratio: 315 / 177.2;
   }
 
   img {
@@ -144,137 +125,166 @@
 
 .salon-concept__text {
   margin: 0;
-  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
-  font-size: px(15);
+  // XD 実測: 18px Yu Gothic Regular / 字間1.8 / 行送り36 / 不透明度80%
+  font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: px(18);
   font-weight: 400;
-  line-height: 2;
-  letter-spacing: px(0.6);
+  line-height: px(36);
+  letter-spacing: px(1.8);
   color: var(--color-main);
+  opacity: 0.8;
 
   @include mq(md) {
+    // XD 実測(SP): 14px / 字間1.4 / 行送り28
     font-size: px(14);
-    letter-spacing: px(0.56);
+    line-height: px(28);
+    letter-spacing: px(1.4);
+    margin-top: px(18.6);
+  }
+}
+
+// ─── 見出し（INSTAGRAM / COMPANY PROFILE）共通 ───
+// トップページのセクション見出しと同じ構成（EN + 装飾スクリプト + 和文）
+@mixin concept-section-title {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  margin: 0;
+  line-height: 1;
+  overflow: visible;
+  max-width: none;
+
+  .section-title__en {
+    position: relative;
+    z-index: 1;
+    // XD 実測: 見出しは大文字（装飾スクリプトは Capitalize のまま）
+    text-transform: uppercase;
+  }
+
+  + .section-title__ja {
+    display: block;
+    // XD 実測: 和文ベースラインは EN ベースライン +34
+    margin-top: px(-2.3);
+  }
+
+  .section-title__bg {
+    position: absolute;
+    // XD 実測: 見出し左端 +90 / 装飾のベースラインは見出しより 9px 上
+    left: px(90);
+    bottom: px(-23.2);
+    z-index: 0;
+    line-height: px(168);
+    pointer-events: none;
+    white-space: nowrap;
+
+    @include mq(md) {
+      // XD 実測(SP): 左端 +55 / ベースラインは 5px 上
+      font-size: px(72);
+      left: px(55);
+      bottom: px(-48.5);
+    }
   }
 }
 
 // ─── INSTAGRAM ───
 .concept-instagram {
-  padding: px(64) 0 px(80);
+  padding: px(167) 0 px(78);
   background-color: var(--color-bg-1);
 
   @include mq(md) {
-    padding: px(48) 0 px(56);
+    padding: px(110.5) 0 px(60);
   }
 }
 
 .concept-instagram__head {
   position: relative;
   text-align: left;
-  margin-bottom: px(40);
+  margin-bottom: px(63.5);
 
   @include mq(md) {
-    margin-bottom: px(28);
+    margin-bottom: px(59.8);
   }
 }
 
 .concept-instagram__title {
-  position: relative;
-  z-index: 1;
-  margin: 0;
-  font-family: var(--font-en);
-  font-size: px(56);
-  font-weight: 400;
-  letter-spacing: px(4);
-  line-height: 1.2;
-  color: var(--color-main);
-  text-transform: uppercase;
-
-  @include mq(md) {
-    font-size: px(36);
-    letter-spacing: px(2);
-  }
+  @include concept-section-title;
 }
 
-.concept-instagram__title-bg {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-58%);
-  z-index: 0;
-  text-transform: capitalize;
-  margin: 0;
-  font-family: var(--font-script);
-  font-size: px(72);
-  font-weight: 400;
-  color: #ca7f131a;
-  white-space: nowrap;
-  pointer-events: none;
-
-  @include mq(md) {
-    font-size: px(48);
-  }
-}
-
+// XD 実測: PC 240x240 を 3列（間隔40）/ SP 148x148 を 2列（間隔19）
 .concept-instagram__grid {
   display: grid;
-  // カンプ：セル 240×240
   grid-template-columns: repeat(3, #{px(240)});
   justify-content: center;
   gap: px(40);
-  margin: 0 0 px(40);
+  margin: 0 0 px(60);
   padding: 0;
   list-style: none;
 
   @include mq(md) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: px(12);
-    margin-bottom: px(28);
-    max-width: px(520);
-    margin-inline: auto;
+    grid-template-columns: repeat(2, #{px(148)});
+    gap: px(19);
+    margin-bottom: px(30);
   }
 }
 
 .concept-instagram__cell {
-  width: #{px(240)};
-  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: px(240);
   aspect-ratio: 1 / 1;
   margin: 0;
-  background-color: var(--color-bg-2);
-  border-radius: px(4);
+  background-color: #707070;
   overflow: hidden;
 
   @include mq(md) {
-    width: 100%;
+    width: px(148);
   }
+}
 
-  // プレースホルダー（実装時は <a><img></a> に差し替え）
-  &--placeholder {
-    background: linear-gradient(145deg, #d8d4cc 0%, #c9c3b8 100%);
+// プレースホルダー文言（実装時は <a><img></a> に差し替え）
+.concept-instagram__cell-text {
+  // XD 実測: 29px Yu Mincho Demibold / 字間2.9 / 行送り44 / 白
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: px(29);
+  font-weight: 600;
+  line-height: px(44);
+  letter-spacing: px(2.9);
+  text-align: center;
+  color: #fff;
+
+  @include mq(md) {
+    // XD 実測(SP): 16px / 字間1.6 / 行送り24
+    font-size: px(16);
+    line-height: px(24);
+    letter-spacing: px(1.6);
   }
 }
 
 .concept-instagram__btn-wrap {
+  margin: 0;
   text-align: center;
 }
 
-// カンプ：ピル型・#969B4C・アイコン＋白文字「Instagram」
+// XD 実測: 200x50 / 角丸40 / #949E33 / ラベル 20px Yu Mincho Demibold 字間2
 .concept-instagram__btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: px(10);
-  min-width: px(240);
-  padding: px(14) px(36);
+  box-sizing: border-box;
+  width: px(200);
+  height: px(50);
   font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
-  font-size: px(16);
-  font-weight: 400;
-  letter-spacing: px(1.6);
+  font-size: px(20);
+  font-weight: 600;
+  line-height: px(32);
+  letter-spacing: px(2);
   color: #fff;
   text-decoration: none;
-  background-color: #969b4c;
+  background-color: var(--color-accent-2);
   border-radius: 999px;
-  box-sizing: border-box;
-  transition: opacity $transition-base, background-color $transition-base;
+  transition: opacity $transition-base;
 
   .fa-instagram {
     font-size: px(20);
@@ -284,78 +294,43 @@
 
   @include hover {
     opacity: 0.94;
-    background-color: #878c45;
-  }
-
-  @include mq(md) {
-    min-width: px(200);
-    padding: px(12) px(28);
-    font-size: px(14);
-
-    .fa-instagram {
-      font-size: px(18);
-    }
   }
 }
 
 // ─── COMPANY PROFILE ───
 .concept-profile {
-  padding: px(64) 0 px(80);
+  padding: px(89) 0 px(120);
 
   @include mq(md) {
-    padding: px(48) 0 px(56);
+    padding: px(90.5) 0 px(120);
   }
 }
 
 .concept-profile__head {
   position: relative;
   text-align: left;
-  margin-bottom: px(40);
+  margin-bottom: px(53.4);
 
   @include mq(md) {
-    margin-bottom: px(28);
+    margin-bottom: px(63.8);
   }
 }
 
 .concept-profile__title {
-  position: relative;
-  z-index: 1;
-  margin: 0;
-  font-family: var(--font-en);
-  font-size: px(48);
-  font-weight: 400;
-  letter-spacing: px(3);
-  line-height: 1.2;
-  color: var(--color-main);
-  text-transform: uppercase;
-
-  @include mq(md) {
-    font-size: px(28);
-    letter-spacing: px(1.5);
-  }
+  @include concept-section-title;
 }
 
-.concept-profile__title-bg {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-55%);
-  z-index: 0;
-  margin: 0;
-  font-family: var(--font-script);
-  font-size: px(100);
-  font-weight: 400;
-  color: #ca7f1314;
-  white-space: nowrap;
-  pointer-events: none;
-
-  @include mq(md) {
-    font-size: px(64);
-  }
-}
-
+// XD 実測: PC 1080x540（コンテンツ内で中央）/ SP 343x200（左右16）
 .concept-profile__figure {
-  margin: 0 0 px(40);
+  margin: 0 auto px(60.5);
+  width: px(1080);
+
+  // XD 実測(SP): 左右16（コンテンツの30より外側）
+  @include mq(md) {
+    width: px(343);
+    margin-inline: px(-14);
+    margin-bottom: px(40);
+  }
 
   picture {
     display: block;
@@ -367,119 +342,104 @@
     width: 100%;
     height: auto;
   }
-
-  @include mq(md) {
-    margin-bottom: px(28);
-  }
 }
 
-// PC: 1行あたり「ラベル＋値」の組を左右2列（計4カラム）
+// XD 実測: 表幅 1080（中央）/ 罫線 #CA7F13 1px は各行の上のみ
+//   列幅 th113 / td303 / th113 / td551、セル左内側 11
 .concept-profile__table {
-  width: 100%;
+  width: px(1080);
+  margin-inline: auto;
   border-collapse: collapse;
   table-layout: fixed;
-  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
-  font-size: px(14);
-  line-height: 1.7;
-  letter-spacing: px(0.56);
-  color: var(--color-accent-1);
 
   tr {
-    border-bottom: 1px solid rgba(202, 127, 19, 0.25);
+    border-top: 1px solid var(--color-main);
+  }
+
+  th,
+  td {
+    padding: px(22.5) 0 px(24.7) px(11);
+    text-align: left;
+    vertical-align: top;
   }
 
   th {
-    width: 12%;
-    padding: px(20) px(8) px(20) 0;
+    width: px(113);
+    font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+    font-size: px(18);
     font-weight: 600;
-    text-align: left;
-    vertical-align: top;
+    line-height: px(24);
+    letter-spacing: px(1.8);
     color: var(--color-main);
   }
 
   td {
-    width: 38%;
-    padding: px(20) px(16) px(20) 0;
-    vertical-align: top;
-
-    &:last-child {
-      padding-right: 0;
-    }
+    width: px(551);
+    font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
+    font-size: px(16);
+    font-weight: 400;
+    line-height: px(24);
+    letter-spacing: px(1.6);
+    color: var(--color-text);
   }
 
-  .concept-profile__cell--blank {
-    border: none;
-    padding: 0;
-    width: 12%;
-
-    & + .concept-profile__cell--blank {
-      width: 38%;
-    }
+  // 1つ目の値カラムはカンプ実測で 303
+  td:nth-of-type(1) {
+    width: px(303);
   }
 
-  .concept-profile__row--full {
-    th {
-      width: 12%;
-      vertical-align: top;
-    }
-
-    td {
-      width: auto;
-    }
+  .concept-profile__row--full td[colspan] {
+    width: auto;
   }
 
+  // ─── SP: 1行=ラベル+値の2列に積み替え（カンプ 8行・上下罫あり） ───
   @include mq(md) {
-    display: block;
-    font-size: px(13);
-    letter-spacing: px(0.52);
+    width: px(343);
+    margin-inline: px(-14);
+    display: grid;
+    grid-template-columns: px(127) 1fr;
 
     tbody {
-      display: block;
+      display: contents;
     }
 
     tr {
-      display: block;
-      padding: px(16) 0;
+      display: contents;
+      border: none;
     }
 
     th,
     td {
       display: block;
-      width: 100%;
-      padding: 0;
+      width: auto;
+      padding: px(25.7) 0;
+      border-top: 1px solid var(--color-main);
     }
 
     th {
-      margin-top: px(12);
-      // 狭い幅で「業務内」「容」のように1文字だけ改行されないようラベルは1行に
-      white-space: nowrap;
-
-      &:first-child {
-        margin-top: 0;
-      }
+      padding-left: px(14);
+      font-size: px(14);
+      line-height: px(20);
+      letter-spacing: px(1.4);
     }
 
-    // 2組目のラベル（3番目の th）に上マージン
-    tr:not(.concept-profile__row--full) th:nth-of-type(2) {
-      margin-top: px(20);
+    // PC の列幅指定（td / td:nth-of-type(1)）をグリッドに戻す
+    td,
+    td:nth-of-type(1) {
+      width: auto;
+      font-size: px(12);
+      line-height: px(20);
+      letter-spacing: px(1.2);
     }
 
-    td {
-      margin-top: px(4);
+    // 最終行だけ下罫を足す（カンプ SP は 8行に 9本の罫線）
+    tr:last-child th,
+    tr:last-child td {
+      border-bottom: 1px solid var(--color-main);
     }
 
     .concept-profile__cell--blank {
       display: none;
-    }
-
-    .concept-profile__row--full {
-      th {
-        margin-top: 0;
-      }
-
-      td[colspan] {
-        margin-top: px(4);
-      }
     }
   }
 }
