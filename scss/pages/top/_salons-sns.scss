@@ -4,7 +4,7 @@
 // Salons / SNS（2カラム・中央縦ライン・下段インセットの横線）
 .salons-sns {
   padding: px(56) 0 px(48);
-  background-color: #f9f9f9;
+  background-color: var(--color-bg-1); // カンプ: セクション固有の背景色なし
 
   @include mq(md) {
     padding: px(40) 0 px(36);
@@ -15,9 +15,11 @@
   margin: 0;
 }
 
+// カンプ: 2カラムは画面幅の左右半分（中央の縦線が画面中央）
 .salons-sns__row {
+  position: relative;
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: 0;
   min-height: px(120);
@@ -33,7 +35,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: px(12);
+  gap: px(16); // カンプ: SALONS → 店舗一覧 のベースライン間 50px
   padding: px(32) px(16);
   text-align: center;
   color: inherit;
@@ -45,7 +47,11 @@
   }
 
   @include mq(md) {
-    padding: px(28) px(16);
+    // カンプ(SP): セクション上端→SALONS 102px / 区切り線は x30・幅315
+    width: px(315);
+    margin-inline: auto;
+    padding: px(19) 0 px(68.5);
+    gap: px(1.7);
 
     &:first-child {
       border-bottom: 1px solid rgba(202, 127, 19, 0.35);
@@ -56,33 +62,44 @@
 .salons-sns__title {
   margin: 0;
   font-family: var(--font-en);
-  font-size: px(40);
+  // カンプ: PC 80px・字間8 / SP 48px・字間4.8
+  font-size: px(80);
   font-weight: 400;
-  letter-spacing: px(3.2);
+  letter-spacing: px(8);
   line-height: 1.1;
   color: var(--color-main);
   text-transform: uppercase;
 
   @include mq(md) {
-    font-size: px(32);
-    letter-spacing: px(2.56);
+    font-size: px(48);
+    letter-spacing: px(4.8);
   }
 }
 
 .salons-sns__sub {
   margin: 0;
   font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
-  font-size: px(14);
-  font-weight: 400;
-  letter-spacing: px(0.56);
+  // カンプ: Yu Mincho Demibold / PC 16px・字間1.6 / SP 12px・字間1.2
+  font-size: px(16);
+  font-weight: 600;
+  letter-spacing: px(1.6);
   line-height: 1.5;
   color: var(--color-main);
+
+  @include mq(md) {
+    font-size: px(12);
+    letter-spacing: px(1.2);
+  }
 }
 
-// 2カラム間の縦ライン（テキスト帯の中央付近の高さ）
+// 2カラム間の縦ライン（カンプ: 1px × 260px / セクション上端から 30.5px）
+// 行の高さに影響させないため絶対配置
 .salons-sns__vline {
+  position: absolute;
+  left: 50%;
+  top: px(-25.5);
   width: 1px;
-  height: px(72);
+  height: px(260);
   flex-shrink: 0;
   background-color: rgba(202, 127, 19, 0.45);
 
@@ -92,19 +109,36 @@
 }
 
 // セクション下端の横ライン（左右に余白を取って全幅にしない）
+// 横線（カンプ: PC は inner 幅いっぱい 1200px / SP は 315px のベタ線）
 .salons-sns__rule {
   height: 1px;
-  margin: px(8) px(48) 0;
+  margin: px(73) 0 0;
+  background-color: rgba(202, 127, 19, 0.5);
 
   @include mq(md) {
-    margin: px(16) px(24) 0;
+    margin: px(1) 0 0;
+  }
+}
+
+// SNS カラム（カンプ: SNS は 72px・サブとの間隔 6.5px）
+.salons-sns__col:last-child {
+  // カンプ: SNS は SALONS より 8px 上・サブとの間隔 48px
+  padding-top: px(24.6);
+  gap: px(15.3);
+
+  @include mq(md) {
+    // カンプ(SP): SALONS → SNS のベースライン間 201px
+    padding-top: px(59);
+    gap: px(1.7);
   }
 
-  background: linear-gradient(
-    90deg,
-    transparent 0,
-    rgba(202, 127, 19, 0.5) 12%,
-    rgba(202, 127, 19, 0.5) 88%,
-    transparent 100%
-  );
+  .salons-sns__title {
+    font-size: px(72);
+    letter-spacing: px(7.2);
+
+    @include mq(md) {
+      font-size: px(48);
+      letter-spacing: px(4.8);
+    }
+  }
 }

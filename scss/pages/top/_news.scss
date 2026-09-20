@@ -66,16 +66,19 @@
 
   .section-title__bg {
     position: absolute;
-    left: px(150);
-    bottom: px(-30);
+    // カンプ: 見出し左端 +90px / ベースラインは見出しより 9px 上
+    left: px(90);
+    bottom: px(-23.2);
     z-index: 0;
     line-height: px(168);
     pointer-events: none;
     white-space: nowrap;
 
     @include mq(md) {
+      // カンプ(SP): 見出し左端 +55px / ベースラインは見出しより 5px 上
       font-size: px(72);
-      left: px(38);
+      left: px(55);
+      bottom: px(-48.5);
     }
   }
 }
@@ -92,20 +95,25 @@
 
 // ニュースアイテム
 .news__item {
-  border-left: 1px solid var(--color-main);
+  border-left: 1px solid var(--color-accent-1);
 
   // PC: 3列目(最終列)のみ右にもボーダーを付けてリストの右端を閉じる
   &:nth-child(3) {
-    border-right: 1px solid var(--color-main);
+    border-right: 1px solid var(--color-accent-1);
+
+    // SP: 1カラムになるため右ボーダーは出さない（詳細度が .news__item より高いので個別に解除）
+    @include mq(md) {
+      border-right: none;
+    }
   }
 
   @include mq(md) {
     border-left: none;
     border-right: none;
-    border-bottom: 1px solid rgba(202, 127, 19, 0.3);
+    border-bottom: 1px solid rgba(84, 55, 45, 0.3);
 
     &:first-child {
-      border-top: 1px solid rgba(202, 127, 19, 0.3);
+      border-top: 1px solid rgba(84, 55, 45, 0.3);
     }
   }
 }
@@ -160,32 +168,27 @@
 // 日付
 .news__date {
   display: block;
-  // 日付 ↔ タイトル：見た目12px。line-height の半leading(日付下4.2 + タイトル上6.3)を相殺
-  margin-block-end: px(1.5); // 12 - 4.2 - 6.3
+  // カンプ: 日付ベースライン → タイトル枠上端 16px（半leading 相殺込みで 10.3）
+  margin-block-end: px(10.3);
+  // カンプ: Yu Gothic Bold 14px / 行送り22
+  font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
   font-size: px(14);
-  color: var(--color-main);
+  font-weight: 700;
+  line-height: px(22);
+  color: var(--color-accent-1);
   letter-spacing: px(1.4);
-
-  @include mq(md) {
-    margin-block-end: px(2.55); // 12 - 4.2 - 5.25(SPタイトル上)
-  }
 }
 
 // タイトルテキスト
 .news__text {
-  // タイトル ↔ カテゴリー：見た目16px。半leading(タイトル下6.3 + カテゴリー上4.2)を相殺
-  margin-block-end: px(5.5); // 16 - 6.3 - 4.2
+  // カンプ: タイトル枠上端 → カテゴリーベースライン 80px（2行・半leading 相殺込みで 13.9）
+  margin-block-end: px(13.9);
   font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
   font-size: px(18);
   font-weight: 700;
-  line-height: 1.7;
+  line-height: px(27); // カンプ: 行送り27
   letter-spacing: px(1.8);
   color: var(--color-accent-1);
-
-  @include mq(md) {
-    font-size: px(15);
-    margin-block-end: px(6.55); // 16 - 5.25(SPタイトル下) - 4.2
-  }
 }
 
 // カテゴリ（Marcellus Regular）
@@ -193,13 +196,9 @@
   font-family: var(--font-en);
   font-size: px(14);
   font-weight: 400;
+  line-height: px(18); // カンプ: 行送り18
   color: var(--color-accent-1);
-  opacity: 0.6;
-  letter-spacing: px(0.5);
-
-  @include mq(md) {
-    letter-spacing: px(1);
-  }
+  letter-spacing: px(1.4); // カンプ: 字間1.4
 }
 
 // SP用ボタンラップ（.u-sp-only と競合しないよう SP のみで指定）

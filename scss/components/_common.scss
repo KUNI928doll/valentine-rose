@@ -15,12 +15,16 @@
 }
 
 .inner {
-  width: 100%;
-  max-width: 1200px; // サイト標準のコンテンツ幅（左右120px余白 @1440）。News のみ 1080 に個別指定
+  // 1440px以上: 1200px幅（左右120px余白 @1440）
+  // 1200〜1440px: viewport-240px（左右120px余白を維持したまま縮む）
+  // 1200px未満: 同上（縮み続けるが端に張り付かない）
+  // News のみ 1080 に個別指定
+  width: min(1200px, calc(100% - #{px(240)}));
   margin-inline: auto;
 
   @include mq(md) {
-    padding-inline: px(29.5);
+    width: 100%;
+    padding-inline: px(30);
   }
 }
 .section-title__en {

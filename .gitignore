@@ -3,3 +3,8 @@ node_modules/
 css/style.css.map
 scss/style.css
 scss/style.css.map
+.ai-coding/
+design/
+
+# 作業用プレビュー（カンプ突合の実測用）
+_*.html

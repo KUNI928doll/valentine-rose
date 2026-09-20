@@ -4,10 +4,12 @@
 // Footer
 .footer {
   background-color: var(--color-bg-1);
-  padding: px(60) 0 px(40);
+  // カンプ: 横罫線 → ロゴ上端 122px / コピーライト → ページ下端 35px
+  padding: px(71.4) 0 px(29.4);
 
   @include mq(md) {
-    padding: px(40) 0 px(32);
+    // カンプ(SP): 横罫線 → ロゴ上端 102px / コピーライト → ページ下端 11px
+    padding: px(65) 0 px(5.3);
   }
 }
 
@@ -15,7 +17,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: px(32);
+  // カンプ: ロゴ画像上端 → ナビのベースライン PC133px / SP107px
+  gap: px(42.4);
+
+  @include mq(md) {
+    gap: px(36.4);
+  }
 
   @include mq(md) {
     gap: px(24);
@@ -31,17 +38,27 @@
 }
 
 .footer__logo-link img {
+  // カンプ: PC 64px / SP 50px
   width: px(64);
   height: auto;
+
+  @include mq(md) {
+    width: px(50);
+  }
 }
 
 .footer__logo-text {
   font-family: var(--font-serif);
-  font-size: px(22);
+  // カンプ: Marcellus PC 28px / SP 20px（2行）
+  font-size: px(28);
   font-weight: 400;
   color: var(--color-accent-1);
   line-height: 1.2;
   letter-spacing: px(4);
+
+  @include mq(md) {
+    font-size: px(20);
+  }
 }
 
 // ナビゲーション
@@ -49,7 +66,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: px(12);
+  // カンプ: ナビ → Privacy Policy のベースライン間 PC57.5px / SP78px
+  gap: px(32.5);
+
+  @include mq(md) {
+    gap: px(30);
+  }
 }
 
 .footer__nav-main {
@@ -76,25 +98,37 @@
   gap: 0;
 
   @include mq(md) {
-    flex-wrap: nowrap;
+    // カンプ(SP): 1行目3項目 / 2行目2項目（改行用アイテムが1行を占めるため row-gap は 0）
+    row-gap: 0;
     max-width: 100%;
   }
 }
 
-// PC: 1行目ブロックと2行目ブロックのあいだに |（SPでは行が分かれるため非表示）
-.footer__nav-items--row1::after {
-  @media (min-width: 769px) {
-    content: "|";
-    color: var(--color-accent-1);
-    padding: 0 px(16);
-    font-size: px(14);
-    opacity: 0.5;
-    align-self: center;
-  }
+// SP のみ 3項目＋2項目の2行にするための改行用アイテム（カンプ準拠）
+.footer__nav-break {
+  display: none;
 
   @include mq(md) {
-    content: none;
-    display: none;
+    display: block;
+    width: 100%;
+    height: 0;
+  }
+
+  &::before {
+    content: none !important;
+  }
+}
+
+// 2行目の先頭（News）には区切り線を出さず、行間 12px を持たせる
+.footer__nav-break + .footer__nav-item {
+  @include mq(md) {
+    margin-top: px(12);
+  }
+
+  &::before {
+    @include mq(md) {
+      content: none;
+    }
   }
 }
 
@@ -102,25 +136,29 @@
   display: flex;
   align-items: center;
 
-  // セパレーター（|）
+  // セパレーター（カンプ: 1px × 24px の縦線・左右に31px）
   &:not(:first-child)::before {
-    content: "|";
-    color: var(--color-accent-1);
-    padding: 0 px(16);
-    font-size: px(14);
+    content: "";
+    width: 1px;
+    height: px(24);
+    margin: 0 px(31);
+    background-color: var(--color-accent-1);
     opacity: 0.5;
 
     @include mq(md) {
-      padding: 0 px(10);
+      height: px(16);
+      margin: 0 px(12);
     }
   }
 }
 
 .footer__nav-link {
   font-family: var(--font-serif);
-  font-size: px(16);
+  // カンプ: Marcellus / PC 20px・字間2・行送り25 / SP 14px・字間1.4・行送り18
+  font-size: px(20);
   color: var(--color-accent-1);
-  letter-spacing: px(1.6);
+  letter-spacing: px(2);
+  line-height: px(25);
   transition: color $transition-base;
 
   @include hover {
@@ -129,11 +167,21 @@
 
   @include mq(md) {
     font-size: px(14);
+    letter-spacing: px(1.4);
+    line-height: px(18);
   }
 }
 
 // コピーライト
 .footer__copyright {
+  // カンプ: Privacy Policy → コピーライトのベースライン間 PC70.5px / SP56px
+  margin-top: px(9.1);
+
+  @include mq(md) {
+    margin-top: px(1.6);
+  }
+  // カンプ: Marcellus 12px
+  font-family: var(--font-en);
   font-size: px(12);
   color: var(--color-accent-1);
   letter-spacing: px(0.5);
@@ -145,12 +193,13 @@
   position: fixed;
   z-index: $z-header;
   bottom: px(32);
-  right: px(32);
+  // カンプ: 80×80・右端から 40px
+  right: px(40);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: px(82);
-  height: px(82);
+  width: px(80);
+  height: px(80);
   border: none;
   border-radius: 999px;
   background-color: var(--color-accent-2);
@@ -171,8 +220,9 @@
   }
 
   @include mq(md) {
+    // カンプ(SP): 40×40・右端から25px
     bottom: px(24);
-    right: px(16);
+    right: px(25);
     width: px(40);
     height: px(40);
     font-size: px(14);
