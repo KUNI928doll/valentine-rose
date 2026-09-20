@@ -155,7 +155,7 @@ get_header();
               <figure class="feature__panel-img is-active">
                 <div class="feature__img-frame">
                   <picture>
-                    <source srcset="<?php echo esc_url($vr_img . '/page/feature_02-sp.jpg'); ?>" media="(max-width: 768px)">
+                    <source srcset="<?php echo esc_url($vr_img . '/page/feature_02-sp.jpg'); ?>" width="315" height="275" media="(max-width: 768px)">
                     <img src="<?php echo esc_url($vr_img . '/page/feature_02-pc.jpg'); ?>" width="450" height="630" alt="カウンターでお客様をお迎えする様子" loading="lazy" decoding="async">
                   </picture>
                 </div>
@@ -163,7 +163,7 @@ get_header();
               <figure class="feature__panel-img">
                 <div class="feature__img-frame">
                   <picture>
-                    <source srcset="<?php echo esc_url($vr_img . '/page/feature_01-sp.jpg'); ?>" media="(max-width: 768px)">
+                    <source srcset="<?php echo esc_url($vr_img . '/page/feature_01-sp.jpg'); ?>" width="315" height="275" media="(max-width: 768px)">
                     <img src="<?php echo esc_url($vr_img . '/page/feature_01-pc.jpg'); ?>" width="450" height="630" alt="脱毛器による施術の様子" loading="lazy" decoding="async">
                   </picture>
                 </div>
@@ -171,7 +171,7 @@ get_header();
               <figure class="feature__panel-img">
                 <div class="feature__img-frame">
                   <picture>
-                    <source srcset="<?php echo esc_url($vr_img . '/page/feature_03-sp.jpg'); ?>" media="(max-width: 768px)">
+                    <source srcset="<?php echo esc_url($vr_img . '/page/feature_03-sp.jpg'); ?>" width="315" height="275" media="(max-width: 768px)">
                     <img src="<?php echo esc_url($vr_img . '/page/feature_03-pc.jpg'); ?>" width="450" height="630" alt="サロンでの施術イメージ" loading="lazy" decoding="async">
                   </picture>
                 </div>
@@ -229,35 +229,35 @@ get_header();
               <span class="price-menu__name">Body</span>
               <span class="price-menu__sub">体脱毛</span>
             </span>
-            <span class="price-menu__chev" aria-hidden="true">&gt;</span>
+            <span class="price-menu__chev" aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
           </a>
           <a href="<?php echo esc_url(vr_url('price') . '#price-vline'); ?>" class="price-menu__link price-menu__link--vline">
             <span class="price-menu__label">
               <span class="price-menu__name">V-line</span>
               <span class="price-menu__sub">VIO脱毛</span>
             </span>
-            <span class="price-menu__chev" aria-hidden="true">&gt;</span>
+            <span class="price-menu__chev" aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
           </a>
           <a href="<?php echo esc_url(vr_url('price') . '#price-custom'); ?>" class="price-menu__link price-menu__link--custom">
             <span class="price-menu__label">
               <span class="price-menu__name">Custom</span>
               <span class="price-menu__sub">オーダーメイド</span>
             </span>
-            <span class="price-menu__chev" aria-hidden="true">&gt;</span>
+            <span class="price-menu__chev" aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
           </a>
           <a href="<?php echo esc_url(vr_url('price') . '#price-set'); ?>" class="price-menu__link price-menu__link--set">
             <span class="price-menu__label">
               <span class="price-menu__name">Set</span>
               <span class="price-menu__sub">セット脱毛</span>
             </span>
-            <span class="price-menu__chev" aria-hidden="true">&gt;</span>
+            <span class="price-menu__chev" aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
           </a>
           <a href="<?php echo esc_url(vr_url('price') . '#price-all'); ?>" class="price-menu__link price-menu__link--all">
             <span class="price-menu__label">
               <span class="price-menu__name">All</span>
               <span class="price-menu__sub">全てのメニュー</span>
             </span>
-            <span class="price-menu__chev" aria-hidden="true">&gt;</span>
+            <span class="price-menu__chev" aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
           </a>
           <div class="price-menu__blank" aria-hidden="true"></div>
         </div>
@@ -277,56 +277,56 @@ get_header();
         <div class="faq__list">
           <div class="faq__item js-faq-item">
             <button type="button" class="faq__trigger js-faq-trigger" aria-expanded="false" aria-controls="faq-panel-1" id="faq-trigger-1">
-              <span class="faq__q-text">Q. 脱毛後にまた毛が生えてくることはありますか？</span>
-              <span class="faq__icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+              <span class="faq__mark" aria-hidden="true">Q</span><span class="faq__q-text">脱毛後にまた毛が生えてくることはありますか？</span>
+              <span class="faq__icon" aria-hidden="true"></span>
             </button>
             <div class="faq__panel" id="faq-panel-1" role="region" aria-labelledby="faq-trigger-1">
               <div class="faq__panel-inner">
-                <p class="faq__answer">A. 出産や生理といったホルモンバランスの変化によって、脱毛後も体毛が生えてくるケースがあります。</p>
+                <p class="faq__answer"><span class="faq__mark" aria-hidden="true">A</span>出産や生理といったホルモンバランスの変化によって、脱毛後も体毛が生えてくるケースがあります。</p>
               </div>
             </div>
           </div>
           <div class="faq__item js-faq-item">
             <button type="button" class="faq__trigger js-faq-trigger" aria-expanded="false" aria-controls="faq-panel-2" id="faq-trigger-2">
-              <span class="faq__q-text">Q. 脱毛すると汗の量が増えると聞いたことがあるのですが本当ですか？</span>
-              <span class="faq__icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+              <span class="faq__mark" aria-hidden="true">Q</span><span class="faq__q-text">脱毛すると汗の量が増えると聞いたことがあるのですが本当ですか？</span>
+              <span class="faq__icon" aria-hidden="true"></span>
             </button>
             <div class="faq__panel" id="faq-panel-2" role="region" aria-labelledby="faq-trigger-2">
               <div class="faq__panel-inner">
-                <p class="faq__answer">A. 脱毛によって発汗量が増えるというエビデンスはありませんが、毛がなくなることによって汗が直接衣服に触れることで、汗が増えたように感じることはあるかもしれません。</p>
+                <p class="faq__answer"><span class="faq__mark" aria-hidden="true">A</span>脱毛によって発汗量が増えるというエビデンスはありませんが、毛がなくなることによって汗が直接衣服に触れることで、汗が増えたように感じることはあるかもしれません。</p>
               </div>
             </div>
           </div>
           <div class="faq__item js-faq-item">
             <button type="button" class="faq__trigger js-faq-trigger" aria-expanded="false" aria-controls="faq-panel-3" id="faq-trigger-3">
-              <span class="faq__q-text">Q. コースの勧誘やセールスなどはありますか？</span>
-              <span class="faq__icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+              <span class="faq__mark" aria-hidden="true">Q</span><span class="faq__q-text">コースの勧誘やセールスなどはありますか？</span>
+              <span class="faq__icon" aria-hidden="true"></span>
             </button>
             <div class="faq__panel" id="faq-panel-3" role="region" aria-labelledby="faq-trigger-3">
               <div class="faq__panel-inner">
-                <p class="faq__answer">A. お客様の毛質や毛量、ご予算等をお伺いして最適な脱毛プランを提案しますが、最終的にはお客様が無理なく通える範囲のコースを、ご自身で決定いただきたいと考えています。特に、初めての脱毛の場合は不安になる気持ちもよくわかりますので、その場で契約せずにゆっくりと考えていただく時間も大切です。<br><br>バレンタインローズでは、無理な勧誘やしつこい営業行為は一切行いませんので、安心して無料体験にお越しください。</p>
+                <p class="faq__answer"><span class="faq__mark" aria-hidden="true">A</span>お客様の毛質や毛量、ご予算等をお伺いして最適な脱毛プランを提案しますが、最終的にはお客様が無理なく通える範囲のコースを、ご自身で決定いただきたいと考えています。特に、初めての脱毛の場合は不安になる気持ちもよくわかりますので、その場で契約せずにゆっくりと考えていただく時間も大切です。<br><br>バレンタインローズでは、無理な勧誘やしつこい営業行為は一切行いませんので、安心して無料体験にお越しください。</p>
               </div>
             </div>
           </div>
           <div class="faq__item js-faq-item">
             <button type="button" class="faq__trigger js-faq-trigger" aria-expanded="false" aria-controls="faq-panel-4" id="faq-trigger-4">
-              <span class="faq__q-text">Q. 脱毛することで毛が濃くなることはありますか？</span>
-              <span class="faq__icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+              <span class="faq__mark" aria-hidden="true">Q</span><span class="faq__q-text">脱毛することで毛が濃くなることはありますか？</span>
+              <span class="faq__icon" aria-hidden="true"></span>
             </button>
             <div class="faq__panel" id="faq-panel-4" role="region" aria-labelledby="faq-trigger-4">
               <div class="faq__panel-inner">
-                <p class="faq__answer">A. 脱毛によって毛が濃くなることはありません。ただし、硬毛化という現象によって一時的に体毛が濃くなるケースが稀にありますが、施術を進めていくことで少しずつ体毛は薄くなっていきます。</p>
+                <p class="faq__answer"><span class="faq__mark" aria-hidden="true">A</span>脱毛によって毛が濃くなることはありません。ただし、硬毛化という現象によって一時的に体毛が濃くなるケースが稀にありますが、施術を進めていくことで少しずつ体毛は薄くなっていきます。</p>
               </div>
             </div>
           </div>
           <div class="faq__item js-faq-item">
             <button type="button" class="faq__trigger js-faq-trigger" aria-expanded="false" aria-controls="faq-panel-5" id="faq-trigger-5">
-              <span class="faq__q-text">Q. 脱毛箇所を剃毛することで、かえって体毛が太くなることはありますか？</span>
-              <span class="faq__icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+              <span class="faq__mark" aria-hidden="true">Q</span><span class="faq__q-text">脱毛箇所を剃毛することで、かえって体毛が太くなることはありますか？</span>
+              <span class="faq__icon" aria-hidden="true"></span>
             </button>
             <div class="faq__panel" id="faq-panel-5" role="region" aria-labelledby="faq-trigger-5">
               <div class="faq__panel-inner">
-                <p class="faq__answer">A. 剃毛によって体毛が太くなることはありません。剃毛すると体毛の断面が見えやすくなることによって太く見えることはありますが、施術を重ねるたびに少しずつ薄く・細くなっていきます。</p>
+                <p class="faq__answer"><span class="faq__mark" aria-hidden="true">A</span>剃毛によって体毛が太くなることはありません。剃毛すると体毛の断面が見えやすくなることによって太く見えることはありますが、施術を重ねるたびに少しずつ薄く・細くなっていきます。</p>
               </div>
             </div>
           </div>
@@ -339,7 +339,7 @@ get_header();
       <a href="<?php echo esc_url(vr_url('reserve')); ?>" class="reserve-cta__link">
         <div class="reserve-cta__media">
           <picture>
-            <source srcset="<?php echo esc_url($vr_img . '/page/reserve_top-sp.png'); ?>" media="(max-width: 768px)">
+            <source srcset="<?php echo esc_url($vr_img . '/page/reserve_top-sp.png'); ?>" width="375" height="200" media="(max-width: 768px)">
             <img src="<?php echo esc_url($vr_img . '/page/reserve_top-pc.png'); ?>" width="1024" height="284" alt="明るい受付・カウンターの様子" loading="lazy">
           </picture>
         </div>

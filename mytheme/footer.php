@@ -26,12 +26,8 @@ $vr_img = VR_THEME_URI . '/assets/images';
                     <li class="footer__nav-item"><a href="<?php echo esc_url(vr_url('home')); ?>" class="footer__nav-link"<?php echo vr_aria_current('home'); ?>>TOP</a></li>
                     <li class="footer__nav-item"><a href="<?php echo esc_url(vr_url('concept')); ?>" class="footer__nav-link"<?php echo vr_aria_current('concept'); ?>>Concept</a></li>
                     <li class="footer__nav-item"><a href="<?php echo esc_url(vr_url('price')); ?>" class="footer__nav-link"<?php echo vr_aria_current('price'); ?>>Price</a></li>
-                </ul>
-                <ul class="footer__nav-items footer__nav-items--row2">
+                    <li class="footer__nav-break" aria-hidden="true"></li>
                     <li class="footer__nav-item"><a href="<?php echo esc_url(vr_url('news')); ?>" class="footer__nav-link"<?php echo vr_aria_current('news'); ?>>News</a></li>
-                    <li class="footer__nav-item"><a href="<?php echo esc_url(vr_url('feature')); ?>" class="footer__nav-link"<?php echo vr_aria_current('feature'); ?>>Feature</a></li>
-                    <li class="footer__nav-item"><a href="<?php echo esc_url(vr_url('faq')); ?>" class="footer__nav-link"<?php echo vr_aria_current('faq'); ?>>FAQ</a></li>
-                    <li class="footer__nav-item"><a href="<?php echo esc_url(vr_url('salons')); ?>" class="footer__nav-link"<?php echo vr_aria_current('salons'); ?>>Salons</a></li>
                     <li class="footer__nav-item"><a href="<?php echo esc_url(vr_url('reserve')); ?>" class="footer__nav-link"<?php echo vr_aria_current('reserve'); ?>>Reserve</a></li>
                 </ul>
             </div>

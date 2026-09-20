@@ -256,7 +256,7 @@ wp_reset_postdata();
       <a href="<?php echo esc_url(vr_url('reserve')); ?>" class="reserve-cta__link">
         <div class="reserve-cta__media">
           <picture>
-            <source srcset="<?php echo esc_url($vr_img . '/page/reserve_top-sp.png'); ?>" media="(max-width: 768px)">
+            <source srcset="<?php echo esc_url($vr_img . '/page/reserve_top-sp.png'); ?>" width="375" height="200" media="(max-width: 768px)">
             <img src="<?php echo esc_url($vr_img . '/page/reserve_top-pc.png'); ?>" width="1024" height="284" alt="" loading="lazy">
           </picture>
         </div>
