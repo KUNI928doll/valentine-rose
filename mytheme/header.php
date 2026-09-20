@@ -72,25 +72,19 @@ $vr_img = VR_THEME_URI . '/assets/images';
                 <a href="<?php echo esc_url(vr_url('home')); ?>" class="drawer-menu__link"<?php echo vr_aria_current('home'); ?>>HOME</a>
             </li>
             <li class="drawer-menu__item">
-                <a href="<?php echo esc_url(vr_url('news')); ?>" class="drawer-menu__link"<?php echo vr_aria_current('news'); ?>>NEWS</a>
-            </li>
-            <li class="drawer-menu__item">
-                <a href="<?php echo esc_url(vr_url('concept')); ?>" class="drawer-menu__link"<?php echo vr_aria_current('concept'); ?>>CONCEPT</a>
-            </li>
-            <li class="drawer-menu__item">
-                <a href="<?php echo esc_url(vr_url('feature')); ?>" class="drawer-menu__link"<?php echo vr_aria_current('feature'); ?>>FEATURE</a>
+                <a href="<?php echo esc_url(vr_url('concept')); ?>" class="drawer-menu__link"<?php echo vr_aria_current('concept'); ?>>SALON CONCEPT</a>
             </li>
             <li class="drawer-menu__item">
                 <a href="<?php echo esc_url(vr_url('price')); ?>" class="drawer-menu__link"<?php echo vr_aria_current('price'); ?>>PRICE MENU</a>
             </li>
             <li class="drawer-menu__item">
-                <a href="<?php echo esc_url(vr_url('faq')); ?>" class="drawer-menu__link"<?php echo vr_aria_current('faq'); ?>>FAQ</a>
-            </li>
-            <li class="drawer-menu__item">
                 <a href="<?php echo esc_url(vr_url('salons')); ?>" class="drawer-menu__link"<?php echo vr_aria_current('salons'); ?>>SALONS</a>
             </li>
             <li class="drawer-menu__item">
-                <a href="<?php echo esc_url(vr_url('reserve')); ?>" class="drawer-menu__link drawer-menu__link--contact"<?php echo vr_aria_current('reserve'); ?>>RESERVE</a>
+                <a href="<?php echo esc_url(vr_url('news')); ?>" class="drawer-menu__link"<?php echo vr_aria_current('news'); ?>>NEWS</a>
+            </li>
+            <li class="drawer-menu__item">
+                <a href="<?php echo esc_url(vr_url('reserve')); ?>" class="drawer-menu__link"<?php echo vr_aria_current('reserve'); ?>>RESERVE</a>
             </li>
         </ul>
     </div>

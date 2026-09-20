@@ -203,13 +203,14 @@
 .drawer__close{
     position: fixed;
     z-index: $z-drawer-close;
-    top: px(40);
+    // XD 実測（menu アートボード）: 30x30 / X323 Y20（右端353）/ #949E33
+    top: px(20);
     right: px(22);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: px(32);
-    height: px(32);
+    width: px(30);
+    height: px(30);
     border: none;
     border-radius: 999px;
     background-color: var(--color-accent-2);
@@ -222,9 +223,10 @@
     outline: none;
 }
 .drawer__close-line{
+    // XD 実測: 長さ12 / 線幅1 / 白 / 角丸キャップ
     position: absolute;
-    width: px(16);
-    height: px(2);
+    width: px(12);
+    height: 1px;
     background-color: #fff;
     border-radius: 999px;
 }
@@ -235,12 +237,14 @@
     transform: rotate(-45deg);
 }
 .drawer-menu__inner{
+    // XD 実測（menu アートボード）: 項目は左 X60 / 1行目ベースライン 167
     display: flex;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100%;
     height: inherit;
-    padding-top: var(--header-offset);
+    padding-left: px(60);
+    padding-top: px(143.5);
 }
 .drawer-menu__items{
     display: flex;
@@ -254,10 +258,13 @@
 }
 
 .drawer-menu__link{
+    // XD 実測: 24px Marcellus-Regular / 字間2.4 / 行送り30
     font-size: px(24);
-    font-weight: $weight-medium;
-    display:inline-block;
-    line-height: 0.8;
+    font-weight: $weight-normal;
+    // inline-block だと親のストラットで行ボックスが 30 を超え、項目の間隔が
+    // カンプの 42 からずれるので block にする
+    display: block;
+    line-height: px(30);
     letter-spacing: px(2.4);
     color:var(--color-main);
     transition: color $transition-base;
