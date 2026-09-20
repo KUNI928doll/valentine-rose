@@ -152,7 +152,8 @@ const initPageHeroParallax = () => {
       if (!bg) return;
       const rect = wrap.getBoundingClientRect();
       const speed = .35;
-      const y = rect.top * speed;
+      const limit = Math.max(0, (bg.offsetHeight - wrap.offsetHeight) / 2);
+      const y = Math.min(limit, Math.max(-limit, rect.top * speed));
       bg.style.transform = `translate3d(0, ${y}px, 0)`;
     });
     ticking = false;

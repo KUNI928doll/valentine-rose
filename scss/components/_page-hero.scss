@@ -8,8 +8,9 @@ body[class*="page-"] > main#main {
 
 // 下層ページ共通：タイトル帯 + KV（スクロール連動パララックスは main.js）
 .page-hero {
-  --page-hero-title-bg: #d9d4c5;
-  --page-hero-title-color: #c19c5d;
+  // XD 実測（下層ページ共通）: 帯 #D4CEBE / 見出し #CA7F13
+  --page-hero-title-bg: #{$color-bg-2};
+  --page-hero-title-color: #{$color-main};
   margin: 0;
   padding: 0;
   // タイトル帯と KV の継ぎ目で body 背景が1px 見えるのを抑える
@@ -28,10 +29,9 @@ body[class*="page-"] > main#main {
   background-color: var(--page-hero-title-bg);
   height: px(360);
 
+  // XD 実測: SP は帯 H200（y80–280）
   @include mq(md) {
-    height: auto;
-    min-height: px(140);
-    padding: px(24) 0;
+    height: px(200);
   }
 }
 
@@ -47,17 +47,18 @@ body[class*="page-"] > main#main {
 .page-hero__title {
   margin: 0;
   font-family: var(--font-en);
-  font-size: px(48);
+  // XD 実測: 80px Marcellus-Regular / 字間8 / SP 32px・字間3.2
+  font-size: px(80);
   font-weight: 400;
-  letter-spacing: px(4);
+  letter-spacing: px(8);
   line-height: 1.2;
   text-align: center;
   text-transform: uppercase;
   color: var(--page-hero-title-color);
 
   @include mq(md) {
-    font-size: px(26);
-    letter-spacing: px(2);
+    font-size: px(32);
+    letter-spacing: px(3.2);
   }
 }
 
@@ -78,15 +79,26 @@ body[class*="page-"] > main#main {
   @include mq(md) {
     height: px(300);
   }
+
+  // XD 実測: KV 上に #000 14.9% のオーバーレイ
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.149);
+    pointer-events: none;
+  }
 }
 
 .page-hero__bg {
   position: absolute;
   left: 0;
   width: 100%;
-  // main.js の translateY(rect.top * 0.35) 分も含め、上方向にはみ出しを大きく取る
-  top: -45%;
-  height: 195%;
+  // カンプの KV は 1440x600 の等倍。パララックスの移動分だけ上下にはみ出させる
+  // （はみ出しを大きく取ると object-fit: cover で画像が拡大されカンプと変わってしまう）
+  top: -10%;
+  height: 120%;
   background-color: var(--color-bg-2);
   overflow: hidden;
   will-change: transform;
@@ -107,8 +119,7 @@ body[class*="page-"] > main#main {
   }
 
   @include mq(md) {
-    // SP は KV 高さが低いので、同じ translate でも上方向の余裕を多めに取る
-    top: -55%;
-    height: 220%;
+    top: -10%;
+    height: 120%;
   }
 }
