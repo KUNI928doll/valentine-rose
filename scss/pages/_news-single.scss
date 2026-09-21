@@ -1,259 +1,278 @@
 @use "../abstracts/tokens" as *;
 @use "../abstracts/mixins" as *;
 
-// ニュース詳細（News single）PC/SP カンプ
+// ニュース詳細（XD: NEWS-single_PC / NEWS-single_SP）
 .page-news-single {
   background-color: var(--color-bg-1);
 }
 
+// パンくず（他の下層ページと同じ。カンプに帯の背景・罫線は無い）
 .news-single__breadcrumb-bar {
-  background-color: #fff;
-  padding: px(18) 0 px(16);
-  border-bottom: 1px solid rgba(193, 156, 93, 0.35);
+  padding: px(23) 0 0;
 
   @include mq(md) {
-    padding: px(14) 0 px(12);
+    padding: px(7.5) 0 0;
   }
 
-  .breadcrumb__list {
-    align-items: flex-start;
+  // XD 実測: パンくずだけコンテンツ幅より内側 PC 36.5 / SP 16
+  > .inner {
+    width: 100%;
+    max-width: none;
+    padding-inline: px(36.5);
+
+    @include mq(md) {
+      padding-inline: px(16);
+    }
   }
 }
 
+// XD 実測: 白パネルの上端 y1292（SP は y716.5）
 .news-single {
-  padding: px(56) 0 px(64);
+  padding: px(99) 0 px(182);
 
   @include mq(md) {
-    padding: px(36) 0 px(48);
+    padding: px(56) 0 px(124);
   }
 }
 
+// XD 実測: 記事は x180 幅864、サイドバーの縦罫は x1104、見出しは x1120.5
 .news-single__inner {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) px(260);
-  gap: px(48) px(40);
+  grid-template-columns: px(864) 1fr;
+  column-gap: px(60);
   align-items: start;
   box-sizing: border-box;
+  padding-left: px(60);
 
-  @media (max-width: 900px) {
-    grid-template-columns: 1fr;
-    gap: px(40);
+  // XD 実測(SP): 白パネルは画面幅いっぱい（x0 幅375）
+  @include mq(md) {
+    display: block;
+    padding: 0;
+    width: 100%;
+    max-width: none;
   }
 }
 
-// ─── 記事本体 ───
+// ─── 記事本体（白パネル） ───
+// XD 実測: 864x1031 #FFFFFF。ボタンの下端がパネルの下端と一致する。
 .news-single__article {
-  min-width: 0;
-}
-
-.news-single__title {
-  margin: 0 0 px(16);
-  font-family: var(--font-serif);
-  font-size: px(28);
-  font-weight: 500;
-  letter-spacing: px(1.12);
-  line-height: 1.55;
-  color: var(--color-accent-1);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-height: px(1031);
+  padding: px(3.5) px(86) 0 px(87);
+  background-color: #fff;
 
   @include mq(md) {
-    font-size: px(22);
-    letter-spacing: px(0.88);
-    margin-bottom: px(12);
+    min-height: px(1289.5);
+    padding: 0 px(14);
   }
 }
 
-.news-single__meta {
-  margin: 0 0 px(28);
+// XD 実測: 24px Yu Mincho / 字間2.4（SP 18px・行送り27）
+.news-single__title {
+  margin: 0;
   font-family: var(--font-serif);
+  font-size: px(24);
+  font-weight: 400;
+  line-height: px(24);
+  letter-spacing: px(2.4);
+  color: var(--color-main);
+
+  @include mq(md) {
+    font-size: px(18);
+    line-height: px(27);
+    letter-spacing: px(1.8);
+  }
+}
+
+// XD 実測: カテゴリ x267 と日付 x336 が同じ行（SP は x14 / x70）
+.news-single__meta {
+  display: flex;
+  gap: px(11.1);
+  margin: px(4) 0 0;
+  font-family: var(--font-en);
   font-size: px(14);
   font-weight: 400;
-  letter-spacing: px(0.56);
-  line-height: 1.5;
-  color: var(--color-accent-1);
+  line-height: px(18);
+  letter-spacing: px(1.4);
+  color: var(--color-main);
 
   @include mq(md) {
-    margin-bottom: px(20);
-    font-size: px(13);
+    gap: px(6.3);
+    margin-top: px(0.5);
+    font-size: px(12);
+    line-height: px(15);
+    letter-spacing: px(1.2);
   }
 }
 
-.news-single__label {
-  margin-right: px(12);
-  text-transform: capitalize;
-}
-
+// XD 実測: 691x250 を x267 y1381（SP 347x249 を x14 y801.5）
 .news-single__thumb {
-  margin: 0 0 px(36);
-  padding: 0;
+  margin: px(39.5) 0 0;
 
   @include mq(md) {
-    margin-bottom: px(28);
+    margin-top: px(15.5);
   }
 
   img {
     display: block;
     width: 100%;
-    height: auto;
-    vertical-align: bottom;
+    aspect-ratio: 691 / 250;
+    object-fit: cover;
+
+    @include mq(md) {
+      aspect-ratio: 347 / 249;
+    }
   }
 }
 
+// XD 実測: 本文 16px Yu Gothic / 行送り32 / #333333（SP 14px・行送り28）
 .news-single__body {
-  font-family: var(--font-base);
-  font-size: px(15);
+  margin-top: px(32);
+  font-size: px(16);
   font-weight: 400;
-  line-height: 2;
-  letter-spacing: px(0.45);
-  color: var(--color-accent-1);
+  line-height: px(32);
+  letter-spacing: px(1.6);
+  color: #333;
 
   @include mq(md) {
+    margin-top: px(39);
     font-size: px(14);
-    letter-spacing: px(0.42);
-    line-height: 1.95;
+    line-height: px(28);
+    letter-spacing: px(1.4);
   }
 
-  p {
-    margin: 0 0 px(24);
-
-    @include mq(md) {
-      margin-bottom: px(20);
-    }
+  > p {
+    margin: 0;
   }
 
-  h3 {
-    margin: px(40) 0 px(16);
+  // XD 実測: 小見出し 18px Yu Mincho #CA7F13（SP 16px）
+  // 本文の下端 → 小見出しのベースライン 41 / 次の本文まで 17
+  > h3 {
+    margin: px(19) 0 0;
     font-family: var(--font-serif);
     font-size: px(18);
-    font-weight: 500;
-    letter-spacing: px(0.72);
-    line-height: 1.5;
+    font-weight: 400;
+    line-height: px(32);
+    letter-spacing: px(1.8);
     color: var(--color-main);
 
     @include mq(md) {
-      margin: px(32) 0 px(12);
+      margin-top: px(8.5);
       font-size: px(16);
-      letter-spacing: px(0.64);
     }
   }
 
-  ul {
-    margin: 0 0 px(24);
-    padding-left: px(22);
-    list-style: disc;
+  > h3 + p {
+    margin-top: px(7);
 
     @include mq(md) {
-      margin-bottom: px(20);
-      padding-left: px(20);
+      margin-top: px(6.5);
     }
   }
 
-  li {
-    margin-bottom: px(8);
-    padding-left: px(4);
-
-    &::marker {
-      color: rgba(202, 127, 19, 0.75);
-    }
+  > ul {
+    margin: px(32) 0 0;
+    padding-left: px(20);
   }
 }
 
+// XD 実測: 202x41 / 角丸20.5 / #949E33。パネル下端にそろう
 .news-single__actions {
-  margin: px(48) 0 0;
+  // カンプではボタンの下端が白パネルの下端と一致する。
+  // 本文が長いときも最低 32 は空くよう padding で下限を持たせる。
+  margin: auto 0 0;
+  padding: px(32) 0 0;
   text-align: center;
+}
 
-  @include mq(md) {
-    margin-top: px(40);
-  }
+.news-single__back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: px(202);
+  height: px(41);
+  border-radius: px(20.5);
+  background-color: var(--color-accent-2);
+  font-family: var(--font-serif);
+  font-size: px(16);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: px(1.6);
+  text-decoration: none;
+  color: #fff;
+  transition: opacity $transition-base;
 
-  .button {
-    width: auto;
-    min-width: px(200);
-    padding-inline: px(28);
+  @include hover {
+    opacity: 0.85;
   }
 }
 
-// ─── サイドバー Category（一覧と同系統） ───
+// ─── サイドバー Category（一覧ページと同じ作り・位置だけ違う） ───
+// XD 実測: 縦罫 1px x1104 高さ180 / 見出し 32px Marcellus x1120.5
 .news-single__aside {
-  position: sticky;
-  top: calc(var(--header-offset) + #{px(16)});
-  padding: px(8) 0 px(16) px(20);
-  border-left: 3px solid rgba(202, 127, 19, 0.45);
+  box-sizing: border-box;
+  padding: px(9) 0 0 px(15.5);
+  border-left: 1px solid var(--color-main);
+  min-height: px(180);
 
-  @media (max-width: 900px) {
-    position: static;
-    padding: px(8) 0 0;
+  // XD 実測(SP): 白パネルの外（下）に置かれ、縦罫は無い
+  @include mq(md) {
+    padding: px(40.5) px(16) 0;
     border-left: none;
-    border-top: 1px solid rgba(193, 156, 93, 0.35);
+    min-height: 0;
   }
 }
 
 .news-single__cat-heading {
-  margin: 0 0 px(20);
-  font-family: var(--font-serif);
-  font-size: px(22);
+  margin: 0;
+  font-family: var(--font-en);
+  font-size: px(32);
   font-weight: 400;
-  letter-spacing: px(0.88);
-  line-height: 1.2;
+  line-height: 1;
+  letter-spacing: px(3.2);
   color: var(--color-main);
 
   @include mq(md) {
-    margin-bottom: px(16);
-    font-size: px(20);
-    text-align: center;
+    font-size: px(24);
+    letter-spacing: px(2.4);
   }
 }
 
 .news-single__cat-list {
-  margin: 0;
+  display: grid;
+  row-gap: px(3.4);
+  margin: px(27.5) 0 0;
   padding: 0;
   list-style: none;
 
+  // XD 実測(SP): 2列・列ピッチ150 / ベースライン間隔28
   @include mq(md) {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: px(12) px(20);
-    max-width: px(400);
-    margin-inline: auto;
-  }
-}
-
-.news-single__cat-item {
-  margin-bottom: px(12);
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-
-  @include mq(md) {
-    margin-bottom: 0;
-    text-align: center;
+    grid-template-columns: px(150) px(150);
+    column-gap: 0;
+    row-gap: px(2.4);
+    margin-top: px(1);
   }
 }
 
 .news-single__cat-link {
-  display: inline-block;
-  font-family: var(--font-serif);
-  font-size: px(15);
+  font-size: px(16);
   font-weight: 400;
-  letter-spacing: px(0.6);
-  line-height: 1.5;
-  color: var(--color-accent-1);
+  line-height: px(20);
+  letter-spacing: px(1.6);
   text-decoration: none;
+  color: var(--color-main);
   transition: opacity $transition-base;
 
   @include hover {
     opacity: 0.7;
   }
 
-  &[aria-current="true"] {
-    font-weight: 500;
-    color: var(--color-main);
-
-    &::before {
-      content: "－";
-      margin-right: px(2);
-      font-weight: 400;
-      opacity: 0.85;
-    }
+  @include mq(md) {
+    font-size: px(14);
+    line-height: px(20);
+    letter-spacing: px(1.4);
   }
 }

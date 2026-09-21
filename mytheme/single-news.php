@@ -68,7 +68,7 @@ $vr_img = VR_THEME_URI . '/assets/images';
                     </p>
 
                     <figure class="news-single__thumb">
-                        <img src="<?php echo esc_url($vr_thumb_url); ?>" width="920" height="520" alt="<?php echo esc_attr(get_the_title()); ?>" loading="lazy" decoding="async">
+                        <img src="<?php echo esc_url($vr_thumb_url); ?>" width="691" height="250" alt="<?php echo esc_attr(get_the_title()); ?>" loading="lazy" decoding="async">
                     </figure>
 
                     <div class="news-single__body">
@@ -80,10 +80,7 @@ $vr_img = VR_THEME_URI . '/assets/images';
                     </div>
 
                     <p class="news-single__actions">
-                        <a href="<?php echo esc_url(vr_url('news')); ?>" class="button news-single__back">
-                            <span class="md-show">お知らせ一覧へ</span>
-                            <span class="u-md-none">一覧へ</span>
-                        </a>
+                        <a href="<?php echo esc_url(vr_url('news')); ?>" class="news-single__back">お知らせ一覧へ</a>
                     </p>
                 </article>
 
@@ -91,6 +88,7 @@ $vr_img = VR_THEME_URI . '/assets/images';
                     <h2 id="news-single-cat-heading" class="news-single__cat-heading" lang="en">Category</h2>
                     <ul class="news-single__cat-list">
                         <li class="news-single__cat-item"><a href="<?php echo esc_url(vr_url('news')); ?>" class="news-single__cat-link">すべて</a></li>
+                        <li class="news-single__cat-item"><a href="#" class="news-single__cat-link">キャンペーン</a></li>
                         <li class="news-single__cat-item"><a href="#" class="news-single__cat-link">お知らせ</a></li>
                         <li class="news-single__cat-item"><a href="#" class="news-single__cat-link" aria-current="true">コラム</a></li>
                     </ul>
