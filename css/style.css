@@ -2604,213 +2604,323 @@ body[class*=page-] > main#main {
   background-color: var(--color-bg-1);
 }
 
-.price-page-intro {
-  background-color: transparent;
-  padding: 0;
-}
-
 .price-page-intro__breadcrumb-bar {
-  border-bottom: 1px solid rgba(193, 156, 93, 0.55);
-  background-color: var(--color-bg-1);
-  padding: calc(18 * var(--1px)) 0 calc(16 * var(--1px));
+  padding: calc(17 * var(--1px)) 0 0;
 }
-
-.price-page-intro__main {
-  background-color: #fff;
-  padding: calc(64 * var(--1px)) 0 calc(80 * var(--1px));
+.price-page-intro__breadcrumb-bar > .inner {
+  padding-inline: calc(36.5 * var(--1px));
+  width: 100%;
+  max-width: none;
 }
 
 .price-page-intro__layout {
-  gap: calc(40 * var(--1px)) calc(56 * var(--1px));
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  padding-block: calc(68 * var(--1px)) calc(120 * var(--1px));
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-align: start;
-  -webkit-align-items: start;
+  -webkit-align-items: flex-start;
       -ms-flex-align: start;
-          align-items: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .price-page-intro__copy {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 calc(597 * var(--1px));
+      -ms-flex: 0 0 calc(597 * var(--1px));
+          flex: 0 0 calc(597 * var(--1px));
   margin: 0;
-  color: var(--color-accent-1);
-  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
-  font-size: calc(15 * var(--1px));
+  width: calc(597 * var(--1px));
+  color: var(--color-main);
+  font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: calc(18 * var(--1px));
   font-weight: 400;
-  letter-spacing: calc(0.6 * var(--1px));
-  line-height: 2;
+  letter-spacing: calc(1.8 * var(--1px));
+  line-height: calc(36 * var(--1px));
 }
 
-.price-page-intro__nav {
+.price-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 calc(555 * var(--1px));
+      -ms-flex: 0 0 calc(555 * var(--1px));
+          flex: 0 0 calc(555 * var(--1px));
+  margin: 0;
+  padding: 0;
+  width: calc(555 * var(--1px));
+  list-style: none;
+}
+
+.price-nav__item:nth-child(-n+4) {
+  border-bottom: 1px solid rgba(202, 127, 19, 0.5);
+}
+.price-nav__item:nth-child(odd) {
+  border-right: 1px solid rgba(202, 127, 19, 0.5);
+}
+
+.price-nav__link {
+  gap: calc(12 * var(--1px));
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: baseline;
+  -webkit-align-items: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: calc(9 * var(--1px)) calc(18 * var(--1px)) calc(21 * var(--1px)) calc(8.5 * var(--1px));
+  height: calc(58 * var(--1px));
+  color: var(--color-main);
+  text-decoration: none;
+}
+
+.price-nav__label {
+  gap: calc(11.4 * var(--1px));
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: baseline;
+  -webkit-align-items: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
   min-width: 0;
 }
 
-.price-section {
-  background-color: #e8e4dc;
-  padding: calc(72 * var(--1px)) 0 calc(80 * var(--1px));
+.price-nav__name {
+  font-family: var(--font-en);
+  font-size: calc(33 * var(--1px));
+  font-weight: 400;
+  letter-spacing: calc(1.32 * var(--1px));
+  line-height: 1;
 }
 
-.price-section--alt {
-  background-color: #e0ddd5;
+.price-nav__sub {
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: calc(9 * var(--1px));
+  font-weight: 400;
+  letter-spacing: calc(0.36 * var(--1px));
+  line-height: 1;
 }
 
-.price-section__inner {
-  margin-inline: auto;
-  padding-inline: calc(25 * var(--1px));
-  max-width: 1080px;
+.price-nav__chev {
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+  -webkit-align-self: center;
+      -ms-flex-item-align: center;
+          align-self: center;
+  font-size: calc(16 * var(--1px));
+  line-height: 1;
+}
+
+.price-list {
+  background-color: #D4CEBE;
+  padding: calc(56 * var(--1px)) 0 calc(51 * var(--1px));
+}
+
+.price-section + .price-section {
+  margin-top: calc(107 * var(--1px));
 }
 
 .price-section__title {
-  margin: 0 0 calc(12 * var(--1px));
+  margin: 0;
   color: var(--color-main);
   font-family: var(--font-en);
-  font-size: calc(48 * var(--1px));
+  font-size: calc(84 * var(--1px));
   font-weight: 400;
-  letter-spacing: calc(2 * var(--1px));
-  line-height: 1.2;
+  letter-spacing: calc(3.36 * var(--1px));
+  line-height: 1.26;
   text-align: center;
-  text-transform: uppercase;
 }
 
-.price-section__title-ja {
-  margin: 0 0 calc(48 * var(--1px));
+.price-section__block + .price-section__block {
+  margin-top: calc(69 * var(--1px));
+}
+
+.price-section__size {
+  margin: calc(58 * var(--1px)) 0 0;
   color: var(--color-main);
   font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
-  font-size: calc(14 * var(--1px));
+  font-size: calc(24 * var(--1px));
   font-weight: 400;
-  letter-spacing: calc(0.56 * var(--1px));
+  letter-spacing: calc(2.4 * var(--1px));
+  line-height: calc(32 * var(--1px));
   text-align: center;
 }
 
-.price-section__block {
-  margin-bottom: calc(48 * var(--1px));
-}
-.price-section__block:last-child {
-  margin-bottom: 0;
-}
-
-.price-section__category {
-  margin: 0 0 calc(20 * var(--1px));
-  color: var(--color-accent-1);
+.price-section__parts {
+  margin: calc(32 * var(--1px)) auto 0;
+  width: calc(640 * var(--1px));
+  color: var(--color-main);
   font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
   font-size: calc(18 * var(--1px));
-  font-weight: 600;
-  letter-spacing: calc(0.72 * var(--1px));
+  font-weight: 400;
+  letter-spacing: calc(1.8 * var(--1px));
+  line-height: calc(32 * var(--1px));
   text-align: center;
-}
-
-.price-table-wrap {
-  -webkit-overflow-scrolling: touch;
-  margin: 0 calc(-8 * var(--1px));
-  padding: 0 calc(8 * var(--1px));
-  overflow-x: auto;
 }
 
 .price-table {
+  margin: calc(51 * var(--1px)) auto 0;
   border-collapse: collapse;
-  width: 100%;
-  min-width: calc(480 * var(--1px));
-  color: var(--color-accent-1);
-  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
-  font-size: calc(14 * var(--1px));
-  letter-spacing: calc(0.56 * var(--1px));
+  width: calc(800 * var(--1px));
+  table-layout: fixed;
+  color: var(--color-main);
 }
 .price-table th,
 .price-table td {
-  vertical-align: middle;
-  border-bottom: 1px solid rgba(202, 127, 19, 0.28);
-  padding: calc(14 * var(--1px)) calc(12 * var(--1px));
-  text-align: center;
+  vertical-align: baseline;
+  padding: calc(20 * var(--1px)) 0;
 }
 .price-table thead th {
-  background-color: rgba(255, 255, 255, 0.35);
-  color: var(--color-main);
-  font-weight: 600;
+  padding-top: 0;
+  font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: calc(18 * var(--1px));
+  font-weight: 400;
+  letter-spacing: calc(0.72 * var(--1px));
+  line-height: calc(30 * var(--1px));
+  text-align: center;
 }
-.price-table tbody th[scope=row] {
-  color: var(--color-accent-1);
-  font-weight: 600;
-  text-align: left;
+.price-table th:nth-child(1),
+.price-table td:nth-child(1) {
+  width: calc(128 * var(--1px));
+}
+.price-table th:nth-child(2),
+.price-table td:nth-child(2) {
+  width: calc(280 * var(--1px));
+}
+.price-table th:nth-child(3),
+.price-table td:nth-child(3) {
+  width: calc(156 * var(--1px));
+}
+.price-table th:nth-child(4),
+.price-table td:nth-child(4) {
+  padding-left: calc(48 * var(--1px));
+  width: calc(236 * var(--1px));
+}
+.price-table tbody tr {
+  border-top: 1px solid var(--color-main);
+  border-bottom: 1px solid var(--color-main);
+}
+.price-table tbody tr + tr {
+  border-top: none;
+}
+.price-table tbody th {
+  font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: calc(18 * var(--1px));
+  font-weight: 400;
+  letter-spacing: calc(0.72 * var(--1px));
+  line-height: calc(30 * var(--1px));
+  text-align: center;
 }
 .price-table tbody td {
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: calc(18 * var(--1px));
+  font-weight: 600;
+  letter-spacing: calc(1.8 * var(--1px));
+  line-height: calc(30 * var(--1px));
+  text-align: center;
+}
+
+.price-table__note-br {
+  display: none;
+}
+
+.price-table__note {
+  margin: calc(5 * var(--1px)) auto 0;
+  width: calc(800 * var(--1px));
+  color: var(--color-main);
+  font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: calc(12 * var(--1px));
   font-weight: 400;
+  letter-spacing: calc(0.48 * var(--1px));
+  line-height: calc(30 * var(--1px));
+  text-align: right;
 }
 
 .price-custom {
-  background-color: #fff;
-  padding: calc(72 * var(--1px)) 0 calc(80 * var(--1px));
-}
-
-.price-custom__inner {
-  margin-inline: auto;
-  padding-inline: calc(25 * var(--1px));
-  max-width: 1080px;
+  background-color: var(--color-bg-1);
+  padding: calc(67 * var(--1px)) 0 calc(93 * var(--1px));
 }
 
 .price-custom__layout {
-  gap: calc(40 * var(--1px)) calc(48 * var(--1px));
-  display: grid;
-  grid-template-columns: minmax(0, calc(420 * var(--1px))) minmax(0, 1fr);
+  gap: calc(60 * var(--1px));
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-align: start;
-  -webkit-align-items: start;
+  -webkit-align-items: flex-start;
       -ms-flex-align: start;
-          align-items: start;
+          align-items: flex-start;
 }
 
 .price-custom__figure {
-  margin: 0;
+  aspect-ratio: 1/1;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 calc(480 * var(--1px));
+      -ms-flex: 0 0 calc(480 * var(--1px));
+          flex: 0 0 calc(480 * var(--1px));
+  margin: 0 0 0 calc(180 * var(--1px));
+  width: calc(480 * var(--1px));
+  overflow: hidden;
 }
 .price-custom__figure img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
 }
 
 .price-custom__body {
-  min-width: 0;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 calc(540 * var(--1px));
+      -ms-flex: 0 0 calc(540 * var(--1px));
+          flex: 0 0 calc(540 * var(--1px));
+  width: calc(540 * var(--1px));
 }
 
 .price-custom__title {
-  margin: 0 0 calc(20 * var(--1px));
+  margin: calc(11 * var(--1px)) 0 0;
   color: var(--color-main);
   font-family: var(--font-en);
-  font-size: calc(40 * var(--1px));
+  font-size: calc(48 * var(--1px));
   font-weight: 400;
-  letter-spacing: calc(2 * var(--1px));
-  line-height: 1.2;
-  text-align: left;
-  text-transform: uppercase;
+  letter-spacing: calc(4.8 * var(--1px));
+  line-height: calc(60 * var(--1px));
+}
+
+.price-custom__text + .price-custom__text {
+  margin-top: 0;
 }
 
 .price-custom__text {
-  margin: 0;
-  color: var(--color-accent-1);
-  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
-  font-size: calc(15 * var(--1px));
+  margin: calc(53.5 * var(--1px)) 0 0;
+  width: calc(540 * var(--1px));
+  color: var(--color-main);
+  font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: calc(18 * var(--1px));
   font-weight: 400;
-  letter-spacing: calc(0.6 * var(--1px));
-  line-height: 2;
-}
-
-.price-page-note {
-  background-color: #e8e4dc;
-  padding: calc(48 * var(--1px)) 0;
-}
-
-.price-page-note__inner {
-  margin-inline: auto;
-  padding-inline: calc(25 * var(--1px));
-  max-width: 1080px;
-}
-
-.price-page-note__text {
-  margin: 0;
-  color: var(--color-accent-1);
-  font-size: calc(13 * var(--1px));
-  letter-spacing: calc(0.52 * var(--1px));
-  line-height: 1.9;
-  text-align: center;
+  letter-spacing: calc(1.8 * var(--1px));
+  line-height: calc(36 * var(--1px));
 }
 
 .page-reserve {
@@ -5463,78 +5573,251 @@ body[class*=page-] > main#main {
   .concept-profile__table .concept-profile__cell--blank {
     display: none;
   }
-  .price-page-intro__breadcrumb-bar {
-    padding: calc(14 * var(--1px)) 0 calc(12 * var(--1px));
+  .price-page-intro {
+    background-color: var(--color-bg-1);
   }
-  .price-page-intro__main {
-    padding: calc(40 * var(--1px)) 0 calc(48 * var(--1px));
+  .price-page-intro__breadcrumb-bar {
+    padding: calc(3 * var(--1px)) 0 0;
+  }
+  .price-page-intro__breadcrumb-bar > .inner {
+    padding-inline: calc(16 * var(--1px));
   }
   .price-page-intro__layout {
-    gap: calc(32 * var(--1px));
-    grid-template-columns: 1fr;
+    padding-block: calc(80 * var(--1px)) calc(80 * var(--1px));
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
   }
   .price-page-intro__copy {
+    -webkit-box-flex: 0;
+    -webkit-flex: none;
+        -ms-flex: none;
+            flex: none;
+    margin-top: calc(34.8 * var(--1px));
+    width: auto;
     font-size: calc(14 * var(--1px));
-    letter-spacing: calc(0.56 * var(--1px));
-    text-align: center;
+    letter-spacing: calc(1.4 * var(--1px));
+    line-height: calc(28 * var(--1px));
   }
-  .price-section {
-    padding: calc(48 * var(--1px)) 0 calc(56 * var(--1px));
+  .price-nav {
+    display: block;
+    -webkit-box-flex: 0;
+    -webkit-flex: none;
+        -ms-flex: none;
+            flex: none;
+    -webkit-box-ordinal-group: 0;
+    -webkit-order: -1;
+        -ms-flex-order: -1;
+            order: -1;
+    margin-top: 0;
+    width: auto;
   }
-  .price-section__inner {
-    padding-inline: calc(30 * var(--1px));
+  .price-nav__item {
+    border-right: none;
   }
-  .price-section__title {
-    margin-bottom: calc(8 * var(--1px));
-    font-size: calc(32 * var(--1px));
-    letter-spacing: calc(1.2 * var(--1px));
+  .price-nav__item:nth-child(-n+4) {
+    border-bottom: 1px solid rgba(202, 127, 19, 0.5);
   }
-  .price-section__title-ja {
-    margin-bottom: calc(32 * var(--1px));
-    font-size: calc(13 * var(--1px));
+  .price-nav__link {
+    padding: calc(8.5 * var(--1px)) calc(16 * var(--1px)) calc(7.7 * var(--1px)) calc(16 * var(--1px));
+    height: calc(36.2 * var(--1px));
   }
-  .price-section__block {
-    margin-bottom: calc(36 * var(--1px));
+  .price-nav__label {
+    gap: calc(8.1 * var(--1px));
   }
-  .price-section__category {
-    margin-bottom: calc(16 * var(--1px));
-    font-size: calc(16 * var(--1px));
+  .price-nav__name {
+    font-size: calc(20 * var(--1px));
+    letter-spacing: calc(0.8 * var(--1px));
   }
-  .price-table-wrap {
-    margin: 0 calc(-12 * var(--1px));
-    padding: 0 calc(12 * var(--1px));
+  .price-nav__sub {
+    font-size: calc(12 * var(--1px));
+    letter-spacing: calc(0.48 * var(--1px));
+  }
+  .price-nav__chev {
+    font-size: calc(14 * var(--1px));
+  }
+  .price-list {
+    padding: calc(56.5 * var(--1px)) 0 0;
+  }
+  .price-section + .price-section {
+    margin-top: calc(53 * var(--1px));
+  }
+  #price-set {
+    margin-top: calc(16 * var(--1px));
+  }
+  .price-section__block + .price-section__block {
+    margin-top: 0;
+  }
+  .price-section__block + .price-section__block .price-section__size {
+    margin-top: calc(38.8 * var(--1px));
+  }
+  .price-section__size {
+    margin-top: calc(55.2 * var(--1px));
+    font-size: calc(18 * var(--1px));
+    letter-spacing: calc(1.8 * var(--1px));
+    line-height: calc(28 * var(--1px));
+  }
+  .price-section__parts {
+    margin-inline: calc(-14 * var(--1px));
+    margin-top: calc(30 * var(--1px));
+    width: calc(343 * var(--1px));
+    font-size: calc(14 * var(--1px));
+    letter-spacing: calc(1.4 * var(--1px));
+    line-height: calc(28 * var(--1px));
+    text-align: left;
   }
   .price-table {
-    min-width: calc(320 * var(--1px));
-    font-size: calc(13 * var(--1px));
+    margin-inline: calc(-14 * var(--1px));
+    display: block;
+    margin-top: calc(27 * var(--1px));
+    width: calc(343 * var(--1px));
   }
-  .price-table th,
-  .price-table td {
-    padding: calc(12 * var(--1px)) calc(8 * var(--1px));
+  .price-section__block:not(:has(.price-section__size)) > .price-table {
+    margin-top: calc(45.5 * var(--1px));
   }
-  .price-custom {
-    padding: calc(48 * var(--1px)) 0 calc(56 * var(--1px));
+  .price-table th:nth-child(1),
+  .price-table td:nth-child(1),
+  .price-table th:nth-child(2),
+  .price-table td:nth-child(2),
+  .price-table th:nth-child(3),
+  .price-table td:nth-child(3),
+  .price-table th:nth-child(4),
+  .price-table td:nth-child(4) {
+    padding-left: 0;
+    width: auto;
   }
-  .price-custom__inner {
-    padding-inline: calc(30 * var(--1px));
+  .price-table thead {
+    display: none;
   }
-  .price-custom__layout {
-    gap: calc(28 * var(--1px));
-    grid-template-columns: 1fr;
+  .price-table tbody {
+    display: block;
   }
-  .price-custom__title {
-    font-size: calc(28 * var(--1px));
+  .price-table tbody tr {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    border: none;
+    padding-bottom: 0;
+  }
+  .price-table tbody tr + tr {
+    margin-top: calc(54.5 * var(--1px));
+  }
+  .price-table tbody th {
+    grid-column: 1/-1;
+    -webkit-box-ordinal-group: 1;
+    -webkit-order: 0;
+        -ms-flex-order: 0;
+            order: 0;
+    margin: 0 0 calc(43 * var(--1px));
+    padding: 0;
+    font-size: calc(18 * var(--1px));
+    letter-spacing: calc(1.8 * var(--1px));
+    line-height: calc(28 * var(--1px));
     text-align: center;
   }
-  .price-custom__text {
+  .price-table tbody tr::before,
+  .price-table tbody tr::after {
+    -webkit-box-ordinal-group: 2;
+    -webkit-order: 1;
+        -ms-flex-order: 1;
+            order: 1;
+    border-bottom: 1px solid var(--color-main);
+    padding-bottom: calc(23.7 * var(--1px));
+    font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
+    font-size: calc(16 * var(--1px));
+    letter-spacing: calc(0.64 * var(--1px));
+    line-height: calc(24 * var(--1px));
+  }
+  .price-table tbody tr::before {
+    padding-left: calc(49 * var(--1px));
+    content: "施術回数";
+  }
+  .price-table tbody tr::after {
+    padding-right: calc(46 * var(--1px));
+    text-align: right;
+    content: "料金";
+  }
+  .price-table tbody td {
+    gap: calc(12 * var(--1px));
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    grid-column: 1/-1;
+    -webkit-box-align: baseline;
+    -webkit-align-items: baseline;
+        -ms-flex-align: baseline;
+            align-items: baseline;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-ordinal-group: 3;
+    -webkit-order: 2;
+        -ms-flex-order: 2;
+            order: 2;
+    border-bottom: 1px dotted var(--color-main);
+    padding: calc(23.3 * var(--1px)) 0 calc(20.7 * var(--1px));
     font-size: calc(14 * var(--1px));
+    text-align: right;
   }
-  .price-page-note {
-    padding: calc(32 * var(--1px)) 0;
-  }
-  .price-page-note__text {
-    font-size: calc(12 * var(--1px));
+  .price-table tbody td::before {
+    font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
+    font-size: calc(16 * var(--1px));
+    font-weight: 400;
+    letter-spacing: calc(0.64 * var(--1px));
+    line-height: calc(24 * var(--1px));
     text-align: left;
+    content: attr(data-label);
+  }
+  .price-table__note-br {
+    display: inline;
+  }
+  .price-table__note {
+    margin-inline: calc(-14 * var(--1px));
+    margin-top: calc(2.7 * var(--1px));
+    width: calc(343 * var(--1px));
+    text-align: left;
+  }
+  .price-custom {
+    padding: calc(80 * var(--1px)) 0 calc(80 * var(--1px));
+  }
+  .price-custom__layout {
+    display: block;
+  }
+  .price-custom__figure {
+    aspect-ratio: 1/1;
+    margin: 0 auto;
+    width: calc(240 * var(--1px));
+  }
+  .price-custom__body {
+    position: static;
+    -webkit-box-flex: 0;
+    -webkit-flex: none;
+        -ms-flex: none;
+            flex: none;
+    margin: 0 calc(30 * var(--1px));
+    width: auto;
+  }
+  .price-custom__title {
+    margin-top: calc(60 * var(--1px));
+    text-align: left;
+  }
+  .price-custom__text {
+    margin-top: calc(12 * var(--1px));
+    width: auto;
+    font-size: calc(14 * var(--1px));
+    letter-spacing: calc(1.4 * var(--1px));
+    line-height: calc(28 * var(--1px));
   }
   .reserve-page__breadcrumb-bar {
     padding: calc(14 * var(--1px)) 0 calc(12 * var(--1px));
@@ -6038,6 +6321,9 @@ body[class*=page-] > main#main {
   }
   .concept-instagram__btn:hover {
     opacity: 0.94;
+  }
+  .price-nav__link:hover {
+    opacity: 0.75;
   }
   .reserve-online__hpb:hover {
     opacity: 0.9;
