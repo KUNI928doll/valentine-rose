@@ -112,83 +112,83 @@ $vr_doc = VR_THEME_URI . '/assets/documents';
             <form class="reserve-form reserve-form--confirm" action="<?php echo esc_url(vr_url('reserve')); ?>" method="get">
                 <p class="visually-hidden">入力内容をご確認のうえ、送信ボタンを押してください。</p>
                 <dl class="reserve-confirm-list">
-                    <div class="reserve-confirm-list__row">
-                        <dt class="reserve-field__label reserve-confirm-list__dt">
-                            <span class="reserve-badge reserve-badge--req">必須</span>
-                            <span class="reserve-field__name">お名前</span>
-                        </dt>
-                        <dd class="reserve-confirm-list__dd">山田 太郎</dd>
-                    </div>
-                    <div class="reserve-confirm-list__row">
-                        <dt class="reserve-field__label reserve-confirm-list__dt">
-                            <span class="reserve-badge reserve-badge--req">必須</span>
-                            <span class="reserve-field__name">フリガナ</span>
-                        </dt>
-                        <dd class="reserve-confirm-list__dd">ヤマダ タロウ</dd>
-                    </div>
-                    <div class="reserve-confirm-list__row">
-                        <dt class="reserve-field__label reserve-confirm-list__dt">
-                            <span class="reserve-badge reserve-badge--req">必須</span>
-                            <span class="reserve-field__name">電話番号</span>
-                        </dt>
-                        <dd class="reserve-confirm-list__dd">080-0000-0000</dd>
-                    </div>
-                    <div class="reserve-confirm-list__row">
-                        <dt class="reserve-field__label reserve-confirm-list__dt">
-                            <span class="reserve-badge reserve-badge--req">必須</span>
-                            <span class="reserve-field__name">メールアドレス</span>
-                        </dt>
-                        <dd class="reserve-confirm-list__dd">example@gmail.com</dd>
-                    </div>
-                    <div class="reserve-confirm-list__row">
-                        <dt class="reserve-field__label reserve-confirm-list__dt">
-                            <span class="reserve-badge reserve-badge--req">必須</span>
-                            <span class="reserve-field__name">お問い合わせ項目</span>
-                        </dt>
-                        <dd class="reserve-confirm-list__dd">ご予約</dd>
-                    </div>
-                    <div class="reserve-confirm-list__row">
-                        <dt class="reserve-field__label reserve-confirm-list__dt">
-                            <span class="reserve-badge reserve-badge--opt">任意</span>
-                            <span class="reserve-field__name">ご希望のコース</span>
-                        </dt>
-                        <dd class="reserve-confirm-list__dd">全身脱毛、VIO</dd>
-                    </div>
-                    <div class="reserve-confirm-list__row">
-                        <dt class="reserve-field__label reserve-confirm-list__dt">
-                            <span class="reserve-badge reserve-badge--req">必須</span>
-                            <span class="reserve-field__name">店舗のご選択</span>
-                        </dt>
-                        <dd class="reserve-confirm-list__dd">VALENTINE ROSE 渋谷店</dd>
-                    </div>
-                    <div class="reserve-confirm-list__row">
-                        <dt class="reserve-field__label reserve-confirm-list__dt">
-                            <span class="reserve-badge reserve-badge--req">必須</span>
-                            <span class="reserve-field__name">ご来店目的</span>
-                        </dt>
-                        <dd class="reserve-confirm-list__dd">新規</dd>
-                    </div>
-                    <div class="reserve-confirm-list__row">
-                        <dt class="reserve-field__label reserve-confirm-list__dt">
-                            <span class="reserve-badge reserve-badge--req">必須</span>
-                            <span class="reserve-field__name">第1希望日</span>
-                        </dt>
-                        <dd class="reserve-confirm-list__dd">2026/04/20</dd>
-                    </div>
-                    <div class="reserve-confirm-list__row">
-                        <dt class="reserve-field__label reserve-confirm-list__dt">
-                            <span class="reserve-badge reserve-badge--opt">任意</span>
-                            <span class="reserve-field__name">第2希望日</span>
-                        </dt>
-                        <dd class="reserve-confirm-list__dd">2026/04/21</dd>
-                    </div>
-                    <div class="reserve-confirm-list__row">
-                        <dt class="reserve-field__label reserve-confirm-list__dt reserve-field__label--top">
-                            <span class="reserve-badge reserve-badge--req">必須</span>
-                            <span class="reserve-field__name">お問い合わせ内容</span>
-                        </dt>
-                        <dd class="reserve-confirm-list__dd">脱毛のご予約についてお伺いしたく、メールにてお問い合わせいたしました。ご都合の良い日時をご連絡いただけますと幸いです。なお、初回のためカウンセリングもあわせて希望しております。</dd>
-                    </div>
+                  <div class="reserve-confirm-list__row">
+                    <dt class="reserve-field__label reserve-confirm-list__dt">
+                      <span class="reserve-badge reserve-badge--req">必須</span>
+                      <span class="reserve-field__name">お名前</span>
+                    </dt>
+                    <dd class="reserve-confirm-list__dd">山田 太郎</dd>
+                  </div>
+                  <div class="reserve-confirm-list__row">
+                    <dt class="reserve-field__label reserve-confirm-list__dt">
+                      <span class="reserve-badge reserve-badge--req">必須</span>
+                      <span class="reserve-field__name">ふりがな</span>
+                    </dt>
+                    <dd class="reserve-confirm-list__dd">やまだ たろう</dd>
+                  </div>
+                  <div class="reserve-confirm-list__row">
+                    <dt class="reserve-field__label reserve-confirm-list__dt">
+                      <span class="reserve-badge reserve-badge--opt">任意</span>
+                      <span class="reserve-field__name">電話番号</span>
+                    </dt>
+                    <dd class="reserve-confirm-list__dd">000-0000-0000</dd>
+                  </div>
+                  <div class="reserve-confirm-list__row">
+                    <dt class="reserve-field__label reserve-confirm-list__dt">
+                      <span class="reserve-badge reserve-badge--req">必須</span>
+                      <span class="reserve-field__name">メールアドレス</span>
+                    </dt>
+                    <dd class="reserve-confirm-list__dd">example@gmail.com</dd>
+                  </div>
+                  <div class="reserve-confirm-list__row">
+                    <dt class="reserve-field__label reserve-confirm-list__dt">
+                      <span class="reserve-badge reserve-badge--req">必須</span>
+                      <span class="reserve-field__name">ご希望の連絡方法</span>
+                    </dt>
+                    <dd class="reserve-confirm-list__dd">平日の日中にお電話でご連絡ください</dd>
+                  </div>
+                  <div class="reserve-confirm-list__row">
+                    <dt class="reserve-field__label reserve-confirm-list__dt">
+                      <span class="reserve-badge reserve-badge--opt">任意</span>
+                      <span class="reserve-field__name">ご希望の連絡時間帯</span>
+                    </dt>
+                    <dd class="reserve-confirm-list__dd">平日 10:00-13:00 / 休日 13:00-17:00</dd>
+                  </div>
+                  <div class="reserve-confirm-list__row">
+                    <dt class="reserve-field__label reserve-confirm-list__dt">
+                      <span class="reserve-badge reserve-badge--req">必須</span>
+                      <span class="reserve-field__name">お問い合わせ項目</span>
+                    </dt>
+                    <dd class="reserve-confirm-list__dd">施術のご予約</dd>
+                  </div>
+                  <div class="reserve-confirm-list__row">
+                    <dt class="reserve-field__label reserve-confirm-list__dt">
+                      <span class="reserve-badge reserve-badge--req">必須</span>
+                      <span class="reserve-field__name">希望店舗</span>
+                    </dt>
+                    <dd class="reserve-confirm-list__dd">VALENTINE ROSE 渋谷店</dd>
+                  </div>
+                  <div class="reserve-confirm-list__row">
+                    <dt class="reserve-field__label reserve-confirm-list__dt">
+                      <span class="reserve-badge reserve-badge--opt">任意</span>
+                      <span class="reserve-field__name">来店希望日（第一希望）</span>
+                    </dt>
+                    <dd class="reserve-confirm-list__dd">2024/03/14</dd>
+                  </div>
+                  <div class="reserve-confirm-list__row">
+                    <dt class="reserve-field__label reserve-confirm-list__dt">
+                      <span class="reserve-badge reserve-badge--opt">任意</span>
+                      <span class="reserve-field__name">来店希望日（第二希望）</span>
+                    </dt>
+                    <dd class="reserve-confirm-list__dd">2024/03/21</dd>
+                  </div>
+                  <div class="reserve-confirm-list__row">
+                    <dt class="reserve-field__label reserve-confirm-list__dt">
+                      <span class="reserve-badge reserve-badge--opt">任意</span>
+                      <span class="reserve-field__name">お問い合わせ内容</span>
+                    </dt>
+                    <dd class="reserve-confirm-list__dd">テキストが入ります。テキストが入ります。</dd>
+                  </div>
                 </dl>
 
                 <div class="reserve-form__actions">

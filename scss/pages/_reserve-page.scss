@@ -2,10 +2,10 @@
 @use "../abstracts/mixins" as *;
 
 // Reserve ページ（PC/SP カンプ）
-$reserve-beige: #ede9e4;   // XD 実測: Rectangle 61
-$reserve-beige-card: #d4cebe; // XD 実測: Path 3 / 未成年DLパネル
-$reserve-label-bg: #4a3c31;
-$reserve-gold: #c19c5d;
+// XD 実測の色だけを使う（#c19c5d / #4a3c31 は実測にない独自色だったので廃止）
+$reserve-beige: #ede9e4;      // Rectangle 61（メールフォームの帯）
+$reserve-beige-card: $color-bg-2; // Path 3（未成年DLパネル）= #D4CEBE
+$reserve-gold: $color-main;   // 見出し・本文とも #CA7F13
 
 .page-reserve {
   background-color: var(--color-bg-1);
@@ -85,7 +85,7 @@ $reserve-gold: #c19c5d;
 
 // XD 実測: 本文 18px / 行送り27 / 見出しの 51 下（SP 14px・行送り21）
 .reserve-consent__text {
-  margin-top: px(28);
+  margin-top: px(42);
   font-size: px(18);
   line-height: px(27);
   letter-spacing: px(1.8);
@@ -222,7 +222,7 @@ $reserve-gold: #c19c5d;
 // ─── TEL ───
 // XD 実測: TEL ベースライン y1637 / 縦罫 x818.5 y1604.5
 .reserve-tel {
-  padding-block: px(158.5) px(162);
+  padding-block: px(121) px(120);
 
   @include mq(md) {
     padding-block: px(73.5) px(80);
@@ -356,8 +356,9 @@ $reserve-gold: #c19c5d;
   }
   width: px(240);
   height: px(32);
+  // XD 実測: Rectangle 56 は fill が none。1px #CA7F13 の枠線のみ
+  border: 1px solid $color-main;
   border-radius: px(16);
-  background-color: #fff;
   font-size: px(14);
   line-height: 1;
   letter-spacing: px(1.4);
@@ -462,7 +463,8 @@ $reserve-gold: #c19c5d;
   }
 }
 
-$reserve-step-muted: #c4bfb6;
+// XD 実測: 非アクティブのステップは #707070
+$reserve-step-muted: #707070;
 
 // XD 実測: 130 幅の列が 157.5 ピッチ（= 間隔 27.5）
 .reserve-steps {
@@ -570,39 +572,89 @@ $reserve-step-muted: #c4bfb6;
   align-items: start;
 }
 
+// チェックボックスの行も通常行と同じ列（バッジ x219 / ラベル x295 / 入力 x600）に揃える。
+// fieldset は padding / border / min-width の既定だけ打ち消し、並びは .reserve-field の grid に任せる。
 .reserve-field--fieldset {
   margin: 0;
   padding: 0;
+  padding-left: px(39);
   border: none;
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: flex-start;
-  gap: px(16) px(32);
+  min-inline-size: 0;
 
   @include mq(md) {
-    flex-direction: column;
-    gap: px(10);
+    padding-left: 0;
   }
 
   .reserve-field__control {
-    flex: 1 1 0;
     min-width: 0;
   }
 }
 
-.reserve-field__legend {
-  margin: 0;
-  flex: 0 0 minmax(px(220), px(260));
-  padding: px(10) px(14);
-  display: inline-flex;
+.reserve-timegrid__row {
+  display: grid;
+  grid-template-columns: px(51) px(223) px(223) 1fr;
   align-items: center;
-  flex-wrap: wrap;
-  gap: px(8);
-  background-color: $reserve-label-bg;
-  border-radius: px(4);
+
+  @include mq(md) {
+    grid-template-columns: px(40) 1fr;
+    row-gap: px(8);
+  }
+}
+
+// XD 実測: 平日 / 休日 は 14px #333333
+.reserve-timegrid__day {
   font-size: px(14);
-  line-height: 1.4;
+  line-height: px(30);
+  letter-spacing: px(1.4);
+  color: #333;
+
+  @include mq(md) {
+    grid-row: span 3;
+  }
+}
+
+
+// XD 実測: 来店希望日は 300x50 の枠の右端に 50x50 #CA7F13 のカレンダーボタン
+.reserve-date {
+  position: relative;
+  width: px(300);
+
+  @include mq(md) {
+    width: 100%;
+  }
+}
+
+.reserve-date__input {
+  padding-right: px(62);
+}
+
+.reserve-date__icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: px(50);
+  height: px(50);
+  background-color: var(--color-main);
   color: #fff;
+  font-size: px(20);
+  pointer-events: none;
+}
+
+// バッジ＋ラベルの作りは通常行（.reserve-field__label）と同じ。
+// legend は既定では fieldset の「レンダリング済みレジェンド」として枠外に描かれ
+// grid の列に乗らないため、float を指定して通常のボックスに戻す
+// （grid アイテムでは float 自体は無視される）。
+.reserve-field__legend {
+  float: left;
+  display: flex;
+  align-items: center;
+  gap: px(16);
+  margin: 0;
+  padding: 0;
+  padding-top: px(12);
   box-sizing: border-box;
 
   @include mq(md) {
@@ -672,44 +724,27 @@ $reserve-step-muted: #c4bfb6;
 .reserve-field__control {
   min-width: 0;
 
+  // XD 実測: 連絡時間帯は 平日/休日 の2行
+  &--time {
+    display: grid;
+    row-gap: px(12);
+  }
+
+  // XD 実測: お問い合わせ項目は 2 列（チェック 0 / 278）
   &--checks {
-    display: flex;
-    flex-wrap: wrap;
-    gap: px(16) px(28);
-    padding-top: px(4);
-  }
-
-  &--grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: px(12) px(20);
-    padding-top: px(4);
-
-    @include mq(md) {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
-  &--grid-sm {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: px(278) 1fr;
+    row-gap: px(14);
 
     @include mq(md) {
       grid-template-columns: 1fr;
-    }
-  }
-
-  &--dates {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: px(20);
-
-    @include mq(md) {
-      grid-template-columns: 1fr;
+      row-gap: px(12);
     }
   }
 }
 
-// XD 実測: 620x50 / 角丸2 / 白 / 枠線 1px #707070（テキストエリアは 620x120）
+// XD 実測: Rectangle 63 は 620x50 / 角丸2 / 塗り #F9F8F6 / 枠線なし
+// （テキストエリアは 620x120）
 .reserve-input,
 .reserve-textarea {
   width: 100%;
@@ -721,10 +756,10 @@ $reserve-step-muted: #c4bfb6;
   line-height: 1.5;
   letter-spacing: px(1.6);
   color: var(--color-text);
-  background-color: #fff;
-  border: 1px solid #707070;
+  background-color: $color-bg-1;
+  border: none;
   border-radius: px(2);
-  transition: border-color $transition-base, box-shadow $transition-base;
+  transition: box-shadow $transition-base;
 
   &::placeholder {
     color: rgba(51, 51, 51, 0.4);
@@ -744,21 +779,48 @@ $reserve-step-muted: #c4bfb6;
   min-height: px(120);
 }
 
+// XD 実測: 希望店舗は 300x50（他の入力欄 620 より短い）
+.reserve-input--short {
+  width: px(300);
+
+  @include mq(md) {
+    width: 100%;
+  }
+}
+
 .reserve-check {
   display: flex;
   align-items: center;
-  gap: px(8);
-  font-family: var(--font-base);
+  gap: px(13);
   font-size: px(14);
-  line-height: 1.5;
-  color: var(--color-accent-1);
+  line-height: px(30);
+  letter-spacing: px(1.4);
+  color: #333;
   cursor: pointer;
 
-  input {
-    width: px(18);
-    height: px(18);
-    accent-color: var(--color-accent-2);
+  // XD 実測: Rectangle 64 / 65 は 30x30 の白い四角（枠線なし）
+  input[type="checkbox"],
+  input[type="radio"] {
+    appearance: none;
+    flex-shrink: 0;
+    margin: 0;
+    width: px(30);
+    height: px(30);
+    background-color: #fff;
+    border: none;
+    border-radius: 0;
     cursor: pointer;
+
+    &:checked::after {
+      content: "";
+      display: block;
+      margin: px(8) auto 0;
+      width: px(14);
+      height: px(8);
+      border-left: 2px solid var(--color-main);
+      border-bottom: 2px solid var(--color-main);
+      transform: rotate(-45deg);
+    }
   }
 }
 
@@ -870,7 +932,7 @@ $reserve-step-muted: #c4bfb6;
   margin: 0;
 }
 
-// XD 実測: 620x50 の白帯（角丸2 / 枠線 1px #707070）に 16px #707070
+// XD 実測: 620x50 の帯（角丸2 / 塗り #F9F8F6 / 枠線なし）に 16px #707070
 .reserve-confirm-list__dd {
   display: flex;
   align-items: center;
@@ -878,8 +940,6 @@ $reserve-step-muted: #c4bfb6;
   margin: 0;
   padding-inline: px(16);
   min-height: px(50);
-  background-color: #fff;
-  border: 1px solid #707070;
   border-radius: px(2);
   font-size: px(16);
   line-height: px(26);
@@ -1008,5 +1068,20 @@ $reserve-step-muted: #c4bfb6;
 
   @include hover {
     opacity: 0.75;
+  }
+}
+
+// XD 実測: 12px #333333 を入力欄の左端（x599）にそろえる
+.reserve-form__note {
+  margin-top: px(52);
+  padding-left: px(420);
+  font-size: px(12);
+  line-height: px(24);
+  letter-spacing: px(1.2);
+  color: #333;
+
+  @include mq(md) {
+    margin-top: px(28);
+    padding-left: 0;
   }
 }

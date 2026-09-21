@@ -62,7 +62,7 @@
   min-height: px(1031);
   padding-top: px(3.5);
   padding-inline: px(87) px(86);
-  background-color: #fff;
+
 
   // SP はボタンをパネル下端から 77.5 浮かせる（下端そろえは PC のみ）
   @include mq(md) {
