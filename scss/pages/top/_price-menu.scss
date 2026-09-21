@@ -91,16 +91,16 @@
 .price-menu__title-ja {
   // カンプ: PRICE MENU → メニュー料金 のベースライン間 PC34px / SP25px
   margin: px(-6) 0 0;
-
-  @include mq(md) {
-    margin-top: px(-4.5);
-  }
   font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
   font-size: px(14);
   font-weight: 400;
   letter-spacing: px(0.56);
   line-height: 1.5;
   color: var(--color-main);
+
+  @include mq(md) {
+    margin-top: px(-4.5);
+  }
 }
 
 .price-menu__grid {

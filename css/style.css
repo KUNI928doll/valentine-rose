@@ -344,6 +344,7 @@ body[class*=page-] > main#main {
 }
 
 .page-hero__parallax {
+  --parallax-mode: framed;
   position: relative;
   top: -1px;
   z-index: 0;
@@ -386,10 +387,6 @@ body[class*=page-] > main#main {
      object-fit: cover;
   -o-object-position: center;
      object-position: center;
-}
-
-.page-hero__parallax {
-  --parallax-mode: framed;
 }
 
 .page-hero__parallax.is-parallax .page-hero__bg {
@@ -1510,7 +1507,6 @@ body[class*=page-] > main#main {
   padding: 0;
   max-width: calc(299 * var(--1px));
   font-size: calc(18 * var(--1px));
-  list-style: none;
 }
 
 .feature__nav-item {
@@ -2429,7 +2425,6 @@ body[class*=page-] > main#main {
           justify-content: center;
   margin: 0 0 calc(60 * var(--1px));
   padding: 0;
-  list-style: none;
 }
 
 .concept-instagram__cell {
@@ -2659,7 +2654,6 @@ body[class*=page-] > main#main {
   margin: 0;
   padding: 0;
   width: calc(555 * var(--1px));
-  list-style: none;
 }
 
 .price-nav__item:nth-child(-n+4) {
@@ -3203,10 +3197,6 @@ body[class*=page-] > main#main {
 .reserve-mail {
   padding-block: calc(87.5 * var(--1px)) calc(80 * var(--1px));
   background-color: #ede9e4;
-}
-
-.reserve-mail__inner {
-  max-width: 1080px;
 }
 
 .reserve-mail__head {
@@ -3900,7 +3890,8 @@ body[class*=page-] > main#main {
   padding: calc(120.5 * var(--1px)) 0 calc(120 * var(--1px));
 }
 
-.salon-single-intro__text {
+.salon-single-intro__text,
+.salon-single-intro__body > p {
   margin: 0 auto;
   width: calc(1080 * var(--1px));
   font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
@@ -4415,7 +4406,6 @@ body[class*=page-] > main#main {
           column-gap: calc(60 * var(--1px));
   margin: 0;
   padding: 0 0 0 calc(60 * var(--1px));
-  list-style: none;
 }
 
 .pref-nav__item {
@@ -4522,7 +4512,6 @@ body[class*=page-] > main#main {
   grid-template-columns: repeat(2, calc(570 * var(--1px)));
   margin: calc(60 * var(--1px)) 0 0;
   padding: 0;
-  list-style: none;
 }
 
 .salons-archive-card {
@@ -4890,6 +4879,7 @@ body[class*=page-] > main#main {
   letter-spacing: calc(1.6 * var(--1px));
   line-height: calc(32 * var(--1px));
 }
+.news-single__body > h2,
 .news-single__body > h3 {
   margin-top: calc(19 * var(--1px));
   color: var(--color-main);
@@ -4899,6 +4889,7 @@ body[class*=page-] > main#main {
   letter-spacing: calc(1.8 * var(--1px));
   line-height: calc(32 * var(--1px));
 }
+.news-single__body > h2 + p,
 .news-single__body > h3 + p {
   margin-top: calc(7 * var(--1px));
 }
@@ -6241,7 +6232,8 @@ body[class*=page-] > main#main {
   .salon-single-intro {
     padding: calc(80 * var(--1px)) 0 calc(80 * var(--1px));
   }
-  .salon-single-intro__text {
+  .salon-single-intro__text,
+  .salon-single-intro__body > p {
     width: auto;
     font-size: calc(14 * var(--1px));
     letter-spacing: calc(1.4 * var(--1px));
@@ -6625,10 +6617,12 @@ body[class*=page-] > main#main {
     letter-spacing: calc(1.4 * var(--1px));
     line-height: calc(28 * var(--1px));
   }
+  .news-single__body > h2,
   .news-single__body > h3 {
     margin-top: calc(8.5 * var(--1px));
     font-size: calc(16 * var(--1px));
   }
+  .news-single__body > h2 + p,
   .news-single__body > h3 + p {
     margin-top: calc(6.5 * var(--1px));
   }

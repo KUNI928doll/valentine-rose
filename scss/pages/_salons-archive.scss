@@ -150,7 +150,6 @@
   margin: 0;
   // XD 実測: ▲マーカーの左端が x180（コンテンツ左端 +60）。SP は x30 で内側の余白なし
   padding: 0 0 0 px(60);
-  list-style: none;
 
   @include mq(md) {
     column-gap: px(20);
@@ -300,7 +299,6 @@
   gap: px(80) px(60);
   margin: px(60) 0 0;
   padding: 0;
-  list-style: none;
 
   @include mq(md) {
     grid-template-columns: 1fr;

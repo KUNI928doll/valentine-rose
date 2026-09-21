@@ -89,7 +89,9 @@
   }
 }
 
-.salon-single-intro__text {
+// WordPress 側は the_content() を __body で包むため、その中の段落にも同じ指定を効かせる
+.salon-single-intro__text,
+.salon-single-intro__body > p {
   margin: 0 auto;
   width: px(1080);
   font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;

@@ -64,6 +64,8 @@ body[class*="page-"] > main#main {
 
 // クリップ領域（高さ固定）＋ 背景レイヤーは縦に余裕を持たせて移動時に切れないようにする
 .page-hero__parallax {
+  // main.js に「画面固定ではなく枠基準で動かす」と伝える
+  --parallax-mode: framed;
   position: relative;
   // タイトル帯と 1px 重ねて継ぎ目のすき間を埋める（負 margin ではなく相対位置で重ねる）
   top: -1px;
@@ -125,10 +127,6 @@ body[class*="page-"] > main#main {
 // 画面高に合わせる「背景固定」方式だと object-fit: cover の拡大率が
 // 画面高 ÷ 600 になり、背の高いウィンドウで2倍近くまで拡大されてしまうため、
 // 拡大率を 1.25 倍に固定する。
-.page-hero__parallax {
-  --parallax-mode: framed;
-}
-
 // 可動量と拡大率は連動する（可動量 = レイヤー高 - 枠高 / 拡大率 = レイヤー高 ÷ 枠高）。
 // 1.4 倍 = 可動量 上下120px（計240px）。1.25 倍まで下げると可動量は計150pxになる。
 .page-hero__parallax.is-parallax .page-hero__bg {

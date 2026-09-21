@@ -350,10 +350,6 @@ $reserve-gold: $color-main;   // 見出し・本文とも #CA7F13
   justify-content: center;
   box-sizing: border-box;
   margin-top: px(40);
-
-  @include mq(md) {
-    margin-top: px(19.5);
-  }
   width: px(240);
   height: px(32);
   // XD 実測: Rectangle 56 は fill が none。1px #CA7F13 の枠線のみ
@@ -363,6 +359,10 @@ $reserve-gold: $color-main;   // 見出し・本文とも #CA7F13
   line-height: 1;
   letter-spacing: px(1.4);
   color: $reserve-gold;
+
+  @include mq(md) {
+    margin-top: px(19.5);
+  }
 }
 
 .reserve-tel__sub-link {
@@ -391,10 +391,6 @@ $reserve-gold: $color-main;   // 見出し・本文とも #CA7F13
   @include mq(md) {
     padding-block: px(64) px(60);
   }
-}
-
-.reserve-mail__inner {
-  max-width: 1080px;
 }
 
 // XD 実測: 見出し x180 / ステップ x814 幅445
