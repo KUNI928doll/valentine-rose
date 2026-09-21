@@ -8,6 +8,7 @@
     "build": "gulp build",
     "build:wp": "gulp build --wp",
     "dev": "gulp",
+    "watch:css": "gulp",
     "dev:wp": "gulp --wp"
   },
   "devDependencies": {

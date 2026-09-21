@@ -2,26 +2,11 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "watch:css (sass)",
+      "label": "watch:css (gulp)",
       "type": "shell",
       "command": "npm run watch:css",
       "isBackground": true,
-      "problemMatcher": [
-        {
-          "owner": "sass",
-          "pattern": [
-            {
-              "regexp": "^(.*)$",
-              "message": 1
-            }
-          ],
-          "background": {
-            "activeOnStart": true,
-            "beginsPattern": "Sass is watching for changes\\.",
-            "endsPattern": "Sass is watching for changes\\."
-          }
-        }
-      ],
+      "problemMatcher": [],
       "runOptions": {
         "runOn": "folderOpen"
       },
@@ -34,5 +19,3 @@
     }
   ]
 }
-
-
