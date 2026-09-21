@@ -20,224 +20,285 @@
 
   .page-hero__parallax {
     background-color: var(--salons-hero-bg);
+    // main.js に「画面固定ではなく枠基準で動かす」と伝える（下のコメント参照）
+    --parallax-mode: framed;
   }
 
   .page-hero__bg {
     background-color: var(--salons-hero-bg);
 
     // 地図は横を切ると沖縄・北海道が欠けるので contain で原寸比のまま中央に置く。
-    // 背景固定パララックスで窓の外に出た部分には画像の下地と同じ #E1E1E1 が
-    // 出るため継ぎ目が見えない。
+    // 動いた先には画像の下地と同じ #E1E1E1 が出るため継ぎ目が見えない。
     .page-hero__img {
       object-fit: contain;
+    }
+  }
+
+  // 他ページの KV は「画面に固定」する背景固定パララックスだが、地図は
+  // contain で中央に置くため画面基準で動かすと枠の中で上下左右にずれてしまう。
+  // ここだけ枠基準（枠の1.25倍のレイヤーをはみ出し分だけ動かす）に切り替える。
+  // 切り替えは上の --parallax-mode: framed で明示する（画面の高さで判定すると
+  // 低いウィンドウのときに画面固定側へ戻ってしまう）。
+  .page-hero__parallax.is-parallax .page-hero__bg {
+    // 可動量は上下75px（SP 37.5px）。はみ出した先には画像の下地と同じ
+    // #E1E1E1 が出るので、地図が自分の背景の上を滑って見える
+    top: px(-75);
+    height: px(750);
+
+    @include mq(md) {
+      top: px(-37.5);
+      height: px(375);
     }
   }
 }
 
 // ─── パンくず ───
+// カンプに帯の背景・罫線は無い（アートボード地の #F9F8F6 のまま）
 .salons-archive__breadcrumb-bar {
-  background-color: #fff;
-  padding: px(18) 0 px(16);
-  border-bottom: 1px solid rgba(193, 156, 93, 0.45);
+  padding: px(17) 0 0;
 
   @include mq(md) {
-    padding: px(14) 0 px(12);
+    padding: px(3) 0 0;
+  }
+
+  // XD 実測: パンくずだけコンテンツ幅より内側 PC 36.5 / SP 16
+  > .inner {
+    width: 100%;
+    max-width: none;
+    padding-inline: px(36.5);
+
+    @include mq(md) {
+      padding-inline: px(16);
+    }
   }
 }
 
 // ─── PREFECTURES 見出し + エリアナビ ───
+// ─── 都道府県ナビ ───
 .salons-archive-intro {
-  padding: px(56) 0 px(48);
-  background-color: var(--color-bg-1);
+  padding: px(114) 0 px(85);
 
   @include mq(md) {
-    padding: px(40) 0 px(36);
+    padding: px(102) 0 px(80);
   }
 }
 
 .salons-archive__head {
-  text-align: center;
-  margin-bottom: px(40);
+  position: relative;
+  margin-bottom: px(98);
 
   @include mq(md) {
-    margin-bottom: px(28);
+    margin-bottom: px(70.9);
   }
 }
 
-.salons-archive__en {
+// トップページと同じ見出し3点セット（EN + 装飾スクリプト + 和文）
+.salons-archive__title {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
   margin: 0;
+  line-height: 1;
+  overflow: visible;
+
+  .section-title__en {
+    position: relative;
+    z-index: 1;
+    text-transform: uppercase;
+  }
+
+  .section-title__bg {
+    position: absolute;
+    // XD 実測: 見出し左端 +90 / 装飾の1行目ベースラインは見出しより 9px 上
+    left: px(90);
+    top: px(-39);
+    z-index: 0;
+    line-height: px(168);
+    pointer-events: none;
+    white-space: nowrap;
+
+    @include mq(md) {
+      font-size: px(72);
+      line-height: px(101);
+      left: px(55);
+      top: px(-26);
+    }
+  }
+
+  + .section-title__ja {
+    display: block;
+    margin-top: px(-2.3);
+  }
+}
+
+// XD 実測: 項目は左端 x195（コンテンツ左端 +75）から流し込み、
+// 項目間 76 / 行ピッチ 80（SP は行ピッチ 35）
+.pref-nav {
+  display: flex;
+  flex-wrap: wrap;
+  // XD 実測: 項目間は 60（マーカー左端どうしで測ると 302）。SP は 20
+  column-gap: px(60);
+  // 行間は item 側の margin-top で作る（改行要素に row-gap が二重にかかるため）
+  row-gap: 0;
+  margin: 0;
+  // XD 実測: ▲マーカーの左端が x180（コンテンツ左端 +60）。SP は x30 で内側の余白なし
+  padding: 0 0 0 px(60);
+  list-style: none;
+
+  @include mq(md) {
+    column-gap: px(20);
+    row-gap: 0;
+    padding-left: 0;
+  }
+}
+
+.pref-nav__item {
+  display: block;
+  margin-top: px(32);
+
+  @include mq(md) {
+    margin-top: px(9.4);
+  }
+}
+
+// カンプはナビの折り返し位置が手置き（PC 2/3/2・SP 1/1/2/2/1）なので、
+// 改行要素で同じ位置に折る。row-gap の分だけ上に詰めて余分な行間を打ち消す
+.pref-nav__break {
+  display: none;
+  width: 100%;
+  height: 0;
+  margin: 0;
+}
+
+.pref-nav__break--both {
+  display: block;
+}
+
+.pref-nav__break--pc {
+  display: block;
+
+  @include mq(md) {
+    display: none;
+  }
+}
+
+.pref-nav__break--sp {
+  @include mq(md) {
+    display: block;
+  }
+}
+
+.pref-nav__link {
+  display: inline-flex;
+  align-items: baseline;
+  text-decoration: none;
+  color: var(--color-main);
+  transition: opacity $transition-base;
+
+  @include hover {
+    opacity: 0.75;
+  }
+
+  // XD 実測: 18x15 の三角を90°回転 → 表示は 15x18 の右向き三角 #54372D。
+  // マーカーの右端から EN までが 20（SP は 6.67x8 で 8）
+  &::before {
+    content: "";
+    align-self: center;
+    flex-shrink: 0;
+    width: 0;
+    height: 0;
+    margin-right: px(20);
+    border-top: px(9) solid transparent;
+    border-bottom: px(9) solid transparent;
+    border-left: px(15) solid var(--color-accent-1);
+
+    @include mq(md) {
+      margin-right: px(8);
+      border-top-width: px(4);
+      border-bottom-width: px(4);
+      border-left-width: px(6.67);
+    }
+  }
+}
+
+// XD 実測: 48px Marcellus-Regular / 字間4.8（SP 20px / 字間2）
+.pref-nav__en {
+  // XD 実測: EN と和文の間は 12（PC / SP 共通）
+  margin-right: px(12);
   font-family: var(--font-en);
   font-size: px(48);
   font-weight: 400;
-  letter-spacing: px(3);
-  line-height: 1.2;
-  text-transform: uppercase; // カンプ「PREFECTURES」
-  color: var(--color-main);
+  line-height: 1;
+  letter-spacing: px(4.8);
 
   @include mq(md) {
-    font-size: px(32);
+    font-size: px(20);
     letter-spacing: px(2);
   }
 }
 
-.salons-archive__ja {
-  margin: px(12) 0 0;
-  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+// XD 実測: 14px Yu Gothic / 字間0.56（SP 12px / 字間0.48）
+.pref-nav__ja {
+  font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
   font-size: px(14);
   font-weight: 400;
+  line-height: 1;
   letter-spacing: px(0.56);
-  line-height: 1.5;
-  color: var(--color-text);
-  opacity: 0.85;
 
   @include mq(md) {
     font-size: px(12);
+    letter-spacing: px(0.48);
   }
 }
 
-// PC：グリッドリンク（矢印 + 件数）
-.salons-archive-nav--pc {
-  width: 100%;
-}
-
-.salons-archive-nav__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: px(12) px(24);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-
-  @media (min-width: 900px) {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.salons-archive-nav__link {
-  display: inline-flex;
-  align-items: center;
-  gap: px(8);
-  font-family: var(--font-en);
-  font-size: px(16);
-  font-weight: 400;
-  letter-spacing: px(0.64);
-  line-height: 1.4;
-  color: var(--color-main);
-  text-decoration: none;
-  transition: opacity $transition-base;
-
-  @include hover {
-    opacity: 0.75;
-  }
-}
-
-.salons-archive-nav__ico {
-  flex-shrink: 0;
-  font-size: px(12);
-  opacity: 0.9;
-}
-
-.salons-archive-nav__count {
-  font-size: px(13);
-  font-family: var(--font-base);
-  letter-spacing: px(0.2);
-  opacity: 0.9;
-}
-
-// SP：箇条書き（・）
-.salons-archive-nav--sp {
-  width: 100%;
-  max-width: px(400);
-  margin-inline: auto;
-}
-
-.salons-archive-nav__list-sp {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.salons-archive-nav__item-sp {
-  position: relative;
-  padding-left: px(18);
-  margin-bottom: px(10);
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-
-  &::before {
-    content: "・";
-    position: absolute;
-    left: 0;
-    color: var(--color-accent-1);
-  }
-}
-
-.salons-archive-nav__link-sp {
-  font-family: var(--font-serif);
-  font-size: px(15);
-  letter-spacing: px(0.6);
-  line-height: 1.5;
-  color: var(--color-accent-1);
-  text-decoration: underline;
-  text-underline-offset: px(3);
-  transition: opacity $transition-base;
-
-  @include hover {
-    opacity: 0.75;
-  }
-}
-
-// ─── 都道府県ブロック ───
+// ─── 県ブロック（カンプ: 1ブロック 711px の繰り返し） ───
 .salons-archive-region {
-  padding: px(48) 0 px(56);
-  background-color: var(--color-bg-1);
+  padding-bottom: px(82);
 
   @include mq(md) {
-    padding: px(36) 0 px(44);
+    padding-bottom: px(82);
   }
 }
 
-.salons-archive-region--alt {
-  background-color: #fff;
-}
-
+// XD 実測: 1200x120 の #CA7F13 帯。県名 EN はベースラインが帯上端 +77
 .salons-archive-region__banner {
-  margin: 0 calc(50% - 50vw) px(32);
-  width: 100vw;
-  max-width: none;
-  padding: px(14) px(16);
   box-sizing: border-box;
-  background: linear-gradient(90deg, #b8892a 0%, #c9a04a 50%, #b8892a 100%);
-  text-align: center;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  height: px(120);
+  margin: 0;
+  padding-top: px(37);
+  background-color: var(--color-main);
   font-family: var(--font-en);
-  font-size: px(28);
+  font-size: px(48);
   font-weight: 400;
-  letter-spacing: px(2);
-  line-height: 1.2;
-  text-transform: capitalize;
+  line-height: 1;
+  letter-spacing: px(4.8);
   color: #fff;
 
+  // XD 実測(SP): 315x60 / 県名 24px / ベースライン 帯上端 +38
   @include mq(md) {
-    margin-bottom: px(24);
-    padding: px(12) px(12);
-    font-size: px(22);
-    letter-spacing: px(1.5);
+    height: px(60);
+    padding-top: px(17.9);
+    font-size: px(24);
+    letter-spacing: px(2.4);
   }
 }
 
+// XD 実測: カードは 570 幅を 2列（間隔60）。SP は1列
 .salons-archive-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: px(28) px(24);
-  margin: 0;
+  grid-template-columns: repeat(2, #{px(570)});
+  gap: px(80) px(60);
+  margin: px(60) 0 0;
   padding: 0;
   list-style: none;
 
   @include mq(md) {
     grid-template-columns: 1fr;
-    gap: px(24);
+    gap: px(44);
+    margin-top: px(40);
   }
 }
 
@@ -247,24 +308,31 @@
 
 .salons-archive-card__link {
   display: block;
-  height: 100%;
-  color: inherit;
   text-decoration: none;
+  color: var(--color-main);
   transition: opacity $transition-base;
 
   @include hover {
-    opacity: 0.88;
+    opacity: 0.85;
   }
 }
 
-.salons-archive-card__map {
+// XD 実測: 570x360（SP 315x200）。素材未支給のためプレースホルダーを出すが、
+// 店舗詳細（ACF salon_map）の地図がある場合はそれを枠いっぱいに敷く
+.salons-archive-card__thumb {
   position: relative;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
+  display: block;
+  width: 100%;
+  aspect-ratio: 570 / 360;
   background: linear-gradient(145deg, #e8e4dc 0%, #d4cfc4 100%);
-  border: 1px solid rgba(193, 156, 93, 0.35);
+  overflow: hidden;
 
-  // 店舗詳細の地図をそのまま流用する。カード全体がリンクなので地図側の操作は殺す。
+  @include mq(md) {
+    aspect-ratio: 315 / 200;
+  }
+
+  // カード全体がリンクなので地図側の操作は殺す
+  .salons-archive-card__map-iframe,
   iframe,
   img {
     position: absolute;
@@ -282,83 +350,69 @@
   &:has(img) .salons-archive-card__pin {
     display: none;
   }
-
-  &::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-      circle at 50% 45%,
-      rgba(202, 127, 19, 0.25) 0,
-      transparent 55%
-    );
-    pointer-events: none;
-  }
 }
 
 .salons-archive-card__pin {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -55%);
-  font-size: px(36);
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: px(40);
   color: #c45c4a;
   filter: drop-shadow(0 px(2) px(4) rgba(0, 0, 0, 0.2));
-  z-index: 1;
 
   @include mq(md) {
     font-size: px(30);
   }
 }
 
-.salons-archive-card__body {
-  padding: px(16) 0 0;
-
-  @include mq(md) {
-    padding-top: px(12);
-  }
-}
-
-.salons-archive-card__name {
-  margin: 0 0 px(8);
+// XD 実測: 店舗名 EN 32px Marcellus / 字間3.2（SP 20px / 字間2）
+.salons-archive-card__en {
+  display: block;
+  margin-top: px(12.5);
   font-family: var(--font-en);
-  font-size: px(22);
+  font-size: px(32);
   font-weight: 400;
+  line-height: 1;
+  letter-spacing: px(3.2);
+
+  @include mq(md) {
+    margin-top: px(9.7);
+    font-size: px(20);
+    letter-spacing: px(2);
+  }
+}
+
+// XD 実測: 店名 16px Yu Mincho / 字間1.6（SP 14px / 字間1.4）
+.salons-archive-card__name {
+  display: block;
+  margin-top: px(6);
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: px(16);
+  font-weight: 400;
+  line-height: 1;
   letter-spacing: px(1.6);
-  line-height: 1.2;
-  text-transform: uppercase;
-  color: var(--color-main);
 
   @include mq(md) {
-    font-size: px(18);
-    letter-spacing: px(1.2);
+    margin-top: px(9.5);
+    font-size: px(14);
+    letter-spacing: px(1.4);
   }
 }
 
-// デザインでは英語表記の下に日本語の店舗名が入る（静的HTMLには要素が無かったため追加）
-.salons-archive-card__name-ja {
-  margin: 0 0 px(8);
-  font-family: var(--font-base);
+// XD 実測: 住所 14px Yu Gothic / 字間1.4
+.salons-archive-card__address {
+  display: block;
+  margin-top: px(9);
+  font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
   font-size: px(14);
-  line-height: 1.6;
-  letter-spacing: px(0.45);
-  color: var(--color-accent-1);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: px(1.4);
 
   @include mq(md) {
-    font-size: px(13);
-    letter-spacing: px(0.39);
-  }
-}
-.salons-archive-card__meta {
-  margin: 0;
-  font-family: var(--font-base);
-  font-size: px(13);
-  line-height: 1.75;
-  letter-spacing: px(0.42);
-  color: var(--color-accent-1);
-
-  @include mq(md) {
-    font-size: px(12);
-    letter-spacing: px(0.36);
+    margin-top: px(9);
   }
 }

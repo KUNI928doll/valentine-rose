@@ -161,27 +161,35 @@ get_header();
     <section class="salons-archive-intro" aria-labelledby="salons-archive-heading">
       <div class="inner">
         <header class="salons-archive__head">
-          <h2 id="salons-archive-heading" class="salons-archive__en">Prefectures</h2>
-          <p class="salons-archive__ja md-show">店舗一覧</p>
-          <p class="salons-archive__ja u-md-none">エリア</p>
+          <h2 id="salons-archive-heading" class="salons-archive__title">
+            <span class="section-title__en">Prefectures</span>
+            <span class="section-title__bg" aria-hidden="true">Prefectures</span>
+          </h2>
+          <p class="section-title__ja">都道府県</p>
         </header>
 <?php if (! empty($vr_groups)) : ?>
 
-        <nav class="salons-archive-nav salons-archive-nav--pc md-show" aria-label="都道府県（PC）">
-          <ul class="salons-archive-nav__grid">
-<?php foreach ($vr_groups as $vr_group) : ?>
-            <li><a href="#pref-<?php echo esc_attr($vr_group['slug']); ?>" class="salons-archive-nav__link"><i class="fas fa-angle-right salons-archive-nav__ico" aria-hidden="true"></i><?php echo esc_html($vr_group['en']); ?> <span class="salons-archive-nav__count">(<?php echo esc_html((string) count($vr_group['posts'])); ?>)</span></a></li>
-<?php endforeach; ?>
-          </ul>
-        </nav>
-
-        <nav class="salons-archive-nav salons-archive-nav--sp u-md-none" aria-label="都道府県（スマートフォン）">
-          <ul class="salons-archive-nav__list-sp">
-<?php foreach ($vr_groups as $vr_group) : ?>
-            <li class="salons-archive-nav__item-sp"><a href="#pref-<?php echo esc_attr($vr_group['slug']); ?>" class="salons-archive-nav__link-sp"><?php echo esc_html($vr_group['en']); ?></a></li>
-<?php endforeach; ?>
-          </ul>
-        </nav>
+        <ul class="pref-nav">
+<?php
+        // カンプ（7県）の折り返し位置を再現する改行要素。
+        // 県の数が増減したときは自然な折り返しに任せる。
+        $vr_breaks = count($vr_groups) === 7
+            ? array(0 => 'sp', 1 => 'both', 3 => 'sp', 4 => 'pc', 5 => 'sp')
+            : array();
+        $vr_nav_i  = 0;
+        foreach ($vr_groups as $vr_group) :
+            ?>
+          <li class="pref-nav__item">
+            <a href="#pref-<?php echo esc_attr($vr_group['slug']); ?>" class="pref-nav__link"><span class="pref-nav__en"><?php echo esc_html($vr_group['en']); ?></span><span class="pref-nav__ja"><?php echo esc_html($vr_group['ja']); ?></span></a>
+          </li>
+<?php if (isset($vr_breaks[$vr_nav_i])) : ?>
+          <li class="pref-nav__break pref-nav__break--<?php echo esc_attr($vr_breaks[$vr_nav_i]); ?>" aria-hidden="true"></li>
+<?php endif; ?>
+<?php
+            ++$vr_nav_i;
+        endforeach;
+        ?>
+        </ul>
 <?php endif; ?>
       </div>
     </section>
@@ -190,13 +198,13 @@ global $post;
 $vr_region_i = 0;
 
 foreach ($vr_groups as $vr_group) :
-    $vr_section_class = 'salons-archive-region' . ($vr_region_i % 2 === 1 ? ' salons-archive-region--alt' : '');
+    $vr_section_class = 'salons-archive-region';
     ++$vr_region_i;
     ?>
 
     <section class="<?php echo esc_attr($vr_section_class); ?>" id="pref-<?php echo esc_attr($vr_group['slug']); ?>" aria-labelledby="pref-<?php echo esc_attr($vr_group['slug']); ?>-heading">
-      <h2 id="pref-<?php echo esc_attr($vr_group['slug']); ?>-heading" class="salons-archive-region__banner"><span class="visually-hidden"><?php echo esc_html($vr_group['ja']); ?></span><span aria-hidden="true"><?php echo esc_html($vr_group['en']); ?></span></h2>
       <div class="inner">
+        <h2 id="pref-<?php echo esc_attr($vr_group['slug']); ?>-heading" class="salons-archive-region__banner"><span class="visually-hidden"><?php echo esc_html($vr_group['ja']); ?></span><span aria-hidden="true"><?php echo esc_html($vr_group['en']); ?></span></h2>
         <ul class="salons-archive-grid">
 <?php
     foreach ($vr_group['posts'] as $vr_post_obj) :
@@ -212,7 +220,6 @@ foreach ($vr_groups as $vr_group) :
         $vr_meta_lines = array_filter(array($vr_address, $vr_meta_line2), 'strlen');
         ?>
           <li class="salons-archive-card">
-            <article>
               <?php
               // 指示書:「地図、英語表記、店名、住所もすべて店舗詳細ページが追加されたら
               //         自動的に一覧ページにも追加されるようにする」
@@ -222,24 +229,21 @@ foreach ($vr_groups as $vr_group) :
               $vr_card_map   = function_exists('get_field') ? trim((string) get_field('salon_map')) : '';
               ?>
               <a href="<?php the_permalink(); ?>" class="salons-archive-card__link">
-                <div class="salons-archive-card__map">
+                <span class="salons-archive-card__thumb">
                   <?php if ($vr_card_map !== '') : ?>
                     <?php echo vr_salon_map_embed($vr_card_map, $vr_card_title); // phpcs:ignore WordPress.Security.EscapeOutput ?>
                   <?php else : ?>
                     <span class="salons-archive-card__pin" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span>
                   <?php endif; ?>
-                </div>
-                <div class="salons-archive-card__body">
-                  <h3 class="salons-archive-card__name"><?php echo esc_html($vr_card_en !== '' ? $vr_card_en : $vr_card_title); ?></h3>
+                </span>
 <?php if ($vr_card_en !== '') : ?>
-                  <p class="salons-archive-card__name-ja"><?php echo esc_html($vr_card_title); ?></p>
+                <span class="salons-archive-card__en"><?php echo esc_html($vr_card_en); ?></span>
 <?php endif; ?>
-<?php if (! empty($vr_meta_lines)) : ?>
-                  <p class="salons-archive-card__meta"><?php echo implode('<br>', array_map('esc_html', $vr_meta_lines)); ?></p>
+                <span class="salons-archive-card__name"><?php echo esc_html($vr_card_title); ?></span>
+<?php if ($vr_address !== '') : ?>
+                <span class="salons-archive-card__address"><?php echo esc_html($vr_address); ?></span>
 <?php endif; ?>
-                </div>
               </a>
-            </article>
           </li>
 <?php
     endforeach;
