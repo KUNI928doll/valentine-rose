@@ -284,6 +284,19 @@ const initNewsArchiveFilter = () => {
   applyFilter(initial);
 };
 
+const initReserveForm = () => {
+  const form = document.querySelector(".reserve-form:not(.reserve-form--confirm)");
+  if (!form) return;
+  const group = [ ...form.querySelectorAll('input[type="checkbox"][data-required-group]') ];
+  if (!group.length) return;
+  const sync = () => {
+    const checked = group.some(box => box.checked);
+    group[0].setCustomValidity(checked ? "" : "1つ以上選択してください。");
+  };
+  group.forEach(box => box.addEventListener("change", sync));
+  sync();
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   initPageHeroParallax();
   initDrawer();
@@ -291,5 +304,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initFaq();
   initFeatureSlider();
   initNewsArchiveFilter();
+  initReserveForm();
   initFadeUpScroll();
 });
