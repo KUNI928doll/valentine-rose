@@ -31,8 +31,8 @@ $vr_doc = VR_THEME_URI . '/assets/documents';
         <div class="page-hero__parallax js-page-hero-parallax">
             <div class="page-hero__bg">
                 <picture>
-                    <source media="(max-width: 768px)" srcset="<?php echo esc_url($vr_img . '/page/reserve-link-sp.jpg'); ?>">
-                    <img class="page-hero__img" src="<?php echo esc_url($vr_img . '/page/reserve-link-pc.jpg'); ?>" width="1440" height="600" alt="" loading="eager" decoding="async">
+                    <source media="(max-width: 768px)" srcset="<?php echo esc_url($vr_img . '/page/reserve_top-sp.jpg'); ?>">
+                    <img class="page-hero__img" src="<?php echo esc_url($vr_img . '/page/reserve_top-pc.jpg'); ?>" width="1440" height="600" alt="" loading="eager" decoding="async">
                 </picture>
             </div>
         </div>
