@@ -156,8 +156,9 @@ const initPageHeroParallax = () => {
       const wrapH = wrap.offsetHeight;
       const bgH = bg.offsetHeight;
       const top = wrap.getBoundingClientRect().top;
+      const framed = getComputedStyle(wrap).getPropertyValue("--parallax-mode").trim() === "framed";
       let y;
-      if (bgH >= vh) {
+      if (!framed && bgH >= vh) {
         y = -top;
       } else {
         const over = (bgH - wrapH) / 2;
