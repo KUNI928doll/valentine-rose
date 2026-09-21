@@ -42,7 +42,7 @@ $vr_doc = VR_THEME_URI . '/assets/documents';
             <nav class="breadcrumb" aria-label="パンくず">
                 <ol class="breadcrumb__list">
                     <li class="breadcrumb__item"><a href="<?php echo esc_url(vr_url('home')); ?>">ホーム</a></li>
-                    <li class="breadcrumb__item"><span aria-current="page">ご予約（お問い合わせ）</span></li>
+                    <li class="breadcrumb__item"><span aria-current="page">ご予約・お問い合わせ</span></li>
                 </ol>
             </nav>
         </div>
@@ -50,15 +50,18 @@ $vr_doc = VR_THEME_URI . '/assets/documents';
 
     <section class="reserve-consent" aria-labelledby="reserve-consent-heading">
         <div class="inner reserve-consent__inner">
-            <h2 id="reserve-consent-heading" class="reserve-consent__title">未成年のお客様は必ずお読みください</h2>
             <div class="reserve-consent__layout">
-                <div class="reserve-consent__text-block">
-                    <p class="reserve-consent__text">18歳未満の方がご来店される場合は、必ず保護者の方の同意が必要です。同意書をダウンロードのうえ、署名・捺印の上、当日ご持参ください。ご不明な点はお電話にてお問い合わせください。</p>
-                </div>
-                <div class="reserve-consent__download">
-                    <p class="reserve-consent__download-lead">同意書のダウンロード</p>
-                    <a href="<?php echo esc_url($vr_doc . '/valentine-rose-minors-consent.pdf'); ?>" class="reserve-consent__download-btn button" download="valentine-rose-minors-consent.pdf">Download</a>
-                </div>
+              <div class="reserve-consent__text-block">
+                <h2 id="reserve-consent-heading" class="reserve-consent__title">未成年のお客様は必ず<br class="reserve-consent__title-br">お読みください</h2>
+                <p class="reserve-consent__text">脱毛箇所を問わず、未成年のお客様が施術を受けられる場合は保護者の方の同意が必要です。同意書をダウンロードのうえ、ご記入・ご捺印の上で当日ご持参ください。</p>
+              </div>
+              <div class="reserve-consent__download">
+                <p class="reserve-consent__download-lead">未成年契約同意書</p>
+                <a href="<?php echo esc_url($vr_doc . '/valentine-rose-minors-consent.pdf'); ?>" class="reserve-consent__download-btn" download="valentine-rose-minors-consent.pdf">
+                  <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
+                  <span>Download</span>
+                </a>
+              </div>
             </div>
         </div>
     </section>
@@ -66,16 +69,13 @@ $vr_doc = VR_THEME_URI . '/assets/documents';
     <section class="reserve-tel" aria-labelledby="reserve-tel-heading">
         <div class="inner reserve-tel__inner">
             <div class="reserve-tel__col reserve-tel__col--text">
-                <h2 id="reserve-tel-heading" class="reserve-tel__lead-title">お電話でのご予約は必ずご確認ください</h2>
-                <p class="reserve-tel__text">ご予約・ご相談は下記番号までお電話ください。混雑時はつながりにくい場合がございます。受付時間外はメールフォームをご利用ください。</p>
-                <p class="reserve-tel__note">※キャンセル・変更もお電話にて承ります。</p>
+                <h2 id="reserve-tel-heading" class="reserve-tel__label" lang="en">TEL</h2>
+                <p class="reserve-tel__text">サービス・料金の質問や無料体験のご予約など、お気軽にお電話ください。当日または翌日のご予約をご希望の方も、お電話でお問い合わせください。</p>
             </div>
             <div class="reserve-tel__vline" aria-hidden="true"></div>
             <div class="reserve-tel__col reserve-tel__col--num">
-                <p class="reserve-tel__label" lang="en">TEL</p>
-                <p class="reserve-tel__number"><a href="tel:+81312345678">03-1234-5678</a></p>
-                <p class="reserve-tel__hours">（受付時間 10:00〜19:00）</p>
-                <a href="<?php echo esc_url(vr_url('salons')); ?>" class="reserve-tel__sub-link">サロン情報・アクセスはこちら</a>
+                <p class="reserve-tel__number"><a href="tel:0123456789">01-2345-6789</a></p>
+                <p class="reserve-tel__hours">9:00～22:00 定休日なし</p>
             </div>
         </div>
     </section>

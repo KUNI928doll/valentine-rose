@@ -2,8 +2,8 @@
 @use "../abstracts/mixins" as *;
 
 // Reserve ページ（PC/SP カンプ）
-$reserve-beige: #eae7de;
-$reserve-beige-card: #e8e4dc;
+$reserve-beige: #ede9e4;   // XD 実測: Rectangle 61
+$reserve-beige-card: #d4cebe; // XD 実測: Path 3 / 未成年DLパネル
 $reserve-label-bg: #4a3c31;
 $reserve-gold: #c19c5d;
 
@@ -11,90 +11,149 @@ $reserve-gold: #c19c5d;
   background-color: var(--color-bg-1);
 }
 
+// XD 実測: 帯の背景・罫線は無い。パンくずは x120（SP x16）
 .reserve-page__breadcrumb-bar {
-  background-color: var(--color-bg-1);
-  padding: px(18) 0 px(16);
-  border-bottom: 1px solid rgba(193, 156, 93, 0.55);
+  padding-top: px(4);
 
   @include mq(md) {
-    padding: px(14) 0 px(12);
+    padding-top: px(7.5);
+  }
+
+  @include mq(md) {
+    > .inner {
+      padding-inline: px(16);
+    }
   }
 }
 
 // ─── 未成年同意 ───
+// XD 実測: 見出しベースライン y1314（SP は DL パネルが先に来て y861.5）
 .reserve-consent {
-  padding: px(56) 0 px(48);
-  background-color: #fff;
+  padding-block: px(112) 0;
 
   @include mq(md) {
-    padding: px(40) 0 px(36);
+    padding-block: px(61) 0;
   }
 }
 
-.reserve-consent__inner {
-  max-width: 1080px;
-}
-
+// XD 実測: 32px Yu Mincho / 字間3.2（SP 24px・2行・行送り36）
 .reserve-consent__title {
-  margin: 0 0 px(28);
+  margin: 0;
   font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
-  font-size: px(18);
+  font-size: px(32);
   font-weight: 400;
-  letter-spacing: px(0.72);
-  line-height: 1.6;
+  letter-spacing: px(3.2);
+  line-height: px(32);
   color: $reserve-gold;
 
   @include mq(md) {
-    font-size: px(16);
-    margin-bottom: px(20);
-    text-align: center;
+    font-size: px(24);
+    letter-spacing: px(2.4);
+    line-height: px(36);
   }
+}
+
+// PC は 1 行。SP だけ 2 行に折る
+.reserve-consent__title-br {
+  display: none;
+
+  @include mq(md) {
+    display: inline;
+  }
+}
+
+// XD 実測: 本文は x180、DL パネルは x1001（SP はパネルが上・240 を中央）
+// XD 実測: コンテンツは x180 幅1080
+.reserve-consent__inner,
+.reserve-tel__inner,
+.reserve-mail__inner {
+  max-width: px(1080);
 }
 
 .reserve-consent__layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, px(280));
-  gap: px(32) px(48);
+  grid-template-columns: px(761) px(240);
+  column-gap: px(60);
   align-items: start;
 
+  // XD 実測(SP): 見出し・本文は x30 の全幅、DL パネルだけ 240 を中央
   @include mq(md) {
     grid-template-columns: 1fr;
-    gap: px(24);
+    row-gap: px(24);
   }
 }
 
+// XD 実測: 本文 18px / 行送り27 / 見出しの 51 下（SP 14px・行送り21）
 .reserve-consent__text {
-  margin: 0;
-  font-family: var(--font-base);
-  font-size: px(14);
-  line-height: 2;
-  letter-spacing: px(0.56);
-  color: var(--color-accent-1);
-}
-
-.reserve-consent__download {
-  padding: px(24);
-  background-color: $reserve-beige-card;
-  border-radius: px(4);
-  text-align: center;
-  box-sizing: border-box;
+  margin-top: px(28);
+  font-size: px(18);
+  line-height: px(27);
+  letter-spacing: px(1.8);
+  color: $reserve-gold;
 
   @include mq(md) {
-    padding: px(20);
+    margin-top: px(7);
+    font-size: px(14);
+    line-height: px(21);
+    letter-spacing: px(1.4);
   }
 }
 
-.reserve-consent__download-lead {
-  margin: 0 0 px(16);
-  font-family: var(--font-base);
-  font-size: px(13);
-  color: var(--color-accent-1);
+// SP はカンプどおり DL パネルが本文より上
+.reserve-consent__text-block {
+  @include mq(md) {
+    order: 2;
+  }
 }
 
-.reserve-consent__download-btn {
-  width: 100%;
-  max-width: px(200);
+// XD 実測: 240x147 #D4CEBE。見出しベースライン +50 / ボタン上端 +71
+.reserve-consent__download {
+  box-sizing: border-box;
+  margin-top: px(5);
   margin-inline: auto;
+  width: px(240);
+  height: px(147);
+  padding-top: px(30);
+  background-color: $reserve-beige-card;
+  text-align: center;
+
+  @include mq(md) {
+    order: 1;
+  }
+}
+
+// XD 実測: 18px / 字間1.8
+.reserve-consent__download-lead {
+  margin: 0;
+  font-size: px(18);
+  line-height: px(27);
+  letter-spacing: px(1.8);
+  color: $reserve-gold;
+}
+
+// XD 実測: 160x40 #949E33 / ラベル 16px Yu Mincho Demibold 白
+.reserve-consent__download-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  gap: px(8);
+  margin-top: px(14);
+  width: px(160);
+  height: px(40);
+  background-color: var(--color-accent-2);
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: px(16);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: px(1.6);
+  text-decoration: none;
+  color: #fff;
+  transition: opacity $transition-base;
+
+  @include hover {
+    opacity: 0.85;
+  }
 }
 
 // ─── ネット予約 ───
@@ -161,39 +220,32 @@ $reserve-gold: #c19c5d;
 }
 
 // ─── TEL ───
+// XD 実測: TEL ベースライン y1637 / 縦罫 x818.5 y1604.5
 .reserve-tel {
-  padding: px(48) 0 px(56);
-  background-color: #fff;
-  border-top: 1px solid rgba(193, 156, 93, 0.35);
+  padding-block: px(158.5) px(162);
 
   @include mq(md) {
-    padding: px(40) 0 px(48);
+    padding-block: px(73.5) px(80);
   }
 }
 
+// XD 実測: 左 x180 幅578 / 縦罫 x818.5 / 右は番号 x919
 .reserve-tel__inner {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
-  gap: 0 px(40);
-  align-items: center;
-  max-width: 1080px;
+  grid-template-columns: px(578) 1px 1fr;
+  column-gap: px(60);
+  align-items: start;
 
   @include mq(md) {
     grid-template-columns: 1fr;
-    gap: px(28);
+    row-gap: px(37);
   }
 }
 
+// XD 実測: 1px の縦罫（SP には無い）
 .reserve-tel__vline {
   align-self: stretch;
-  min-height: px(120);
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(84, 55, 45, 0.35) 12%,
-    rgba(84, 55, 45, 0.35) 88%,
-    transparent 100%
-  );
+  background-color: var(--color-main);
 
   @include mq(md) {
     display: none;
@@ -215,13 +267,20 @@ $reserve-gold: #c19c5d;
   }
 }
 
+// XD 実測: 18px / 行送り27（SP 14px・行送り21）
 .reserve-tel__text {
-  margin: 0 0 px(12);
-  font-family: var(--font-base);
-  font-size: px(14);
-  line-height: 2;
-  letter-spacing: px(0.56);
-  color: var(--color-accent-1);
+  margin-top: px(21);
+  font-size: px(18);
+  line-height: px(27);
+  letter-spacing: px(1.8);
+  color: $reserve-gold;
+
+  @include mq(md) {
+    margin-top: px(11);
+    font-size: px(14);
+    line-height: px(21);
+    letter-spacing: px(1.4);
+  }
 }
 
 .reserve-tel__note {
@@ -231,33 +290,46 @@ $reserve-gold: #c19c5d;
   opacity: 0.85;
 }
 
+// XD 実測: 番号のベースラインは TEL 見出しの 49 下
 .reserve-tel__col--num {
+  padding-top: px(62.5);
   text-align: center;
 
+  // XD 実測(SP): 番号は TEL 見出しの 210 下
   @include mq(md) {
-    padding-top: px(8);
-    border-top: 1px solid rgba(193, 156, 93, 0.35);
+    padding-top: px(54);
   }
 }
 
+// XD 実測: TEL 48px Marcellus（SP 24px・中央）
 .reserve-tel__label {
-  margin: 0 0 px(4);
+  margin: 0;
   font-family: var(--font-en);
-  font-size: px(14);
-  letter-spacing: px(2);
-  color: var(--color-accent-1);
-}
-
-.reserve-tel__number {
-  margin: 0 0 px(8);
-  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
-  font-size: px(36);
+  font-size: px(48);
   font-weight: 400;
-  line-height: 1.2;
-  letter-spacing: px(1);
+  line-height: 1;
+  letter-spacing: px(4.8);
+  color: $reserve-gold;
 
   @include mq(md) {
-    font-size: px(28);
+    font-size: px(24);
+    letter-spacing: px(2.4);
+    text-align: center;
+  }
+}
+
+// XD 実測: 32px Marcellus（SP 24px）
+.reserve-tel__number {
+  margin: 0;
+  font-family: var(--font-en);
+  font-size: px(32);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: px(3.2);
+
+  @include mq(md) {
+    font-size: px(24);
+    letter-spacing: px(2.4);
   }
 
   a {
@@ -271,11 +343,25 @@ $reserve-gold: #c19c5d;
   }
 }
 
+// XD 実測: 240x32 角丸16 の白ピル。文字 14px / 字間1.4
 .reserve-tel__hours {
-  margin: 0 0 px(20);
-  font-family: var(--font-base);
-  font-size: px(13);
-  color: var(--color-accent-1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  margin-top: px(40);
+
+  @include mq(md) {
+    margin-top: px(19.5);
+  }
+  width: px(240);
+  height: px(32);
+  border-radius: px(16);
+  background-color: #fff;
+  font-size: px(14);
+  line-height: 1;
+  letter-spacing: px(1.4);
+  color: $reserve-gold;
 }
 
 .reserve-tel__sub-link {
@@ -296,12 +382,13 @@ $reserve-gold: #c19c5d;
 }
 
 // ─── メールフォーム ───
+// XD 実測: 帯 #EDE9E4。見出しベースラインは帯上端の 214 下（SP は 91 下）
 .reserve-mail {
-  padding: px(64) 0 px(80);
+  padding-block: px(87.5) px(80);
   background-color: $reserve-beige;
 
   @include mq(md) {
-    padding: px(48) 0 px(56);
+    padding-block: px(64) px(60);
   }
 }
 
@@ -309,17 +396,17 @@ $reserve-gold: #c19c5d;
   max-width: 1080px;
 }
 
+// XD 実測: 見出し x180 / ステップ x814 幅445
 .reserve-mail__head {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, px(420));
+  grid-template-columns: 1fr px(445);
   align-items: start;
-  gap: px(32) px(48);
-  margin-bottom: px(40);
+  margin-bottom: px(68.3);
 
   @include mq(md) {
     grid-template-columns: 1fr;
-    gap: px(28);
-    margin-bottom: px(32);
+    row-gap: px(75);
+    margin-bottom: px(60);
   }
 }
 
@@ -327,31 +414,38 @@ $reserve-gold: #c19c5d;
   min-width: 0;
 }
 
+// XD 実測: 48px Marcellus / 字間4.8（SP 24px）
 .reserve-mail__title {
-  margin: 0 0 px(16);
+  margin: 0;
   font-family: var(--font-en);
-  font-size: px(40);
+  font-size: px(48);
   font-weight: 400;
-  letter-spacing: px(2);
+  letter-spacing: px(4.8);
   text-transform: uppercase;
-  line-height: 1.2;
+  line-height: 1;
   color: $reserve-gold;
 
+  // XD 実測(SP): 32px / 字間3.2 / 左寄せ x30
   @include mq(md) {
-    font-size: px(28);
-    text-align: center;
-    margin-bottom: px(12);
+    font-size: px(32);
+    letter-spacing: px(3.2);
   }
 }
 
+// XD 実測: 見出しベースライン2053 → リード上端2128
 .reserve-mail__lead {
-  margin: 0;
+  margin-top: px(67.5);
+
+  @include mq(md) {
+    margin-top: px(20);
+  }
 }
 
+// XD 実測: 14px #333333 / 行送り28
 .reserve-mail__lead-line {
   margin: 0;
   font-family: var(--font-base);
-  font-size: px(13);
+  font-size: px(14);
   font-weight: 400;
   line-height: 1.85;
   letter-spacing: px(0.52);
@@ -370,91 +464,105 @@ $reserve-gold: #c19c5d;
 
 $reserve-step-muted: #c4bfb6;
 
+// XD 実測: 130 幅の列が 157.5 ピッチ（= 間隔 27.5）
 .reserve-steps {
-  display: flex;
-  align-items: stretch;
-  justify-content: space-between;
-  gap: px(12) px(20);
-  margin: 0;
-  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, px(130));
+  column-gap: px(27.5);
+  margin: px(-7.5) 0 0;
+  // ol はリセットCSS（ul のみ）の対象外なので既定のインデントを消す
+  padding-left: 0;
   list-style: none;
 
+  // XD 実測(SP): 91.8 幅の列が 111.24 ピッチ
   @include mq(md) {
-    justify-content: center;
-    gap: px(8) px(12);
+    grid-template-columns: repeat(3, px(91.8));
+    column-gap: px(19.44);
+    justify-content: space-between;
+    margin-top: 0;
   }
 }
 
 .reserve-steps__item {
-  flex: 1 1 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: px(6);
-  min-width: 0;
-  max-width: px(140);
-  margin-inline: auto;
-  padding: 0 0 px(10);
-  border-bottom: 2px solid $reserve-step-muted;
+  box-sizing: border-box;
+  padding-top: px(58.5);
+  height: px(183);
+  border-top: 1px solid $reserve-step-muted;
+  border-bottom: 1px solid $reserve-step-muted;
   color: $reserve-step-muted;
   text-align: center;
 
+  // XD 実測(SP): 上罫 y1769.5 → 下罫 y1898.75（高さ129.25）
   @include mq(md) {
-    flex: 1 1 0;
-    max-width: none;
-    min-width: 0;
-    padding-bottom: px(8);
+    padding-top: px(41);
+    padding-bottom: 0;
+    height: px(129.25);
   }
 
   &--current {
-    color: $reserve-gold;
+    border-top-color: $reserve-gold;
     border-bottom-color: $reserve-gold;
-
-    .reserve-steps__en,
-    .reserve-steps__ja {
-      color: $reserve-gold;
-    }
+    color: $reserve-gold;
   }
 }
 
+// XD 実測: Step NN 20px Marcellus / 上罫から 76.5
 .reserve-steps__en {
+  display: block;
   font-family: var(--font-en);
-  font-size: px(15);
+  font-size: px(20);
   font-weight: 400;
-  letter-spacing: px(0.6);
-  line-height: 1.2;
+  letter-spacing: px(2);
+  line-height: 1;
   color: inherit;
+
+  @include mq(md) {
+    font-size: px(14);
+    letter-spacing: px(1.4);
+  }
 }
 
+// XD 実測: 24px / 上罫から 122.5（= Step NN の 46 下）
 .reserve-steps__ja {
-  font-family: var(--font-base);
-  font-size: px(12);
+  display: block;
+  margin-top: px(22);
+  font-size: px(24);
   font-weight: 400;
-  letter-spacing: px(0.48);
-  line-height: 1.4;
+  letter-spacing: px(2.4);
+  line-height: 1;
   color: inherit;
+
+  @include mq(md) {
+    margin-top: px(22);
+    font-size: px(16);
+    letter-spacing: px(1.6);
+  }
 }
 
+// XD 実測: 行ピッチ82（入力 50 + 間隔 32）
 .reserve-form__fields {
   display: flex;
   flex-direction: column;
-  gap: px(24);
+  gap: px(32);
 
+  // XD 実測(SP): 行ピッチ120（バッジ26 + 12 + 入力50 + 間隔32）
   @include mq(md) {
-    gap: px(20);
+    gap: px(32);
   }
 }
 
 // 1行フィールド
+// XD 実測: バッジ x219 / ラベル x295 / 入力 x600 幅620（inner 左端 120 起点）
 .reserve-field {
   display: grid;
-  grid-template-columns: minmax(px(220), px(260)) minmax(0, 1fr);
-  gap: px(16) px(32);
+  grid-template-columns: px(381) px(620);
+  padding-left: px(39);
   align-items: start;
 
   @include mq(md) {
     grid-template-columns: 1fr;
-    gap: px(10);
+    padding-left: 0;
+    gap: px(12);
   }
 }
 
@@ -503,19 +611,16 @@ $reserve-step-muted: #c4bfb6;
   }
 }
 
+// XD 実測: バッジとラベルの間は 16（バッジ右端279 → ラベル295）
 .reserve-field__label {
-  margin: 0;
-  padding: px(10) px(14);
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: px(8);
-  background-color: $reserve-label-bg;
-  border-radius: px(4);
-  box-sizing: border-box;
+  gap: px(16);
+  margin: 0;
+  padding-top: px(12);
 
   @include mq(md) {
-    width: 100%;
+    padding-top: 0;
   }
 
   &--top {
@@ -523,30 +628,44 @@ $reserve-step-muted: #c4bfb6;
   }
 }
 
+// XD 実測: 16px #333333 / 字間1.6
 .reserve-field__name {
-  font-family: var(--font-base);
-  font-size: px(14);
-  font-weight: 500;
-  color: #fff;
+  font-size: px(16);
+  font-weight: 400;
+  line-height: px(26);
+  letter-spacing: px(1.6);
+  color: #333;
+
+  @include mq(md) {
+    font-size: px(14);
+    letter-spacing: px(1.4);
+  }
 }
 
+// XD 実測: 60x26 / 角丸15 / 12px
 .reserve-badge {
-  display: inline-block;
-  padding: px(2) px(8);
-  font-size: px(11);
-  font-weight: 500;
-  line-height: 1.4;
-  border-radius: px(2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
   flex-shrink: 0;
+  width: px(60);
+  height: px(26);
+  border-radius: px(15);
+  font-size: px(12);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: px(1.2);
 
+  // XD 実測: 必須 = #54372D に #F9F8F6 / 任意 = #D4CEBE に #333333
   &--req {
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.25);
+    background-color: var(--color-accent-1);
+    color: var(--color-bg-1);
   }
 
   &--opt {
-    color: var(--color-accent-1);
-    background-color: #d4d0c8;
+    background-color: $color-bg-2;
+    color: #333;
   }
 }
 
@@ -590,17 +709,20 @@ $reserve-step-muted: #c4bfb6;
   }
 }
 
+// XD 実測: 620x50 / 角丸2 / 白 / 枠線 1px #707070（テキストエリアは 620x120）
 .reserve-input,
 .reserve-textarea {
   width: 100%;
   box-sizing: border-box;
   padding: px(12) px(14);
+  height: px(50);
   font-family: var(--font-base);
-  font-size: px(14);
+  font-size: px(16);
   line-height: 1.5;
+  letter-spacing: px(1.6);
   color: var(--color-text);
   background-color: #fff;
-  border: 1px solid rgba(84, 55, 45, 0.35);
+  border: 1px solid #707070;
   border-radius: px(2);
   transition: border-color $transition-base, box-shadow $transition-base;
 
@@ -615,9 +737,11 @@ $reserve-step-muted: #c4bfb6;
   }
 }
 
+// XD 実測: テキストエリアは 620x120
 .reserve-textarea {
   resize: vertical;
-  min-height: px(180);
+  height: px(120);
+  min-height: px(120);
 }
 
 .reserve-check {
@@ -685,55 +809,60 @@ $reserve-step-muted: #c4bfb6;
   }
 }
 
+// XD 実測: 160x40 / 角丸20.5 / #949E33 / 16px Yu Mincho Demibold 白
 .reserve-submit {
-  min-width: px(280);
-  padding: px(16) px(48);
-  font-size: px(18);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0;
+  width: px(160);
+  min-width: 0;
+  height: px(40);
   border: none;
-  border-radius: 999px;
+  border-radius: px(20.5);
+  background-color: var(--color-accent-2);
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  font-size: px(16);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: px(1.6);
+  color: #fff;
   cursor: pointer;
-
-  @include mq(md) {
-    width: 100%;
-    min-width: 0;
-  }
 }
 
 // ステップ間の区切り（カンプ）
-.reserve-steps__item:not(:first-child) {
-  border-left: 1px solid rgba(193, 156, 93, 0.4);
-  padding-left: px(16);
-  margin-left: px(8);
+
+// ─── 確認画面（内容確認） ───
+// XD 実測: 行ピッチ58（白帯50 + 間隔8）
+.reserve-confirm-list {
+  display: flex;
+  flex-direction: column;
+  gap: px(8);
+  // margin だと head の下余白と相殺されるので padding で空ける
+  padding-top: px(67);
 
   @include mq(md) {
-    border-left: none;
-    padding-left: 0;
-    margin-left: 0;
+    padding-top: px(40);
+  }
+
+  @include mq(md) {
+    gap: px(24);
   }
 }
 
-// ─── 確認画面（内容確認） ───
-.reserve-confirm-list {
-  margin: 0;
-  padding: 0;
-}
-
+// XD 実測: 入力ページと同じ列（バッジ x219 / ラベル x295 / 値 x600）で
+// 白い帯 620x50 の中に値を置く。行ピッチ58
 .reserve-confirm-list__row {
   display: grid;
-  grid-template-columns: minmax(px(200), px(280)) minmax(0, 1fr);
-  gap: px(12) px(28);
+  grid-template-columns: px(381) px(620);
+  padding-left: px(39);
   align-items: start;
-  padding: px(20) 0;
-  border-bottom: 1px solid rgba(84, 55, 45, 0.12);
 
   @include mq(md) {
     grid-template-columns: 1fr;
-    gap: px(10);
-    padding: px(16) 0;
-  }
-
-  &:first-child {
-    border-top: 1px solid rgba(84, 55, 45, 0.12);
+    padding-left: 0;
+    gap: px(12);
   }
 }
 
@@ -741,28 +870,49 @@ $reserve-step-muted: #c4bfb6;
   margin: 0;
 }
 
+// XD 実測: 620x50 の白帯（角丸2 / 枠線 1px #707070）に 16px #707070
 .reserve-confirm-list__dd {
-  margin: 0;
-  font-family: var(--font-base);
-  font-size: px(14);
-  line-height: 1.75;
-  letter-spacing: px(0.56);
-  color: var(--color-text);
-  word-break: break-word;
-}
-
-.reserve-form__actions {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  gap: px(16) px(32);
-  margin-top: px(40);
+  box-sizing: border-box;
+  margin: 0;
+  padding-inline: px(16);
+  min-height: px(50);
+  background-color: #fff;
+  border: 1px solid #707070;
+  border-radius: px(2);
+  font-size: px(16);
+  line-height: px(26);
+  letter-spacing: px(1.6);
+  color: #707070;
+  word-break: break-word;
 
   @include mq(md) {
-    flex-direction: column;
+    font-size: px(14);
+    letter-spacing: px(1.4);
+  }
+}
+
+// XD 実測: 送信ボタンはページ中央（x641 = 中央）に 1 つ。
+// 「修正する」はカンプに無いが導線として残し、ボタンの下に置く。
+.reserve-form__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: px(16);
+  margin-top: px(44);
+
+  @include mq(md) {
     margin-top: px(32);
     gap: px(12);
+  }
+
+  .reserve-submit {
+    order: 1;
+  }
+
+  .reserve-form__back {
+    order: 2;
   }
 }
 
@@ -793,59 +943,65 @@ $reserve-step-muted: #c4bfb6;
   }
 }
 
+// XD 実測: 確認ページの送信ボタンも 160x40（SP も同じ）
 .reserve-form--confirm .reserve-submit {
-  @include mq(md) {
-    width: 100%;
-  }
+  width: px(160);
 }
 
 // ─── 完了画面 ───
+// XD 実測: 見出しベースライン y2269（ステップ下端 2169 の 100 下）
+// 入力・確認ページ用に .reserve-mail__head が持つ下余白を打ち消してから空ける
 .reserve-thanks {
-  padding: px(48) px(24) px(56);
+  margin-top: px(-86);
+  padding-top: px(45.5);
   text-align: center;
   box-sizing: border-box;
 
   @include mq(md) {
-    padding: px(40) 0 px(48);
+    padding-top: px(80);
   }
 }
 
+// XD 実測: 36px Yu Mincho / 字間3.6 / #CA7F13
 .reserve-thanks__title {
-  margin: 0 0 px(20);
+  margin: 0;
   font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
-  font-size: px(22);
+  font-size: px(36);
   font-weight: 400;
-  letter-spacing: px(0.88);
-  line-height: 1.6;
+  letter-spacing: px(3.6);
+  line-height: 1;
   color: $reserve-gold;
 
   @include mq(md) {
-    font-size: px(18);
+    font-size: px(20);
+    letter-spacing: px(2);
   }
 }
 
+// XD 実測: 18px / 行送り36 / #CA7F13（見出しベースラインの 61 下）
 .reserve-thanks__text {
-  margin: 0 0 px(28);
-  font-family: var(--font-base);
-  font-size: px(14);
-  line-height: 2;
-  letter-spacing: px(0.56);
-  color: var(--color-text);
+  margin-top: px(31);
+  font-size: px(18);
+  line-height: px(36);
+  letter-spacing: px(1.8);
+  color: $reserve-gold;
 
   @include mq(md) {
-    font-size: px(13);
-    margin-bottom: px(24);
+    margin-top: px(20);
+    font-size: px(14);
+    line-height: px(28);
+    letter-spacing: px(1.4);
   }
 
-  &:last-child {
-    margin-bottom: 0;
+  + .reserve-thanks__text {
+    margin-top: 0;
   }
 }
 
+// XD 実測: 本文と同じ 18px。2行目として続く
 .reserve-thanks__link {
-  font-family: var(--font-base);
-  font-size: px(14);
-  color: var(--color-main);
+  font-size: inherit;
+  color: inherit;
   text-decoration: underline;
   text-underline-offset: px(4);
   transition: opacity $transition-base;
