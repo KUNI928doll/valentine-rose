@@ -68,8 +68,10 @@ const PATHS = {
     map: "./js/map/",
   },
   image: {
-    src: ["./images/**/!(_)*.{jpg,jpeg,png,gif,svg,ico,webp}"],
-    webpSrc: ["./images/**/!(_)*.{jpg,jpeg,png,gif,ico}"],
+    // imagemin に対応プラグインが無い形式（ico / webp）を通すと 0 バイトで
+    // 上書きされるため src から外す。dest は同ディレクトリなのでコピーも不要。
+    src: ["./images/**/!(_)*.{jpg,jpeg,png,gif,svg}"],
+    webpSrc: ["./images/**/!(_)*.{jpg,jpeg,png,gif}"],
     dest: "./images/",
   },
   document: {
