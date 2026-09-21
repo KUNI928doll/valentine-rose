@@ -102,9 +102,7 @@
     border-bottom: 1px solid rgba(202, 127, 19, 0.5);
   }
 
-  &:nth-child(odd) {
-    border-right: 1px solid rgba(202, 127, 19, 0.5);
-  }
+
 
   @include mq(md) {
     border-right: none;
