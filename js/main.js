@@ -274,6 +274,7 @@ const initNewsArchiveFilter = () => {
   });
   const hash = window.location.hash.slice(1);
   const hashMap = {
+    campaign: "campaign",
     news: "news",
     column: "column",
     all: "all",

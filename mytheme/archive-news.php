@@ -20,7 +20,7 @@ $vr_img = VR_THEME_URI . '/assets/images';
 $vr_has_posts = have_posts();
 
 // サイドバーの絞り込みに対応するキー（data-news-filter と一致させる）
-$vr_filter_keys = array('all', 'news', 'column');
+$vr_filter_keys = array('all', 'campaign', 'news', 'column');
 ?>
 
 <main id="main">
@@ -59,18 +59,18 @@ $vr_filter_keys = array('all', 'news', 'column');
                         while (have_posts()) :
                             the_post();
 
-                            // ラベル（ACF）。未入力時は静的 HTML と同じ「All」を既定にする。
+                            // ラベル（ACF）。未入力時はカンプと同じ「Campaign」を既定にする。
                             $vr_label = function_exists('get_field') ? (string) get_field('news_label') : '';
                             $vr_label = trim($vr_label);
                             if ($vr_label === '') {
-                                $vr_label = 'All';
+                                $vr_label = 'Campaign';
                             }
 
                             // 絞り込み用キー（js/main.js の data-news-filter と突き合わせる）。
                             $vr_category = sanitize_title($vr_label);
                             if (! in_array($vr_category, $vr_filter_keys, true)) {
                                 // 想定外のラベルでも「すべて」には必ず並ぶようにする
-                                $vr_category = 'all';
+                                $vr_category = 'campaign';
                             }
                             ?>
                             <li class="news-archive__item" data-news-category="<?php echo esc_attr($vr_category); ?>">
@@ -113,7 +113,7 @@ $vr_filter_keys = array('all', 'news', 'column');
 
                         if ($vr_current_page < $vr_max_page) :
                             ?>
-                            <a href="<?php echo esc_url(get_pagenum_link($vr_current_page + 1)); ?>" class="news-archive__page-next" aria-label="次のページへ"><span aria-hidden="true">&gt;</span></a>
+                            <a href="<?php echo esc_url(get_pagenum_link($vr_current_page + 1)); ?>" class="news-archive__page-next" aria-label="次のページへ"></a>
                             <?php
                         endif;
                         ?>
@@ -128,6 +128,9 @@ $vr_filter_keys = array('all', 'news', 'column');
                 <ul class="news-archive__cat-list">
                     <li class="news-archive__cat-item">
                         <a href="#news-archive" class="news-archive__cat-link js-news-archive-filter" data-news-filter="all" aria-current="true">すべて</a>
+                    </li>
+                    <li class="news-archive__cat-item">
+                        <a href="#news-archive" class="news-archive__cat-link js-news-archive-filter" data-news-filter="campaign">キャンペーン</a>
                     </li>
                     <li class="news-archive__cat-item">
                         <a href="#news-archive" class="news-archive__cat-link js-news-archive-filter" data-news-filter="news">お知らせ</a>
