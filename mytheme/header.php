@@ -34,7 +34,7 @@ $vr_img = VR_THEME_URI . '/assets/images';
         ?>
         <<?php echo $vr_logo_tag; ?> class="header__name">
             <a href="<?php echo esc_url(home_url('/')); ?>" class="header__logo-link">
-                <img src="<?php echo esc_url($vr_img . '/common/logo.png'); ?>" alt="ヘッダーロゴ">
+                <img src="<?php echo esc_url($vr_img . '/common/logo.png'); ?>" alt="ヘッダーロゴ" width="64" height="64">
                 <span class="header__logo-text md-show">VALENTINE <br>ROSE</span>
             </a>
         </<?php echo $vr_logo_tag; ?>>
