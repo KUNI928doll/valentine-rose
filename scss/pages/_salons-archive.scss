@@ -20,8 +20,6 @@
 
   .page-hero__parallax {
     background-color: var(--salons-hero-bg);
-    // main.js に「画面固定ではなく枠基準で動かす」と伝える（下のコメント参照）
-    --parallax-mode: framed;
   }
 
   .page-hero__bg {
@@ -34,20 +32,29 @@
     }
   }
 
-  // 他ページの KV は「画面に固定」する背景固定パララックスだが、地図は
-  // contain で中央に置くため画面基準で動かすと枠の中で上下左右にずれてしまう。
-  // ここだけ枠基準（枠の1.25倍のレイヤーをはみ出し分だけ動かす）に切り替える。
-  // 切り替えは上の --parallax-mode: framed で明示する（画面の高さで判定すると
-  // 低いウィンドウのときに画面固定側へ戻ってしまう）。
-  .page-hero__parallax.is-parallax .page-hero__bg {
-    // 可動量は上下75px（SP 37.5px）。はみ出した先には画像の下地と同じ
-    // #E1E1E1 が出るので、地図が自分の背景の上を滑って見える
-    top: px(-75);
-    height: px(750);
+  // 地図は contain で枠ぴったりに入るため、動かした分だけ端が切れる。
+  // 画像内の余白は上21px・下63px（archive-salons_top-pc.jpg を実測）と
+  // 上下で違うので、対称に動かすと 42px しか取れない。
+  // 非対称（下へ64 / 上へ21）にして、地図を切らずに 85px 動かす。
+  // レイヤーのはみ出し先は画像の下地と同じ #E1E1E1 なので継ぎ目は見えない。
+  // 画像内の余白（実測）: PC 上21/下63・SP 上63/下86
+  .page-hero__parallax {
+    --parallax-max: 64;
+    --parallax-min: -21;
 
     @include mq(md) {
-      top: px(-37.5);
-      height: px(375);
+      --parallax-max: 86;
+      --parallax-min: -63;
+    }
+  }
+
+  .page-hero__parallax.is-parallax .page-hero__bg {
+    top: px(-64);
+    height: px(728);
+
+    @include mq(md) {
+      top: px(-86);
+      height: px(472);
     }
   }
 }

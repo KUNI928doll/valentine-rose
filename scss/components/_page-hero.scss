@@ -121,21 +121,26 @@ body[class*="page-"] > main#main {
 }
 
 // 指示書「各下層ページのトップ画像はすべてパララックスに」
-// （参考サイトと同じ「背景固定」の見え方）。
-// 背景レイヤーを画面高いっぱいに広げ、main.js が translate で画面に固定する。
-// 枠側の overflow: hidden が窓の役割になり、スクロールすると窓が画像の上を移動する。
+// 背景レイヤーを枠より少し大きくし、main.js がはみ出し分の範囲で動かす（枠基準）。
+// 画面高に合わせる「背景固定」方式だと object-fit: cover の拡大率が
+// 画面高 ÷ 600 になり、背の高いウィンドウで2倍近くまで拡大されてしまうため、
+// 拡大率を 1.25 倍に固定する。
+.page-hero__parallax {
+  --parallax-mode: framed;
+}
+
+// 可動量と拡大率は連動する（可動量 = レイヤー高 - 枠高 / 拡大率 = レイヤー高 ÷ 枠高）。
+// 1.4 倍 = 可動量 上下120px（計240px）。1.25 倍まで下げると可動量は計150pxになる。
 .page-hero__parallax.is-parallax .page-hero__bg {
-  // PC: 画面高いっぱい。main.js が画面に固定するので object-fit: cover の
-  // 拡大率は 画面高 / 600 ≒ 1.5 倍に収まる。
-  height: 100vh;
+  // 枠 600 の 1.4 倍。上下それぞれ 120px がパララックスの移動量
+  top: px(-120);
+  height: px(840);
   will-change: transform;
   backface-visibility: hidden;
 
-  // SP: 画面高（812 等）に合わせると 375x300 の KV が 2.7 倍に拡大され、
-  // カンプの見え方から大きく外れる。枠 300 の 1.3 倍までに抑え、
-  // はみ出し分（上下 45）を移動量として main.js 側で滑らかに動かす。
+  // SP は枠 300 の 1.4 倍
   @include mq(md) {
-    height: px(390);
-    top: px(-45);
+    top: px(-60);
+    height: px(420);
   }
 }

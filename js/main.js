@@ -162,9 +162,15 @@ const initPageHeroParallax = () => {
         y = -top;
       } else {
         const over = (bgH - wrapH) / 2;
-        const mid = (vh - wrapH) / 2;
-        const k = over / ((vh + wrapH) / 2);
-        y = Math.min(over, Math.max(-over, -(top - mid) * k));
+        const cs = getComputedStyle(wrap);
+        const rawMax = parseFloat(cs.getPropertyValue("--parallax-max"));
+        const rawMin = parseFloat(cs.getPropertyValue("--parallax-min"));
+        const maxY = isNaN(rawMax) ? over : rawMax;
+        const minY = isNaN(rawMin) ? -over : rawMin;
+        const docTop = top + window.scrollY;
+        const hi = Math.min(vh, docTop);
+        const t = (hi - top) / Math.max(1, hi + wrapH);
+        y = maxY + (minY - maxY) * Math.min(1, Math.max(0, t));
       }
       bg.style.transform = `translate3d(0, ${y}px, 0)`;
     });
