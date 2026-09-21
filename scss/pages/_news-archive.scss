@@ -9,10 +9,10 @@
 
 // パンくず（他の下層ページと同じ。カンプに帯の背景・罫線は無い）
 .news-archive__breadcrumb-bar {
-  padding: px(23) 0 0;
+  padding-top: px(23);
 
   @include mq(md) {
-    padding: px(7.5) 0 0;
+    padding-top: px(7.5);
   }
 
   // XD 実測: パンくずだけコンテンツ幅より内側 PC 36.5 / SP 16
@@ -29,10 +29,10 @@
 
 // XD 実測: 1行目の帯 y1291（パンくずベースライン1175 の 116 下）/ SP は y690.5
 .news-archive {
-  padding: px(98) 0 px(196);
+  padding-block: px(98) px(196);
 
   @include mq(md) {
-    padding: px(66) 0 px(98);
+    padding-block: px(66) px(98);
   }
 }
 
@@ -57,9 +57,6 @@
 .news-archive__list {
   display: grid;
   gap: px(20);
-  margin: 0;
-  padding: 0;
-  list-style: none;
 
   @include mq(md) {
     gap: px(12);
@@ -70,7 +67,8 @@
   position: relative;
   display: flex;
   box-sizing: border-box;
-  padding: px(26.5) px(204) 0 px(24);
+  padding-top: px(26.5);
+  padding-inline: px(24) px(204);
   height: px(72);
   background-color: $color-bg-2;
   text-decoration: none;
@@ -83,7 +81,8 @@
 
   @include mq(md) {
     display: block;
-    padding: px(13) px(12) 0;
+    padding-top: px(13);
+    padding-inline: px(12);
     height: px(89);
   }
 }
@@ -159,7 +158,7 @@
 }
 
 .news-archive__empty {
-  margin: px(20) 0 0;
+  margin-top: px(20);
   font-size: px(16);
   line-height: px(24);
   letter-spacing: px(1.6);
@@ -244,19 +243,20 @@ $chevron-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg
 // XD 実測: 縦罫 1px x1087 高さ180 / 見出し 32px Marcellus x1103.5
 .news-archive__aside {
   box-sizing: border-box;
-  padding: px(10) 0 0 px(15.5);
+  padding-top: px(10);
+  padding-left: px(15.5);
   border-left: 1px solid var(--color-main);
   min-height: px(180);
 
   @include mq(md) {
-    padding: px(40) 0 0 px(1);
+    padding-top: px(40);
+    padding-left: px(1);
     border-left: none;
     min-height: 0;
   }
 }
 
 .news-archive__cat-heading {
-  margin: 0;
   font-family: var(--font-en);
   font-size: px(32);
   font-weight: 400;
@@ -274,9 +274,7 @@ $chevron-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg
 .news-archive__cat-list {
   display: grid;
   row-gap: px(3.4);
-  margin: px(27.5) 0 0;
-  padding: 0;
-  list-style: none;
+  margin-top: px(27.5);
 
   // XD 実測(SP): 2列・列ピッチ150 / ベースライン間隔28
   @include mq(md) {

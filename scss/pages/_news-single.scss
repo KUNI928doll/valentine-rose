@@ -8,10 +8,10 @@
 
 // パンくず（他の下層ページと同じ。カンプに帯の背景・罫線は無い）
 .news-single__breadcrumb-bar {
-  padding: px(23) 0 0;
+  padding-top: px(23);
 
   @include mq(md) {
-    padding: px(7.5) 0 0;
+    padding-top: px(7.5);
   }
 
   // XD 実測: パンくずだけコンテンツ幅より内側 PC 36.5 / SP 16
@@ -28,10 +28,10 @@
 
 // XD 実測: 白パネルの上端 y1292（SP は y716.5）
 .news-single {
-  padding: px(99) 0 px(182);
+  padding-block: px(99) px(182);
 
   @include mq(md) {
-    padding: px(56) 0 px(124);
+    padding-block: px(56) px(124);
   }
 }
 
@@ -47,7 +47,7 @@
   // XD 実測(SP): 白パネルは画面幅いっぱい（x0 幅375）
   @include mq(md) {
     display: block;
-    padding: 0;
+    padding-inline: 0;
     width: 100%;
     max-width: none;
   }
@@ -60,18 +60,21 @@
   flex-direction: column;
   box-sizing: border-box;
   min-height: px(1031);
-  padding: px(3.5) px(86) 0 px(87);
+  padding-top: px(3.5);
+  padding-inline: px(87) px(86);
   background-color: #fff;
 
+  // SP はボタンをパネル下端から 77.5 浮かせる（下端そろえは PC のみ）
   @include mq(md) {
     min-height: px(1289.5);
-    padding: 0 px(14);
+    padding-top: 0;
+    padding-bottom: px(77.5);
+    padding-inline: px(14);
   }
 }
 
 // XD 実測: 24px Yu Mincho / 字間2.4（SP 18px・行送り27）
 .news-single__title {
-  margin: 0;
   font-family: var(--font-serif);
   font-size: px(24);
   font-weight: 400;
@@ -90,7 +93,7 @@
 .news-single__meta {
   display: flex;
   gap: px(11.1);
-  margin: px(4) 0 0;
+  margin-top: px(4);
   font-family: var(--font-en);
   font-size: px(14);
   font-weight: 400;
@@ -109,7 +112,9 @@
 
 // XD 実測: 691x250 を x267 y1381（SP 347x249 を x14 y801.5）
 .news-single__thumb {
-  margin: px(39.5) 0 0;
+  // figure はブラウザ既定で margin: 1em 40px を持つので、消してから上だけ指定する
+  margin: 0;
+  margin-top: px(39.5);
 
   @include mq(md) {
     margin-top: px(15.5);
@@ -143,14 +148,10 @@
     letter-spacing: px(1.4);
   }
 
-  > p {
-    margin: 0;
-  }
-
   // XD 実測: 小見出し 18px Yu Mincho #CA7F13（SP 16px）
   // 本文の下端 → 小見出しのベースライン 41 / 次の本文まで 17
   > h3 {
-    margin: px(19) 0 0;
+    margin-top: px(19);
     font-family: var(--font-serif);
     font-size: px(18);
     font-weight: 400;
@@ -173,7 +174,7 @@
   }
 
   > ul {
-    margin: px(32) 0 0;
+    margin-top: px(32);
     padding-left: px(20);
   }
 }
@@ -182,8 +183,8 @@
 .news-single__actions {
   // カンプではボタンの下端が白パネルの下端と一致する。
   // 本文が長いときも最低 32 は空くよう padding で下限を持たせる。
-  margin: auto 0 0;
-  padding: px(32) 0 0;
+  margin-top: auto;
+  padding-top: px(32);
   text-align: center;
 }
 
@@ -214,20 +215,21 @@
 // XD 実測: 縦罫 1px x1104 高さ180 / 見出し 32px Marcellus x1120.5
 .news-single__aside {
   box-sizing: border-box;
-  padding: px(9) 0 0 px(15.5);
+  padding-top: px(9);
+  padding-left: px(15.5);
   border-left: 1px solid var(--color-main);
   min-height: px(180);
 
   // XD 実測(SP): 白パネルの外（下）に置かれ、縦罫は無い
   @include mq(md) {
-    padding: px(40.5) px(16) 0;
+    padding-top: px(40.5);
+    padding-inline: px(16);
     border-left: none;
     min-height: 0;
   }
 }
 
 .news-single__cat-heading {
-  margin: 0;
   font-family: var(--font-en);
   font-size: px(32);
   font-weight: 400;
@@ -244,9 +246,7 @@
 .news-single__cat-list {
   display: grid;
   row-gap: px(3.4);
-  margin: px(27.5) 0 0;
-  padding: 0;
-  list-style: none;
+  margin-top: px(27.5);
 
   // XD 実測(SP): 2列・列ピッチ150 / ベースライン間隔28
   @include mq(md) {
