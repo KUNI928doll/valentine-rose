@@ -150,6 +150,7 @@
 
   // XD 実測: 小見出し 18px Yu Mincho #CA7F13（SP 16px）
   // 本文の下端 → 小見出しのベースライン 41 / 次の本文まで 17
+  > h2,
   > h3 {
     margin-top: px(19);
     font-family: var(--font-serif);
@@ -165,6 +166,7 @@
     }
   }
 
+  > h2 + p,
   > h3 + p {
     margin-top: px(7);
 
