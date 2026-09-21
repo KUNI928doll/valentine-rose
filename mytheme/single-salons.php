@@ -189,15 +189,19 @@ $vr_img = VR_THEME_URI . '/assets/images';
         // 施術の流れ: 専用メタボックス（inc/salon-flow-metabox.php）から取得。
         // 店舗ごとにステップ数が異なるため件数は固定しない。番号は並び順から自動採番。
         $vr_flow_rows = vr_get_salon_flow();
-        $vr_deco_index = 0; // 装飾画像の通し番号（左右の振り分けに使う）
+        $vr_deco_images = array(); // 装飾画像（最大3枚。セクション直下に絶対配置する）
         if ($vr_flow_rows) :
             ?>
             <section class="salon-single-flow" id="flow" aria-labelledby="salon-single-flow-heading">
                 <div class="inner">
                     <header class="salon-single-flow__head">
-                        <p class="salon-single-flow__en" aria-hidden="true">FLOW</p>
-                        <h2 id="salon-single-flow-heading" class="salon-single-flow__title">施術の流れ</h2>
+                        <h2 id="salon-single-flow-heading" class="salon-single-flow__title">
+                            <span class="section-title__en">Flow</span>
+                            <span class="section-title__bg" aria-hidden="true">Flow</span>
+                        </h2>
+                        <p class="section-title__ja">お問い合わせからの流れ</p>
                     </header>
+                    <div class="salon-single-flow__list-area">
                     <ol class="salon-single-flow__list">
                         <?php foreach ($vr_flow_rows as $vr_flow_index => $vr_flow_row) : ?>
                             <li class="salon-single-flow__item">
@@ -210,29 +214,40 @@ $vr_img = VR_THEME_URI . '/assets/images';
                                         <p class="salon-single-flow__desc"><?php echo nl2br(esc_html($vr_flow_row['desc'])); ?></p>
                                     <?php endif; ?>
                                     <?php
-                                    // 装飾画像（任意。設定されたステップにのみ入る）
+                                    // 装飾画像はセクション直下に絶対配置するため、ここでは集めるだけ。
+                                    // 指示書「最大で3枚まで」に従い3枚で打ち切る。
                                     $vr_flow_img = $vr_flow_row['image'] ? wp_get_attachment_image_url($vr_flow_row['image'], 'medium') : '';
-                                    if ($vr_flow_img) :
-                                        // 左右交互に振る（1枚目=左 / 2枚目=右 / 3枚目=左）。
-                                        // 指示書「3枚目の画像の位置はテキストに被らないよう、よしなに設定する」への対応。
-                                        $vr_deco_index++;
-                                        $vr_deco_side = ($vr_deco_index % 2 === 1) ? 'left' : 'right';
-                                        ?>
-                                        <figure class="salon-single-flow__deco salon-single-flow__deco--<?php echo esc_attr($vr_deco_side); ?>">
-                                            <img src="<?php echo esc_url($vr_flow_img); ?>" width="200" height="200" alt="" loading="lazy">
-                                        </figure>
-                                    <?php endif; ?>
+                                    if ($vr_flow_img && count($vr_deco_images) < 3) {
+                                        $vr_deco_images[] = $vr_flow_img;
+                                    }
+                                    ?>
                                 </div>
                             </li>
                         <?php endforeach; ?>
                     </ol>
+                    <?php
+                    // 指示書:「デザインでは2枚しかないので、3枚目の画像の位置は
+                    // テキストに被らないよう、よしなに設定する」
+                    // → 1枚目=左 / 2枚目=右 / 3枚目=左（本文の外側）。
+                    // 縦位置はリスト高に対する割合（CSS）で決めるため、ステップ数や
+                    // 本文の長さが変わっても配置が崩れない。
+                    $vr_deco_sizes = array(1 => 150, 2 => 180, 3 => 150);
+                    foreach ($vr_deco_images as $vr_deco_i => $vr_deco_url) :
+                        $vr_deco_no   = $vr_deco_i + 1;
+                        $vr_deco_size = isset($vr_deco_sizes[$vr_deco_no]) ? $vr_deco_sizes[$vr_deco_no] : 150;
+                        ?>
+                        <figure class="salon-single-flow__deco salon-single-flow__deco--<?php echo esc_attr((string) $vr_deco_no); ?>" aria-hidden="true">
+                            <img src="<?php echo esc_url($vr_deco_url); ?>" width="<?php echo esc_attr((string) $vr_deco_size); ?>" height="<?php echo esc_attr((string) $vr_deco_size); ?>" alt="" loading="lazy">
+                        </figure>
+                    <?php endforeach; ?>
+                    </div>
                 </div>
             </section>
         <?php endif; ?>
 
         <?php if ($vr_has_staff) : ?>
             <section class="salon-single-staff" aria-labelledby="salon-single-staff-heading">
-                <div class="inner salon-single-staff__inner">
+                <div class="inner salon-single-staff__layout">
                     <?php
                     if ($vr_staff_photo_url !== '') :
                         $vr_staff_photo_w   = ! empty($vr_staff_photo['width']) ? (string) $vr_staff_photo['width'] : '400';
@@ -244,17 +259,15 @@ $vr_img = VR_THEME_URI . '/assets/images';
                         </figure>
                     <?php endif; ?>
                     <div class="salon-single-staff__text">
-                        <p class="salon-single-staff__en" lang="en">Staff</p>
-                        <h2 id="salon-single-staff-heading" class="salon-single-staff__sub">スタッフ紹介</h2>
+                        <h2 id="salon-single-staff-heading" class="salon-single-staff__head"><span class="salon-single-staff__en" lang="en">Staff</span><span class="salon-single-staff__ja">スタッフから挨拶</span></h2>
                         <?php if (trim($vr_staff_bio) !== '') : ?>
                             <p class="salon-single-staff__bio">
                                 <?php echo nl2br(esc_html($vr_staff_bio)); ?>
                             </p>
                         <?php endif; ?>
                         <?php if (trim($vr_staff_name) !== '') : ?>
-                            <p class="salon-single-staff__name"><?php echo esc_html($vr_staff_name); ?></p>
+                            <p class="salon-single-staff__name"><span class="salon-single-staff__name-en"><?php echo esc_html($vr_staff_name); ?></span><?php if (trim($vr_staff_name_ja ?? '') !== '') : ?><span class="salon-single-staff__name-ja"><?php echo esc_html($vr_staff_name_ja); ?></span><?php endif; ?></p>
                         <?php endif; ?>
-                        <a href="#" class="salon-single-staff__more">スタッフをもっと見る <i class="fas fa-chevron-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </section>
@@ -262,28 +275,28 @@ $vr_img = VR_THEME_URI . '/assets/images';
 
         <?php if ($vr_has_access) : ?>
             <section class="salon-single-access" aria-labelledby="salon-single-access-heading">
+                <div class="salon-single-access__band">
                 <div class="inner">
                     <h2 id="salon-single-access-heading" class="visually-hidden">アクセス・地図</h2>
-                    <div class="salon-single-access__grid">
+                    <div class="salon-single-access__layout">
                         <?php if ($vr_has_info) : ?>
-                            <div class="salon-single-access__info">
-                                <dl class="salon-single-access__dl">
+                            <dl class="salon-single-access__list">
                                     <?php if (trim($vr_address) !== '') : ?>
                                         <div class="salon-single-access__row">
-                                            <dt class="salon-single-access__dt">住所</dt>
-                                            <dd class="salon-single-access__dd"><?php echo nl2br(esc_html($vr_address)); ?></dd>
+                                            <dt class="salon-single-access__label">住所</dt>
+                                            <dd class="salon-single-access__value"><?php echo nl2br(esc_html($vr_address)); ?></dd>
                                         </div>
                                     <?php endif; ?>
                                     <?php if (trim($vr_access) !== '') : ?>
                                         <div class="salon-single-access__row">
-                                            <dt class="salon-single-access__dt">アクセス</dt>
-                                            <dd class="salon-single-access__dd"><?php echo nl2br(esc_html($vr_access)); ?></dd>
+                                            <dt class="salon-single-access__label">アクセス</dt>
+                                            <dd class="salon-single-access__value"><?php echo nl2br(esc_html($vr_access)); ?></dd>
                                         </div>
                                     <?php endif; ?>
                                     <?php if (trim($vr_tel) !== '') : ?>
                                         <div class="salon-single-access__row">
-                                            <dt class="salon-single-access__dt">電話番号</dt>
-                                            <dd class="salon-single-access__dd"><?php
+                                            <dt class="salon-single-access__label">電話番号</dt>
+                                            <dd class="salon-single-access__value"><?php
                                                 if ($vr_tel_href !== '') {
                                                     echo '<a href="' . esc_url('tel:' . $vr_tel_href) . '">' . esc_html($vr_tel) . '</a>';
                                                 } else {
@@ -297,12 +310,11 @@ $vr_img = VR_THEME_URI . '/assets/images';
                                     <?php endif; ?>
                                     <?php if (trim($vr_hours) !== '') : ?>
                                         <div class="salon-single-access__row">
-                                            <dt class="salon-single-access__dt">営業時間</dt>
-                                            <dd class="salon-single-access__dd"><?php echo nl2br(esc_html($vr_hours)); ?></dd>
+                                            <dt class="salon-single-access__label">営業時間</dt>
+                                            <dd class="salon-single-access__value"><?php echo nl2br(esc_html($vr_hours)); ?></dd>
                                         </div>
                                     <?php endif; ?>
                                 </dl>
-                            </div>
                         <?php endif; ?>
                         <?php
                         if (trim($vr_map) !== '') :
@@ -317,9 +329,12 @@ $vr_img = VR_THEME_URI . '/assets/images';
                         endif;
                         ?>
                     </div>
-                    <div class="salon-single-access__cta">
-                        <a href="<?php echo esc_url(vr_url('reserve')); ?>" class="button">ご予約</a>
-                    </div>
+                </div>
+                </div>
+                <div class="inner">
+                    <p class="salon-single-access__cta">
+                        <a href="<?php echo esc_url(vr_url('salons')); ?>" class="salon-single-access__btn">店舗一覧へ</a>
+                    </p>
                 </div>
             </section>
         <?php endif; ?>
