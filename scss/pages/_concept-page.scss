@@ -204,6 +204,8 @@
   margin-bottom: px(63.5);
 
   @include mq(md) {
+    // カンプ実測(SP): 見出しは x16（.inner の 30 より外）
+    margin-left: px(-13);
     margin-bottom: px(59.8);
   }
 }
@@ -313,6 +315,8 @@
   margin-bottom: px(53.4);
 
   @include mq(md) {
+    // カンプ実測(SP): 見出しは x16（.inner の 30 より外）
+    margin-left: px(-13);
     margin-bottom: px(63.8);
   }
 }

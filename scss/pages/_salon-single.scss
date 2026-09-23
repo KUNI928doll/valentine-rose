@@ -115,7 +115,9 @@
   position: relative;
   padding-bottom: px(71);
 
+  // カンプ実測(SP): 本文の終わり → FLOW 見出しまで 362
   @include mq(md) {
+    padding-top: px(52);
     padding-bottom: px(80);
   }
 }
@@ -125,6 +127,8 @@
   margin-bottom: px(84);
 
   @include mq(md) {
+    // カンプ実測(SP): 見出しは x16（.inner の 30 より外）
+    margin-left: px(-13);
     margin-bottom: px(60);
   }
 }
@@ -272,10 +276,11 @@
   letter-spacing: px(1.8);
   color: var(--color-main);
 
+  // カンプ実測(SP): 14px / 行送り21 / 見出し上端から 35
   @include mq(md) {
-    margin-top: px(15.5);
+    margin-top: px(11.5);
     font-size: px(14);
-    line-height: px(26);
+    line-height: px(21);
     letter-spacing: px(1.4);
     text-align: left;
   }

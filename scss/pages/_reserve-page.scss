@@ -222,10 +222,10 @@ $reserve-gold: $color-main;   // 見出し・本文とも #CA7F13
 // ─── TEL ───
 // XD 実測: TEL ベースライン y1637 / 縦罫 x818.5 y1604.5
 .reserve-tel {
-  padding-block: px(121) px(120);
+  padding-block: px(158.5) px(162);
 
   @include mq(md) {
-    padding-block: px(73.5) px(80);
+    padding-block: px(52.5) px(80);
   }
 }
 

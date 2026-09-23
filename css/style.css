@@ -3078,7 +3078,7 @@ body[class*=page-] > main#main {
 }
 
 .reserve-tel {
-  padding-block: calc(121 * var(--1px)) calc(120 * var(--1px));
+  padding-block: calc(158.5 * var(--1px)) calc(162 * var(--1px));
 }
 
 .reserve-tel__inner {
@@ -5670,6 +5670,7 @@ body[class*=page-] > main#main {
   }
   .concept-instagram__head {
     margin-bottom: calc(59.8 * var(--1px));
+    margin-left: calc(-13 * var(--1px));
   }
   .concept-instagram__title .section-title__bg {
     top: calc(-26 * var(--1px));
@@ -5695,6 +5696,7 @@ body[class*=page-] > main#main {
   }
   .concept-profile__head {
     margin-bottom: calc(63.8 * var(--1px));
+    margin-left: calc(-13 * var(--1px));
   }
   .concept-profile__title .section-title__bg {
     top: calc(-26 * var(--1px));
@@ -6048,7 +6050,7 @@ body[class*=page-] > main#main {
     min-width: 0;
   }
   .reserve-tel {
-    padding-block: calc(73.5 * var(--1px)) calc(80 * var(--1px));
+    padding-block: calc(52.5 * var(--1px)) calc(80 * var(--1px));
   }
   .reserve-tel__inner {
     row-gap: calc(37 * var(--1px));
@@ -6241,10 +6243,12 @@ body[class*=page-] > main#main {
     text-align: left;
   }
   .salon-single-flow {
+    padding-top: calc(52 * var(--1px));
     padding-bottom: calc(80 * var(--1px));
   }
   .salon-single-flow__head {
     margin-bottom: calc(60 * var(--1px));
+    margin-left: calc(-13 * var(--1px));
   }
   .salon-single-flow__title .section-title__bg {
     top: calc(-26 * var(--1px));
@@ -6272,10 +6276,10 @@ body[class*=page-] > main#main {
     letter-spacing: calc(0.72 * var(--1px));
   }
   .salon-single-flow__desc {
-    margin-top: calc(15.5 * var(--1px));
+    margin-top: calc(11.5 * var(--1px));
     font-size: calc(14 * var(--1px));
     letter-spacing: calc(1.4 * var(--1px));
-    line-height: calc(26 * var(--1px));
+    line-height: calc(21 * var(--1px));
     text-align: left;
   }
   .salon-single-flow__deco--1 {
