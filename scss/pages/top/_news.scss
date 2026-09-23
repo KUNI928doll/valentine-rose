@@ -110,10 +110,11 @@
   @include mq(md) {
     border-left: none;
     border-right: none;
-    border-bottom: 1px solid rgba(84, 55, 45, 0.3);
+    // カンプ実測(SP): 区切り罫は PC の縦罫と同じ濃さ（#54372D ベタ）
+    border-bottom: 1px solid var(--color-accent-1);
 
     &:first-child {
-      border-top: 1px solid rgba(84, 55, 45, 0.3);
+      border-top: 1px solid var(--color-accent-1);
     }
   }
 }
@@ -122,7 +123,8 @@
 .news__link {
   display: flex;
   flex-direction: column;
-  padding: px(16.5) px(19.5);
+  // カンプ実測: カード高 151px。日付を詰めた分、下余白で高さを合わせる
+  padding: px(16.5) px(19.5) px(19.5);
   color: inherit;
   transition: opacity $transition-base;
 
@@ -131,7 +133,8 @@
   }
 
   @include mq(md) {
-    padding: px(20) 0;
+    // カンプ実測(SP): 1行の高さ 160px
+    padding: px(22) 0;
   }
 }
 
@@ -169,7 +172,8 @@
 .news__date {
   display: block;
   // カンプ: 日付ベースライン → タイトル枠上端 16px（半leading 相殺込みで 10.3）
-  margin-block-end: px(10.3);
+  // 1x 書き出しとのピクセル比較で、タイトルが 3px 下にいたため 7.3 に詰める
+  margin-block-end: px(7.3);
   // カンプ: Yu Gothic Bold 14px / 行送り22
   font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
   font-size: px(14);
@@ -199,6 +203,7 @@
   line-height: px(18); // カンプ: 行送り18
   color: var(--color-accent-1);
   letter-spacing: px(1.4); // カンプ: 字間1.4
+  text-transform: uppercase; // カンプは全角大文字（CATEGORY）
 }
 
 // SP用ボタンラップ（.u-sp-only と競合しないよう SP のみで指定）
@@ -206,7 +211,8 @@
   @include mq(md) {
     display: flex;
     justify-content: center;
-    margin-top: px(32);
+    // カンプ実測(SP): 一覧の最終罫線 → ボタン上端 22px
+    margin-top: px(21);
   }
 
   // SP用 View All（カンプ: Yu Mincho Demibold / 12px / 字間1.2 / 行間20）
@@ -214,6 +220,9 @@
     font-weight: 600;
 
     @include mq(md) {
+      // カンプ実測(SP): ボタンは 120x30
+      width: px(120);
+      padding-block: px(5);
       font-size: px(12);
       letter-spacing: px(1.2);
       line-height: px(20);

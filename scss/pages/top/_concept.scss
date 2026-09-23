@@ -3,7 +3,8 @@
 
 // Concept（PC: 2段グリッド / 1行目は見出しが画像左端で重なる・縦中央揃え / SP: 縦積み）
 .concept {
-  padding: px(28) 0px px(198);
+  // 1x 書き出しとのピクセル比較: セクション全体が 6px 下にいたため上を詰め、下で高さを戻す
+  padding: px(22) 0px px(204);
   background-color: var(--color-bg-1);
   overflow-x: clip;
 
