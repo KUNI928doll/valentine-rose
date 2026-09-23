@@ -90,8 +90,10 @@ const initFeatureSlider = () => {
   const DURATION_MS = 5e3;
   let current = 0;
   let timerId = null;
+  const track = root.querySelector(".feature__image-panels");
   const goTo = index => {
     current = (index % total + total) % total;
+    if (track) track.style.setProperty("--feature-index", String(current));
     imagePanels.forEach((panel, i) => {
       const on = i === current;
       panel.classList.toggle("is-active", on);

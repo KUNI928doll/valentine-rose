@@ -152,30 +152,34 @@ get_header();
               </h2>
             </div>
             <div class="feature__image-panels">
-              <figure class="feature__panel-img is-active">
-                <div class="feature__img-frame">
-                  <picture>
-                    <source srcset="<?php echo esc_url($vr_img . '/page/feature_02-sp.jpg'); ?>" width="315" height="275" media="(max-width: 768px)">
-                    <img src="<?php echo esc_url($vr_img . '/page/feature_02-pc.jpg'); ?>" width="450" height="630" alt="カウンターでお客様をお迎えする様子" loading="lazy" decoding="async">
-                  </picture>
-                </div>
-              </figure>
-              <figure class="feature__panel-img">
-                <div class="feature__img-frame">
-                  <picture>
-                    <source srcset="<?php echo esc_url($vr_img . '/page/feature_01-sp.jpg'); ?>" width="315" height="275" media="(max-width: 768px)">
-                    <img src="<?php echo esc_url($vr_img . '/page/feature_01-pc.jpg'); ?>" width="450" height="630" alt="脱毛器による施術の様子" loading="lazy" decoding="async">
-                  </picture>
-                </div>
-              </figure>
-              <figure class="feature__panel-img">
-                <div class="feature__img-frame">
-                  <picture>
-                    <source srcset="<?php echo esc_url($vr_img . '/page/feature_03-sp.jpg'); ?>" width="315" height="275" media="(max-width: 768px)">
-                    <img src="<?php echo esc_url($vr_img . '/page/feature_03-pc.jpg'); ?>" width="450" height="630" alt="サロンでの施術イメージ" loading="lazy" decoding="async">
-                  </picture>
-                </div>
-              </figure>
+              <div class="feature__track">
+                <div class="feature__peek" aria-hidden="true"><img src="<?php echo esc_url($vr_img . '/page/feature_03-sp.jpg'); ?>" width="315" height="275" alt="" loading="lazy" decoding="async"></div>
+                <figure class="feature__panel-img is-active">
+                  <div class="feature__img-frame">
+                    <picture>
+                      <source srcset="<?php echo esc_url($vr_img . '/page/feature_01-sp.jpg'); ?>" width="315" height="275" media="(max-width: 768px)">
+                      <img src="<?php echo esc_url($vr_img . '/page/feature_01-pc.jpg'); ?>" width="450" height="630" alt="脱毛器による施術の様子" loading="lazy" decoding="async">
+                    </picture>
+                  </div>
+                </figure>
+                <figure class="feature__panel-img">
+                  <div class="feature__img-frame">
+                    <picture>
+                      <source srcset="<?php echo esc_url($vr_img . '/page/feature_02-sp.jpg'); ?>" width="315" height="275" media="(max-width: 768px)">
+                      <img src="<?php echo esc_url($vr_img . '/page/feature_02-pc.jpg'); ?>" width="450" height="630" alt="カウンターでお客様をお迎えする様子" loading="lazy" decoding="async">
+                    </picture>
+                  </div>
+                </figure>
+                <figure class="feature__panel-img">
+                  <div class="feature__img-frame">
+                    <picture>
+                      <source srcset="<?php echo esc_url($vr_img . '/page/feature_03-sp.jpg'); ?>" width="315" height="275" media="(max-width: 768px)">
+                      <img src="<?php echo esc_url($vr_img . '/page/feature_03-pc.jpg'); ?>" width="450" height="630" alt="サロンでの施術イメージ" loading="lazy" decoding="async">
+                    </picture>
+                  </div>
+                </figure>
+                <div class="feature__peek" aria-hidden="true"><img src="<?php echo esc_url($vr_img . '/page/feature_01-sp.jpg'); ?>" width="315" height="275" alt="" loading="lazy" decoding="async"></div>
+              </div>
             </div>
           </div>
           <div class="feature__text-panels">
@@ -275,8 +279,8 @@ get_header();
           <p class="section-title__ja">よくあるご質問</p>
         </div>
         <div class="faq__list">
-          <div class="faq__item js-faq-item">
-            <button type="button" class="faq__trigger js-faq-trigger" aria-expanded="false" aria-controls="faq-panel-1" id="faq-trigger-1">
+          <div class="faq__item js-faq-item is-open">
+            <button type="button" class="faq__trigger js-faq-trigger" aria-expanded="true" aria-controls="faq-panel-1" id="faq-trigger-1">
               <span class="faq__mark" aria-hidden="true">Q</span><span class="faq__q-text">脱毛後にまた毛が生えてくることはありますか？</span>
               <span class="faq__icon" aria-hidden="true"></span>
             </button>

@@ -5,7 +5,8 @@
 // PC: 左ナビ | 中央画像+見出し重ね | 右テキスト（中央揃え）
 
 .feature {
-  --feature-bg: #2b2b2b;
+  // カンプ実測（TOP_PC / SP_TOP とも）: セクション背景は #464646
+  --feature-bg: #464646;
 
   padding: px(59) 0 px(100);
   background-color: var(--feature-bg);
@@ -18,7 +19,7 @@
   }
 
   @include mq(md) {
-    padding: px(56) 0 px(44); // カンプ(SP): セクション高さ 704px
+    padding: px(60) 0 px(20); // カンプ(SP): セクション高さ 704px
 
     .inner {
       width: 100%;
@@ -176,8 +177,9 @@
   transform: translate(px(-42), px(38));
 
   @include mq(md) {
-    // カンプ(SP)も PC と同じく見出しが画像の上端に重なる（FEATURE ベースライン = 画像上端 +41px）
-    margin-bottom: px(-54.5);
+    // カンプ(SP)も PC と同じく見出しが画像の上端に重なる
+    // 1x 書き出しの実測: FEATURE の字面上端は画像上端より 15px 上
+    margin-bottom: px(-32.5);
     transform: none;
   }
 }
@@ -234,8 +236,45 @@
   z-index: 1;
 
   @include mq(md) {
+    // カンプ(SP): 左右に前後スライドが 14px ずつのぞく（表示枠 343 = 14 + 315 + 14）。
+    // .inner の padding-inline 30 を負マージンで 14 だけ食い出す
     max-width: none;
+    width: px(343);
+    margin-inline: px(-14);
+    overflow: hidden;
     transform: none;
+  }
+}
+
+// スライドの並び。PC は display: contents で従来どおり重ねフェード、SP だけ横並びトラック
+.feature__track {
+  display: contents;
+
+  @include mq(md) {
+    display: flex;
+    align-items: flex-start;
+    width: max-content;
+    // 現在のスライド（先頭のクローン分 +1）を表示枠の 14px 位置に合わせる
+    transform: translateX(calc((14 - (var(--feature-index, 0) + 1) * 315) * var(--1px)));
+    transition: transform 0.65s ease;
+  }
+}
+
+// 左右にのぞく前後スライド（SP のみ。PC のカンプには無い）
+.feature__peek {
+  display: none;
+
+  @include mq(md) {
+    display: block;
+    flex: 0 0 auto;
+    width: px(315);
+    line-height: 0;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
   }
 }
 
@@ -251,6 +290,14 @@
     opacity: 1;
     pointer-events: auto;
     z-index: 1;
+  }
+
+  // SP は重ねフェードではなく横スライドなので、常に表示
+  @include mq(md) {
+    flex: 0 0 auto;
+    width: px(315);
+    opacity: 1;
+    pointer-events: auto;
   }
 }
 
