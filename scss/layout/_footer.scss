@@ -180,7 +180,8 @@
   font-family: var(--font-en);
   font-size: px(12);
   color: var(--color-accent-1);
-  letter-spacing: px(0.5);
+  // 1x 書き出しとの実測比較: 字送りは 0.5 ではなく 1.2（12px の 100/1000em）
+  letter-spacing: px(1.2);
   opacity: 0.7;
 
   @include mq(md) {

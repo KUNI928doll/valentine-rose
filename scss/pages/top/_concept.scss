@@ -282,6 +282,11 @@
   box-sizing: border-box;
   // カンプ: 本文下端 → View More ベースライン 29px（= 本文下端から 8px 下が View More の行ボックス上端）
   gap: px(8);
+
+  @include mq(md) {
+    // カンプ実測(SP): 本文最終行の字面下端 → View More の字面上端 34px
+    gap: px(17);
+  }
 }
 
 .concept__text {

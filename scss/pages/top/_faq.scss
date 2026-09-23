@@ -112,8 +112,8 @@
   transition: padding-bottom 0.35s ease;
 
   @include mq(md) {
-    // カンプ(SP): 1項目 93px（質問2行 42px + 上下パディング）/ Q は左16・質問は左43・三角は右12
-    padding: px(18) px(12) px(33) px(16);
+    // カンプ実測(SP): 閉じた項目は 73px（上18 + 質問2行 42 + 下13）/ Q は左16・質問は左43・三角は右12
+    padding: px(18) px(12) px(13) px(16);
     font-size: px(14);
     letter-spacing: px(0.56);
     line-height: px(21);
@@ -187,7 +187,8 @@
 
 
   @include mq(md) {
-    padding: 0 px(24) px(33) px(16);
+    // カンプ実測(SP): 回答の最終行下端 → 項目下端 21px
+    padding: 0 px(24) px(15) px(16);
     font-size: px(14);
     letter-spacing: px(0.56);
     line-height: px(21);
