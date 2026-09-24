@@ -96,6 +96,8 @@
 
   @include mq(md) {
     margin-bottom: px(70.9);
+    // カンプ実測(SP): 見出しだけ .inner の左右 30px より外側（x16）から始まる
+    margin-inline: px(-14);
   }
 }
 
@@ -264,6 +266,15 @@
   @include mq(md) {
     padding-bottom: px(82);
   }
+
+  // カンプ実測: 最後の県ブロック下端 → RESERVE 帯まで 130px（SP は 115px）
+  &:not(:has(~ .salons-archive-region)) {
+    padding-bottom: px(120);
+
+    @include mq(md) {
+      padding-bottom: px(105);
+    }
+  }
 }
 
 // XD 実測: 1200x120 の #CA7F13 帯。県名 EN はベースラインが帯上端 +77
@@ -416,6 +427,8 @@
   font-weight: 400;
   line-height: 1;
   letter-spacing: px(1.4);
+  // カンプ実測: 住所だけ本文色（#333333）。店名・英字はゴールド
+  color: var(--color-text);
 
   @include mq(md) {
     margin-top: px(9);

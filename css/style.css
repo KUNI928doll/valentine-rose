@@ -4491,6 +4491,9 @@ body[class*=page-] > main#main {
 .salons-archive-region {
   padding-bottom: calc(82 * var(--1px));
 }
+.salons-archive-region:not(:has(~ .salons-archive-region)) {
+  padding-bottom: calc(120 * var(--1px));
+}
 
 .salons-archive-region__banner {
   display: -webkit-box;
@@ -4609,6 +4612,7 @@ body[class*=page-] > main#main {
 .salons-archive-card__address {
   display: block;
   margin-top: calc(9 * var(--1px));
+  color: var(--color-text);
   font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", sans-serif;
   font-size: calc(14 * var(--1px));
   font-weight: 400;
@@ -6497,6 +6501,7 @@ body[class*=page-] > main#main {
     padding: calc(102 * var(--1px)) 0 calc(80 * var(--1px));
   }
   .salons-archive__head {
+    margin-inline: calc(-14 * var(--1px));
     margin-bottom: calc(70.9 * var(--1px));
   }
   .salons-archive__title .section-title__bg {
@@ -6537,6 +6542,9 @@ body[class*=page-] > main#main {
   }
   .salons-archive-region {
     padding-bottom: calc(82 * var(--1px));
+  }
+  .salons-archive-region:not(:has(~ .salons-archive-region)) {
+    padding-bottom: calc(105 * var(--1px));
   }
   .salons-archive-region__banner {
     padding-top: calc(17.9 * var(--1px));
