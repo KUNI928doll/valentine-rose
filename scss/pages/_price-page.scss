@@ -50,7 +50,8 @@
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    padding-block: px(80) px(80);
+    // 1x 書き出しとの実測比較: パンくず → ナビ1行目の罫線まで 720（上余白は 65）
+    padding-block: px(65) px(73);
   }
 }
 
@@ -69,7 +70,7 @@
     // XD 実測(SP): 14px / 行送り28 / 幅315 / ナビの下
     width: auto;
     flex: none;
-    margin-top: px(34.8);
+    margin-top: px(31.8);
     font-size: px(14);
     line-height: px(28);
     letter-spacing: px(1.4);
@@ -204,14 +205,14 @@
   margin-top: px(107);
 
   @include mq(md) {
-    margin-top: px(53);
+    margin-top: px(77);
   }
 }
 
 // XD 実測(SP): V-line → Set の間だけ他より詰まっている
 #price-set {
   @include mq(md) {
-    margin-top: px(16);
+    margin-top: px(30);
   }
 }
 
@@ -235,7 +236,7 @@
 
     // SP は注記のあとの余白が PC と違うので、見出し側で間隔を取る
     .price-section__size {
-      margin-top: px(38.8);
+      margin-top: px(48.8);
     }
   }
 }
@@ -252,7 +253,7 @@
   color: var(--color-main);
 
   @include mq(md) {
-    margin-top: px(55.2);
+    margin-top: px(49.2);
     font-size: px(18);
     letter-spacing: px(1.8);
     line-height: px(28);
@@ -272,11 +273,12 @@
   color: var(--color-main);
 
   @include mq(md) {
-    margin-top: px(30);
+    margin-top: px(24);
     width: px(343);
     margin-inline: px(-14);
     font-size: px(14);
-    line-height: px(28);
+    // カンプ実測(SP): 行送り32
+    line-height: px(32);
     letter-spacing: px(1.4);
     text-align: left;
   }
@@ -444,7 +446,8 @@
       justify-content: space-between;
       gap: px(12);
       padding: px(23.3) 0 px(20.7);
-      border-bottom: 1px dotted var(--color-main);
+      // カンプ実測(SP): 行の区切りは点線ではなくベタ罫
+      border-bottom: 1px solid var(--color-main);
       font-size: px(14);
       text-align: right;
     }
@@ -485,7 +488,10 @@
   @include mq(md) {
     width: px(343);
     margin-inline: px(-14);
-    margin-top: px(2.7);
+    // カンプ実測(SP): 表の最終行 → 注記1行目 60px
+    margin-top: px(10.7);
+    // カンプ実測(SP): 2行の行送りは 18
+    line-height: px(18);
     text-align: left;
   }
 }

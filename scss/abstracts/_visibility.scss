@@ -19,3 +19,19 @@
         display: block;
     }
 }
+
+// SP のときだけ改行する <br>（カンプの SP 改行位置に合わせる）
+br.u-sp-br{
+    display: none;
+    @include mq("md"){
+        display: inline;
+    }
+}
+
+// PC のときだけ改行する <br>
+br.u-pc-br{
+    display: inline;
+    @include mq("md"){
+        display: none;
+    }
+}

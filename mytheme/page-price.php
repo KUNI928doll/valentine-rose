@@ -47,7 +47,7 @@ get_header();
       </div>
       <div class="inner price-page-intro__layout">
         <h2 id="price-intro-heading" class="visually-hidden">料金メニューについて</h2>
-        <p class="price-page-intro__copy">バレンタインローズは、お客様のなりたい姿に合わせて選択いただけるよう「トライアルコース」「減毛コース」「脱毛コース」の3種類のコースをご用意しています。<br>トライアルコースは脱毛効果を実感したい方に、減毛コースは体毛を薄くしたい・減らしたい方に、脱毛コースは施術箇所の体毛をすべて脱毛したい方におすすめのコースです。</p>
+        <p class="price-page-intro__copy">バレンタインローズは、<br class="u-sp-br">お客様のなりたい姿に合わせて<br class="u-sp-br">選択いただけるよう<br class="u-sp-br">「トライアルコース」<br class="u-sp-br">「減毛コース」<br class="u-sp-br">「脱毛コース」<br class="u-sp-br">の3種類のコースをご用意しています。<br><br class="u-sp-br">トライアルコースは<br class="u-sp-br">脱毛効果を実感したい方に、<br class="u-sp-br">減毛コースは<br class="u-sp-br">体毛を薄くしたい・減らしたい方に、<br class="u-sp-br">脱毛コースは<br class="u-sp-br">施術箇所の体毛をすべて脱毛したい方に<br class="u-sp-br">おすすめのコースです。</p>
         <ul class="price-nav">
           <li class="price-nav__item">
             <a href="#price-body" class="price-nav__link">
@@ -90,7 +90,7 @@ get_header();
           <h2 class="price-section__title">Body</h2>
           <div class="price-section__block">
             <h3 class="price-section__size">Sパーツ</h3>
-            <p class="price-section__parts">おでこ・ほほ・口周り・あご下の首・うなじ・両脇・手の指&amp;甲・<br>足の指&amp;甲・へそ周り・乳輪周り</p>
+            <p class="price-section__parts">おでこ・ほほ・口周り・あご下の首・<br class="u-sp-br">うなじ・両脇・手の指&amp;甲・<br class="u-pc-br">足の指&amp;甲・<br class="u-sp-br">へそ周り・乳輪周り</p>
             <table class="price-table">
               <caption class="visually-hidden">Sパーツの料金</caption>
               <thead>
@@ -114,7 +114,7 @@ get_header();
           </div>
           <div class="price-section__block">
             <h3 class="price-section__size">Mパーツ</h3>
-            <p class="price-section__parts">お腹全体・胸全体（乳輪周りを含む）・お尻・両腕上（肘含む）・<br>両腕下・V（ハイジニーナ）</p>
+            <p class="price-section__parts">お腹全体・胸全体（乳輪周りを含む）・<br class="u-sp-br">お尻・両腕上（肘含む）・<br>両腕下・V（ハイジニーナ）</p>
             <table class="price-table">
               <caption class="visually-hidden">Mパーツの料金</caption>
               <thead>
