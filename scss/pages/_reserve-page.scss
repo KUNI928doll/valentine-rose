@@ -570,7 +570,7 @@ $reserve-step-muted: #707070;
   @include mq(md) {
     grid-template-columns: 1fr;
     padding-left: 0;
-    gap: px(12);
+    gap: px(7);
   }
 }
 
@@ -918,12 +918,10 @@ $reserve-step-muted: #707070;
   // margin だと head の下余白と相殺されるので padding で空ける
   padding-top: px(67);
 
+  // カンプ実測(SP): ステップ下端 → 1行目のバッジ上端
   @include mq(md) {
-    padding-top: px(40);
-  }
-
-  @include mq(md) {
-    gap: px(24);
+    padding-top: px(1);
+    gap: px(29);
   }
 }
 
@@ -938,7 +936,7 @@ $reserve-step-muted: #707070;
   @include mq(md) {
     grid-template-columns: 1fr;
     padding-left: 0;
-    gap: px(12);
+    gap: px(7);
   }
 }
 
@@ -962,6 +960,9 @@ $reserve-step-muted: #707070;
   word-break: break-word;
 
   @include mq(md) {
+    // カンプ実測(SP): 値は帯ではなく素のテキスト。1行ピッチ 88px
+    min-height: px(26);
+    padding-inline: 0;
     font-size: px(14);
     letter-spacing: px(1.4);
   }

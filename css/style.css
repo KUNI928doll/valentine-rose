@@ -6214,7 +6214,7 @@ body[class*=page-] > main#main {
     gap: calc(32 * var(--1px));
   }
   .reserve-field {
-    gap: calc(12 * var(--1px));
+    gap: calc(7 * var(--1px));
     grid-template-columns: 1fr;
     padding-left: 0;
   }
@@ -6260,17 +6260,17 @@ body[class*=page-] > main#main {
     margin-top: calc(32 * var(--1px));
   }
   .reserve-confirm-list {
-    padding-top: calc(40 * var(--1px));
-  }
-  .reserve-confirm-list {
-    gap: calc(24 * var(--1px));
+    gap: calc(29 * var(--1px));
+    padding-top: calc(1 * var(--1px));
   }
   .reserve-confirm-list__row {
-    gap: calc(12 * var(--1px));
+    gap: calc(7 * var(--1px));
     grid-template-columns: 1fr;
     padding-left: 0;
   }
   .reserve-confirm-list__dd {
+    padding-inline: 0;
+    min-height: calc(26 * var(--1px));
     font-size: calc(14 * var(--1px));
     letter-spacing: calc(1.4 * var(--1px));
   }
