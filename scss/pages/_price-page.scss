@@ -43,7 +43,7 @@
   align-items: flex-start;
   justify-content: space-between;
   // .inner の左右パディングを消さないよう padding-block で指定する
-  padding-block: px(68) px(120);
+  padding-block: px(68) px(109);
 
   @include mq(md) {
     // SP はカンプ順（ナビ → 本文）の縦積み
@@ -202,7 +202,7 @@
 }
 
 .price-section + .price-section {
-  margin-top: px(107);
+  margin-top: px(110);
 
   @include mq(md) {
     margin-top: px(77);
@@ -243,7 +243,8 @@
 
 // XD 実測: 24px Yu Mincho Regular / 字間2.4 / 行送り32 / 中央（SP 18px）
 .price-section__size {
-  margin: px(58) 0 0;
+  // 1x 書き出しとの実測比較: Body 見出しの字面下端 → サイズ見出しの字面上端 132px
+  margin: px(34) 0 0;
   font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
   font-size: px(24);
   font-weight: 400;

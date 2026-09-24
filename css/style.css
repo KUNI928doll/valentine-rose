@@ -2627,7 +2627,7 @@ body[class*=page-] > main#main {
 }
 
 .price-page-intro__layout {
-  padding-block: calc(68 * var(--1px)) calc(120 * var(--1px));
+  padding-block: calc(68 * var(--1px)) calc(109 * var(--1px));
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2743,7 +2743,7 @@ body[class*=page-] > main#main {
 }
 
 .price-section + .price-section {
-  margin-top: calc(107 * var(--1px));
+  margin-top: calc(110 * var(--1px));
 }
 
 .price-section__title {
@@ -2762,7 +2762,7 @@ body[class*=page-] > main#main {
 }
 
 .price-section__size {
-  margin: calc(58 * var(--1px)) 0 0;
+  margin: calc(34 * var(--1px)) 0 0;
   color: var(--color-main);
   font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
   font-size: calc(24 * var(--1px));
