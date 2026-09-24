@@ -35,3 +35,11 @@ br.u-pc-br{
         display: none;
     }
 }
+
+// PC のときだけ表示するインライン要素（SP で語句を短くする用）
+.u-pc-inline{
+    display: inline;
+    @include mq("md"){
+        display: none;
+    }
+}

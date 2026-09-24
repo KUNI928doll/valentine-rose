@@ -198,6 +198,14 @@
   width: px(202);
   height: px(41);
   border-radius: px(20.5);
+
+  // カンプ実測(SP): ラベルは「一覧へ」で 158x39
+  @include mq(md) {
+    width: px(158);
+    height: px(39);
+    border-radius: px(19.5);
+  }
+
   background-color: var(--color-accent-2);
   font-family: var(--font-serif);
   font-size: px(16);

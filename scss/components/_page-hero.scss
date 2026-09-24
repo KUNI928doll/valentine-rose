@@ -82,15 +82,8 @@ body[class*="page-"] > main#main {
     height: px(300);
   }
 
-  // XD 実測: KV 上に #000 14.9% のオーバーレイ
-  &::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    background-color: rgba(0, 0, 0, 0.149);
-    pointer-events: none;
-  }
+  // XD には #000 14.9% のオーバーレイ矩形があるが、書き出したカンプ（PC / SP とも全ページ）
+  // には掛かっていない（実装だけが 0.851 倍暗い）ため、カンプに合わせて敷かない。
 }
 
 // 既定（JS 無効 / prefers-reduced-motion）はカンプどおり枠いっぱいの静止画像。

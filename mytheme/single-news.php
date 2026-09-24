@@ -80,7 +80,7 @@ $vr_img = VR_THEME_URI . '/assets/images';
                     </div>
 
                     <p class="news-single__actions">
-                        <a href="<?php echo esc_url(vr_url('news')); ?>" class="news-single__back">お知らせ一覧へ</a>
+                        <a href="<?php echo esc_url(vr_url('news')); ?>" class="news-single__back"><span class="u-pc-inline">お知らせ</span>一覧へ</a>
                     </p>
                 </article>
 
