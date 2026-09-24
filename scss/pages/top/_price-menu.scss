@@ -12,7 +12,7 @@
 
   @include mq(md) {
     // カンプ(SP): セクション上端 → PRICE MENU ベースライン 198px
-    padding: px(151.5) 0 px(77.5);
+    padding: px(151.5) 0 px(72.5);
   }
 }
 
@@ -136,9 +136,9 @@
   }
 
   @include mq(md) {
-    // カンプ(SP): 1列・1行目のメニュー名ベースラインは 3681（見出しから 108px）
+    // カンプ実測(SP): PRICE MENU の字面下端 → 1行目のメニュー名の字面上端 116px
     width: 100%;
-    margin-top: px(18);
+    margin-top: px(48);
     grid-template-columns: 1fr;
     grid-template-areas:
       "body"
@@ -194,7 +194,8 @@
   @include mq(md) {
     // カンプ(SP): 1行 80px（区切り線1px込み / メニュー名の行ボックス32px）。縦積みなので各行に下線
     // 矢印はカンプで右端から約28px内側
-    padding: px(22.3) px(28) px(22.3) px(20);
+    // カンプ実測(SP): 文字は罫線の左端から 5px / 矢印は右端から 17px
+    padding: px(22.3) px(17) px(22.3) px(5);
     border-right: none !important;
     border-bottom: 1px solid rgba(202, 127, 19, 0.35);
   }

@@ -5540,7 +5540,7 @@ body[class*=page-] > main#main {
     line-height: calc(28 * var(--1px));
   }
   .price-menu {
-    padding: calc(151.5 * var(--1px)) 0 calc(77.5 * var(--1px));
+    padding: calc(151.5 * var(--1px)) 0 calc(72.5 * var(--1px));
   }
   .price-menu__layout {
     display: block;
@@ -5575,7 +5575,7 @@ body[class*=page-] > main#main {
   .price-menu__grid {
     grid-template-areas: "body" "vline" "set" "custom" "all";
     grid-template-columns: 1fr;
-    margin-top: calc(18 * var(--1px));
+    margin-top: calc(48 * var(--1px));
     width: 100%;
   }
   .price-menu__blank {
@@ -5584,7 +5584,7 @@ body[class*=page-] > main#main {
   .price-menu__link {
     border-right: none !important;
     border-bottom: 1px solid rgba(202, 127, 19, 0.35);
-    padding: calc(22.3 * var(--1px)) calc(28 * var(--1px)) calc(22.3 * var(--1px)) calc(20 * var(--1px));
+    padding: calc(22.3 * var(--1px)) calc(17 * var(--1px)) calc(22.3 * var(--1px)) calc(5 * var(--1px));
   }
   .price-menu__name {
     font-size: calc(36 * var(--1px));
