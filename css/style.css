@@ -3900,7 +3900,7 @@ body[class*=page-] > main#main {
 }
 
 .salon-single-intro {
-  padding: calc(120.5 * var(--1px)) 0 calc(120 * var(--1px));
+  padding: calc(106.5 * var(--1px)) 0 calc(163 * var(--1px));
 }
 
 .salon-single-intro__text,
@@ -6386,7 +6386,7 @@ body[class*=page-] > main#main {
     height: calc(80 * var(--1px));
   }
   .salon-single-staff {
-    padding: calc(60 * var(--1px)) 0;
+    padding: calc(60 * var(--1px)) 0 calc(35 * var(--1px));
   }
   .salon-single-staff__layout {
     display: block;
@@ -6411,11 +6411,11 @@ body[class*=page-] > main#main {
     width: auto;
     font-size: calc(14 * var(--1px));
     letter-spacing: calc(1.4 * var(--1px));
-    line-height: calc(26 * var(--1px));
+    line-height: calc(28 * var(--1px));
   }
   .salon-single-staff__name {
     gap: calc(14 * var(--1px));
-    margin-top: calc(30 * var(--1px));
+    margin-top: calc(12 * var(--1px));
   }
   .salon-single-staff__name-en {
     font-size: calc(20 * var(--1px));

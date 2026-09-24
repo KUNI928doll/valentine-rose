@@ -82,7 +82,8 @@
 // ─── 導入文 ───
 // XD 実測: 20px Yu Mincho Regular / 字間2 / 中央揃え / 幅1080（SP 14px 幅315 左揃え）
 .salon-single-intro {
-  padding: px(120.5) 0 px(120);
+  // 1x 書き出しとの実測比較: 本文上端 1304 / 本文下端 → FLOW 見出しまで
+  padding: px(106.5) 0 px(163);
 
   @include mq(md) {
     padding: px(80) 0 px(80);
@@ -367,8 +368,9 @@
   background-color: #464646;
   padding: px(80) 0;
 
+  // カンプ実測(SP): 氏名の字面下端 → セクション下端 37px
   @include mq(md) {
-    padding: px(60) 0;
+    padding: px(60) 0 px(35);
   }
 }
 
@@ -461,7 +463,8 @@
     width: auto;
     margin-top: px(20);
     font-size: px(14);
-    line-height: px(26);
+    // カンプ実測(SP): 行送り28
+    line-height: px(28);
     letter-spacing: px(1.4);
   }
 }
@@ -474,7 +477,8 @@
   margin: px(43.5) 0 0;
 
   @include mq(md) {
-    margin-top: px(30);
+    // カンプ実測(SP): 本文最終行 → 氏名まで 39px
+    margin-top: px(12);
     gap: px(14);
   }
 }
