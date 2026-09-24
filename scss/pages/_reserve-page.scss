@@ -225,7 +225,8 @@ $reserve-gold: $color-main;   // 見出し・本文とも #CA7F13
   padding-block: px(158.5) px(162);
 
   @include mq(md) {
-    padding-block: px(52.5) px(80);
+    // カンプ実測(SP): 未成年案内の本文下端 → TEL 見出し 52px
+    padding-block: px(33.5) px(80);
   }
 }
 
@@ -238,7 +239,8 @@ $reserve-gold: $color-main;   // 見出し・本文とも #CA7F13
 
   @include mq(md) {
     grid-template-columns: 1fr;
-    row-gap: px(37);
+    // カンプ実測(SP): 本文最終行 → 電話番号の字面まで 42px
+    row-gap: px(28);
   }
 }
 
@@ -295,9 +297,9 @@ $reserve-gold: $color-main;   // 見出し・本文とも #CA7F13
   padding-top: px(62.5);
   text-align: center;
 
-  // XD 実測(SP): 番号は TEL 見出しの 210 下
+  // SP は本文の下に積むだけなので上余白は row-gap で取る
   @include mq(md) {
-    padding-top: px(54);
+    padding-top: 0;
   }
 }
 
@@ -402,7 +404,8 @@ $reserve-gold: $color-main;   // 見出し・本文とも #CA7F13
 
   @include mq(md) {
     grid-template-columns: 1fr;
-    row-gap: px(75);
+    // カンプ実測(SP): リード最終行 → ステップ上罫 47px
+    row-gap: px(26);
     margin-bottom: px(60);
   }
 }
@@ -434,7 +437,7 @@ $reserve-gold: $color-main;   // 見出し・本文とも #CA7F13
   margin-top: px(67.5);
 
   @include mq(md) {
-    margin-top: px(20);
+    margin-top: px(14);
   }
 }
 
@@ -453,8 +456,15 @@ $reserve-gold: $color-main;   // 見出し・本文とも #CA7F13
   }
 
   @include mq(md) {
-    font-size: px(12);
-    letter-spacing: px(0.48);
+    // カンプ実測(SP): 段落間の余白は無く、行送り28で詰まって並ぶ
+    &:not(:last-child) {
+      margin-bottom: 0;
+    }
+
+    // カンプ実測(SP): 14px / 字間1.4 / 行送り28（1行20文字）
+    font-size: px(14);
+    letter-spacing: px(1.4);
+    line-height: px(28);
     text-align: left;
   }
 }
@@ -591,9 +601,10 @@ $reserve-step-muted: #707070;
   grid-template-columns: px(51) px(223) px(223) 1fr;
   align-items: center;
 
+  // カンプ実測(SP): 平日/休日 のラベルは行の上に置き、チェックは 2 列（x30 / x188）
   @include mq(md) {
-    grid-template-columns: px(40) 1fr;
-    row-gap: px(8);
+    grid-template-columns: px(158) 1fr;
+    row-gap: px(10);
   }
 }
 
@@ -605,7 +616,8 @@ $reserve-step-muted: #707070;
   color: #333;
 
   @include mq(md) {
-    grid-row: span 3;
+    grid-column: 1 / -1;
+    line-height: px(14);
   }
 }
 
@@ -724,6 +736,11 @@ $reserve-step-muted: #707070;
   &--time {
     display: grid;
     row-gap: px(12);
+
+    // カンプ実測(SP): 平日グループ下端 → 休日ラベル枠上端 18px
+    @include mq(md) {
+      row-gap: px(18);
+    }
   }
 
   // XD 実測: お問い合わせ項目は 2 列（チェック 0 / 278）
@@ -752,7 +769,8 @@ $reserve-step-muted: #707070;
   line-height: 1.5;
   letter-spacing: px(1.6);
   color: var(--color-text);
-  background-color: $color-bg-1;
+  // カンプ実測: 入力欄は #FFFFFF（セクション背景 #EDEAE5 との対比）
+  background-color: #fff;
   border: none;
   border-radius: px(2);
   transition: box-shadow $transition-base;

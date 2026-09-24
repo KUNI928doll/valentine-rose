@@ -3494,7 +3494,7 @@ body[class*=page-] > main#main {
           box-sizing: border-box;
   border: none;
   border-radius: calc(2 * var(--1px));
-  background-color: #F9F8F6;
+  background-color: #fff;
   padding: calc(12 * var(--1px)) calc(14 * var(--1px));
   width: 100%;
   height: calc(50 * var(--1px));
@@ -6123,10 +6123,10 @@ body[class*=page-] > main#main {
     min-width: 0;
   }
   .reserve-tel {
-    padding-block: calc(52.5 * var(--1px)) calc(80 * var(--1px));
+    padding-block: calc(33.5 * var(--1px)) calc(80 * var(--1px));
   }
   .reserve-tel__inner {
-    row-gap: calc(37 * var(--1px));
+    row-gap: calc(28 * var(--1px));
     grid-template-columns: 1fr;
   }
   .reserve-tel__vline {
@@ -6143,7 +6143,7 @@ body[class*=page-] > main#main {
     line-height: calc(21 * var(--1px));
   }
   .reserve-tel__col--num {
-    padding-top: calc(54 * var(--1px));
+    padding-top: 0;
   }
   .reserve-tel__label {
     font-size: calc(24 * var(--1px));
@@ -6161,7 +6161,7 @@ body[class*=page-] > main#main {
     padding-block: calc(64 * var(--1px)) calc(60 * var(--1px));
   }
   .reserve-mail__head {
-    row-gap: calc(75 * var(--1px));
+    row-gap: calc(26 * var(--1px));
     grid-template-columns: 1fr;
     margin-bottom: calc(60 * var(--1px));
   }
@@ -6170,12 +6170,16 @@ body[class*=page-] > main#main {
     letter-spacing: calc(3.2 * var(--1px));
   }
   .reserve-mail__lead {
-    margin-top: calc(20 * var(--1px));
+    margin-top: calc(14 * var(--1px));
   }
   .reserve-mail__lead-line {
-    font-size: calc(12 * var(--1px));
-    letter-spacing: calc(0.48 * var(--1px));
+    font-size: calc(14 * var(--1px));
+    letter-spacing: calc(1.4 * var(--1px));
+    line-height: calc(28 * var(--1px));
     text-align: left;
+  }
+  .reserve-mail__lead-line:not(:last-child) {
+    margin-bottom: 0;
   }
   .reserve-steps {
     grid-template-columns: repeat(3, calc(91.8 * var(--1px)));
@@ -6214,11 +6218,12 @@ body[class*=page-] > main#main {
     padding-left: 0;
   }
   .reserve-timegrid__row {
-    row-gap: calc(8 * var(--1px));
-    grid-template-columns: calc(40 * var(--1px)) 1fr;
+    row-gap: calc(10 * var(--1px));
+    grid-template-columns: calc(158 * var(--1px)) 1fr;
   }
   .reserve-timegrid__day {
-    grid-row: span 3;
+    grid-column: 1/-1;
+    line-height: calc(14 * var(--1px));
   }
   .reserve-date {
     width: 100%;
@@ -6236,6 +6241,9 @@ body[class*=page-] > main#main {
   .reserve-field__name {
     font-size: calc(14 * var(--1px));
     letter-spacing: calc(1.4 * var(--1px));
+  }
+  .reserve-field__control--time {
+    row-gap: calc(18 * var(--1px));
   }
   .reserve-field__control--checks {
     row-gap: calc(12 * var(--1px));
