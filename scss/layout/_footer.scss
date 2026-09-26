@@ -9,7 +9,7 @@
 
   @include mq(md) {
     // カンプ(SP): 横罫線 → ロゴ上端 102px / コピーライト → ページ下端 11px
-    padding: px(65) 0 px(5.3);
+    padding: px(66) 0 px(5.3);
   }
 }
 
@@ -20,16 +20,20 @@
   // カンプ: ロゴ画像上端 → ナビのベースライン PC133px / SP107px
   gap: px(42.4);
 
+  // カンプ実測(SP): ロゴ上端 → ナビ1行目の字面上端 94px
   @include mq(md) {
-    gap: px(36.4);
-  }
-
-  @include mq(md) {
-    gap: px(24);
+    gap: px(33);
   }
 }
 
-// ロゴ
+// ロゴ（カンプ実測(SP): ロゴだけ中央ではなく x60 から始まる。ナビ・コピーライトは中央）
+.footer__logo {
+  @include mq(md) {
+    align-self: flex-start;
+    margin-left: px(60);
+  }
+}
+
 .footer__logo-link {
   display: inline-flex;
   align-items: center;
@@ -70,7 +74,7 @@
   gap: px(32.5);
 
   @include mq(md) {
-    gap: px(30);
+    gap: px(31);
   }
 }
 
@@ -98,8 +102,9 @@
   gap: 0;
 
   @include mq(md) {
-    // カンプ(SP): 1行目3項目 / 2行目2項目（改行用アイテムが1行を占めるため row-gap は 0）
-    row-gap: 0;
+    // カンプ(SP): 1行目3項目 / 2行目2項目。改行用アイテムが高さ0の行を占めるため
+    // 1行目→2行目の間には row-gap が 2 回分入る（カンプ実測の行送り 29 = 行高18 + 5.5×2）
+    row-gap: px(5.5);
     max-width: 100%;
   }
 }
@@ -119,10 +124,11 @@
   }
 }
 
-// 2行目の先頭（News）には区切り線を出さず、行間 12px を持たせる
+// 2行目の先頭（News）には区切り線を出さない（行間は .footer__nav-items の row-gap）
 .footer__nav-break + .footer__nav-item {
+  // カンプ実測(SP): 2行目だけ中央から 11px 右にずれている（行は中央寄せなので左マージンで送る）
   @include mq(md) {
-    margin-top: px(12);
+    margin-left: px(21);
   }
 
   &::before {
@@ -184,8 +190,9 @@
   letter-spacing: px(1.2);
   opacity: 0.7;
 
+  // カンプ実測(SP): Privacy Policy → コピーライトの字面間 60px
   @include mq(md) {
-    margin-top: px(1.6);
+    margin-top: px(4.6);
   }
 }
 
@@ -193,7 +200,8 @@
 .pagetop {
   position: fixed;
   z-index: $z-header;
-  bottom: px(32);
+  // カンプ実測(PC): 最下部までスクロールした状態でページ下端から 59px
+  bottom: px(59);
   // カンプ: 80×80・右端から 40px
   right: px(40);
   display: inline-flex;
@@ -205,7 +213,11 @@
   border-radius: 999px;
   background-color: var(--color-accent-2);
   color: #fff;
-  font-size: px(16);
+  // カンプ実測: 矢印は PC 34x20 / SP 17x9。Font Awesome の chevron-up は
+  // 字面が横 0.875em・縦 0.5em なので、font-size は PC 40 / SP 20 になる
+  font-size: px(40);
+  // 字面が行ボックスの中央より上に来るぶんを押し下げて、円の中心に矢印を置く
+  padding-top: px(5);
   cursor: pointer;
   opacity: 0;
   visibility: hidden;
@@ -226,6 +238,7 @@
     right: px(25);
     width: px(40);
     height: px(40);
-    font-size: px(14);
+    font-size: px(20);
+    padding-top: px(3);
   }
 }
