@@ -29,7 +29,8 @@
 
 // XD 実測: 1行目の帯 y1291（パンくずベースライン1175 の 116 下）/ SP は y690.5
 .news-archive {
-  padding-block: px(98) px(196);
+  // カンプ実測(PC): ページャの字面下端 → RESERVE 帯の上端 125px
+  padding-block: px(98) px(124);
 
   @include mq(md) {
     padding-block: px(66) px(98);
