@@ -230,6 +230,23 @@ const initFadeUpScroll = () => {
     threshold: 0
   });
   targets.forEach(el => io.observe(el));
+  const revealAtDocumentBottom = () => {
+    if (window.innerHeight + window.scrollY < document.documentElement.scrollHeight - 2) {
+      return;
+    }
+    targets.forEach(el => {
+      if (el.classList.contains("is-fadeup-inview")) {
+        return;
+      }
+      el.classList.add("is-fadeup-inview");
+      io.unobserve(el);
+    });
+  };
+  window.addEventListener("scroll", revealAtDocumentBottom, {
+    passive: true
+  });
+  window.addEventListener("resize", revealAtDocumentBottom);
+  revealAtDocumentBottom();
 };
 
 const initNewsArchiveFilter = () => {
