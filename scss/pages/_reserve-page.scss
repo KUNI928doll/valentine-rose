@@ -222,7 +222,8 @@ $reserve-gold: $color-main;   // 見出し・本文とも #CA7F13
 // ─── TEL ───
 // XD 実測: TEL ベースライン y1637 / 縦罫 x818.5 y1604.5
 .reserve-tel {
-  padding-block: px(158.5) px(162);
+  // 1x 書き出しとの実測比較(PC): 未成年案内の本文下端 → TEL 見出し 154px / TEL 本文下端 → セクション下端 124px
+  padding-block: px(124.5) px(125);
 
   @include mq(md) {
     // カンプ実測(SP): 未成年案内の本文下端 → TEL 見出し 52px
@@ -400,7 +401,7 @@ $reserve-gold: $color-main;   // 見出し・本文とも #CA7F13
   display: grid;
   grid-template-columns: 1fr px(445);
   align-items: start;
-  margin-bottom: px(68.3);
+  margin-bottom: px(73.3);
 
   @include mq(md) {
     grid-template-columns: 1fr;
@@ -553,6 +554,24 @@ $reserve-step-muted: #707070;
   flex-direction: column;
   gap: px(32);
 
+  // カンプ実測(PC): 先頭5行（テキスト入力）は間隔32、6行目以降は37
+  > .reserve-field:nth-child(n + 6) {
+    margin-top: px(5);
+  }
+
+  // カンプ実測(SP): 広がるのは来店希望日（9行目）以降
+  @include mq(md) {
+    > .reserve-field:nth-child(n + 6) {
+      margin-top: 0;
+    }
+
+    > .reserve-field:nth-child(n + 9) {
+      margin-top: px(5);
+    }
+  }
+
+
+
   // XD 実測(SP): 行ピッチ120（バッジ26 + 12 + 入力50 + 間隔32）
   @include mq(md) {
     gap: px(32);
@@ -567,10 +586,11 @@ $reserve-step-muted: #707070;
   padding-left: px(39);
   align-items: start;
 
+  // XD 実測(SP): バッジ行 → 入力欄まで 12px（行ピッチ 120）
   @include mq(md) {
     grid-template-columns: 1fr;
     padding-left: 0;
-    gap: px(7);
+    gap: px(12);
   }
 }
 
@@ -737,9 +757,9 @@ $reserve-step-muted: #707070;
     display: grid;
     row-gap: px(12);
 
-    // カンプ実測(SP): 平日グループ下端 → 休日ラベル枠上端 18px
+    // カンプ実測(SP): 平日グループ下端 → 休日ラベル枠上端 26px（グループ間ピッチ120）
     @include mq(md) {
-      row-gap: px(18);
+      row-gap: px(26);
     }
   }
 
@@ -791,6 +811,12 @@ $reserve-step-muted: #707070;
   resize: vertical;
   height: px(120);
   min-height: px(120);
+
+  // カンプ実測(SP): テキストエリアは 200px
+  @include mq(md) {
+    height: px(200);
+    min-height: px(200);
+  }
 }
 
 // XD 実測: 希望店舗は 300x50（他の入力欄 620 より短い）
@@ -877,7 +903,8 @@ $reserve-step-muted: #707070;
 }
 
 .reserve-form__submit {
-  margin-top: px(40);
+  // カンプ実測(PC): 注記の字面下端 → ボタン上端 35px
+  margin-top: px(27);
   text-align: center;
 
   @include mq(md) {
@@ -1032,8 +1059,10 @@ $reserve-step-muted: #707070;
   text-align: center;
   box-sizing: border-box;
 
+  // カンプ実測(SP): サンキュー文は中央ではなく左寄せ
   @include mq(md) {
-    padding-top: px(80);
+    padding-top: px(70);
+    text-align: left;
   }
 }
 
@@ -1047,9 +1076,11 @@ $reserve-step-muted: #707070;
   line-height: 1;
   color: $reserve-gold;
 
+  // カンプ実測(SP): 20px / 行送り36（2行）
   @include mq(md) {
     font-size: px(20);
     letter-spacing: px(2);
+    line-height: px(36);
   }
 }
 
@@ -1058,18 +1089,25 @@ $reserve-step-muted: #707070;
   margin-top: px(31);
   font-size: px(18);
   line-height: px(36);
-  letter-spacing: px(1.8);
+  // カンプ実測: この本文だけ字送りは 0（PC 1行 370px / SP 287px）
+  letter-spacing: 0;
   color: $reserve-gold;
 
   @include mq(md) {
-    margin-top: px(20);
+    // カンプ実測(SP): 見出し2行目の字面下端 → 本文の字面上端 24px
+    margin-top: px(8);
     font-size: px(14);
     line-height: px(28);
-    letter-spacing: px(1.4);
   }
 
+  // カンプ実測(PC): TOPに戻る は中央ではなく本文の左端そろえ（本文は中央寄せ）
   + .reserve-thanks__text {
     margin-top: 0;
+    padding-right: px(292);
+
+    @include mq(md) {
+      padding-right: 0;
+    }
   }
 }
 
@@ -1088,15 +1126,28 @@ $reserve-step-muted: #707070;
 
 // XD 実測: 12px #333333 を入力欄の左端（x599）にそろえる
 .reserve-form__note {
-  margin-top: px(52);
+  // カンプ実測(PC): テキストエリア下端 → 注記の字面上端 10px
+  margin-top: px(-4);
   padding-left: px(420);
   font-size: px(12);
   line-height: px(24);
   letter-spacing: px(1.2);
   color: #333;
 
+  // カンプ実測(SP): テキストエリア下端 → 注記1行目の字面上端 9px / 行送り28
   @include mq(md) {
-    margin-top: px(28);
+    margin-top: px(-2);
+    line-height: px(28);
     padding-left: 0;
+  }
+}
+
+// カンプ実測: メールフォーム（ベージュ帯）の直後だけ SALONS までの余白が広い
+// （PC 192px / SP 92px。他ページの RESERVE 帯のあとは PC 102 / SP 67）
+.reserve-mail + .salons-sns {
+  padding-top: px(146);
+
+  @include mq(md) {
+    padding-top: px(65);
   }
 }

@@ -109,7 +109,7 @@ $vr_doc = VR_THEME_URI . '/assets/documents';
 
             <div class="reserve-thanks">
                 <h3 class="reserve-thanks__title">お問い合わせありがとうございます。</h3>
-                <p class="reserve-thanks__text">3営業日以内に担当者よりご連絡いたします。</p>
+                <p class="reserve-thanks__text">3営業日以内に担当の者から連絡いたします。</p>
                 <p class="reserve-thanks__text">
                     <a href="<?php echo esc_url(vr_url('home')); ?>" class="reserve-thanks__link">TOPに戻る</a>
                 </p>
