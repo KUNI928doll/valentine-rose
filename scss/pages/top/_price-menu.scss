@@ -12,7 +12,7 @@
 
   @include mq(md) {
     // カンプ(SP): セクション上端 → PRICE MENU ベースライン 198px
-    padding: px(151.5) 0 px(72.5);
+    padding: px(151.5) 0 px(68.5);
   }
 }
 
@@ -138,7 +138,7 @@
   @include mq(md) {
     // カンプ実測(SP): PRICE MENU の字面下端 → 1行目のメニュー名の字面上端 116px
     width: 100%;
-    margin-top: px(48);
+    margin-top: px(52);
     grid-template-columns: 1fr;
     grid-template-areas:
       "body"

@@ -6,16 +6,16 @@
   background-color: var(--color-bg-1); // カンプ: セクション固有の背景色なし
 
   @include mq(md) {
-    padding: px(87) 0 px(120); // カンプ(SP): PRICE MENU → FAQ見出し / 最終項目 → Reserve 上端 120px
+    padding: px(81) 0 px(120); // カンプ(SP): PRICE MENU → FAQ見出し / 最終項目 → Reserve 上端 120px
   }
 }
 
 .faq__head {
-  margin-bottom: px(48);
+  margin-bottom: px(62);
   text-align: left;
 
   @include mq(md) {
-    margin-bottom: px(32);
+    margin-bottom: px(38);
   }
 }
 
@@ -57,13 +57,9 @@
 
 .faq__head .section-title__ja {
   color: var(--color-main);
-  margin: px(12) 0 0;
+  // カンプ実測: FAQ の字面下端 → よくある質問の字面上端 24px（PC / SP とも）
+  margin: px(-2) 0 0;
   text-align: left;
-
-  // カンプ(SP): FAQ ベースライン → よくある質問 ベースライン 25px
-  @include mq(md) {
-    margin-top: px(-2);
-  }
 }
 
 .faq__list {
@@ -198,6 +194,8 @@
 // Q / A の記号（カンプ: Yu Mincho 24px。質問・回答テキストは左 60px から始まる）
 .faq__mark {
   flex-shrink: 0;
+  // カンプ: 質問が複数行でも Q は1行目に上そろえ（▼ は上下中央のまま）
+  align-self: flex-start;
   display: inline-block;
   width: px(40);
   font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;

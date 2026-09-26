@@ -10,7 +10,7 @@
 
   @include mq(md) {
     // カンプ: News下端 → メイン画像上端 57.4px / View More 下線 → Feature上端 120.5px
-    padding: px(57.4) 0 px(120.5);
+    padding: px(57.4) 0 px(114.5);
   }
 }
 
@@ -63,7 +63,7 @@
 
   // カンプ: 横の縦長画像の上端より 29.5px 下から見出しが始まる（画像下端→CONCEPTベースライン117px）
   @include mq(md) {
-    padding-top: px(29.5);
+    padding-top: px(36.5);
     // カンプ: CONCEPT の右端が縦長画像に少し重なる。文字が画像の下に隠れないよう前面に出す
     position: relative;
     z-index: 1;
@@ -108,7 +108,7 @@
   @include mq(md) {
     // カンプ: CONCEPT → コンセプト のベースライン間 25px / コンセプト → キャッチ 67px
     margin-top: px(-2);
-    margin-bottom: px(10.6);
+    margin-bottom: px(47.6);
   }
 }
 
@@ -249,8 +249,8 @@
     align-items: stretch;
     gap: px(24);
     order: 3;
-    // カンプ: 横画像下端 → 本文枠上端 45px（.concept__inner の gap 24 + 29 - 本文の負マージン8）
-    margin-top: px(29);
+    // カンプ: 横画像下端 → 本文枠上端 45px（.concept__inner の gap 24 + 17 - 本文の負マージン8）
+    margin-top: px(17);
   }
 }
 

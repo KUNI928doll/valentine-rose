@@ -19,7 +19,7 @@
   }
 
   @include mq(md) {
-    padding: px(60) 0 px(20); // カンプ(SP): セクション高さ 704px
+    padding: px(60) 0 px(48); // カンプ(SP): セクション高さ 704px
 
     .inner {
       width: 100%;
@@ -339,8 +339,8 @@
   transform: translateX(px(-41));
 
   @include mq(md) {
-    // カンプ(SP): 画像下端 → ラベルのベースライン 68px
-    margin-top: px(28.7);
+    // カンプ実測(SP): 画像下端 → FEATURE Ⅰ ラベルの字面上端 37px
+    margin-top: px(0.7);
     order: 2;
     transform: none;
   }
@@ -385,7 +385,8 @@
     gap: px(14);
     font-size: px(14);
     letter-spacing: px(1.4);
-    margin-bottom: px(1.5);
+    // カンプ実測(SP): ラベルの字面上端 → 見出しの字面上端 35px
+    margin-bottom: px(6.5);
 
     &::before,
     &::after {
@@ -428,7 +429,7 @@
     // カンプ(SP): Yu Mincho 18px / 字間1.8 / 行送り36
     font-size: px(18);
     letter-spacing: px(1.8);
-    margin-bottom: px(24);
+    margin-bottom: px(19);
   }
 }
 

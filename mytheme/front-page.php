@@ -276,7 +276,7 @@ get_header();
             <span class="section-title__en">FAQ</span>
             <span class="section-title__bg" aria-hidden="true">FAQ</span>
           </h2>
-          <p class="section-title__ja">よくあるご質問</p>
+          <p class="section-title__ja">よくある質問</p>
         </div>
         <div class="faq__list">
           <div class="faq__item js-faq-item is-open">

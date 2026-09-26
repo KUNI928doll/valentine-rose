@@ -124,11 +124,14 @@
 .salons-sns__col:last-child {
   // カンプ: SNS は SALONS より 8px 上・サブとの間隔 48px
   padding-top: px(24.6);
+  // カンプ実測(PC): SNS は右半分の中央ではなく、そこから 24px 左に置かれている
+  padding-right: px(64);
   gap: px(15.3);
 
   @include mq(md) {
     // カンプ(SP): SALONS → SNS のベースライン間 201px
     padding-top: px(59);
+    padding-right: 0;
     gap: px(1.7);
   }
 

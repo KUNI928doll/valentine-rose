@@ -66,8 +66,8 @@
 
   .section-title__bg {
     position: absolute;
-    // カンプ: 見出し左端 +90px / ベースラインは見出しより 9px 上
-    left: px(90);
+    // 1x 書き出しとの実測比較: 装飾スクリプトは見出し左端 +147
+    left: px(147);
     bottom: px(-23.2);
     z-index: 0;
     line-height: px(168);
